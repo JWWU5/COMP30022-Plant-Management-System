@@ -27,6 +27,7 @@ main h1 {
     margin-top: 5%;
     margin-left: 5%;
     text-shadow: 3px 3px #44533B;
+    display: inline-block;
 }
 
 main h3 {
@@ -49,6 +50,7 @@ main p {
     color: #555b6e;
     margin-left: 2%;
 }
+
 .rectangle {
     border-radius: 25px;
     /* margin-left: 5%;
@@ -66,6 +68,19 @@ main p {
     margin:1.5rem ;
     z-index: 1;
 }
+
+.rectangleContent {
+    border-radius: 25px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 37vh; 
+    background-color: #BACB94;
+    word-wrap: break-word;
+}
+
 .contentBox {
     position: absolute;
     z-index: 100;
@@ -84,6 +99,7 @@ main p {
     z-index: 100;
     padding: 0 2rem;
 }
+
 .img {
     position: absolute;
     width: auto;
@@ -94,5 +110,10 @@ main p {
 
 .zombieImg {
     width: 100%;
+}
+
+.titleImg {
+    width: 20%;
+    height: auto;
 }
 
