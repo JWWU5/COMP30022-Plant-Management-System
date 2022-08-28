@@ -1,13 +1,13 @@
-const { User } = require("./../models");
+const { Plant } = require("./../models");
 
 exports.register = async (req, res, next) => {
     console.log(req.body, "data");
-    const userModel = new User(req.body);
-    const result = await userModel.save();
+    const plantModel = new Plant(req.body);
+    const result = await plantModel.save();
     res.status(201).json(result);
 };
 
 exports.list = async (req, res, next) => {
-    const result = await User.find();
+    const result = await Plant.find();
     res.status(200).json(result);
 };
