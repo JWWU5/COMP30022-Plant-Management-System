@@ -1,15 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 function App() {
-  const getDataHandler = () => {
-    axios.get('http://localhost:5000/api/v1/user').then((res) => {
-      console.log(res, '请求数据');
-    });
-  };
-  return (
-    <div className='App'>
-      <button onClick={getDataHandler}>点击按钮获取数据</button>
-    </div>
-  );
+    const getDataHandler = () => {
+        axios.get("http://localhost:5000/api/v1/user").then((res) => {
+            console.log(res, "require data");
+        });
+    };
+    return (
+        <div className="App">
+            <button onClick={getDataHandler}>click button to get data</button>
+        </div>
+    );
 }
 
 export default App;
