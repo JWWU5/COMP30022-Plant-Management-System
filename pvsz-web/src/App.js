@@ -1,4 +1,7 @@
 import axios from "axios";
+// import Register from "./components/Register";
+import AboutUs from "./components/AboutUs";
+
 function App() {
     const getDataHandler = () => {
         axios.get("http://localhost:5000/api/v1/user").then((res) => {
@@ -6,9 +9,8 @@ function App() {
         });
     };
     return (
-        <div className="App">
-            <button onClick={getDataHandler}>click button to get data</button>
-        </div>
+        // <Register />
+        <AboutUs />
     );
 }
 
