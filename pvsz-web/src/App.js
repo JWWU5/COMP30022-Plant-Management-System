@@ -1,7 +1,12 @@
 import axios from "axios";
-// import Register from "./components/Register";
-// import AboutUs from "./components/AboutUs";
-import ContactUS from "./components/ContactUS";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
+// Import components. 
+import Welcome from "./components/Welcome.component";
+import Register from "./components/Register";
+import AboutUs from './components/AboutUs.component';
+// import ContactUS from "./components/ContactUS";
 
 function App() {
     const getDataHandler = () => {
@@ -10,9 +15,16 @@ function App() {
         });
     };
     return (
-        // <Register />
-        // <AboutUs />
-        <ContactUS />
+        <Router>
+            <Routes>
+                <Route exact path="/" element={<Welcome />} />
+                <Route path="/about-us" element={<AboutUs />} />
+            </Routes>
+            {/* <Register />
+            <AboutUs />
+            <ContactUS /> */}
+        </Router>
+        
     );
 }
 
