@@ -1,4 +1,4 @@
-body {
+.about {
     background: url("../assets/images/leaves_yellow.png"), #E2ECC6;
     background-position: 0% 0%;
     background-repeat: no-repeat;
@@ -10,14 +10,13 @@ body {
     flex-direction: column;
 }
 
+.title {
+    height: 22%;
+}
+
 .navbar_style {
     margin-left: 5%;
     margin-top: 5%;
-}
-
-button {
-    border: none;
-    background: none;
 }
 
 main h1 {

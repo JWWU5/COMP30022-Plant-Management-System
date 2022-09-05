@@ -6,7 +6,7 @@ import greenZombie from '../assets/images/green_zombie.png';
 export default class AboutUs extends Component {
     render() {
         return (
-            <body>
+            <body className='about'>
                 <Header />
                 <main>
                     <div class="body">

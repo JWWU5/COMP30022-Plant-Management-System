@@ -1,9 +1,60 @@
 body {
     background: #E2ECC6;
+    height: 80vh;
+    width: 100vw;
 }
 
-h3 {
-    color: #FFFFFF;
+.welcomeText {
+    color: #788E6C;
     font-family: "Tamil MN";
-    font-size: 1.5em;
+    font-size: 2em;
+    /* margin-left: 20%; */
+    margin-top: 35%;
+    text-align: center;
+}
+
+.title {
+    color: #44533B;
+    font-family: "Tamil MN";
+    font-size: 2.5em;
+    text-align: center;
+    margin-top: 0%;
+    font-weight: bold;
+}
+
+.titleDiv {
+    height: 35vh;
+}
+
+.signButton {
+    background: #FFFFFF;
+    border-radius: 28px;
+    font-size: 1.8em;
+    font-family: "Times New Roman";
+    font-weight: 800;
+    color: #44533B;
+    height: 8vh;
+    width: 70vw;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    margin-left: 17%;
+    margin-top: 8%;
+}
+
+.aboutText {
+    font-family: "Tamil MN";
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 30%;
+    margin-bottom: 1%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.linkText {
+    font-family: "Tamil MN";
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-left: 39.5%;
 }

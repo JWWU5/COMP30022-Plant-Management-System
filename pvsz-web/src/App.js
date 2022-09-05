@@ -4,9 +4,10 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 // Import components. 
 import Welcome from "./components/Welcome.component";
-import Register from "./components/Register";
 import AboutUs from './components/AboutUs.component';
-// import ContactUS from "./components/ContactUS";
+import ContactUS from "./components/ContactUS.component";
+import SignIn from "./components/SignIn.component";
+import SignUp from "./components/SignUp.component";
 
 function App() {
     const getDataHandler = () => {
@@ -19,6 +20,9 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<Welcome />} />
                 <Route path="/about-us" element={<AboutUs />} />
+                <Route path="contact-us" element={<ContactUS />} />
+                <Route path="sign-in" element={<SignIn />} />
+                <Route path="sign-up" element={<SignUp />} />
             </Routes>
             {/* <Register />
             <AboutUs />
