@@ -1,6 +1,7 @@
 import axios from "axios";
 // import Register from "./components/Register";
-import AboutUs from "./components/AboutUs";
+// import AboutUs from "./components/AboutUs";
+import ContactUS from "./components/ContactUS";
 
 function App() {
     const getDataHandler = () => {
@@ -10,7 +11,8 @@ function App() {
     };
     return (
         // <Register />
-        <AboutUs />
+        // <AboutUs />
+        <ContactUS />
     );
 }
 

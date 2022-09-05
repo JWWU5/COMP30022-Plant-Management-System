@@ -21,11 +21,12 @@ button {
 }
 
 main h1 {
-    font-family: Tamil MN;
-    font-size: 3em;
+    font-family: "BM Hanna 11yrs Old";
+    font-size: 3.5em;
     color: #FFFFFF;
-    margin-top: 5%;
+    margin-top: 5%; 
     margin-left: 5%;
+    margin-bottom: 0%;
     text-shadow: 3px 3px #44533B;
     display: inline-block;
 }
