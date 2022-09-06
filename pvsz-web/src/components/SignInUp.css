@@ -30,7 +30,7 @@ ul {
     padding: 0;
 }
 
-.inputBlock {
+.signInInputBlock {
     margin-top: 7%;
     margin-bottom: 3%;
     border-radius: 30px;
@@ -38,6 +38,14 @@ ul {
     height: 7vh;
     width: 60vw;
     /* margin: auto; */
+}
+
+.signUpInputBlock {
+    margin-top: 7%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
 }
 
 ::placeholder {
@@ -62,6 +70,20 @@ ul {
     color: #44533B;
 }
 
+.signUpButton {
+    background: #FFFFFF;
+    margin-top: 7%;
+    margin-bottom: 8%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-size: 1.8em;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+}
+
 li b {
     display: block;
     width: 80vw;
@@ -72,6 +94,20 @@ li b {
     text-align: center;
     margin: auto;
 }
+
+li c {
+    display: block;
+    width: 80vw;
+    height: 12vh;
+    font-family: "Tamil MN";
+    font-size: 0.8em;
+    font-weight: 300;
+    color: #44533B;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20%;
+}
+
 
 
     

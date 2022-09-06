@@ -14,8 +14,8 @@ export default class SignIn extends Component {
                 <div className='infoDiv'>
                     <img src={avatar}></img>
                     <ul>
-                        <li><input type='text' placeholder='Username' className='inputBlock'></input></li> 
-                        <li><input type='text' placeholder='Password' className='inputBlock'></input></li>
+                        <li><input type='text' placeholder='Username' className='signInInputBlock'></input></li> 
+                        <li><input type='text' placeholder='Password' className='signInInputBlock'></input></li>
                         <li><button className='signInButton'>SIGN IN</button></li>
                     </ul>
                     <ul>
