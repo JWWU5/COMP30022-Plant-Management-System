@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import Header from "./Header";
 import "./SignInUp.css";
+import avatar from '../assets/images/avatar.png';
 
 export default class SignIn extends Component {
     render () {
@@ -10,6 +11,20 @@ export default class SignIn extends Component {
                 <header>
                     <h1>Sign In</h1>
                 </header>
+                <div className='infoDiv'>
+                    <img src={avatar}></img>
+                    <ul>
+                        <li><input type='text' placeholder='Username' className='inputBlock'></input></li> 
+                        <li><input type='text' placeholder='Password' className='inputBlock'></input></li>
+                        <li><button className='signInButton'>SIGN IN</button></li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <b>If you meet any issue when log in, feel free to</b>
+                            <b href='/contact-us'>contact OUR TEAM</b>
+                        </li>
+                    </ul>
+                </div>
             </body>
         )
     }

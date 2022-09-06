@@ -24,6 +24,7 @@ body {
 
 .titleDiv {
     height: 35vh;
+    align-items: center;
 }
 
 .signButton {
@@ -45,16 +46,24 @@ body {
     font-family: "Tamil MN";
     font-size: 1.2em;
     font-weight: 600;
+    color: #555A6E;
     text-align: center;
     margin-top: 30%;
-    margin-bottom: 1%;
+    margin-bottom: 0%;
     margin-left: 15%;
     margin-right: 15%;
 }
 
-.linkText {
+ul {
+    list-style-type: none;
+}
+
+li a {
+    display: block;
+    width: 150px;
+    margin: auto;
     font-family: "Tamil MN";
     font-size: 1.2em;
     font-weight: 600;
-    margin-left: 39.5%;
+    color: #555A6E;
 }

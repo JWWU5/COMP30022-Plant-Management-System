@@ -11,13 +11,20 @@ export default class Welcome extends Component {
                         <p className='title'>P vs. Z</p>
                     </div>
                     <div>
-                        <button className='signButton'>SIGN UP</button>
-                        <button className='signButton'>SIGN IN</button>
+                        <a href='/sign-up'>
+                            <button className='signButton'>SIGN UP</button>
+                        </a>
+                        <a href='sign-in'>
+                            <button className='signButton'>SIGN IN</button> 
+                        </a>
+                        
                     </div>
                     <div>
-                        <p className='aboutText'>If you wanna know more about this app, feel free 
-                        to look into</p>
-                        <a href='/about-us' className='linkText'>this page.</a>
+                        <ul>
+                           <li className='aboutText'>If you wanna know more about this app, feel free 
+                            to look into</li> 
+                           <li><a href='/about-us' className='aboutLink'>this page.</a></li> 
+                        </ul>
                     </div>
                 </body>
             </main>

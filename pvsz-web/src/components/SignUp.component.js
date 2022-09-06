@@ -10,6 +10,9 @@ export default class SignUp extends Component {
                 <header>
                     <h1>Sign Up</h1>
                 </header>
+                <div className='infoDiv'>
+                    
+                </div>
             </body>
         )
     }

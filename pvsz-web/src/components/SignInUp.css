@@ -18,4 +18,60 @@ header h1 {
     margin-left: 5%;
     display: inline-block;
 }
+
+.infoDiv {
+    height: 30vh;
+    margin-top: 20%;
+    text-align: center;
+    align-items: center;
+}
+
+ul {
+    padding: 0;
+}
+
+.inputBlock {
+    margin-top: 7%;
+    margin-bottom: 3%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 60vw;
+    /* margin: auto; */
+}
+
+::placeholder {
+    color: #555A6E;
+    font-size: 1.7em;
+    font-family: "Times New Roman";
+    padding-top: 10%;
+    padding-left: 10%;
+}
+
+.signInButton {
+    background: #FFFFFF;
+    margin-top: 7%;
+    margin-bottom: 30%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 60vw;
+    font-size: 1.8em;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+}
+
+li b {
+    display: block;
+    width: 80vw;
+    font-family: "Tamil MN";
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #44533B;
+    text-align: center;
+    margin: auto;
+}
+
+
     
