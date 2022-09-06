@@ -21,7 +21,7 @@ header h1 {
 
 .infoDiv {
     height: 30vh;
-    margin-top: 20%;
+    margin-top: 15%;
     text-align: center;
     align-items: center;
 }
@@ -48,13 +48,12 @@ ul {
     width: 80vw;
 }
 
-::placeholder {
+/* ::placeholder {
     color: #555A6E;
     font-size: 1.7em;
     font-family: "Times New Roman";
-    padding-top: 10%;
-    padding-left: 10%;
-}
+    padding-left: 5%;
+} */
 
 .signInButton {
     background: #FFFFFF;
@@ -63,7 +62,7 @@ ul {
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
-    width: 60vw;
+    width: 65vw;
     font-size: 1.8em;
     font-family: "Times New Roman";
     font-weight: 900;
@@ -77,7 +76,7 @@ ul {
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
-    width: 80vw;
+    width: 85vw;
     font-size: 1.8em;
     font-family: "Times New Roman";
     font-weight: 900;
@@ -106,6 +105,13 @@ li c {
     text-align: center;
     margin: auto;
     margin-bottom: 20%;
+}
+
+input[type=text], select{
+    color: #555A6E;
+    font-size: 1.7em;
+    font-family: "Times New Roman";
+    padding-left: 5%;
 }
 
 
