@@ -21,7 +21,7 @@ export default class SignIn extends Component {
                     <ul>
                         <li>
                             <b>If you meet any issue when log in, feel free to</b>
-                            <b href='/contact-us'>contact OUR TEAM</b>
+                            <b>contact OUR TEAM</b>
                         </li>
                     </ul>
                 </div>
