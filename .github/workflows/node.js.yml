@@ -22,6 +22,6 @@ jobs:
     - name: Install dependencies
       working-directory: ./pvsz-api
       run: npm install
-    - name: Run test
-      working-directory: ./pvsz-api
-      run: npm test
+    # - name: Run test
+    #   working-directory: ./pvsz-api
+    #   run: npm test
