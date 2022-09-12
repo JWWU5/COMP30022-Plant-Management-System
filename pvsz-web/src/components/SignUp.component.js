@@ -13,6 +13,7 @@ export default function Register() {
     const [birthdayDate, setBirthdayDate] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [agreePolicy, setPagreePolicy] = useState("");
     const [register, setRegister] = useState(false);
 
     const handleSubmit = (e) => {
@@ -129,6 +130,10 @@ export default function Register() {
                                     type="checkbox"
                                     id="agreePolicy"
                                     name="agreePolicy"
+                                    value={agreePolicy}
+                                    onChange={(e) =>
+                                        setPagreePolicy(e.target.value)
+                                    }
                                 ></input>
                                 <label for="agreePolicy">
                                     By creating an account, you agree to our

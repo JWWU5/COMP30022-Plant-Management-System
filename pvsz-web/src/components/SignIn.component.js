@@ -14,6 +14,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         // prevent the form from refreshing the whole page
         e.preventDefault();
+        alert("Submited");
 
         // set configurations
         const configuration = {

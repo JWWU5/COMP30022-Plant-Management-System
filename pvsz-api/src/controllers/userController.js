@@ -77,8 +77,8 @@ exports.login = async (req, res, next) => {
         })
         // catch error if email does not exist
         .catch((e) => {
-            response.status(404).send({
-                message: "Email not found",
+            res.status(404).send({
+                message: "User not found",
                 e,
             });
         });
