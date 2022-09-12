@@ -5,6 +5,12 @@ import "./sidebar.scss";
 
 const sidebarNavItems = [
     {
+        display: "< RETURN",
+
+        to: "/",
+        section: "",
+    },
+    {
         display: "HOME",
         icon: <i className="bx bx-home"></i>,
         to: "/",
@@ -13,44 +19,44 @@ const sidebarNavItems = [
     {
         display: "PLANTS",
         icon: <i className="bx bx-leaf"></i>,
-        to: "/started",
+        to: "/plants",
         section: "started",
     },
     {
         display: "GROUPS",
         icon: <i className="bx bx-group"></i>,
-        to: "/calendar",
-        section: "calendar",
+        to: "/group",
+        section: "group",
     },
     {
         display: "RANKINGT",
         icon: <i className="bx bx-line-chart"></i>,
-        to: "/user",
-        section: "user",
+        to: "/ranking",
+        section: "ranking",
     },
     {
         display: "PROFILE",
         icon: <i className="bx bx-user"></i>,
-        to: "/order",
-        section: "order",
+        to: "/profile",
+        section: "profile",
     },
     {
         display: "ABOUT US",
         icon: <i className="bx bx-book"></i>,
-        to: "/order",
-        section: "order",
+        to: "/about",
+        section: "about",
     },
     {
         display: "CONTACT US",
         icon: <i className="bx bx-phone-call"></i>,
-        to: "/order",
-        section: "order",
+        to: "/contact",
+        section: "contact",
     },
     {
         display: "SETTING",
         icon: <i className="bx bx-edit-alt"></i>,
-        to: "/order",
-        section: "order",
+        to: "/setting",
+        section: "setting",
     },
 ];
 
@@ -82,7 +88,6 @@ const Sidebar = () => {
 
     return (
         <div className="sidebar">
-            <div className="sidebar__logo">RETUTN</div>
             <div ref={sidebarRef} className="sidebar__menu">
                 {sidebarNavItems.map((item, index) => (
                     <Link to={item.to} key={index}>
