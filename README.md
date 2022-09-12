@@ -9,6 +9,7 @@
 
 This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
 
+Backend
 ```sh
 $ cd pvsz-api
 $ npm install
@@ -18,6 +19,7 @@ $ npm install --save bcrypt
 $ npm install mongoose
 $ npm install -g nodemon
 ```
+Frontend
 ```sh
 $ cd pvsz-web
 $ npm install
