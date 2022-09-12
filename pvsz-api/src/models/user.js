@@ -8,6 +8,8 @@ const UserSchema = mongoose.Schema({
     userName: { type: String },
     dateOfBirth: { type: String },
     email: { type: String },
-});
+},{
+    timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
+  });
 
 module.exports = UserSchema;
