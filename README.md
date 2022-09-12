@@ -14,6 +14,11 @@ This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go che
 
 ```sh
 $ npm install
+$ npm i jsonwebtoken -s
+$ npm i universal-cookie -s
+$ npm install --save bcrypt
+$ npm install mongoose
+$ npm install -g nodemon
 ```
 
 ### Contributors
