@@ -95,7 +95,7 @@ const Header = (menubarColour) => {
         <>
             <nav className="navbar_style">
                 <button onClick={showSidebar}>
-                    <img src={whiteMenubar}></img>
+                    <img src={whiteMenubar} className="menuIcon"></img>
                 </button>
             </nav>
             <div className={sidebar ? "sidebar" : "nav-menu"}>

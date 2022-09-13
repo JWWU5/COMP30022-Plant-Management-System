@@ -23,4 +23,9 @@ button {
   left: 0;
   transition: 350ms;
 }
-  
+
+.menuIcon {
+    height: 2vh;
+    width: 6vw;
+}
+
