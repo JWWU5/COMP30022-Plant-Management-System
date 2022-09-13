@@ -46,7 +46,10 @@
   },
   "devDependencies": {
     "@iconify/react": "^4.0.0",
+    "node-sass": "^7.0.3",
     "resolve-url-loader": "^5.0.0",
-    "sass": "^1.54.9"
+    "sass": "^1.54.9",
+    "sass-loader": "^13.0.2",
+    "webpack": "^5.74.0"
   }
 }

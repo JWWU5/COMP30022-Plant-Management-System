@@ -49,7 +49,6 @@ exports.login = async (req, res, next) => {
                             error,
                         });
                     }
-
                     //   create JWT token
                     const token = jwt.sign(
                         {

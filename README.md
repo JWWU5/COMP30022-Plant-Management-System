@@ -18,7 +18,8 @@ $ npm i universal-cookie -s
 $ npm install --save bcrypt
 $ npm install mongoose
 $ npm install -g nodemon
-$ npm -g i sass
+$ npm install -g i sass
+$ npm install sass-loader node-sass webpack --save-dev
 ```
 
 Frontend
