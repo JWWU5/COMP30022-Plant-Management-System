@@ -98,32 +98,30 @@ const Header = (menubarColour) => {
                     <img src={whiteMenubar}></img>
                 </button>
             </nav>
-            <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-                <div className={sidebar ? "sidebar" : "nav-menu"}>
-                    <div
-                        ref={sidebarRef}
-                        className="sidebar__menu"
-                        onClick={showSidebar}
-                    >
-                        {sidebarNavItems.map((item, index) => (
-                            <Link to={item.to} key={index}>
-                                <div
-                                    className={`sidebar__menu__item ${
-                                        activeIndex === index ? "active" : ""
-                                    }`}
-                                >
-                                    <div className="sidebar__menu__item__icon">
-                                        {item.icon}
-                                    </div>
-                                    <div className="sidebar__menu__item__text">
-                                        {item.display}
-                                    </div>
+            <div className={sidebar ? "sidebar" : "nav-menu"}>
+                <div
+                    ref={sidebarRef}
+                    className="sidebar__menu"
+                    onClick={showSidebar}
+                >
+                    {sidebarNavItems.map((item, index) => (
+                        <Link to={item.to} key={index}>
+                            <div
+                                className={`sidebar__menu__item ${
+                                    activeIndex === index ? "active" : ""
+                                }`}
+                            >
+                                <div className="sidebar__menu__item__icon">
+                                    {item.icon}
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
+                                <div className="sidebar__menu__item__text">
+                                    {item.display}
+                                </div>
+                            </div>
+                        </Link>
+                    ))}
                 </div>
-            </nav>
+            </div>
         </>
     );
 };
