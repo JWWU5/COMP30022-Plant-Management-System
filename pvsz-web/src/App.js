@@ -1,13 +1,16 @@
 import axios from "axios";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-// Import components. 
+// Import components.
 import Welcome from "./components/Welcome.component";
-import AboutUs from './components/AboutUs.component';
+import AboutUs from "./components/AboutUs.component";
 import ContactUS from "./components/ContactUS.component";
 import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
+import AppLayout from "./components/AppLayout";
+import "boxicons/css/boxicons.min.css";
+import "./App.css";
 
 function App() {
     const getDataHandler = () => {
@@ -18,6 +21,7 @@ function App() {
     return (
         <Router>
             <Routes>
+                <Route path="/sidebar" element={<AppLayout />} />
                 <Route exact path="/" element={<Welcome />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/contact-us" element={<ContactUS />} />
@@ -28,7 +32,6 @@ function App() {
             <AboutUs />
             <ContactUS /> */}
         </Router>
-        
     );
 }
 

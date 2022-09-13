@@ -10,8 +10,8 @@ exports.register = async (req, res, next) => {
         const user = new User({
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userName: req.body.userName,
-            birthdayDate: req.body.birthdayDate,
+            userId: req.body.userName,
+            dateOfBirth: req.body.birthdayDate,
             email: req.body.email,
             password: hashedPassword,
         });
@@ -49,7 +49,6 @@ exports.login = async (req, res, next) => {
                             error,
                         });
                     }
-
                     //   create JWT token
                     const token = jwt.sign(
                         {
@@ -77,8 +76,8 @@ exports.login = async (req, res, next) => {
         })
         // catch error if email does not exist
         .catch((e) => {
-            response.status(404).send({
-                message: "Email not found",
+            res.status(404).send({
+                message: "User not found",
                 e,
             });
         });

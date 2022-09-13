@@ -19,6 +19,8 @@ const PlantSchema = mongoose.Schema({
     water: { type: String },
     temperatureAndHumidity: { type: String },
     fertilizer: { type: String },
-});
+},{
+    timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
+  });
 
 module.exports = PlantSchema;
