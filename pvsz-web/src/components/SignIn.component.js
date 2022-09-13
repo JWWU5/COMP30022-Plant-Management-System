@@ -50,6 +50,7 @@ export default function Login() {
             </header>
             <div className="infoDiv">
                 <img src={avatar}></img>
+
                 <ul>
                     <li>
                         <input

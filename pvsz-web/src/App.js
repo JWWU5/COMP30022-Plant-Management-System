@@ -10,7 +10,7 @@ import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
 import AppLayout from "./components/AppLayout";
 import "boxicons/css/boxicons.min.css";
-import "./App.scss";
+import "./App.css";
 
 function App() {
     const getDataHandler = () => {
