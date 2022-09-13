@@ -14,7 +14,7 @@ header h1 {
     font-family: "BM Hanna 11yrs Old";
     font-size: 15vw;
     color: #FFFFFF;
-    margin-top: 12%;
+    margin-top: 8%;
     margin-left: 5%;
     display: inline-block;
 }
@@ -48,6 +48,11 @@ ul {
     width: 80vw;
 }
 
+.avatarIcon {
+    height: 10vh;
+    width: 10vh;
+}
+
 /* ::placeholder {
     color: #555A6E;
     font-size: 1.7em;
@@ -63,10 +68,12 @@ ul {
     border: #FFFFFF;
     height: 7vh;
     width: 65vw;
-    font-size: 9vw;
+    font-size: 4vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .signUpButton {
@@ -77,34 +84,29 @@ ul {
     border: #FFFFFF;
     height: 7vh;
     width: 85vw;
-    font-size: 9vw;
+    font-size: 5vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-li b {
+.infoText {
     display: block;
     width: 80vw;
     font-family: "Tamil MN";
-    font-size: 1.2rem;
+    font-size: 2vh;
     font-weight: 300;
     color: #44533B;
     text-align: center;
     margin: auto;
 }
 
-li c {
-    display: block;
-    width: 80vw;
-    height: 12vh;
+.errorMessage {
     font-family: "Tamil MN";
-    font-size: 0.8rem;
-    font-weight: 300;
+    font-size: 5vw;
     color: #44533B;
-    text-align: center;
-    margin: auto;
-    margin-bottom: 20%;
 }
 
 input {
@@ -112,4 +114,9 @@ input {
     font-size: 9vw;
     font-family: "Times New Roman";
     padding-left: 5%;
+}
+
+.logoImage {
+    width: 12vw;
+    height: 8vw;
 }
