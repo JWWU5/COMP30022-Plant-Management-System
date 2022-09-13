@@ -101,7 +101,7 @@ ul {
     font-family: "Tamil MN";
     font-size: 3vw;
     color: #44533B;
-    margin-top: -3%;
+    margin-top: 0%;
 }
 
 input {
@@ -124,6 +124,22 @@ input {
     top: 20px;
     transform: translate(-50%, 0);
     z-index: 1000;
+}
+
+.policyText {
+    display: block;
+    width: 80vw;
+    font-family: "Tamil MN";
+    font-size: 4vw;
+    font-weight: 300;
+    color: #44533B;
+    text-align: center;
+    margin: auto;
+}
+
+.largerCheckBox {
+    width: 4vw;
+    height: 4vw;
 }
 
     
