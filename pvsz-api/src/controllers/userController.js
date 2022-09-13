@@ -1,9 +1,19 @@
-const { User } = require("./../models");
+const {User} = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res, next) => {
     console.log(req.body, "data");
+    let user = await User.findOne({
+        email: req.body.email
+    });
+    console.log("user = ", user)
+    if (user) {
+        res.status(500).send({
+            message: "The mailbox already exists"
+        });
+        return;
+    }
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         console.log(hashedPassword, "after hashing");
@@ -32,11 +42,13 @@ exports.register = async (req, res, next) => {
 
 exports.login = async (req, res, next) => {
     console.log(req.body, "data");
-    User.findOne({ userName: req.body.userName })
-
+    User.findOne({
+            email: req.body.email
+        })
         // if email exists
         .then((user) => {
             // compare the password entered and the hashed password found
+            console.log("user8888 = ", user)
             bcrypt
                 .compare(req.body.password, user.password)
 
@@ -50,13 +62,13 @@ exports.login = async (req, res, next) => {
                         });
                     }
                     //   create JWT token
-                    const token = jwt.sign(
-                        {
+                    const token = jwt.sign({
                             userId: user._id,
                             userName: user.userName,
                         },
-                        "RANDOM-TOKEN",
-                        { expiresIn: "24h" }
+                        "RANDOM-TOKEN", {
+                            expiresIn: "24h"
+                        }
                     );
 
                     //   return success response
