@@ -1,13 +1,13 @@
 body {
     background: #E2ECC6;
-    height: 80vh;
+    height: 100vh;
     width: 100vw;
 }
 
 .welcomeText {
     color: #788E6C;
     font-family: "Tamil MN";
-    font-size: 2em;
+    font-size: 9vw;
     /* margin-left: 20%; */
     margin-top: 35%;
     text-align: center;
@@ -16,7 +16,7 @@ body {
 .title {
     color: #44533B;
     font-family: "Tamil MN";
-    font-size: 2.5em;
+    font-size: 10vh;
     text-align: center;
     margin-top: 0%;
     font-weight: bold;
@@ -44,7 +44,7 @@ body {
 
 .aboutText {
     font-family: "Tamil MN";
-    font-size: 1.2em;
+    font-size: 2vh;
     font-weight: 600;
     color: #555A6E;
     text-align: center;
@@ -66,4 +66,10 @@ li a {
     font-size: 1.2em;
     font-weight: 600;
     color: #555A6E;
+}
+
+.logoStyle {
+    width: 20vh;
+    height: 10vh;
+    margin-bottom: 25vh;
 }

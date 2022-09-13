@@ -62,7 +62,7 @@ ul {
     border: #FFFFFF;
     height: 7vh;
     width: 60vw;
-    font-size: 4vh;
+    font-size: 3vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
@@ -78,7 +78,7 @@ ul {
     border: #FFFFFF;
     height: 7vh;
     width: 85vw;
-    font-size: 5vh;
+    font-size: 3vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
@@ -99,13 +99,14 @@ ul {
 
 .errorMessage {
     font-family: "Tamil MN";
-    font-size: 5vw;
+    font-size: 3vw;
     color: #44533B;
+    margin-top: -3%;
 }
 
 input {
     color: #555A6E;
-    font-size: 9vw;
+    font-size: 6vw;
     font-family: "Times New Roman";
     padding-left: 5%;
 }
@@ -113,7 +114,9 @@ input {
 .logoImage {
     width: 12vw;
     height: 8vw;
+    margin-top: 19vh;
 }
+
 .tipsBox{
     position: absolute;
     width: 90%;

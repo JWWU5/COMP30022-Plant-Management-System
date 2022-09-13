@@ -4,6 +4,7 @@ import Header from "./Header";
 import "./SignInUp.css";
 import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
+import { Grid } from '@mui/material';
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -161,6 +162,14 @@ export default function Register() {
     alert(`The name you entered was: ${userName}`);
   };
 
+  function componentDidMount()
+  {
+      const container = document.querySelector('.buttonContainer')
+      container.addEventListener('animationend', () => {
+          container.classList.remove('active');
+      });
+  }
+
   return (
     <body className="signIn">
       <div className="tipsBox">
@@ -171,7 +180,12 @@ export default function Register() {
       <header>
         <h1>Sign Up</h1>
       </header>
-      <div className="infoDiv">
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <img src={avatar}></img>
         <ul>
           <form>
@@ -254,7 +268,7 @@ export default function Register() {
             </li>
           </form>
         </ul>
-      </div>
+      </Grid>
     </body>
   );
 }

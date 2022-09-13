@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ }
+
+ @mixin button($bcolor,
+ $url,
+ $x1,
+ $y1,
+ $bor,
+ $col) {
+  background: $bcolor;
+  -webkit-mask: url($url);
+  mask: url($url);
+  -webkit-mask-size: $x1 $y1;
+  mask-size: $x1 $y1;
+  border: $bor;
+  color: $col;
+ }
+ 
+ .buttonContainer {
+  background: #FFFFFF;
+  margin-top: 5%;
+  margin-bottom: 8%;
+  border-radius: 30px;
+  border: #FFFFFF;
+  height: 7vh;
+  width: 60vw;
+  font-size: 3vh;
+  font-family: "Times New Roman";
+  font-weight: 900;
+  color: #44533B;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // position: relative;
+  // width: 100px;
+  // height: 50px;
+  // margin-left: auto;
+  // margin-right: auto;
+  // margin-top: 6vh;
+  // overflow: hidden;
+  // border: 1px solid;
+  // font-weight: 300;
+  // font-size: 20px;
+  // transition: 0.5s;
+  // letter-spacing: 1px;
+  // border-radius: 8px;
+ 
+  button {
+    background: #44533B;
+    // margin-top: 7%;
+    // margin-bottom: 8%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 60vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  //  width: 101%;
+  //  height: 100%;
+  //  font-weight: 300;
+  //  font-size: 11px;
+  //  letter-spacing: 1px;
+  //  font-weight: bold;
+ 
+   @include button(#44533B,
+   "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png",
+   2300%,
+   100%,
+   none,
+   #fff);
+   cursor: pointer;
+   -webkit-animation: ani2 0.7s steps(22) forwards;
+   animation: ani2 0.7s steps(22) forwards;
+ 
+   &:hover {
+    -webkit-animation: ani 0.7s steps(22) forwards;
+    animation: ani 0.7s steps(22) forwards;
+   }
+  }
+ }
+ 
+ .mas {
+     color: #44533B;
+     margin-left: 18%;
+     width: 101%;
+     font-weight: 900;
+     position: absolute;
+     font-size: 3vh;
+     margin-top: 13px;
+     overflow: hidden;
+     font-weight: bold;
+ }
+ 
+ @-webkit-keyframes ani {
+  from {
+   -webkit-mask-position: 0 0;
+   mask-position: 0 0;
+  }
+ 
+  to {
+   -webkit-mask-position: 100% 0;
+   mask-position: 100% 0;
+  }
+ }
+ 
+ @keyframes ani {
+  from {
+   -webkit-mask-position: 0 0;
+   mask-position: 0 0;
+  }
+ 
+  to {
+   -webkit-mask-position: 100% 0;
+   mask-position: 100% 0;
+  }
+ }
+
+ @-webkit-keyframes ani2 {
+  from {
+   -webkit-mask-position: 100% 0;
+   mask-position: 100% 0;
+  }
+ 
+  to {
+   -webkit-mask-position: 0 0;
+   mask-position: 0 0;
+  }
+ }
+ 
+ @keyframes ani2 {
+  from {
+   -webkit-mask-position: 100% 0;
+   mask-position: 100% 0;
+  }
+ 
+  to {
+   -webkit-mask-position: 0 0;
+   mask-position: 0 0;
+  }
+ }
+ 
+ a{
+   color:#00ff95;
+ }
