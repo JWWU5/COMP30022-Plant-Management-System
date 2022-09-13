@@ -15,13 +15,13 @@ export default function Login() {
   const [successTxt, setSuccessTxt] = useState("");
   const [errorTxt, setErrorTxt] = useState("");
 
-  const [userName, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
   const handleSubmit = (e) => {
     // prevent the form from refreshing the whole page
     e.preventDefault();
-    if (!userName) {
+    if (!email) {
       if (window.timer) {
         clearTimeout(window.timer);
       }
@@ -105,8 +105,8 @@ export default function Login() {
               type="email"
               placeholder="Email"
               className="signInInputBlock"
-              value={userName}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
           </li>
           <li>
