@@ -7,7 +7,6 @@ export default class ContactUS extends Component {
     render() {
         return (
             <body className='about'>
-                <Header />
                 <main>
                     <div>
                         <div class="title">

@@ -13,3 +13,8 @@ button {
     width: 100vw;
     background-color: rgba(23, 22, 22, 0.4);
 }
+
+.menuIcon {
+    height: 2vh;
+    width: 6vw;
+}
