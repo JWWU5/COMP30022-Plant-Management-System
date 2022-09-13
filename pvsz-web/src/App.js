@@ -18,6 +18,7 @@ function App() {
             console.log(res, "require data");
         });
     };
+    
     return (
         <Router>
             <Routes>
@@ -28,9 +29,6 @@ function App() {
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
             </Routes>
-            {/* <Register />
-            <AboutUs />
-            <ContactUS /> */}
         </Router>
     );
 }

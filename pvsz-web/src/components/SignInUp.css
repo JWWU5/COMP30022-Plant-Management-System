@@ -16,6 +16,7 @@ header h1 {
     color: #FFFFFF;
     margin-top: 8%;
     margin-left: 5%;
+    margin-bottom: 5%;
     display: inline-block;
 }
 
@@ -53,13 +54,6 @@ ul {
     width: 10vh;
 }
 
-/* ::placeholder {
-    color: #555A6E;
-    font-size: 1.7em;
-    font-family: "Times New Roman";
-    padding-left: 5%;
-} */
-
 .signInButton {
     background: #FFFFFF;
     margin-top: 7%;
@@ -67,7 +61,7 @@ ul {
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
-    width: 65vw;
+    width: 60vw;
     font-size: 4vh;
     font-family: "Times New Roman";
     font-weight: 900;
