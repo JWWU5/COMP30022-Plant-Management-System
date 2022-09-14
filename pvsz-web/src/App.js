@@ -21,7 +21,6 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/sidebar" element={<AppLayout />} />
                 <Route exact path="/" element={<Welcome />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/contact-us" element={<ContactUS />} />

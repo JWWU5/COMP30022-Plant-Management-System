@@ -103,16 +103,6 @@ export default function Register() {
       return;
     }
 
-    if (!(/\S+@\S+\.\S+/.test(email))) {
-      if (window.timer) {
-        clearTimeout(window.timer);
-      }
-      setErrorTxt("Incorrect email format");
-      window.timer = window.setTimeout(() => {
-        setErrorTxt("");
-      }, 1000);
-      return;
-    }
 
     // prevent the form from refreshing the whole page
     e.preventDefault();
