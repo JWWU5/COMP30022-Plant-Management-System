@@ -102,7 +102,7 @@ export default function Register() {
       }, 1000);
       return;
     }
-    
+
     if (!(/\S+@\S+\.\S+/.test(email))) {
       if (window.timer) {
         clearTimeout(window.timer);
@@ -139,8 +139,9 @@ export default function Register() {
         setSuccessTxt("Registration succeeded, please login!");
         window.timer = window.setTimeout(() => {
           setSuccessTxt("");
+          navigate('/sign-in');
         }, 1000);
-        navigate('/sign-in');
+
       })
       .catch((error) => {
         console.log("error = ", error.response.data.message);
