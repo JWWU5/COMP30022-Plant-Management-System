@@ -11,7 +11,7 @@ export default function Welcome() {
     
     function componentDidMount()
     {
-        const container = document.querySelector('.buttonContainer')
+        const container = document.querySelector('.buttonContainer1')
         container.addEventListener('animationend', () => {
             container.classList.remove('active');
         });
@@ -46,14 +46,14 @@ export default function Welcome() {
             
                 <div>
                     {/* <a href='/sign-up'> */}
-                        <div className="buttonContainer">
-                            <span className="mas">SIGN UP</span>
+                        <div className="buttonContainer1">
+                            <span className="mas1"></span>
                             <button id='work' type="button" name="Hover" onClick={handleSignUP}>SIGN UP</button>
                         </div>
                     {/* </a> */}
                     {/* <a href='sign-in'> */}
-                    <div className="buttonContainer">
-                        <span className="mas">SIGN IN</span>
+                    <div className="buttonContainer1">
+                        <span className="mas1"></span>
                         <button id='work' type="button" name="Hover" onClick={handleSignIN}>SIGN IN</button>
                     </div>
                         {/* <button className='signButton'>SIGN IN</button>  */}

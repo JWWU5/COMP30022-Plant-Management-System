@@ -168,7 +168,7 @@ export default function Register() {
 
   function componentDidMount()
   {
-      const container = document.querySelector('.buttonContainer')
+      const container = document.querySelector('.buttonContainer1')
       container.addEventListener('animationend', () => {
           container.classList.remove('active');
       });
@@ -261,10 +261,21 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
-              <div className="buttonContainer">
-                <span className="mas">Submitted</span>
-                <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)} 
+              <div className="buttonContainer1">
+                {/* {
+                  agreePolicy && <div className="buttonContainer1">
+                } */}
+                {/* <span className="mas1"></span> */}
+                {
+                  agreePolicy && <span className="mas1"></span>
+                }
+                {
+                  agreePolicy && <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)} 
                   disabled={!agreePolicy}>SIGN UP</button>
+                }
+                {
+                  !agreePolicy && <button className="disabledSignUpButton" disabled={!agreePolicy}>Please agree the privacy policy</button>
+                }
               </div>
               {/* <c>
                 <input
@@ -293,6 +304,7 @@ export default function Register() {
                   onChange={(e) => {
                     // console.log("e = ", e)
                     setPagreePolicy(e.target.checked);
+                    // checkAgreePolicy(e)
                   }}
                   className="largerCheckBox"
                 ></input>

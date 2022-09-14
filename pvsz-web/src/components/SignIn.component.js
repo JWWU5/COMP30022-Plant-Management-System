@@ -117,7 +117,7 @@ export default function Login() {
             setInformation("Oh-oh, this email address looks wrong. ");
             setIsCorrect(false);  
         }
-    };
+  };
 
   function handleLogo() {
     navigate("/");
@@ -172,7 +172,7 @@ export default function Login() {
         >
         </input>
           <div className="buttonContainer">
-            <span className="mas">Submitted</span>
+            <span className="mas"></span>
             <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)}>SIGN IN</button>
           </div>
         {/* <button
