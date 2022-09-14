@@ -18,8 +18,7 @@ $ npm i universal-cookie -s
 $ npm install --save bcrypt
 $ npm install mongoose
 $ npm install -g nodemon
-$ npm install -g i sass
-$ npm install sass-loader node-sass webpack --save-dev
+
 ```
 
 Frontend
@@ -27,6 +26,8 @@ Frontend
 ```sh
 $ cd pvsz-web
 $ npm install
+$ npm install -g i sass
+$ npm install sass-loader node-sass webpack --save-dev
 ```
 
 ## Run
