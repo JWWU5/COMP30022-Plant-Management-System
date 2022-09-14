@@ -43,13 +43,13 @@ const sidebarNavItems = [
     {
         display: "ABOUT US",
         icon: <i className="bx bx-book"></i>,
-        to: "/about",
+        to: "/about-us",
         section: "about",
     },
     {
         display: "CONTACT US",
         icon: <i className="bx bx-phone-call"></i>,
-        to: "/contact",
+        to: "/contact-us",
         section: "contact",
     },
     {
