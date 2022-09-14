@@ -8,10 +8,11 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    z-index: 0;
 }
 
 .title {
-    height: 22%;
+    font-size: 3vh;
 }
 
 .navbar_style {
@@ -53,23 +54,16 @@ main p {
 
 .rectangle {
     border-radius: 25px;
-    /* margin-left: 5%;
-    margin-right: 5%;
-    padding-top: 15%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-bottom: 15%; */
+    z-index: 1;
     background-color: #BACB94;
-    /* align-items: flex-start; */
-    /* word-wrap: break-word; */
-    /* position: absolute; */
     height: 35rem;
     width: auto;
     margin:1.5rem ;
-    z-index: 1;
+    top: 0; left: 0; bottom: 0; right: 0;
+    
 }
 
-.rectangleContent {
+/* .rectangleContent {
     border-radius: 25px;
     margin-left: 5%;
     margin-right: 5%;
@@ -79,9 +73,9 @@ main p {
     padding-bottom: 37vh; 
     background-color: #BACB94;
     word-wrap: break-word;
-}
+} */
 
-.contentBox {
+/* .contentBox {
     position: absolute;
     z-index: 100;
     height: 100%;
@@ -89,23 +83,29 @@ main p {
     top: 0;
     overflow: hidden;
 
-}
+} */
 .content {
-    margin-top: 12rem;
-    width: auto;
-    overflow: hidden;
-    word-break: break-word;
-    position: absolute;
     z-index: 100;
-    padding: 0 2rem;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+    z-index: 3;
+    font-size: 2vh;
 }
 
 .img {
-    position: absolute;
-    width: auto;
+    width: fit-content;
     height: fit-content;
+    overflow: auto;
+    margin: auto;
+    position: fixed;
     bottom: 0;
-    margin-bottom: -1.75rem;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    opacity: 0.5;
+    text-align: center;
 }
 
 .zombieImg {
