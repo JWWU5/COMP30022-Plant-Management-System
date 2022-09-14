@@ -208,7 +208,7 @@ export default function Register() {
         justifyContent="center"
         alignItems="center"
       >
-        <img src={avatar}></img>
+        <img src={avatar} className='avatarIcon'></img>
       </Grid>
           <form>
           <Grid

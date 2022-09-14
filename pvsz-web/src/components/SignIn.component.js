@@ -124,7 +124,7 @@ export default function Login() {
   }
 
   function handleText() {
-    navigate("/about-us");
+    navigate("/contact-us");
   }
 
   function componentDidMount()
