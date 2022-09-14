@@ -9,6 +9,7 @@ import { Grid } from '@mui/material';
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Alert } from "@mui/material";
+import './dynamicButton.scss';
 
 const cookies = new Cookies();
 
@@ -17,6 +18,8 @@ export default function Login() {
   const [successTxt, setSuccessTxt] = useState("");
   const [errorTxt, setErrorTxt] = useState("");
   const [email, setEmail] = useState("");
+  const [isCorrect, setIsCorrect] = useState("");
+  const [information, setInformation] = useState("");
   const [password, setPassword] = useState("");
   const [login, setLogin] = useState(false);
   const handleSubmit = (e) => {
@@ -99,12 +102,37 @@ export default function Login() {
       });
   };
 
+  const checkEmail = (value) => {
+        //reg express
+        setEmail(value);
+        function isValidEmail(email) {
+            return /\S+@\S+\.\S+/.test(email);
+        }
+        //if ture
+        if (isValidEmail(value)) {
+            setIsCorrect(true);
+        }
+        //if false 
+        else {
+            setInformation("Oh-oh, this email address looks wrong. ");
+            setIsCorrect(false);  
+        }
+  };
+
   function handleLogo() {
     navigate("/");
   }
 
   function handleText() {
-    navigate("/about-us");
+    navigate("/contact-us");
+  }
+
+  function componentDidMount()
+  {
+    const container = document.querySelector('.buttonContainer')
+    container.addEventListener('animationend', () => {
+        container.classList.remove('active');
+    });
   }
 
   return (
@@ -129,9 +157,12 @@ export default function Login() {
           placeholder="Email"
           className="signInInputBlock"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => checkEmail(e.target.value)}
         >
         </input>
+        {
+            !isCorrect && <span className="errorMessage">{information}</span>
+        }
         <input
           type="password"
           placeholder="Password"
@@ -140,13 +171,17 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         >
         </input>
-        <button
+          <div className="buttonContainer">
+            <span className="mas"></span>
+            <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)}>SIGN IN</button>
+          </div>
+        {/* <button
           className="signInButton"
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >
           SIGN IN
-        </button>
+        </button> */}
         <img src={logo} className="logoImage" onClick={handleLogo}></img>
         <b className="infoText" onClick={handleText}>If you meet any issue when log in, feel free to contact OUR TEAM</b>
       </Grid>

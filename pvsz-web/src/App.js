@@ -9,6 +9,7 @@ import ContactUS from "./components/ContactUS.component";
 import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
 import AppLayout from "./components/AppLayout";
+import DynamicButton from "./components/dynamicButton";
 import "boxicons/css/boxicons.min.css";
 import "./App.css";
 
@@ -18,6 +19,7 @@ function App() {
             console.log(res, "require data");
         });
     };
+    
     return (
         <Router>
             <Routes>
@@ -27,10 +29,8 @@ function App() {
                 <Route path="/contact-us" element={<ContactUS />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
+                <Route path="/dynamic-button" element={<DynamicButton />} />
             </Routes>
-            {/* <Register />
-            <AboutUs />
-            <ContactUS /> */}
         </Router>
     );
 }

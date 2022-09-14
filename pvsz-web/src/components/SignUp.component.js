@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { useNavigate } from 'react-router-dom';
 import Header from "./Header";
 import "./SignInUp.css";
+import './dynamicButton.scss';
 import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
+import { Grid } from '@mui/material';
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -12,6 +14,9 @@ export default function Register() {
   const navigate = useNavigate();
   const [successTxt, setSuccessTxt] = useState("");
   const [errorTxt, setErrorTxt] = useState("");
+  const [isCorrect, setIsCorrect] = useState("");
+  const [information, setInformation] = useState("");
+  const [buttonContent, setButtonContent] = useState("");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -162,6 +167,31 @@ export default function Register() {
     alert(`The name you entered was: ${userName}`);
   };
 
+  function componentDidMount()
+  {
+      const container = document.querySelector('.buttonContainer1')
+      container.addEventListener('animationend', () => {
+          container.classList.remove('active');
+      });
+  }
+
+  const checkEmail = (value) => {
+    //reg express
+    setEmail(value);
+    function isValidEmail(email) {
+        return /\S+@\S+\.\S+/.test(email);
+    }
+    //if ture
+    if (isValidEmail(value)) {
+        setIsCorrect(true);
+    }
+    //if false 
+    else {
+        setInformation("Oh-oh, this email address looks wrong. ");
+        setIsCorrect(false);  
+    }
+  };
+
   return (
     <body className="signIn">
       <div className="tipsBox">
@@ -172,11 +202,21 @@ export default function Register() {
       <header>
         <h1>Sign Up</h1>
       </header>
-      <div className="infoDiv">
-        <img src={avatar}></img>
-        <ul>
+      <Grid
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <img src={avatar} className='avatarIcon'></img>
+      </Grid>
           <form>
-            <li>
+          <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+          >
               <input
                 type="text"
                 placeholder="First Name"
@@ -184,8 +224,6 @@ export default function Register() {
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               ></input>
-            </li>
-            <li>
               <input
                 type="text"
                 placeholder="Last Name"
@@ -193,8 +231,6 @@ export default function Register() {
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               ></input>
-            </li>
-            <li>
               <input
                 type="username"
                 placeholder="Username"
@@ -202,8 +238,6 @@ export default function Register() {
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
               ></input>
-            </li>
-            <li>
               <input
                 type="date"
                 placeholder="DOB"
@@ -211,17 +245,16 @@ export default function Register() {
                 value={birthdayDate}
                 onChange={(e) => setBirthdayDate(e.target.value)}
               ></input>
-            </li>
-            <li>
               <input
                 type="email"
                 placeholder="Email"
                 className="signUpInputBlock"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => checkEmail(e.target.value)}
               ></input>
-            </li>
-            <li>
+              {
+                !isCorrect && <span className="errorMessage">{information}</span>
+              }
               <input
                 type="password"
                 placeholder="Password"
@@ -229,14 +262,23 @@ export default function Register() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
-            </li>
-            <li>
-              <button className="signUpButton" onClick={(e) => handleSubmit(e)}>
-                SIGN UP
-              </button>
-            </li>
-            <li>
-              <c>
+              <div className="buttonContainer1">
+                {/* {
+                  agreePolicy && <div className="buttonContainer1">
+                } */}
+                {/* <span className="mas1"></span> */}
+                {
+                  agreePolicy && <span className="mas1"></span>
+                }
+                {
+                  agreePolicy && <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)} 
+                  disabled={!agreePolicy}>SIGN UP</button>
+                }
+                {
+                  !agreePolicy && <button className="disabledSignUpButton" disabled={!agreePolicy}>Please agree the privacy policy</button>
+                }
+              </div>
+              {/* <c>
                 <input
                   type="checkbox"
                   id="agreePolicy"
@@ -246,16 +288,33 @@ export default function Register() {
                     // console.log("e = ", e)
                     setPagreePolicy(e.target.checked);
                   }}
+                  className="infoText"
+                ></input>
+                <label for="agreePolicy" >
+                  By creating an account, you agree to our PRIVATE POLICY and
+                  TERMS AND CONDITIONS.
+                </label>
+              </c> */}
+              </Grid>
+              <div className="policyText">
+                <input
+                  type="checkbox"
+                  id="agreePolicy"
+                  name="agreePolicy"
+                  value={agreePolicy}
+                  onChange={(e) => {
+                    // console.log("e = ", e)
+                    setPagreePolicy(e.target.checked);
+                    // checkAgreePolicy(e)
+                  }}
+                  className="largerCheckBox"
                 ></input>
                 <label for="agreePolicy">
                   By creating an account, you agree to our PRIVATE POLICY and
-                  TERMS AND CONDITIONS.{" "}
+                  TERMS AND CONDITIONS.
                 </label>
-              </c>
-            </li>
+              </div>
           </form>
-        </ul>
-      </div>
     </body>
   );
 }
