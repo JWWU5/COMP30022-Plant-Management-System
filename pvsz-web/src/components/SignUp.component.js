@@ -97,17 +97,6 @@ export default function Register() {
       return;
     }
 
-    if (!agreePolicy) {
-      if (window.timer) {
-        clearTimeout(window.timer);
-      }
-      setErrorTxt("Please agree PRIVATE POLICY and TERMS AND CONDITIONS.");
-      window.timer = window.setTimeout(() => {
-        setErrorTxt("");
-      }, 1000);
-      return;
-    }
-
 
     // prevent the form from refreshing the whole page
     e.preventDefault();
