@@ -16,6 +16,7 @@ header h1 {
     color: #FFFFFF;
     margin-top: 8%;
     margin-left: 5%;
+    margin-bottom: 5%;
     display: inline-block;
 }
 
@@ -53,13 +54,6 @@ ul {
     width: 10vh;
 }
 
-/* ::placeholder {
-    color: #555A6E;
-    font-size: 1.7em;
-    font-family: "Times New Roman";
-    padding-left: 5%;
-} */
-
 .signInButton {
     background: #FFFFFF;
     margin-top: 7%;
@@ -67,8 +61,8 @@ ul {
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
-    width: 65vw;
-    font-size: 4vh;
+    width: 60vw;
+    font-size: 3vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
@@ -84,7 +78,22 @@ ul {
     border: #FFFFFF;
     height: 7vh;
     width: 85vw;
-    font-size: 5vh;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.disabledSignUpButton {
+    background: #808080;
+    margin-bottom: 8%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 85vw;
+    font-size: 1vh;
     font-family: "Times New Roman";
     font-weight: 900;
     color: #44533B;
@@ -105,13 +114,14 @@ ul {
 
 .errorMessage {
     font-family: "Tamil MN";
-    font-size: 5vw;
+    font-size: 3vw;
     color: #44533B;
+    margin-top: 0%;
 }
 
 input {
     color: #555A6E;
-    font-size: 9vw;
+    font-size: 3vh;
     font-family: "Times New Roman";
     padding-left: 5%;
 }
@@ -119,7 +129,9 @@ input {
 .logoImage {
     width: 12vw;
     height: 8vw;
+    margin-top: 19vh;
 }
+
 .tipsBox{
     position: absolute;
     width: 90%;
@@ -127,6 +139,22 @@ input {
     top: 20px;
     transform: translate(-50%, 0);
     z-index: 1000;
+}
+
+.policyText {
+    display: block;
+    width: 80vw;
+    font-family: "Tamil MN";
+    font-size: 4vw;
+    font-weight: 300;
+    color: #44533B;
+    text-align: center;
+    margin: auto;
+}
+
+.largerCheckBox {
+    width: 4vw;
+    height: 4vw;
 }
 
     
