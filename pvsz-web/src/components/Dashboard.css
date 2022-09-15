@@ -1,0 +1,152 @@
+@media screen and (max-width: 350px) {
+    .welcome h2 {
+        font-family: "Tamil MN";
+        color: #44533B;
+        font-weight:lighter;
+        font-size: 30px;
+        margin-left: 7%;
+        margin-top: 10%;
+        margin-bottom: 0px;
+    }
+    
+    .welcome h3 {
+        font-family: "Tamil MN";
+        color: #7B915D;
+        font-size: 13px;
+        margin-left: 8%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .topic {
+        height: 30px;
+        margin-top: 10%;
+        margin-bottom: 2%;
+        margin-left: 3%;
+    }
+
+    .watercan {
+        width: 25px;
+        float: left;
+        margin-left: 6%;
+        margin-top: 2%;
+    }
+
+    .sun {
+        width: 20px;
+
+        float: left;
+        margin-left: 4%;
+        margin-top: 3%;
+    }
+
+    .group {
+        width: 40px;
+
+        float: left;
+        margin-left: 1%;
+    }
+
+    .add {
+        width: 25px;
+        float:right;
+        margin-top: 2%;
+        margin-right: 5%;
+    }
+
+    .listbg {
+        background-color: #BACB94;
+        border-radius: 25px;
+        margin: auto 5%;
+        padding-top: 10%;
+        padding-bottom: 100%;
+    }
+
+    .list {
+        position: relative;
+        margin: auto 5%;
+    }
+
+    .list a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+}
+
+
+@media screen and (min-width: 350px) {
+    .welcome h2 {
+        font-family: "Tamil MN";
+        color: #44533B;
+        font-weight:lighter;
+        font-size: 40px;
+        margin-left: 5%;
+        margin-top: 10%;
+        margin-bottom: 0px;
+    }
+    
+    .welcome h3 {
+        font-family: "Tamil MN";
+        color: #7B915D;
+        font-size: 18px;
+        margin-left: 6%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .topic {
+        height: 30px;
+        margin-top: 10%;
+        margin-bottom: 2%;
+        margin-left: 3%;
+    }
+
+    .watercan {
+        width: 25px;
+        float: left;
+        margin-left: 6%;
+        margin-top: 2%;
+    }
+
+    .sun {
+        width: 20px;
+        float: left;
+        margin-left: 4%;
+        margin-top: 3%;
+    }
+
+    .group {
+        width: 40px;
+        float: left;
+        margin-left: 1%;
+    }
+
+    .add {
+        width: 25px;
+        float:right;
+        margin-top: 2%;
+        margin-right: 5%;
+    }
+
+    .listbg {
+        background-color: #BACB94;
+        border-radius: 25px;
+        margin: auto 5%;
+        padding-top: 10%;
+        padding-bottom: 100%;
+    }
+
+    .list {
+        position: relative;
+        margin: auto 5%;
+    }
+
+    .list a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+}
