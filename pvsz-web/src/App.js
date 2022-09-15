@@ -12,6 +12,8 @@ import AppLayout from "./components/AppLayout";
 import DynamicButton from "./components/dynamicButton";
 import "boxicons/css/boxicons.min.css";
 import "./App.css";
+// After login
+import Dashboard from "./components/Dashboard.component";
 
 function App() {
     const getDataHandler = () => {
@@ -29,6 +31,7 @@ function App() {
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/dynamic-button" element={<DynamicButton />} />
+                <Route path="/dashboard" element={<Dashboard />} />
             </Routes>
         </Router>
     );
