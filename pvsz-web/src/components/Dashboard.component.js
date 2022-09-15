@@ -50,6 +50,7 @@ export default class Dashboard extends Component {
                                     <a>Plant</a>
                                     <Grid container justifyContent="flex-end">
                                         <Checkbox {...label} sx={{
+                                            mr: 2,
                                             color: '#44533B', 
                                             '&.Mui-checked': {
                                                 color: '#44533B',
@@ -67,6 +68,7 @@ export default class Dashboard extends Component {
                                     <a>Plant</a>
                                     <Grid container justifyContent="flex-end">
                                         <Checkbox {...label} sx={{
+                                            mr: 2,
                                             color: '#44533B', 
                                             '&.Mui-checked': {
                                                 color: '#44533B',
@@ -76,11 +78,8 @@ export default class Dashboard extends Component {
                                 </Box>
 
                                 <Accordion>
-                                    <AccordionSummary 
-                                    aria-controls="panel1a-content"
-                                    id="panel1a-header"
-                                    >
-                                        <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
+                                    <AccordionSummary id="group-header">
+                                        <Avatar src="avatar1.jpg" sx={{ml: 0.5}}/>
                                         <a>Plant</a>
                                     </AccordionSummary>
                                     <AccordionDetails>
@@ -91,7 +90,25 @@ export default class Dashboard extends Component {
                                             backgroundColor: '#ffffff',
                                             alignItems: 'center',
                                             borderRadius: 25}}>
-                                            <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
+                                            <Avatar src="avatar1.jpg" sx={{ml: 0.5}}/>
+                                            <a>Plant</a>
+                                            <Grid container justifyContent="flex-end">
+                                                <Checkbox {...label} sx={{
+                                                    color: '#44533B', 
+                                                    '&.Mui-checked': {
+                                                        color: '#44533B',
+                                                    },
+                                                }}/>
+                                            </Grid>
+                                        </Box>
+                                        <Divider />
+                                        <Box display='flex' justify-Content="center" sx={{
+                                            width: 1, 
+                                            height: 55, 
+                                            backgroundColor: '#ffffff',
+                                            alignItems: 'center',
+                                            borderRadius: 25}}>
+                                            <Avatar src="avatar1.jpg" sx={{ml: 0.5}}/>
                                             <a>Plant</a>
                                             <Grid container justifyContent="flex-end">
                                                 <Checkbox {...label} sx={{
