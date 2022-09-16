@@ -8,8 +8,11 @@ export default class ContactUS extends Component {
         return (
             <body className='about'>
                 <main>
+                    <header>
+                        <Header />
+                    </header>
                     <div>
-                        <div class="title">
+                        <div class="aboutTitle">
                             <h1>Contact Us</h1>
                         </div>
                         <div class="rectangle">
