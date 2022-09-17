@@ -33,7 +33,7 @@ function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/dynamic-button" element={<DynamicButton />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/planthome" element={<PlantHome />} />
+                <Route path="/plant-home" element={<PlantHome />} />
             </Routes>
         </Router>
     );
