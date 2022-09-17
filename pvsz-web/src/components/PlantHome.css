@@ -32,13 +32,13 @@
         padding-left: 4px;
         padding-right: 4px;
     }
-    .list {
+    .plant {
         position: relative;
         margin: auto 5%;
         margin-top: 15%;
     }
 
-    .list a {
+    .plant a {
         font-family: "Devanagari MT";
         color: #555A6E;
         margin-left: 10%;
@@ -80,13 +80,13 @@
         padding-left: 4px;
         padding-right: 4px;
     }
-    .list {
+    .plant {
         position: relative;
         margin: auto 5%;
         margin-top: 15%;
     }
 
-    .list a {
+    .plant a {
         font-family: "Devanagari MT";
         color: #555A6E;
         margin-left: 10%;

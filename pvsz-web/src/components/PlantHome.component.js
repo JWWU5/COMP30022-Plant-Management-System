@@ -25,7 +25,7 @@ export default class Dashboard extends Component {
                                 <RemoveCircleOutlineIcon sx={{color: '#ffffff'}}/>
                             </div>
                         </div>
-                        <div class="list">
+                        <div class="plant">
                             <Stack spacing={3} justify-Content="center">
                                 <Box display='flex' justify-Content="center" sx={{
                                     width: 1, 
