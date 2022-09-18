@@ -28,8 +28,8 @@ const sidebarNavItems = [
     {
         display: "GROUPS",
         icon: <i className="bx bx-group"></i>,
-        to: "/group",
-        section: "group",
+        to: "/groups",
+        section: "groups",
     },
     {
         display: "RANKINGT",

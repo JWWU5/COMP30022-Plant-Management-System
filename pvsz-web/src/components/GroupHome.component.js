@@ -26,7 +26,7 @@ export default class Dashboard extends Component {
                 <main>
                     <div class="bg">
                         <div class="topic">
-                            <h1>Plants</h1>
+                            <h1>Groups</h1>
                             <div class="icons">
                                 <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}}/>
                                 <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}}/>
@@ -49,8 +49,8 @@ export default class Dashboard extends Component {
                                         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                                         <InputBase
                                             sx={{ ml: 1, flex: 1 }}
-                                            placeholder="Search your plant"
-                                            inputProps={{ 'aria-label': 'search your plant' }}
+                                            placeholder="Search the group"
+                                            inputProps={{ 'aria-label': 'search the group' }}
                                         />
                                         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                             <SearchIcon />

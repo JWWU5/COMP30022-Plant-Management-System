@@ -15,6 +15,7 @@ import "./App.css";
 // After login
 import Dashboard from "./components/Dashboard.component";
 import PlantHome from "./components/PlantHome.component";
+import GroupHome from "./components/GroupHome.component";
 
 function App() {
     const getDataHandler = () => {
@@ -33,7 +34,8 @@ function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/dynamic-button" element={<DynamicButton />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/plant-home" element={<PlantHome />} />
+                <Route path="/plants" element={<PlantHome />} />
+                <Route path="/groups" element={<GroupHome />} />
             </Routes>
         </Router>
     );

@@ -12,7 +12,7 @@
         display: flex;
     }
 
-    .topic h2 {
+    .topic h1 {
         flex: 0.9;
         display: block;
         font-family: "BM Hanna 11yrs Old";
@@ -20,6 +20,7 @@
         font-weight:lighter;
         font-size: 40px;
         margin-left: 5%;
+        margin-top: 0px;
     }
 
     .icons {
@@ -44,6 +45,15 @@
         margin-left: 10%;
         font-size: 18px;
     }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 350px) {
@@ -60,7 +70,7 @@
         display: flex;
     }
 
-    .topic h2 {
+    .topic h1 {
         flex: 0.9;
         display: block;
         font-family: "BM Hanna 11yrs Old";
@@ -68,6 +78,7 @@
         font-weight:lighter;
         font-size: 50px;
         margin-left: 5%;
+        margin-top: 0px;
     }
 
     .icons {
@@ -90,6 +101,15 @@
         font-family: "Devanagari MT";
         color: #555A6E;
         margin-left: 10%;
+        font-size: 18px;
+    }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
         font-size: 18px;
     }
 }
