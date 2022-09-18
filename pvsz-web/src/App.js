@@ -9,7 +9,8 @@ import ContactUS from "./components/ContactUS.component";
 import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
 import AppLayout from "./components/AppLayout";
-import DynamicButton from "./components/dynamicButton";
+// import DynamicButton from "./components/dynamicButton";
+import Profile from "./components/Profile.component";
 import "boxicons/css/boxicons.min.css";
 import "./App.css";
 
@@ -29,7 +30,8 @@ function App() {
                 <Route path="/contact-us" element={<ContactUS />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
-                <Route path="/dynamic-button" element={<DynamicButton />} />
+                {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
+                <Route path="profile" element={<Profile />} />
             </Routes>
         </Router>
     );

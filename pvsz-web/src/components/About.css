@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "BM Hanna 11yrs Old";
+    src: url("//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old");
+}
+
 .about {
     background: url("../assets/images/leaves_yellow.png"), #E2ECC6;
     background-position: 0% 0%;
