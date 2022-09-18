@@ -104,6 +104,14 @@
         font-size: 18px;
     }
 
+    .plant a2 {
+        font-family: "Devanagari MT";
+        color: #768457;
+        font-weight:bold;
+        margin-left: 5%;
+        font-size: 15px;
+    }
+
     .plant b {
         font-family: "Devanagari MT";
         color: #555A6E;

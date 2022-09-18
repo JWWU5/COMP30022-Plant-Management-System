@@ -67,6 +67,7 @@ export default class Dashboard extends Component {
                                     borderRadius: 25}}>
                                     <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
                                     <a>Plant</a>
+                                    <a2>Livingroom</a2>
                                     <Grid container justifyContent="flex-end">
                                         <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
                                     </Grid>
