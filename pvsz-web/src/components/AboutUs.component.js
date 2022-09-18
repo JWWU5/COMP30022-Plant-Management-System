@@ -10,7 +10,7 @@ export default class AboutUs extends Component {
                 <Header />
                 <main>
                     <div class="body">
-                        <div class="title">
+                        <div class="aboutTitle">
                             <h1>About Us</h1>
                             <img class="titleImg" src={greenZombie}></img>
                         </div> 

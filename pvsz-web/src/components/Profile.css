@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "BM Hanna 11yrs Old";
+    src: url("//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old");
+}
+
+/* body .profile {
+    background: url("../assets/images/leaves_green.png"), #E2ECC6;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    overflow-y: scroll;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+} */
+
+.profileTitle {
+    font-family: "BM Hanna 11yrs Old";
+    font-size: 12vw;
+    color: #44533B;
+    margin-top: 8%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    display: inline-block;
+}
+
+.editButton {
+    background: #FFFFFF;
+    margin-top: 7%;
+    margin-bottom: 30%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+input[type="blocked"] {    
+    background-color :#44533B;
+    border:0px;
+    border-bottom:1px solid #ccc;
+    color: #FFFFFF;
+}
+

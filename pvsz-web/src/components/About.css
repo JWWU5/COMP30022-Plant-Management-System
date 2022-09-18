@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "BM Hanna 11yrs Old";
+    src: url("//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old");
+}
+
 .about {
     background: url("../assets/images/leaves_yellow.png"), #E2ECC6;
     background-position: 0% 0%;
@@ -11,7 +16,7 @@
     z-index: 0;
 }
 
-.title {
+.aboutTitle {
     font-size: 4vw;
 }
 
@@ -54,24 +59,25 @@ main p {
 
 .rectangle {
     border-radius: 25px;
-    z-index: 1;
+    /* z-index: 1; */
     background-color: #BACB94;
     height: 80vh;
     width: auto;
     margin:1.5rem ;
     top: 0; left: 0; bottom: 0; right: 0;
-    
+    position: relative;
 }
 
 .content {
+    position: absolute;
     top: 5vh;
     z-index: 100;
     height: 100%;
     width: 100%;
-    top: 0;
+    /* top: 0; */
     overflow: hidden;
-    z-index: 3;
-    font-size: 3vw;
+    font-size: 2vh;
+    padding-top: 30%;
 }
 
 .img {
