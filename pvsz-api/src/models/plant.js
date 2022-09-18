@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const PlantSchema = mongoose.Schema({
-    plantId: { type: String },
     botanicalName: { type: String },
+    commonName: { type: String },
     family: { type: String },
     plantType: { type: String },
     matureSize: { type: String },
@@ -13,12 +13,13 @@ const PlantSchema = mongoose.Schema({
     flowerColor: { type: String },
     hardinessZones: { type: String },
     nativeArea: { type: String },
+    toxicity: { type: String},
     growthCare: { type: String },
-    light: { type: String },
-    soil: { type: String },
-    water: { type: String },
-    temperatureAndHumidity: { type: String },
-    fertilizer: { type: String },
+    // light: { type: String },
+    // soil: { type: String },
+    // water: { type: String },
+    // temperatureAndHumidity: { type: String },
+    // fertilizer: { type: String },
 },{
     timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
   });

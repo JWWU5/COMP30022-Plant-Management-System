@@ -47,16 +47,6 @@ export default function Login() {
       return;
     }
 
-    if (!(/\S+@\S+\.\S+/.test(email))) {
-      if (window.timer) {
-        clearTimeout(window.timer);
-      }
-      setErrorTxt("Incorrect email format");
-      window.timer = window.setTimeout(() => {
-        setErrorTxt("");
-      }, 1000);
-      return;
-    }
     // set configurations
     const configuration = {
       method: "post",

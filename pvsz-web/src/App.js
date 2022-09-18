@@ -13,6 +13,10 @@ import AppLayout from "./components/AppLayout";
 import Profile from "./components/Profile.component";
 import "boxicons/css/boxicons.min.css";
 import "./App.css";
+// After login
+import Dashboard from "./components/Dashboard.component";
+import PlantHome from "./components/PlantHome.component";
+import GroupHome from "./components/GroupHome.component";
 
 function App() {
     const getDataHandler = () => {
@@ -24,7 +28,6 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/sidebar" element={<AppLayout />} />
                 <Route exact path="/" element={<Welcome />} />
                 <Route path="/about-us" element={<AboutUs />} />
                 <Route path="/contact-us" element={<ContactUS />} />
@@ -32,6 +35,10 @@ function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
                 <Route path="profile" element={<Profile />} />
+                <Route path="/dynamic-button" element={<DynamicButton />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/plants" element={<PlantHome />} />
+                <Route path="/groups" element={<GroupHome />} />
             </Routes>
         </Router>
     );

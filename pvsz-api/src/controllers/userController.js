@@ -57,7 +57,7 @@ exports.login = async (req, res, next) => {
                     // check if password matches
                     if (!passwordCheck) {
                         return response.status(400).send({
-                            message: "Passwords does not match",
+                            message: "Login failed! Please check your email and password.",
                             error,
                         });
                     }
@@ -81,7 +81,7 @@ exports.login = async (req, res, next) => {
                 // catch error if password does not match
                 .catch((error) => {
                     res.status(400).send({
-                        message: "Passwords does not match",
+                        message: "Login failed! Please check your email and password.",
                         error,
                     });
                 });
@@ -89,7 +89,7 @@ exports.login = async (req, res, next) => {
         // catch error if email does not exist
         .catch((e) => {
             res.status(404).send({
-                message: "User not found",
+                message: "Login failed! Please check your email and password.",
                 e,
             });
         });

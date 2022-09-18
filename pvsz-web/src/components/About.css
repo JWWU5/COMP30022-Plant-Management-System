@@ -61,42 +61,21 @@ main p {
     border-radius: 25px;
     /* z-index: 1; */
     background-color: #BACB94;
-    height: 35rem;
+    height: 80vh;
     width: auto;
     margin:1.5rem ;
     top: 0; left: 0; bottom: 0; right: 0;
     position: relative;
 }
 
-/* .rectangleContent {
-    border-radius: 25px;
-    margin-left: 5%;
-    margin-right: 5%;
-    padding-top: 3%;
-    padding-left: 3%;
-    padding-right: 3%;
-    padding-bottom: 37vh; 
-    background-color: #BACB94;
-    word-wrap: break-word;
-} */
-
-/* .contentBox {
-    position: absolute;
-    z-index: 100;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    overflow: hidden;
-
-} */
 .content {
     position: absolute;
+    top: 5vh;
     z-index: 100;
     height: 100%;
     width: 100%;
     /* top: 0; */
     overflow: hidden;
-    /* z-index: 3; */
     font-size: 2vh;
     padding-top: 30%;
 }
