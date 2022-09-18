@@ -165,13 +165,6 @@ export default function Login() {
             <span className="mas"></span>
             <button id='work' type="button" name="Hover" onClick={(e) => handleSubmit(e)}>SIGN IN</button>
           </div>
-        {/* <button
-          className="signInButton"
-          type="submit"
-          onClick={(e) => handleSubmit(e)}
-        >
-          SIGN IN
-        </button> */}
         <img src={logo} className="logoImage" onClick={handleLogo}></img>
         <b className="infoText" onClick={handleText}>If you meet any issue when log in, feel free to contact OUR TEAM</b>
       </Grid>

@@ -17,6 +17,7 @@ export default function Register() {
   const [isCorrect, setIsCorrect] = useState("");
   const [information, setInformation] = useState("");
   const [buttonContent, setButtonContent] = useState("");
+  const [selectedImage, setSelectedImage] = useState(avatar);
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -171,6 +172,11 @@ export default function Register() {
     }
   };
 
+  var avatarStyle = {
+    height: "10vh", 
+    width: "10vh"
+  }
+
   return (
     <body className="signIn">
       <div className="tipsBox">
@@ -187,7 +193,26 @@ export default function Register() {
         justifyContent="center"
         alignItems="center"
       >
-        <img src={avatar} className='avatarIcon'></img>
+        <div class="image-upload">
+          <label for="file-input">
+            <img alt="avatar" src={selectedImage} style={avatarStyle}></img>
+            {console.log(selectedImage)}
+          </label>
+          <input
+            id="file-input"
+            type="file"
+            name="avatar"
+            accept="image/png, image/jpeg, image/jpg"
+            onChange={(e) => {
+              // if(e.target.files.length !== 0){
+                setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
+              // }
+              // else {
+              //   setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
+              // }
+            }}
+          />
+        </div>        
       </Grid>
           <form>
           <Grid
@@ -242,10 +267,6 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
               <div className="buttonContainer1">
-                {/* {
-                  agreePolicy && <div className="buttonContainer1">
-                } */}
-                {/* <span className="mas1"></span> */}
                 {
                   agreePolicy && <span className="mas1"></span>
                 }
@@ -257,23 +278,6 @@ export default function Register() {
                   !agreePolicy && <button className="disabledSignUpButton" disabled={!agreePolicy}>Please agree the privacy policy</button>
                 }
               </div>
-              {/* <c>
-                <input
-                  type="checkbox"
-                  id="agreePolicy"
-                  name="agreePolicy"
-                  value={agreePolicy}
-                  onChange={(e) => {
-                    // console.log("e = ", e)
-                    setPagreePolicy(e.target.checked);
-                  }}
-                  className="infoText"
-                ></input>
-                <label for="agreePolicy" >
-                  By creating an account, you agree to our PRIVATE POLICY and
-                  TERMS AND CONDITIONS.
-                </label>
-              </c> */}
               </Grid>
               <div className="policyText">
                 <input
