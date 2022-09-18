@@ -35,7 +35,6 @@ function App() {
                 <Route path="/sign-up" element={<SignUp />} />
                 {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
                 <Route path="profile" element={<Profile />} />
-                <Route path="/dynamic-button" element={<DynamicButton />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/plants" element={<PlantHome />} />
                 <Route path="/groups" element={<GroupHome />} />
