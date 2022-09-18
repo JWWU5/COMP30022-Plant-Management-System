@@ -15,7 +15,7 @@ import Divider from '@mui/material/Divider';
 import watercan from '../assets/images/water_can.png';
 import sun from '../assets/images/sun.png';
 import group from '../assets/images/group.png';
-import add from '../assets/images/add_black_icon.png';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -35,7 +35,7 @@ export default class Dashboard extends Component {
                         <img class="watercan"src={watercan}></img>
                         <img class="sun"src={sun}></img>
                         <img class="group"src={group}></img>
-                        <img class="add"src={add}></img>
+                        <AddCircleOutlineIcon />
                     </div>
                     <div class="listbg">
                         <div class="list">
