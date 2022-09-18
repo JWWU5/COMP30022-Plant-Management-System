@@ -14,8 +14,12 @@ import "boxicons/css/boxicons.min.css";
 import "./App.css";
 // After login
 import Dashboard from "./components/Dashboard.component";
+// plants
 import PlantHome from "./components/PlantHome.component";
+import DeletePlant from "./components/DeletePlant.component";
+// groups
 import GroupHome from "./components/GroupHome.component";
+import DeleteGroup from "./components/DeleteGroup.component";
 
 function App() {
     const getDataHandler = () => {
@@ -35,7 +39,9 @@ function App() {
                 <Route path="/dynamic-button" element={<DynamicButton />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/plants" element={<PlantHome />} />
+                <Route path="/delete-plants" element={<DeletePlant />} />
                 <Route path="/groups" element={<GroupHome />} />
+                <Route path="/delete-groups" element={<DeleteGroup />} />
             </Routes>
         </Router>
     );

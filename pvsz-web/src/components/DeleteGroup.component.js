@@ -1,21 +1,33 @@
 import React , { Component } from 'react';
 import Header from './Header';
-import './PlantHome.css';
+import './delete.css';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import Checkbox from '@mui/material/Checkbox';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import tomb from '../assets/images/tomb.png';
+import Button from '@mui/material/Button';
 
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#FFFFFF',
+        width: 1,
+        height: 55,
+      },
+    },
+  });
 
 
 export default class Dashboard extends Component {
@@ -26,11 +38,8 @@ export default class Dashboard extends Component {
                 <main>
                     <div class="bg">
                         <div class="topic">
-                            <h1>Plants</h1>
-                            <div class="icons">
-                                <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}}/>
-                                <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}}/>
-                            </div>
+                            <h2>Delete?</h2>
+                            <img class="tomb"src={tomb}></img>
                         </div>
                         
                         <div class="plant">
@@ -49,7 +58,7 @@ export default class Dashboard extends Component {
                                         <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                                         <InputBase
                                             sx={{ ml: 1, flex: 1 }}
-                                            placeholder="Search your plant"
+                                            placeholder="Search your group"
                                             inputProps={{ 'aria-label': 'search your plant' }}
                                         />
                                         <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
@@ -59,6 +68,12 @@ export default class Dashboard extends Component {
 
                                     </Paper>
                                 </div>
+                                <ThemeProvider theme={theme}>
+                                    <Button variant="contained" color="primary" sx={{
+                                        borderRadius: 25,
+                                        color: '#646464', 
+                                        fontFamily: 'Tamil HM', fontSize: 20}}>DELETE</Button>
+                                </ThemeProvider>
                                 <Divider />
                                 <Box display='flex' justify-Content="center" sx={{
                                     width: 1, 
@@ -67,10 +82,15 @@ export default class Dashboard extends Component {
                                     alignItems: 'center',
                                     borderRadius: 25}}>
                                     <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
-                                    <a2>Livingroom</a2>
+                                    <a>Group_1</a>
                                     <Grid container justifyContent="flex-end">
-                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                        <Checkbox {...label} sx={{
+                                            color: '#44533B', 
+                                            mr: 1,
+                                            '&.Mui-checked': {
+                                                color: '#44533B',
+                                            },
+                                        }}/>
                                     </Grid>
                                 </Box>
                                 <Box display='flex' justify-Content="center" sx={{
@@ -80,9 +100,15 @@ export default class Dashboard extends Component {
                                     alignItems: 'center',
                                     borderRadius: 25}}>
                                     <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
+                                    <a>Group_2</a>
                                     <Grid container justifyContent="flex-end">
-                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                        <Checkbox {...label} sx={{
+                                            color: '#44533B', 
+                                            mr: 1,
+                                            '&.Mui-checked': {
+                                                color: '#44533B',
+                                            },
+                                        }}/>
                                     </Grid>
                                 </Box>
                             </Stack>
