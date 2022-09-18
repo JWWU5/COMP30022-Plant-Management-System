@@ -59,6 +59,7 @@ export default class Dashboard extends Component {
 
                                     </Paper>
                                 </div>
+                                <Divider />
                                 <Box display='flex' justify-Content="center" sx={{
                                     width: 1, 
                                     height: 55,
@@ -66,7 +67,7 @@ export default class Dashboard extends Component {
                                     alignItems: 'center',
                                     borderRadius: 25}}>
                                     <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
+                                    <a>Group_1</a>
                                     <Grid container justifyContent="flex-end">
                                         <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
                                     </Grid>
@@ -78,7 +79,7 @@ export default class Dashboard extends Component {
                                     alignItems: 'center',
                                     borderRadius: 25}}>
                                     <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
+                                    <a>Group_2</a>
                                     <Grid container justifyContent="flex-end">
                                         <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
                                     </Grid>
