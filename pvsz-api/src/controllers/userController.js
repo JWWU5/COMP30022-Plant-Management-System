@@ -56,7 +56,7 @@ exports.login = async (req, res, next) => {
                 .then((passwordCheck) => {
                     // check if password matches
                     if (!passwordCheck) {
-                        return response.status(400).send({
+                        return res.status(400).send({
                             message: "Login failed! Please check your email and password.",
                             error,
                         });
