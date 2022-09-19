@@ -1,22 +1,7 @@
-@font-face {
-    font-family: "BM Hanna 11yrs Old";
-    src: url("//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old");
-}
-
-/* body .profile {
-    background: url("../assets/images/leaves_green.png"), #E2ECC6;
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    overflow-y: scroll;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 .profileTitle {
-    font-family: "BM Hanna 11yrs Old";
+    font-family: 'Architects Daughter', cursive;
     font-size: 12vw;
     color: #44533B;
     margin-top: 8%;
