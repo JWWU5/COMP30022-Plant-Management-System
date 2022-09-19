@@ -46,7 +46,6 @@ function App() {
                 <Route path="/select-plants" element={<SelectPlant />} />
                 <Route path="/groups" element={<GroupHome />} />
                 <Route path="/add-plant" element={<AddPlant />}/>
-                <Route path="/delete-plant" element={<AddPlant />}/>
                 <Route path="/delete-groups" element={<DeleteGroup />} />
             </Routes>
         </Router>
