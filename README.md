@@ -28,6 +28,7 @@ $ cd pvsz-web
 $ npm install
 $ npm install -g i sass
 $ npm install sass-loader node-sass webpack --save-dev
+$ npm install @mui/icons-material
 ```
 
 ## Run

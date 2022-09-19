@@ -39,6 +39,35 @@ export default function PlantHome() {
                         <div class="icons">
                             <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleAddIcon}/>
                             <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleDeleteIcon}/>
+                                    </Paper>
+                                </div>
+                                <Divider />
+                                <Box display='flex' justify-Content="center" sx={{
+                                    width: 1, 
+                                    height: 55,
+                                    backgroundColor: '#ffffff',
+                                    alignItems: 'center',
+                                    borderRadius: 25}}>
+                                    <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
+                                    <a>Plant</a>
+                                    <a2>Livingroom</a2>
+                                    <Grid container justifyContent="flex-end">
+                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                    </Grid>
+                                </Box>
+                                <Box display='flex' justify-Content="center" sx={{
+                                    width: 1, 
+                                    height: 55, 
+                                    backgroundColor: '#ffffff',
+                                    alignItems: 'center',
+                                    borderRadius: 25}}>
+                                    <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
+                                    <a>Plant</a>
+                                    <Grid container justifyContent="flex-end">
+                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                    </Grid>
+                                </Box>
+                            </Stack>
                         </div>
                     </div>
                     

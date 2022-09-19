@@ -56,7 +56,7 @@ exports.login = async (req, res, next) => {
                 .then((passwordCheck) => {
                     // check if password matches
                     if (!passwordCheck) {
-                        return response.status(400).send({
+                        return res.status(400).send({
                             message: "Login failed! Please check your email and password.",
                             error,
                         });
@@ -94,6 +94,8 @@ exports.login = async (req, res, next) => {
             });
         });
 };
+
+
 exports.list = async (req, res, next) => {
     const result = await User.find();
     res.status(200).json(result);
