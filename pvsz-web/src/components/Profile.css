@@ -11,6 +11,22 @@
 }
 
 .editButton {
+    background: #788E6C;
+    margin-top: 7%;
+    margin-bottom: 30%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submitButton {
     background: #FFFFFF;
     margin-top: 7%;
     margin-bottom: 30%;
@@ -27,9 +43,31 @@
 }
 
 input[type="blocked"] {    
-    background-color :#44533B;
+    background-color :#788E6C;
     border:0px;
     border-bottom:1px solid #ccc;
     color: #FFFFFF;
+}
+
+.valueDiv {
+    font-family: 'Architects Daughter', cursive;
+    text-align: left;
+    margin-top: 7%;
+    margin-bottom: 3%;
+    padding-left: 3%;
+}
+
+.valueBlock {
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-weight: 600;
+}
+
+.valueTitle {
+    padding-left: 5%;
+    font-size: 3vh;
+    color: #44533B;
 }
 
