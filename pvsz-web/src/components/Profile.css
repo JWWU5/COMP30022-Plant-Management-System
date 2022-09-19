@@ -13,7 +13,7 @@
 .editButton {
     background: #788E6C;
     margin-top: 7%;
-    margin-bottom: 8%;
+    margin-bottom: 30%;
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
@@ -29,7 +29,7 @@
 .submitButton {
     background: #FFFFFF;
     margin-top: 7%;
-    margin-bottom: 8%;
+    margin-bottom: 30%;
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
@@ -52,7 +52,7 @@ input[type="blocked"] {
 .valueDiv {
     font-family: 'Architects Daughter', cursive;
     text-align: left;
-    margin-top: 1%;
+    margin-top: 7%;
     margin-bottom: 3%;
     padding-left: 3%;
 }

@@ -185,7 +185,7 @@ export default function Register() {
       </div>
       <Header />
       <header>
-        <h1>SIGN UP</h1>
+        <h1>Sign Up</h1>
       </header>
       <Grid
         container
