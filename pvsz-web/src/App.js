@@ -23,6 +23,7 @@ import SelectPlant from "./components/SelectPlant.component";
 // groups
 import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
+import GroupPlant from "./components/GroupPlants.component";
 
 function App() {
     const getDataHandler = () => {
@@ -44,9 +45,10 @@ function App() {
                 <Route path="/plants" element={<PlantHome />} />
                 <Route path="/delete-plants" element={<DeletePlant />} />
                 <Route path="/select-plants" element={<SelectPlant />} />
-                <Route path="/groups" element={<GroupHome />} />
                 <Route path="/add-plant" element={<AddPlant />}/>
+                <Route path="/groups" element={<GroupHome />} />
                 <Route path="/delete-groups" element={<DeleteGroup />} />
+                <Route path="/group-plants" element={<GroupPlant />} />
             </Routes>
         </Router>
     );
