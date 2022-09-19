@@ -9,6 +9,7 @@ import ContactUS from "./components/ContactUS.component";
 import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
 import AppLayout from "./components/AppLayout";
+import AddPlant from "./components/AddPlant.component";
 // import DynamicButton from "./components/dynamicButton";
 import Profile from "./components/Profile.component";
 import "boxicons/css/boxicons.min.css";
@@ -38,13 +39,14 @@ function App() {
                 <Route path="/contact-us" element={<ContactUS />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
-                {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
                 <Route path="profile" element={<Profile />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/plants" element={<PlantHome />} />
                 <Route path="/delete-plants" element={<DeletePlant />} />
                 <Route path="/select-plants" element={<SelectPlant />} />
                 <Route path="/groups" element={<GroupHome />} />
+                <Route path="/add-plant" element={<AddPlant />}/>
+                <Route path="/delete-plant" element={<AddPlant />}/>
                 <Route path="/delete-groups" element={<DeleteGroup />} />
             </Routes>
         </Router>
