@@ -13,7 +13,6 @@
     }
 
     .topic h2 {
-        flex: 0.6;
         display: block;
         font-family: "BM Hanna 11yrs Old";
         color: #ffffff;
@@ -56,6 +55,22 @@
         margin-right: 2%;
         font-size: 18px;
     }
+
+    .bg h4 {
+        flex: 0.6;
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 25px;
+        margin-left: 30%;
+        margin-top: 20px;
+    }
+
+    .hand {
+        margin: 0;
+        height: 150%;
+    }
 }
 @media screen and (min-width: 350px) {
     .bg {
@@ -72,7 +87,6 @@
     }
 
     .topic h2 {
-        flex: 0.6;
         display: block;
         font-family: "BM Hanna 11yrs Old";
         color: #ffffff;
@@ -114,5 +128,21 @@
         margin-left: 4%;
         margin-right: 2%;
         font-size: 18px;
+    }
+
+    .bg h4 {
+        flex: 0.6;
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 35px;
+        margin-left: 100px;
+        margin-top: 30px;
+    }
+
+    .hand {
+        margin: 0;
+        height: 200%;
     }
 }
