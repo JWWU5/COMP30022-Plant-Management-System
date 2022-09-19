@@ -40,7 +40,6 @@ export default function SelectPlant() {
         navigate("/add-plant");
     };
 
-                        <h4>Your Plant</h4>
     return (
         <body className='Dashboard'>
             <Header />
