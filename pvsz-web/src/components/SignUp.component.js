@@ -175,7 +175,7 @@ export default function Register() {
   var avatarStyle = {
     height: "10vh", 
     width: "10vh"
-  }
+  };
 
   return (
     <body className="signIn">
@@ -205,7 +205,7 @@ export default function Register() {
             accept="image/png, image/jpeg, image/jpg"
             onChange={(e) => {
               // if(e.target.files.length !== 0){
-                setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
+                setSelectedImage({image: URL.createObjectURL(e.target.files[0])});
               // }
               // else {
               //   setSelectedImage({image:URL.createObjectURL(e.target.files[0])});

@@ -133,7 +133,7 @@ export default function Login() {
       </div>
       <Header />
       <header>
-        <h1>Sign In</h1>
+        <h1>SIGN IN</h1>
       </header>
       <Grid
         container

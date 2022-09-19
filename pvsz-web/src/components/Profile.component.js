@@ -6,7 +6,7 @@ import "./Profile.css";
 import './dynamicButton.scss';
 
 export default function Profile() {
-    const [buttonText, setbuttonText] = useState("Submit");
+    const [buttonText, setbuttonText] = useState("Edit");
     const [readonlyValue, setReadonlyValue] = useState(true);
     const [inputType, setInputType] = useState("blocked");
 
@@ -33,7 +33,7 @@ export default function Profile() {
         <body>
             <Header />
             <header>
-                <h1 className='profileTitle'>Profile</h1>
+                <h1 className='profileTitle'>PROFILE</h1>
             </header>
             <Grid
                 container
@@ -63,13 +63,13 @@ export default function Profile() {
                 <input
                     type={inputType}
                     className="signUpInputBlock"
-                    readOnly={readonlyValue}
+                    readOnly="text"
                     value={"DOB            " + birthdayDate}
                 ></input>
                 <input
                     type={inputType}
                     className="signUpInputBlock"
-                    readOnly={readonlyValue}
+                    readOnly="text"
                     value={"Email           " + email}
                 ></input>
                 <div className="buttonContainer2">
