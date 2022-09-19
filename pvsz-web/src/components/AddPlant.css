@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+.addPlantTitle {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 10vw;
+    color: #44533B;
+    margin-top: 8%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    display: inline-block;
+}
+
+.plantValueTitle {
+    padding-left: 5%;
+    font-size: 2.5vh;
+    color: #44533B;
+    position: absolute;
+    z-index: 2;
+    font-family: "Times New Roman";
+}
+
+.plantValueDiv {
+    font-family: 'Architects Daughter', cursive;
+    text-align: left;
+    margin-top: 5%;
+    margin-bottom: 3%;
+    padding-left: 3%;
+    position: relative;
+}
+
+.plantValueBlock {
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-weight: 700;
+    text-align: right;
+    font-size: 2.5vh;
+    padding-right: 6%;
+    padding-top: 7%;
+}
