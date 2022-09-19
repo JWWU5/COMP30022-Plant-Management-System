@@ -26,7 +26,7 @@ export default function GroupHome() {
     let navigate = useNavigate();
 
     function handleAddIcon() {
-        navigate("/add-group");
+        navigate("/add-groups");
     };
 
     function handleDeleteIcon() {

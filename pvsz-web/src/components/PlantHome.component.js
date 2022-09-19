@@ -22,7 +22,7 @@ export default function PlantHome() {
     let navigate = useNavigate();
 
     function handleAddIcon() {
-        navigate("/select-plant");
+        navigate("/select-plants");
     };
 
     function handleDeleteIcon() {

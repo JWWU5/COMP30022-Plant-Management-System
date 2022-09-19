@@ -26,7 +26,7 @@ export default function Dashboard() {
     let navigate = useNavigate();
 
     function handleAddIcon() {
-        navigate("/add-plant");
+        navigate("/select-plants");
     };
 
     return (
