@@ -2,18 +2,12 @@ const mongoose = require("mongoose");
 
 const CustomPlantSchema = mongoose.Schema({
     name: { type: String },
-    family: { type: String },
-    plantType: { type: String },
-    matureSize: { type: String },
-    sunExposure: { type: String },
-    soilType: { type: String },
-    soilpH: { type: String },
-    bloomType: { type: String },
-    flowerColor: { type: String },
-    hardinessZones: { type: String },
-    nativeArea: { type: String },
-    toxicity: { type: String},
-    growthCare: { type: String },
+    waterPeriod: { type: Number },
+    lastWaterDate: { type: Date },
+    sunPeriod: { type: Number},
+    lastSunDate: { type: Date },
+    chooseGroup: { type: String },
+    otherDetails: { type: String }
 },{
     timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
   });
