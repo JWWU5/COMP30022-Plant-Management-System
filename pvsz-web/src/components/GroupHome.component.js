@@ -1,6 +1,5 @@
 import React , { Component } from 'react';
 
-
 import Header from './Header';
 import './PlantHome.css';
 
@@ -26,7 +25,7 @@ export default function GroupHome() {
     let navigate = useNavigate();
 
     function handleAddIcon() {
-        navigate("/add-groups");
+        navigate("/group-plants");
     };
 
     function handleDeleteIcon() {
