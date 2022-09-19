@@ -94,6 +94,8 @@ exports.login = async (req, res, next) => {
             });
         });
 };
+
+
 exports.list = async (req, res, next) => {
     const result = await User.find();
     res.status(200).json(result);

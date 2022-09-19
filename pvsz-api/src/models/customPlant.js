@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 
-const PlantSchema = mongoose.Schema({
-    botanicalName: { type: String },
-    commonName: { type: String },
+const CustomPlantSchema = mongoose.Schema({
+    name: { type: String },
     family: { type: String },
     plantType: { type: String },
     matureSize: { type: String },
@@ -19,4 +18,4 @@ const PlantSchema = mongoose.Schema({
     timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
   });
 
-module.exports = PlantSchema;
+module.exports = CustomPlantSchema;

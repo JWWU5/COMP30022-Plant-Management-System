@@ -1,10 +1,7 @@
 const { Plant } = require('./../models');
 
-exports.register = async (req, res, next) => {
-  console.log(req.body, 'data');
-  const plantModel = new Plant(req.body);
-  const result = await plantModel.save();
-  res.status(201).json(result);
+exports.displayPlantLibrary = async (req, res, next) => {
+  var plants = await Plant.find().lean()
 };
 
 exports.list = async (req, res, next) => {
