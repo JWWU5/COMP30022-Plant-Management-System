@@ -15,9 +15,9 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: "BM Hanna 11yrs Old";
+        font-family: 'Architects Daughter', cursive;
         color: #ffffff;
-        font-weight:lighter;
+        font-weight:bold;
         font-size: 40px;
         margin-left: 5%;
         margin-top: 0px;
@@ -73,9 +73,9 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: "BM Hanna 11yrs Old";
+        font-family: 'Architects Daughter', cursive;
         color: #ffffff;
-        font-weight:lighter;
+        font-weight:bold;
         font-size: 50px;
         margin-left: 5%;
         margin-top: 0px;

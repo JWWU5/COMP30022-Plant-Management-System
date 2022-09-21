@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 
 import Header from './Header';
-import './PlantHome.css';
+import './GroupDetail.css';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -18,9 +18,15 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
+import Checkbox from '@mui/material/Checkbox';
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
 
-export default function GroupHome() {
+
+export default function GroupDetail() {
 
     let navigate = useNavigate();
 
@@ -40,14 +46,16 @@ export default function GroupHome() {
         <body className='Dashboard'>
             <Header />
             <main>
+                <div class="group_name">
+                    <h5>LivingRoom</h5>
+                </div>
                 <div class="bg">
-                    <div class="topic">
-                        <h1>Groups</h1>
+                    
                         <div class="icons">
                             <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleAddIcon}/>
                             <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleDeleteIcon}/>
                         </div>
-                    </div>
+                   
                     
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
@@ -83,7 +91,7 @@ export default function GroupHome() {
                                 alignItems: 'center',
                                 borderRadius: 25}}>
                                 <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                <a>LivingRoom</a>
+                                <a>Group_1</a>
                                 <Grid container justifyContent="flex-end">
                                     <ArrowForwardIosOutlinedIcon onClick={toGroupDetail} sx={{mr: 2.5}} />
                                 </Grid>
