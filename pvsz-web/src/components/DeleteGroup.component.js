@@ -102,10 +102,10 @@ export default function DeleteGroup() {
                                         keepMounted
                                         onClose={handleClose}
                                     >
-                                        <DialogTitle>{"Are you sure to delete this plant?"}</DialogTitle>
+                                        <DialogTitle sx={{fontWeight: 'bold', fontSize: 20}}>{"Are you sure to delete this group?"}</DialogTitle>
                                         <DialogActions>
-                                        <Button onClick={handleClose}>Disagree</Button>
-                                        <Button onClick={Agree}>Agree</Button>
+                                        <Button color="success" onClick={handleClose}>No</Button>
+                                        <Button color="error" onClick={Agree}>Yes!</Button>
                                         </DialogActions>
                                     </Dialog>
                             </ThemeProvider>

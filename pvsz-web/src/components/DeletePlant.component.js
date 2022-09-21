@@ -103,10 +103,10 @@ export default function DeletePlant() {
                                         keepMounted
                                         onClose={handleClose}
                                     >
-                                        <DialogTitle>{"Are you sure to delete this plant?"}</DialogTitle>
+                                        <DialogTitle sx={{fontWeight: 'bold', fontSize: 20}}>{"Are you sure to delete this plant?"}</DialogTitle>
                                         <DialogActions>
-                                        <Button onClick={handleClose}>Disagree</Button>
-                                        <Button onClick={Agree}>Agree</Button>
+                                        <Button color="success" onClick={handleClose}>No</Button>
+                                        <Button color="error" onClick={Agree}>yes!</Button>
                                         </DialogActions>
                                     </Dialog>
                             </ThemeProvider>
