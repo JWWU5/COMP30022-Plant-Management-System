@@ -7,6 +7,7 @@ const PlantSchema = mongoose.Schema({
     plantType: { type: String },
     matureSize: { type: String },
     sunExposure: { type: String },
+    waterPeriod: { type : String},
     soilType: { type: String },
     soilpH: { type: String },
     bloomType: { type: String },

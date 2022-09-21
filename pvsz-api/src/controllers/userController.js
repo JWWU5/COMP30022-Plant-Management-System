@@ -90,7 +90,6 @@ exports.login = async (req, res, next) => {
         .catch((e) => {
             res.status(404).send({
                 message: "Login failed! Please check your email and password.",
-                e,
             });
         });
 };
