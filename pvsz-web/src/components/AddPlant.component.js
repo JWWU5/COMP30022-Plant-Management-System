@@ -1,9 +1,11 @@
 import { Grid } from '@mui/material';
 import Header from './GreenHeader';
-import avatar from "../assets/images/avatar.png";
+import ImageUpload from '../assets/images/addPlantImage.svg';
 import { useState } from "react";
 import "./AddPlant.css";
 import './dynamicButton.scss';
+
+import Select from 'react-select';
 
 export default function AddPlant() {
     const [plantName, setPlantName] =useState("");
@@ -13,27 +15,18 @@ export default function AddPlant() {
     const [lastSunshineTime, setLastSunshineTime] = useState("");
     const [belongGroup, setBelongGroup] = useState("");
     const [otherDetail, setOtherDetail] = useState("");
-    const [invalidInput, setInvalidInput] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(ImageUpload);
 
-    // function checkNumInput(inputvalue) {
-    //     var pattern = /[0-9]/;
-    //     var text = inputvalue.replace(" days", '');
-    //     console.log(text);
-    //     if (pattern.test(text) === false) {
-    //         setInvalidInput(true);
-    //     }
-    //     else {
-    //         setInvalidInput(false);
-    //     }
-    // };
+    const groupOptions = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
 
-    // const updateWaterRate = (e) => {
-    //     checkNumInput(e.target.value);
-    //     if (!invalidInput) {
-    //         setWaterRate(e.target.value);
-    //     }
-    //     // console.log(waterRate);
-    // };
+    var imageStyle = {
+        height: "10vh", 
+        width: "10vh"
+    };
 
     return (
         <body>
@@ -47,7 +40,21 @@ export default function AddPlant() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <img src={avatar} className='avatarIcon'></img>
+                <div class="image-upload">
+                    <label for="file-input">
+                        <img alt="avatar" src={selectedImage} style={imageStyle}></img>
+                        {console.log(selectedImage)}
+                    </label>
+                    <input
+                        id="file-input"
+                        type="file"
+                        name="plantImage"
+                        accept="image/png, image/jpeg, image/jpg"
+                        onChange={(e) => {
+                            setSelectedImage({image: URL.createObjectURL(e.target.files[0])});
+                        }}
+                    />
+                </div>
                 <div className='plantValueDiv'>
                     <h3 className='plantValueTitle'>Plant Name</h3>
                     <input
@@ -66,7 +73,6 @@ export default function AddPlant() {
                         onChange={(e) => setWaterRate(e.target.value)}
                     ></input> 
                     <p></p>
-                    { invalidInput && <span className="errorMessage">Sorry, we only accept interger here. </span> }
                 </div>
                 <div className='plantValueDiv'>
                     <h3 className='plantValueTitle'>Last Watering Time</h3>
@@ -95,12 +101,16 @@ export default function AddPlant() {
                         onChange={(e) => setLastSunshineTime(e.target.value)}
                     ></input> 
                 </div>
-                {/* <div className='plantValueDiv'>
-                    <label>Choose a group:</label>
-                    <select className='palntValueBlock'>
-
-                    </select>
-                </div> */}
+                <div className='plantValueDiv'>
+                    <h3 className='plantValueTitle'>Choose a group: </h3>
+                    <Select
+                        isMulti
+                        name="colors"
+                        options={groupOptions}
+                        className="basic-multi-select"
+                        classNamePrefix="mySelect"
+                    />
+                </div>
                 <div className='plantValueDiv'>
                     <h3 className='plantValueTitle'>Other details</h3>
                     <input

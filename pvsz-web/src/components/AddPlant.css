@@ -15,24 +15,25 @@
         padding-left: 5%;
         font-size: 2vh;
         color: #44533B;
-        position: absolute;
-        z-index: 2;
         font-family: "Times New Roman";
         overflow-x: scroll;
     }
 
     .plantValueBlock {
-    border-radius: 30px;
-    border: #FFFFFF;
-    height: 7vh;
-    width: 80vw;
-    font-weight: 700;
-    text-align: right;
-    font-size: 2.5vh;
-    padding-right: 6%;
-    padding-top: 7%;
+        border-radius: 30px;
+        border: #FFFFFF;
+        height: 7vh;
+        width: 80vw;
+        font-weight: 700;
+        font-size: 2.5vh;
+        padding-right: 6%;
     }
 
+    .mySelect__value-container{
+        width: 70vw;
+        height: 7vh;
+        font-size: 2.5vh;
+    }
 }
 
 @media screen and (max-width: 350px) {
@@ -42,25 +43,27 @@
         height: 7vw;
         width: 80vw;
         font-weight: 700;
-        text-align: right;
         font-size: 4.5vw;
         padding-right: 6%;
-        padding-top: 7%;
     }
 
     .plantValueTitle {
         padding-left: 5%;
         font-size: 4vw;
         color: #44533B;
-        position: absolute;
-        z-index: 2;
         font-family: "Times New Roman";
         overflow-x: scroll;
+    }
+
+    .mySelect__value-container{
+        width: 70vw;
+        height: 7vw;
+        font-size: 4.5vw;
     }
 }
 
 .plantValueDiv {
-    font-family: 'Architects Daughter', cursive;
+    font-family: "Times New Roman";
     text-align: left;
     margin-top: 5%;
     margin-bottom: 3%;
