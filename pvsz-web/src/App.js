@@ -20,6 +20,7 @@ import Dashboard from "./components/Dashboard.component";
 import PlantHome from "./components/PlantHome.component";
 import DeletePlant from "./components/DeletePlant.component";
 import SelectPlant from "./components/SelectPlant.component";
+import PlantDetail from "./components/PlantDetail.component";
 // groups
 import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
@@ -49,6 +50,7 @@ function App() {
                 <Route path="/groups" element={<GroupHome />} />
                 <Route path="/delete-groups" element={<DeleteGroup />} />
                 <Route path="/group-plants" element={<GroupPlant />} />
+                <Route path="/plant-detail" element={<PlantDetail />} />
             </Routes>
         </Router>
     );

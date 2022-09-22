@@ -4,7 +4,7 @@ import './delete.css';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import Grid from '@mui/material/Grid';
+import { Grid } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import Checkbox from '@mui/material/Checkbox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
