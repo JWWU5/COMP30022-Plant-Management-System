@@ -21,8 +21,10 @@ import { useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
 
 export default function GroupDetail() {
 
@@ -46,9 +48,15 @@ export default function GroupDetail() {
             <main>
                 <div class="group_name">
                     <h5>LivingRoom</h5>
-                    <Checkbox {...label} color='error' sx={{height: 60}} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                 </div>
                 <div class="bg">
+                    
+                        <div class="icons">
+                            <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleAddIcon}/>
+                            <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleDeleteIcon}/>
+                        </div>
+                   
+                    
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
                             <div class="search">
@@ -71,8 +79,9 @@ export default function GroupDetail() {
                                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                         <SearchIcon />
                                     </IconButton>
+
+
                                 </Paper>
-                                
                             </div>
                             <Divider />
                             <Box display='flex' justify-Content="center" sx={{
@@ -82,9 +91,9 @@ export default function GroupDetail() {
                                 alignItems: 'center',
                                 borderRadius: 25}}>
                                 <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                <a>Plant_1</a>
+                                <a>Group_1</a>
                                 <Grid container justifyContent="flex-end">
-                                    <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                    <ArrowForwardIosOutlinedIcon onClick={toGroupDetail} sx={{mr: 2.5}} />
                                 </Grid>
                             </Box>
                             <Box display='flex' justify-Content="center" sx={{
@@ -94,9 +103,9 @@ export default function GroupDetail() {
                                 alignItems: 'center',
                                 borderRadius: 25}}>
                                 <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
-                                <a>Plant_2</a>
+                                <a>Group_2</a>
                                 <Grid container justifyContent="flex-end">
-                                    <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                    <ArrowForwardIosOutlinedIcon onClick={toGroupDetail} sx={{mr: 2.5}} />
                                 </Grid>
                             </Box>
                         </Stack>
