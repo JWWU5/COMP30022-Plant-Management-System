@@ -21,10 +21,8 @@ import { useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
 
-
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function GroupDetail() {
 
@@ -48,6 +46,7 @@ export default function GroupDetail() {
             <main>
                 <div class="group_name">
                     <h5>LivingRoom</h5>
+                    <Checkbox {...label} color="error" icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
                 </div>
                 <div class="bg">
                     
