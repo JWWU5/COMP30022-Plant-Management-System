@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+.rankingContentDiv {
+    height: 80vh;
+    width: 100vw;
+    position: relative;
+}
+
+.rankingContentRec {
+    height: 70vh;
+    width: 90vw;
+    margin-left: 5vw;
+    background-color: #BACB94;
+    border-radius: 5%;
+    position: absolute;
+    z-index: 1;
+    margin-top: 8vh;
+}
+
+.rankingTitle {
+    font-size: 12vw;
+    font-family: 'Architects Daughter', cursive;
+    text-shadow: 3px 3px #FFFFFF;
+    color: #44533B;
+    position: absolute;
+    z-index: 2;
+    margin-top: 4vh;
+    margin-left: 8vw;
+}
+
+.thanksMSG {
+    font-family: "Tamil MN";
+    color: #44533B;
+    font-size: 7vw;
+    margin-left: 8vw;
+    margin-top: 2vh;
+}
+
+.plantIcon {
+    height: 16vw;
+    width: 16vw;
+    margin-top: 1.5vh;
+    margin-left: 3vw;
+}
