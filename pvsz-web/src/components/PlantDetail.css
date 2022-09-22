@@ -11,12 +11,6 @@
     z-index: 0;
 }
 
-/* .plantImage {
-    size: ;
-    position: absolute;
-    z-index: 0;
-} */
-
 .detailContentDiv {
     position: absolute;
     margin-top: 34vh;
@@ -34,15 +28,24 @@
     padding-top: 10%;
 }
 
+.likeIcon {
+    margin-top: 6vh;
+    height: 3vh;
+    width: 3vh;
+    margin-left: 30vw;
+}
+
 @media screen and (min-width: 350px) {
 
     .plantNameTitle {
         font-family: "Tamil MN";
-        margin-left: 5%;
+        padding-left: 10%;
         margin-top: 5vh;
         font-size: 9vw;
         font-weight: 200;
         color: #FFFFFF;
+        height: 6vh;
+        width: 100vw;
     }
     
     .plantNameTitle span {
@@ -54,7 +57,7 @@
         color: rgba(0, 0, 0, 0.5);
         text-decoration: underline;
         font-family: "Tamil MN";
-        margin-left: 5%;
+        padding-left: 5%;
         margin-bottom: -1.5%;
     }
     

@@ -4,6 +4,8 @@ import Header from './Header';
 import Grid from '@mui/material/Grid';
 import Cactus from "../assets/images/Cactus.jpg";
 import { useEffect, useState } from "react";
+import likeIconImage from "../assets/images/like_on_icon.png";
+import unlikeIconImage from "../assets/images/like_off_icon.png";
 
 export default function PlantDetail() {
 
@@ -12,6 +14,10 @@ export default function PlantDetail() {
     const plantImage = Cactus;
     const plantGroupName = "Bedroom";
     const plantOtherDetail = "This pot of Cactus is a gift from my gf. "
+
+    // The default usestate of plant liking could be gotten from our database. 
+    const [likePlant, setLikePlant] = useState(false);
+    const [likeIcon, setLikeIcon] = useState(unlikeIconImage);
 
     // Get last three sunlight times from backend. 
     const lastThreeSunlights = [
@@ -37,13 +43,32 @@ export default function PlantDetail() {
         <p className="detailContentText">{lastThreeWatering.time}</p>
     );
 
+    // This function is used to check if this plant is being select as like or unlike. 
+    function changeLikeStatus() {
+        if (likePlant) {
+            setLikePlant(false);
+            setLikeIcon(unlikeIconImage);
+        }
+        else {
+            setLikePlant(true);
+            setLikeIcon(likeIconImage);
+        }
+        // console.log(likePlant);
+    }
+
     return (
         <body>
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
-                    {/* <img src={Cactus} className="plantImage"></img> */}
-                    <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                    <Grid container spacing={0}>
+                        <Grid item xs={6}>
+                            <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <img src={likeIcon} className="likeIcon" onClick={changeLikeStatus}></img>
+                        </Grid>
+                    </Grid>
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
