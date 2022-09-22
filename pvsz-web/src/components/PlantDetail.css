@@ -27,8 +27,8 @@
 
 .detailTextRec {
     background-color: #BACB94;
-    border-top-left-radius: 6%;
-    border-top-right-radius: 6%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
     height: 62.7vh;
     width: 100vw;
     padding-top: 10%;

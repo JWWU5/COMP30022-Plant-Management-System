@@ -12,6 +12,9 @@ import avatar from "../assets/images/avatar.png";
 export default function Ranking() {
 
     const userAvatar = avatar;
+    const userName = "Jerry";
+    const userRank = 30;
+    const userDays = 120;
 
     // This can be replaced by the top 5 users in our database. 
     const topFiveUser = [
@@ -108,6 +111,24 @@ export default function Ranking() {
                         </Grid>
                         <div className="blankSpace"></div>
                     </Grid>
+                    <div className="selfRanking">
+                        <Grid container spacing={0}>
+                            <Grid item xs={6}>
+                                <Grid container spacing={0}>
+                                    <Grid item xs={6}>
+                                        <h3 className="userRankingNum">{userRank}</h3>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <img src={avatar} className="userRankingAvatar"></img>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="userRankingContent1">{userName}</p>
+                                <p className="userRankingContent2">Hold on for {userDays} days</p>
+                            </Grid>
+                        </Grid>
+                    </div>
                 </div>
             </div>
             <div>
@@ -119,7 +140,6 @@ export default function Ranking() {
                         <img src={plantIcon} className="plantIcon"></img>
                     </Grid>
                 </Grid>
-                
             </div>
         </body> 
     )
