@@ -1,16 +1,16 @@
-    import React, { Component } from "react";
-    import { useNavigate } from 'react-router-dom';
-    import Header from "./Header";
-    import "./SignInUp.css";
-    import './dynamicButton.scss';
-    import avatar from "../assets/images/avatar.png";
-    import { Alert } from "@mui/material";
-    import { Grid } from '@mui/material';
+import React, { Component } from "react";
+import { useNavigate } from 'react-router-dom';
+import Header from "./Header";
+import "./SignInUp.css";
+import './dynamicButton.scss';
+import avatar from "../assets/images/avatar.png";
+import { Alert } from "@mui/material";
+import { Grid } from '@mui/material';
 
-    import { useEffect, useState } from "react";
-    import axios from "axios";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-    export default function Register() {
+export default function Register() {
     const navigate = useNavigate();
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
@@ -299,4 +299,4 @@
             </form>
         </body>
     );
-    }
+}
