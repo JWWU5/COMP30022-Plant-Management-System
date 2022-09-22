@@ -25,6 +25,8 @@ import PlantDetail from "./components/PlantDetail.component";
 import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
 import GroupPlant from "./components/GroupPlants.component";
+// ranking
+import Ranking from "./components/Ranking.component";
 
 function App() {
     const getDataHandler = () => {
@@ -51,6 +53,7 @@ function App() {
                 <Route path="/delete-groups" element={<DeleteGroup />} />
                 <Route path="/group-plants" element={<GroupPlant />} />
                 <Route path="/plant-detail" element={<PlantDetail />} />
+                <Route path="/ranking" element={<Ranking />} />
             </Routes>
         </Router>
     );

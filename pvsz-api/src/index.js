@@ -9,11 +9,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.json({ code: 0, message: 'success' });
+    res.json({ code: 0, message: 'success' });
 });
 
 app.use('/api/v1', require('./router'));
 
 app.listen(5000, () => {
-  console.log('the server is running:localhost:5000');
+    console.log('the server is running:localhost:5000');
 });
