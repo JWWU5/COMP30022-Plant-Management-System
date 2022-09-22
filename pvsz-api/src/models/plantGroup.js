@@ -8,3 +8,4 @@ const PlantGroupSchema = mongoose.Schema({
   });
 
 module.exports = PlantGroupSchema;
+
