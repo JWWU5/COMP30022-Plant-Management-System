@@ -32,8 +32,8 @@ export default function Ranking() {
        <body>
             <Header />
             <div className="rankingContentDiv">
-                <h1 className="rankingTitle">RANKING</h1>
                 <div className="rankingContentRec">
+                    <h1 className="rankingTitle">RANKING</h1>
                     <Grid container spacing={0}>
                         <Grid item xs={6}>
                             <Grid container spacing={0}>
