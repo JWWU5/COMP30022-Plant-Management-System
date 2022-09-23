@@ -18,3 +18,4 @@ const UserSchema = mongoose.Schema(
 );
 
 module.exports = UserSchema;
+
