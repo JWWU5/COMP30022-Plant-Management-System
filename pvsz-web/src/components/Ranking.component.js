@@ -11,6 +11,8 @@ import avatar from "../assets/images/avatar.png";
 
 export default function Ranking() {
 
+    // This can be replaced by data stored in our database. 
+    // Details about the user. 
     const userAvatar = avatar;
     const userName = "Jerry";
     const userRank = 30;
