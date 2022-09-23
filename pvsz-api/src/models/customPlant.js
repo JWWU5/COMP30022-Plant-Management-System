@@ -13,4 +13,3 @@ const CustomPlantSchema = mongoose.Schema({
   });
 
 module.exports = CustomPlantSchema;
-

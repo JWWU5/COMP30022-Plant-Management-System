@@ -21,3 +21,4 @@ const PlantSchema = mongoose.Schema({
   });
 
 module.exports = PlantSchema;
+
