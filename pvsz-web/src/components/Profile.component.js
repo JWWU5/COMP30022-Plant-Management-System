@@ -9,12 +9,16 @@ export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
     const [readonlyValue, setReadonlyValue] = useState(true);
     const [inputType, setInputType] = useState("blocked");
+    const [nullInput, setnullInput] = useState(false);
+
+    // Below consts could be replaced by data stored in our database
     const [firstName, setFirstName] = useState("Dave");
     const [lastName, setLastName] = useState("Smith");
     const [userName, setUserName] = useState("Crazy_Dave");
     const [buttonClass, setButtonClass] = useState("editButton");
-    const [nullInput, setnullInput] = useState(false);
-
+    
+    // These two consts can not be changed
+    // So no need to write the set function
     const birthdayDate = "01/01/2000";
     const email = "Crazy_Dave@gmail.com";
 
@@ -27,10 +31,9 @@ export default function Profile() {
            setnullInput(false); 
            setButtonClass("submitButton")
         }
-        // console.log(inputValue.trim().length-1);
-        // console.log(nullInput);
     };
 
+    // Could save the input to our backend end in this function. 
     function handleInput(e) {
         if (readonlyValue === true) {
             setReadonlyValue(false);

@@ -11,6 +11,8 @@ import avatar from "../assets/images/avatar.png";
 
 export default function Ranking() {
 
+    // This can be replaced by data stored in our database. 
+    // Details about the user. 
     const userAvatar = avatar;
     const userName = "Jerry";
     const userRank = 30;
@@ -32,8 +34,8 @@ export default function Ranking() {
        <body>
             <Header />
             <div className="rankingContentDiv">
-                <h1 className="rankingTitle">RANKING</h1>
                 <div className="rankingContentRec">
+                    <h1 className="rankingTitle">RANKING</h1>
                     <Grid container spacing={0}>
                         <Grid item xs={6}>
                             <Grid container spacing={0}>

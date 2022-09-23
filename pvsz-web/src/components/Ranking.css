@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 .rankingContentDiv {
-    height: 80vh;
+    height: 72vh;
     width: 100vw;
     position: relative;
 }
@@ -12,8 +12,6 @@
     margin-left: 5vw;
     background-color: #BACB94;
     border-radius: 25px;
-    position: absolute;
-    z-index: 1;
     margin-top: 8vh;
     padding-top: 5vh;
     overflow-y: scroll;
@@ -26,8 +24,8 @@
     color: #44533B;
     position: absolute;
     z-index: 2;
-    margin-top: 4vh;
     margin-left: 8vw;
+    margin-top: -9vh;
 }
 
 .thanksMSG {
