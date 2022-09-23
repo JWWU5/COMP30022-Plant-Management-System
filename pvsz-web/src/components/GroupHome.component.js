@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import TextField from '@mui/material/TextField';
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -19,14 +20,31 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
 
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#FFFFFF',
+        width: 1,
+        height: 55,
+      },
+    },
+});
+
 
 export default function GroupHome() {
-
     let navigate = useNavigate();
-
-    function handleAddIcon() {
-        navigate("/group-plants");
-    };
 
     function handleDeleteIcon() {
         navigate("/delete-groups");
@@ -36,6 +54,51 @@ export default function GroupHome() {
         navigate("/group-detail");
     }
 
+    const [state, setState] = React.useState({
+        bottom: false,
+        });
+
+        const toggleDrawer = (anchor, open) => (event) => {
+        if (
+            event &&
+            event.type === 'keydown' &&
+            (event.key === 'Tab' || event.key === 'Shift')
+        ) {
+            return;
+        }
+
+        setState({ ...state, [anchor]: open });
+    };
+
+    const list = (anchor) => (
+
+        <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,  backgroundColor: '#BACB94'}}>
+            <div class="createNewGroup">
+                <Stack spacing={5} justify-Content="center">
+
+                    <div className='newGroupName'>
+                        <h3 className='newGroupNameTitle'>Group Name</h3>
+                        <input
+                            className='plantValueBlock'
+                            type="text"
+                        / >
+                    </div>
+
+                    <ThemeProvider theme={theme}>
+                        <Button variant="contained" color="primary" onClick={toGroupDetail} sx={{
+                            height: 50,
+                            borderRadius: 25,
+                            color: '#646464', 
+                            textTransform: 'capitalize',
+                            fontFamily: 'Tamil HM', fontSize: 15, fontWeight: 'bold',
+                            }}>CREATE</Button>
+                    </ThemeProvider>
+                </Stack>
+            </div>
+
+        </Box>
+    );
+
     return (
         <body className='Dashboard'>
             <Header />
@@ -44,7 +107,19 @@ export default function GroupHome() {
                     <div class="topic">
                         <h1>Groups</h1>
                         <div class="icons">
-                            <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleAddIcon}/>
+                            {['bottom'].map((anchor) => (
+                                <React.Fragment key={anchor}>
+                                <AddCircleOutlineIcon onClick={toggleDrawer(anchor, true)} sx={{color: '#ffffff', width: 30}}/>
+                                <SwipeableDrawer
+                                    anchor={anchor}
+                                    open={state[anchor]}
+                                    onClose={toggleDrawer(anchor, false)}
+                                    onOpen={toggleDrawer(anchor, true)}
+                                >
+                                    {list(anchor)}
+                                </SwipeableDrawer>
+                                </React.Fragment>
+                            ))}
                             <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleDeleteIcon}/>
                         </div>
                     </div>
@@ -102,6 +177,9 @@ export default function GroupHome() {
                             </Box>
                         </Stack>
                     </div>
+                    
+
+
                 </div>
             </main>
         </body>
