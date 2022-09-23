@@ -4,7 +4,10 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 // Accept json data
-app.use(express.json());
+app.use(express.json({
+    extended: true,
+    limit: '50mb'
+}));
 
 app.use(express.urlencoded({ extended: true }));
 

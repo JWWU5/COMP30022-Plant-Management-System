@@ -6,6 +6,7 @@ import './dynamicButton.scss';
 import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
 import { Grid } from '@mui/material';
+import FileBase64 from 'react-file-base64';
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -16,9 +17,10 @@ export default function Register() {
     const [errorTxt, setErrorTxt] = useState("");
     const [isCorrect, setIsCorrect] = useState("");
     const [information, setInformation] = useState("");
-    const [buttonContent, setButtonContent] = useState("");
-    const [selectedImage, setSelectedImage] = useState(avatar);
+    // const [buttonContent, setButtonContent] = useState("");
+    // const [selectedImage, setSelectedImage] = useState(avatar);
 
+    const [image, setImage] = useState(avatar);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
@@ -107,6 +109,7 @@ export default function Register() {
         method: "post",
         url: "http://localhost:5000/api/v1/user/register",
         data: {
+            image,
             firstName,
             lastName,
             userName,
@@ -138,6 +141,7 @@ export default function Register() {
             }, 1000);
             error = new Error();
         });
+        console.log(configuration)
     };
 
     const submit = (e) => {
@@ -186,31 +190,24 @@ export default function Register() {
         <header>
             <h1>SIGN UP</h1>
         </header>
-        <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-        >
+        <Grid container direction="column" justifyContent="center" alignItems="center">
             <div class="image-upload">
-            <label for="file-input">
-                <img alt="avatar" src={selectedImage} style={avatarStyle}></img>
-                {console.log(selectedImage)}
-            </label>
-            <input
-                id="file-input"
-                type="file"
-                name="avatar"
-                accept="image/png, image/jpeg, image/jpg"
-                onChange={(e) => {
-                // if(e.target.files.length !== 0){
-                    setSelectedImage({image: URL.createObjectURL(e.target.files[0])});
-                // }
-                // else {
-                //   setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
-                // }
-                }}
-            />
+                <label for="file-input">
+                    {/* <img alt="avatar" src={selectedImage} style={avatarStyle}></img>
+                    {console.log(selectedImage)} */}
+                    <FileBase64 id="file-input" name="avatar" multiple={ false } onDone={ ({base64}) => setImage(base64) } />
+                    {/* {console.log(image)} */}
+                </label>
+                
+                {/* <input id="file-input" type="file" name="avatar" accept="image/png, image/jpeg, image/jpg" onChange={(e) => {
+                    // if(e.target.files.length !== 0){
+                        setSelectedImage({image: URL.createObjectURL(e.target.files[0])});
+                    // }
+                    // else {
+                    //   setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
+                    // }
+                    }}
+                /> */}
             </div>        
         </Grid>
             <form>
