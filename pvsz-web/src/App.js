@@ -29,6 +29,8 @@ import GroupPlant from "./components/GroupPlants.component";
 import Ranking from "./components/Ranking.component";
 // settings
 import Setting from "./components/Setting.component";
+import ChangePassword from "./components/ChangePassword.component";
+import PrivatePolicy from "./components/PrivatePolicy.component";
 
 function App() {
     const getDataHandler = () => {
@@ -57,6 +59,8 @@ function App() {
                 <Route path="/plant-detail" element={<PlantDetail />} />
                 <Route path="/ranking" element={<Ranking />} />
                 <Route path="/setting" element={<Setting />} />
+                <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/private-policy" element={<PrivatePolicy />} />
             </Routes>
         </Router>
     );
