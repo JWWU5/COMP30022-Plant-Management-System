@@ -1,8 +1,8 @@
 import "./Header.css";
-import whiteMenubar from "../assets/images/menu_white_icon.png";
-import greenMenubar from "../assets/images/menu_green_icon.png";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+
+import MenuIcon from '@mui/icons-material/Menu';
 
 import "./sidebar.scss";
 
@@ -28,8 +28,8 @@ const sidebarNavItems = [
     {
         display: "GROUPS",
         icon: <i className="bx bx-group"></i>,
-        to: "/group",
-        section: "group",
+        to: "/groups",
+        section: "groups",
     },
     {
         display: "RANKINGT",
@@ -95,7 +95,7 @@ const Header = (menubarColour) => {
         <>
             <nav className="navbar_style">
                 <button onClick={showSidebar}>
-                    <img src={greenMenubar} className="menuIcon"></img>
+                    <MenuIcon sx={{color: '#44533B', width: 1}}/>
                 </button>
             </nav>
             <div className={sidebar ? "sidebar" : "nav-menu"}>
