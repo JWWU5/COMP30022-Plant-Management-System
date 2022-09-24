@@ -78,8 +78,6 @@ export default function GroupDetail() {
                                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                         <SearchIcon />
                                     </IconButton>
-
-
                                 </Paper>
                             </div>
                             <Divider />
