@@ -15,7 +15,7 @@ export default function ChangePassword() {
     const [newPasswordType, setNewPasswordType] = useState("password");
     const [confirmationPasswordType, setConfirmationNewPasswordType] = useState("password");
     const [isNullPassword, setIsNullPassword] = useState(true);
-    const [samePassword, setSamePassword] = useState(false);
+    const [samePassword, setSamePassword] = useState(true);
 
     function passwordVisiableCheck() {
         if (newPasswordType === "password") {
@@ -36,29 +36,23 @@ export default function ChangePassword() {
     }
 
     function handleSubmitNewPassword() {
-        navigate("/dashboard");
-    }
-
-    const changePassword = (e) => {
-        setNewPassword(e.target.value);
-        if (newPassword.trim().length === 0) {
+        if (confirmationPassword.trim().length === 0 || newPassword.trim().length === 0) {
             setIsNullPassword(true);
         }
         else {
             setIsNullPassword(false);
+            if (newPassword.localeCompare(confirmationPassword) === 0) {
+                setSamePassword(true);
+                navigate("/dashboard");
+            }
+            else {
+                setSamePassword(false);
+            }
         }
     }
 
-    const changeConfirmPassword = (e) => {
-        setConfirmationPassword(e.target.value);
-        console.log(newPassword);
-        console.log(confirmationPassword);
-        if (confirmationPassword.localeCompare(newPassword) === 0) {
-            setSamePassword(true);
-        }
-        else {
-            setSamePassword(false);
-        }
+    const changePassword = (e) => {
+        setNewPassword(e.target.value);
     }
 
     return (
@@ -88,13 +82,14 @@ export default function ChangePassword() {
                         placeholder="Confirm New Password" 
                         value={confirmationPassword} 
                         type={confirmationPasswordType}
-                        onChange={(e) => changeConfirmPassword(e)}
+                        onChange={(e) => setConfirmationPassword(e.target.value)}
                     ></input>
                     <VisibilityIcon className="visiableIcon" onClick={confirmPasswordVisiableCheck}/>
                 </div>
                 <div className="changePasswordDiv">
-                    { (!isNullPassword && samePassword) && <button className="changePasswordButton" disabled={false} onClick={handleSubmitNewPassword}>Submit</button> }
-                    { (isNullPassword || !samePassword) && <button className="invalidChangePasswordButton" disabled={true}>Submit</button> }
+                    { isNullPassword && <p className="warningMessage">Null password</p>}
+                    { !samePassword && <p className="warningMessage">Two passwords are different</p> }
+                    <button className="changePasswordButton" onClick={handleSubmitNewPassword}>Submit</button>
                 </div>
              </Grid>
         </body>
