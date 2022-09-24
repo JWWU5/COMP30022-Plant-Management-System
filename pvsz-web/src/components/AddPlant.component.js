@@ -28,6 +28,16 @@ export default function AddPlant() {
         width: "10vh"
     };
 
+    // const customStyles = {
+    //     multiValue: (styles) => ({
+    //                 ...styles,
+    //                 borderRadius: "30px",
+    //                 width: "70vw", 
+    //                 height: "7vw", 
+    //                 fontSize: "4.5vw", 
+    //             }),
+    // };
+
     return (
         <body>
             <Header />
@@ -105,7 +115,7 @@ export default function AddPlant() {
                     <h3 className='plantValueTitle'>Choose a group: </h3>
                     <Select
                         isMulti
-                        name="colors"
+                        name="groups"
                         options={groupOptions}
                         className="basic-multi-select"
                         classNamePrefix="mySelect"

@@ -20,11 +20,19 @@ import Dashboard from "./components/Dashboard.component";
 import PlantHome from "./components/PlantHome.component";
 import DeletePlant from "./components/DeletePlant.component";
 import SelectPlant from "./components/SelectPlant.component";
+import PlantDetail from "./components/PlantDetail.component";
 // groups
 import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
 import GroupPlant from "./components/GroupPlants.component";
 import GroupDetail from "./components/GroupDetail.component";
+
+// ranking
+import Ranking from "./components/Ranking.component";
+// settings
+import Setting from "./components/Setting.component";
+import ChangePassword from "./components/ChangePassword.component";
+import PrivatePolicy from "./components/PrivatePolicy.component";
 
 function App() {
     const getDataHandler = () => {
@@ -51,6 +59,12 @@ function App() {
                 <Route path="/delete-groups" element={<DeleteGroup />} />
                 <Route path="/group-plants" element={<GroupPlant />} />
                 <Route path="/group-detail" element={<GroupDetail />} />
+
+                <Route path="/plant-detail" element={<PlantDetail />} />
+                <Route path="/ranking" element={<Ranking />} />
+                <Route path="/setting" element={<Setting />} />
+                <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/private-policy" element={<PrivatePolicy />} />
             </Routes>
         </Router>
     );

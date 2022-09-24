@@ -18,6 +18,7 @@ exports.register = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         console.log(hashedPassword, "after hashing");
         const user = new User({
+            image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userId: req.body.userName,

@@ -29,7 +29,7 @@
         padding-right: 6%;
     }
 
-    .mySelect__value-container{
+    .mySelect__value-container {
         width: 70vw;
         height: 7vh;
         font-size: 2.5vh;
@@ -55,7 +55,7 @@
         overflow-x: scroll;
     }
 
-    .mySelect__value-container{
+    .mySelect__value-container {
         width: 70vw;
         height: 7vw;
         font-size: 4.5vw;
@@ -81,4 +81,5 @@
     font-size: 2.5vh;
     padding-right: 6%;
     padding-top: 3%;
+    overflow-y: scroll;
 }

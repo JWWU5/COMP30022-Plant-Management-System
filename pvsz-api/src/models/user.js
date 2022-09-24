@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const UserSchema = mongoose.Schema(
     {
         userId: { type: String },
+        image: { type: String },
         password: { type: String },
         firstName: { type: String },
         lastName: { type: String },
@@ -18,3 +19,4 @@ const UserSchema = mongoose.Schema(
 );
 
 module.exports = UserSchema;
+
