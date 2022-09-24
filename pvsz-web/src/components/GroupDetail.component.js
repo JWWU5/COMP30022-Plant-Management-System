@@ -10,6 +10,7 @@ import Stack from '@mui/material/Stack';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import EditIcon from '@mui/icons-material/Edit';
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
@@ -44,43 +45,16 @@ export default function GroupDetail() {
         <body className='Dashboard'>
             <Header />
             <main>
-                <div class="group_name">
+                <div class="groupName">
                     <h5>LivingRoom</h5>
                     <Checkbox {...label} color="error" icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+                    <div class="editIcon">
+                    <EditIcon sx={{color: '#44533B', width: 30}} />
+                    </div>
                 </div>
                 <div class="bg">
-                    
-                        <div class="icons">
-                            <AddCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleAddIcon}/>
-                            <RemoveCircleOutlineIcon sx={{color: '#ffffff', width: 30}} onClick={handleDeleteIcon}/>
-                        </div>
-                   
-                    
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
-                            <div class="search">
-                                <Paper
-                                    component="form" sx={{ 
-                                        p: '2px 4px', 
-                                        display: 'flex', 
-                                        alignItems: 'center', 
-                                        width: 1, 
-                                        height: 50,
-                                        borderRadius: 25 }}
-                                    >
-                                    <b>Name</b>
-                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                                    <InputBase
-                                        sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the group"
-                                        inputProps={{ 'aria-label': 'search the group' }}
-                                    />
-                                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                                        <SearchIcon />
-                                    </IconButton>
-                                </Paper>
-                            </div>
-                            <Divider />
                             <Box display='flex' justify-Content="center" sx={{
                                 width: 1, 
                                 height: 55,

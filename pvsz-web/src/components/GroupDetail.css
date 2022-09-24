@@ -1,15 +1,22 @@
 @media screen and (min-width: 350px) {
-    .group_name {
+    .groupName {
         display: flex;
     }
 
-    .group_name h5 {
+    .groupName h5 {
         display: block;
         font-family: 'Architects Daughter', cursive;
         color: #44533B;
         font-size: 40px;
         margin-left: 5%;
         margin-top: 10px;
+    }
+
+    .editIcon {
+        display: block;
+        justify-content: flex-end;
+        margin-top: 20px;
+        margin-left: 10px;
     }
 
     .bg {
