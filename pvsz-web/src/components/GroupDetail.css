@@ -44,20 +44,20 @@
         padding-left: 4px;
         padding-right: 4px;
     }
-    .plant {
+
+    .plantInGroup {
         position: relative;
         margin: auto 5%;
-        margin-top: 15%;
     }
 
-    .plant a {
+    .plantInGroup a {
         font-family: "Devanagari MT";
         color: #555A6E;
         margin-left: 10%;
         font-size: 18px;
     }
 
-    .plant a2 {
+    .plantInGroup a2 {
         font-family: "Devanagari MT";
         color: #768457;
         font-weight:bold;
@@ -65,7 +65,7 @@
         font-size: 15px;
     }
 
-    .plant b {
+    .plantInGroup b {
         font-family: "Devanagari MT";
         color: #555A6E;
         font-weight:lighter;

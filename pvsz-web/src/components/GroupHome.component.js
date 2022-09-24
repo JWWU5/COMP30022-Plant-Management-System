@@ -45,9 +45,9 @@ export default function GroupHome() {
 
     const [state, setState] = React.useState({
         bottom: false,
-        });
+    });
 
-        const toggleDrawer = (anchor, open) => (event) => {
+    const toggleDrawer = (anchor, open) => (event) => {
         if (
             event &&
             event.type === 'keydown' &&
@@ -60,7 +60,6 @@ export default function GroupHome() {
     };
 
     const list = (anchor) => (
-
         <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250,  backgroundColor: '#BACB94'}}>
             <div class="createNewGroup">
                 <Stack spacing={5} justify-Content="center">
