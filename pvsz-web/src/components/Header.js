@@ -2,7 +2,7 @@ import "./Header.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
 
 import "./sidebar.scss";
 
@@ -32,7 +32,7 @@ const sidebarNavItems = [
         section: "groups",
     },
     {
-        display: "RANKINGT",
+        display: "RANKING",
         icon: <i className="bx bx-line-chart"></i>,
         to: "/ranking",
         section: "ranking",
@@ -59,6 +59,38 @@ const sidebarNavItems = [
         display: "SETTING",
         icon: <i className="bx bx-edit-alt"></i>,
         to: "/setting",
+        section: "setting",
+    },
+];
+const sidebarNavItems2 = [
+    {
+        display: "< RETURN",
+
+        to: window.location.pathname.split("/")[0],
+        section: "",
+    },
+    {
+        display: "ABOUT US",
+        icon: <i className="bx bx-book"></i>,
+        to: "/about-us",
+        section: "about",
+    },
+    {
+        display: "CONTACT US",
+        icon: <i className="bx bx-phone-call"></i>,
+        to: "/contact-us",
+        section: "contact",
+    },
+    {
+        display: "SIGN-IN",
+        icon: <i className="bx bx-user-check"></i>,
+        to: "/sign-in",
+        section: "setting",
+    },
+    {
+        display: "SIGN-UP",
+        icon: <i className="bx bx-edit-alt"></i>,
+        to: "/sign-up",
         section: "setting",
     },
 ];
@@ -91,39 +123,80 @@ const Header = (menubarColour) => {
         setActiveIndex(curPath.length === 0 ? 0 : activeItem);
     }, [location]);
 
-    return (
-        <>
-            <nav className="navbar_style">
-                <button onClick={showSidebar}>
-                    <MenuIcon sx={{color: '#44533B', width: 1}}/>
-                </button>
-            </nav>
-            <div className={sidebar ? "sidebar" : "nav-menu"}>
-                <div
-                    ref={sidebarRef}
-                    className="sidebar__menu"
-                    onClick={showSidebar}
-                >
-                    {sidebarNavItems.map((item, index) => (
-                        <Link to={item.to} key={index}>
-                            <div
-                                className={`sidebar__menu__item ${
-                                    activeIndex === index ? "active" : ""
-                                }`}
-                            >
-                                <div className="sidebar__menu__item__icon">
-                                    {item.icon}
+    console.log(window.location.pathname.split("/")[1]);
+    if (
+        window.location.pathname.split("/")[1] === "sign-in" ||
+        window.location.pathname.split("/")[1] === "sign-up" ||
+        window
+    ) {
+        return (
+            <>
+                <nav className="navbar_style">
+                    <button onClick={showSidebar}>
+                        <MenuIcon sx={{ color: "#ffffff", width: 1 }} />
+                    </button>
+                </nav>
+                <div className={sidebar ? "sidebar" : "nav-menu"}>
+                    <div
+                        ref={sidebarRef}
+                        className="sidebar__menu"
+                        onClick={showSidebar}
+                    >
+                        {sidebarNavItems2.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div
+                                    className={`sidebar__menu__item ${
+                                        activeIndex === index ? "active" : ""
+                                    }`}
+                                >
+                                    <div className="sidebar__menu__item__icon">
+                                        {item.icon}
+                                    </div>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
                                 </div>
-                                <div className="sidebar__menu__item__text">
-                                    {item.display}
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    } else {
+        return (
+            <>
+                <nav className="navbar_style">
+                    <button onClick={showSidebar}>
+                        <MenuIcon sx={{ color: "#44533B", width: 1 }} />
+                    </button>
+                </nav>
+                <div className={sidebar ? "sidebar" : "nav-menu"}>
+                    <div
+                        ref={sidebarRef}
+                        className="sidebar__menu"
+                        onClick={showSidebar}
+                    >
+                        {sidebarNavItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div
+                                    className={`sidebar__menu__item ${
+                                        activeIndex === index ? "active" : ""
+                                    }`}
+                                >
+                                    <div className="sidebar__menu__item__icon">
+                                        {item.icon}
+                                    </div>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </>
+        );
+    }
 };
 
 export default Header;

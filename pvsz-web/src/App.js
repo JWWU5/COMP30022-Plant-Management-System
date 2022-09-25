@@ -8,6 +8,7 @@ import AboutUs from "./components/AboutUs.component";
 import ContactUS from "./components/ContactUS.component";
 import SignIn from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
+import ProtectedRoutes from "./components/protectedRoute";
 import AppLayout from "./components/AppLayout";
 // import DynamicButton from "./components/dynamicButton";
 import Profile from "./components/Profile.component";
@@ -29,7 +30,7 @@ function App() {
             console.log(res, "require data");
         });
     };
-    
+
     return (
         <Router>
             <Routes>
@@ -39,13 +40,12 @@ function App() {
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
-                <Route path="profile" element={<Profile />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/plants" element={<PlantHome />} />
                 <Route path="/delete-plants" element={<DeletePlant />} />
                 <Route path="/select-plants" element={<SelectPlant />} />
                 <Route path="/groups" element={<GroupHome />} />
-                <Route path="/delete-groups" element={<DeleteGroup />} />
+                <ProtectedRoutes path="/sign-in" element={<SignIn />} />
             </Routes>
         </Router>
     );
