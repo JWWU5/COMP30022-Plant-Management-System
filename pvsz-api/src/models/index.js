@@ -18,4 +18,6 @@ main()
 module.exports = {
     User: mongoose.model("User", require("./user"), "user"),
     Plant: mongoose.model("Plant", require("./plant"), "plant"),
+    CustomPlant: mongoose.model("CustomPlant", require("./customPlant"), "customPlant"),
+    PlantGroup: mongoose.model("PlantGroup", require("./plantGroup"), "plantGroup"),
 };

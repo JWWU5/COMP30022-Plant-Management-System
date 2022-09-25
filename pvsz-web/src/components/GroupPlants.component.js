@@ -4,24 +4,19 @@ import './delete.css';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
-import { Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Checkbox from '@mui/material/Checkbox';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Checkbox from '@mui/material/Checkbox';
 
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import tomb from '../assets/images/tomb.png';
+import zombie_hand from '../assets/images/halloween.svg';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -33,30 +28,14 @@ const theme = createTheme({
         height: 55,
       },
     },
-});
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
   });
 
-
-export default function DeleteGroup() {
-    const [open, setOpen] = React.useState(false);
-
-    const deleteDoubleCheck = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-    setOpen(false);
-    };
-
+export default function GroupPlants() {
     let navigate = useNavigate();
 
-    function Agree() {
-        setOpen(false);
-        navigate("/groups");
-    };
+    function toGroupDetail() {
+        navigate("/group-detail");
+    }
 
     return (
         <body className='Dashboard'>
@@ -64,9 +43,11 @@ export default function DeleteGroup() {
             <main>
                 <div class="bg">
                     <div class="topic">
-                        <h2>Delete?</h2>
-                        <img class="tomb"src={tomb}></img>
+                        <h2>Group</h2>
+                        <img class="hand"src={zombie_hand}></img>
                     </div>
+                    <h4>Your Plants</h4>
+                    
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
                             <div class="search">
@@ -76,14 +57,14 @@ export default function DeleteGroup() {
                                         display: 'flex', 
                                         alignItems: 'center', 
                                         width: 1, 
-                                        height: 55,
+                                        height: 50,
                                         borderRadius: 25 }}
                                     >
                                     <b>Name</b>
                                     <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search your group"
+                                        placeholder="Search the plant"
                                         inputProps={{ 'aria-label': 'search your plant' }}
                                     />
                                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
@@ -92,22 +73,12 @@ export default function DeleteGroup() {
                                 </Paper>
                             </div>
                             <ThemeProvider theme={theme}>
-                                <Button variant="contained" color="primary" onClick={deleteDoubleCheck} sx={{
+                                <Button variant="contained" color="primary" onClick={toGroupDetail} sx={{
+                                    height: 50,
                                     borderRadius: 25,
                                     color: '#646464', 
-                                    fontFamily: 'Tamil HM', fontSize: 20}}>DELETE</Button>
-                                    <Dialog
-                                        open={open}
-                                        TransitionComponent={Transition}
-                                        keepMounted
-                                        onClose={handleClose}
-                                    >
-                                        <DialogTitle sx={{fontWeight: 'bold', fontSize: 20}}>{"Are you sure to delete this group?"}</DialogTitle>
-                                        <DialogActions>
-                                        <Button color="success" onClick={handleClose}>No</Button>
-                                        <Button color="error" onClick={Agree}>Yes!</Button>
-                                        </DialogActions>
-                                    </Dialog>
+                                    textTransform: 'capitalize',
+                                    fontFamily: 'Tamil HM', fontSize: 15, fontWeight: 'bold'}}>RETURN</Button>
                             </ThemeProvider>
                             <Divider />
                             <Box display='flex' justify-Content="center" sx={{
@@ -117,7 +88,7 @@ export default function DeleteGroup() {
                                 alignItems: 'center',
                                 borderRadius: 25}}>
                                 <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                <a>Group_1</a>
+                                <a>Plant</a>
                                 <Grid container justifyContent="flex-end">
                                     <Checkbox {...label} sx={{
                                         color: '#44533B', 
@@ -135,7 +106,7 @@ export default function DeleteGroup() {
                                 alignItems: 'center',
                                 borderRadius: 25}}>
                                 <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
-                                <a>Group_2</a>
+                                <a>Plant</a>
                                 <Grid container justifyContent="flex-end">
                                     <Checkbox {...label} sx={{
                                         color: '#44533B', 

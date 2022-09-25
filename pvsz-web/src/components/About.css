@@ -1,7 +1,4 @@
-@font-face {
-    font-family: "BM Hanna 11yrs Old";
-    src: url("//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old");
-}
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 .about {
     background: url("../assets/images/leaves_yellow.png"), #E2ECC6;
@@ -21,12 +18,12 @@
 }
 
 .navbar_style {
-    margin-left: 5%;
-    margin-top: 5%;
+    padding-left: 5%;
+    padding-top: 5%;
 }
 
 main h1 {
-    font-family: "BM Hanna 11yrs Old";
+    font-family: 'Architects Daughter', cursive;
     font-size: 3.5em;
     color: #FFFFFF;
     margin-top: 5%; 
@@ -85,7 +82,7 @@ main p {
     height: fit-content;
     overflow: auto;
     margin: auto;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
@@ -99,6 +96,28 @@ main p {
 }
 
 .titleImg {
-    width: 20%;
-    height: auto;
+    width: 20vw;
+    height: 20vw;
+    margin-left: -8vw;
+}
+
+.aboutTextPosition {
+    margin-left: 8vw;
+}
+
+.aboutRecContent {
+    height: 80vh;
+    width: 90vw;
+    background-color: #BACB94;
+    border-radius: 25px;
+    color: #555b6e;
+    padding-top: 5vh;
+    margin-left: 5vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    overflow-y: scroll;
+}
+
+.spacingLine {
+    height: 5vh;
 }

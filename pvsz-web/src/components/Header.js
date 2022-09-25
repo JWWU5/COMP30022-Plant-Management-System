@@ -46,14 +46,14 @@ const sidebarNavItems = [
     {
         display: "ABOUT US",
         icon: <i className="bx bx-book"></i>,
-        to: "/about-us",
-        section: "about",
+        to: "/about-us-protected",
+        section: "about-us-protected",
     },
     {
         display: "CONTACT US",
         icon: <i className="bx bx-phone-call"></i>,
-        to: "/contact-us",
-        section: "contact",
+        to: "/contact-us-protected",
+        section: "contact-us-protected",
     },
     {
         display: "SETTING",
@@ -70,16 +70,22 @@ const sidebarNavItems2 = [
         section: "",
     },
     {
+        display: "HOME",
+        icon: <i className="bx bx-home"></i>,
+        to: "/",
+        section: "/",
+    },
+    {
         display: "ABOUT US",
         icon: <i className="bx bx-book"></i>,
         to: "/about-us",
-        section: "about",
+        section: "/about-us",
     },
     {
         display: "CONTACT US",
         icon: <i className="bx bx-phone-call"></i>,
         to: "/contact-us",
-        section: "contact",
+        section: "contact-us",
     },
     {
         display: "SIGN-IN",
@@ -127,7 +133,8 @@ const Header = (menubarColour) => {
     if (
         window.location.pathname.split("/")[1] === "sign-in" ||
         window.location.pathname.split("/")[1] === "sign-up" ||
-        window
+        window.location.pathname.split("/")[1] === "contact-us" ||
+        window.location.pathname.split("/")[1] === "about-us"
     ) {
         return (
             <>

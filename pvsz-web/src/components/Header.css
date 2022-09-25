@@ -1,29 +1,30 @@
 .navbar_style {
-    margin-left: 5%;
-    margin-top: 5%;
+    padding-left: 5%;
+    padding-top: 5%;
 }
 
 button {
     border: none;
     background: none;
 }
+
 .nav-menu {
-  background-color: rgb(183, 247, 181);
-  width: 100px;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  /* position: fixed; */
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  left: -100%;
-  transition: 850ms;
+    background-color: rgb(183, 247, 181);
+    width: 100px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    /* position: fixed; */
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: -100%;
+    transition: 850ms;
 }
 
 .nav-menu.active {
-  left: 0;
-  transition: 350ms;
+    left: 0;
+    transition: 350ms;
 }
 
 .menuIcon {

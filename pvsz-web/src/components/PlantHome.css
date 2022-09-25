@@ -15,9 +15,9 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: "BM Hanna 11yrs Old";
+        font-family: 'Architects Daughter', cursive;
         color: #ffffff;
-        font-weight:lighter;
+        font-weight:bold;
         font-size: 40px;
         margin-left: 5%;
         margin-top: 0px;
@@ -54,6 +54,25 @@
         margin-right: 2%;
         font-size: 18px;
     }
+
+    .createNewGroup {
+        position: relative;
+        margin: auto 10%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+
+    .newGroupNameTitle {
+        font-family: "Devanagari MT";
+        color: #ffffff;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+
+    .plantValueBlock {
+        height: 40px;
+    }
 }
 
 @media screen and (min-width: 350px) {
@@ -73,9 +92,9 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: "BM Hanna 11yrs Old";
+        font-family: 'Architects Daughter', cursive;
         color: #ffffff;
-        font-weight:lighter;
+        font-weight:bold;
         font-size: 50px;
         margin-left: 5%;
         margin-top: 0px;
@@ -120,4 +139,23 @@
         margin-right: 2%;
         font-size: 18px;
     }
+
+    .createNewGroup {
+        position: relative;
+        margin: auto 10%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+
+    .newGroupNameTitle {
+        font-family: "Devanagari MT";
+        color: #ffffff;
+        margin-left: 20px;
+    }
+
+    .plantValueBlock {
+        height: 50px;
+    }
+
 }

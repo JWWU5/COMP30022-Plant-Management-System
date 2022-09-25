@@ -6,10 +6,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Welcome from "./components/Welcome.component";
 import AboutUs from "./components/AboutUs.component";
 import ContactUS from "./components/ContactUS.component";
-import SignIn from "./components/SignIn.component";
+
+import Login from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
-import ProtectedRoutes from "./components/protectedRoute";
 import AppLayout from "./components/AppLayout";
+import AddPlant from "./components/AddPlant.component";
 // import DynamicButton from "./components/dynamicButton";
 import Profile from "./components/Profile.component";
 import "boxicons/css/boxicons.min.css";
@@ -20,9 +21,21 @@ import Dashboard from "./components/Dashboard.component";
 import PlantHome from "./components/PlantHome.component";
 import DeletePlant from "./components/DeletePlant.component";
 import SelectPlant from "./components/SelectPlant.component";
+import PlantDetail from "./components/PlantDetail.component";
 // groups
 import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
+import GroupPlant from "./components/GroupPlants.component";
+import GroupDetail from "./components/GroupDetail.component";
+
+// ranking
+import Ranking from "./components/Ranking.component";
+// settings
+import Setting from "./components/Setting.component";
+import ChangePassword from "./components/ChangePassword.component";
+import PrivatePolicy from "./components/PrivatePolicy.component";
+import Protected from "./components/protectedRoute";
+import { useState } from "react";
 
 function App() {
     const getDataHandler = () => {
@@ -36,16 +49,77 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<Welcome />} />
                 <Route path="/about-us" element={<AboutUs />} />
+                <Route
+                    path="/about-us-protected"
+                    element={<Protected Component={AboutUs} />}
+                />
                 <Route path="/contact-us" element={<ContactUS />} />
-                <Route path="/sign-in" element={<SignIn />} />
+                <Route
+                    path="/contact-us-protected"
+                    element={<Protected Component={ContactUS} />}
+                />
+                <Route path="/sign-in" element={<Login />} />
                 <Route path="/sign-up" element={<SignUp />} />
-                {/* <Route path="/dynamic-button" element={<DynamicButton />} /> */}
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/plants" element={<PlantHome />} />
-                <Route path="/delete-plants" element={<DeletePlant />} />
-                <Route path="/select-plants" element={<SelectPlant />} />
-                <Route path="/groups" element={<GroupHome />} />
-                <ProtectedRoutes path="/sign-in" element={<SignIn />} />
+
+                <Route
+                    path="/dashboard"
+                    element={<Protected Component={Dashboard} />}
+                />
+                <Route
+                    path="/profile"
+                    element={<Protected Component={Profile} />}
+                />
+
+                <Route
+                    path="/plants"
+                    element={<Protected Component={PlantHome} />}
+                />
+                <Route
+                    path="/delete-plants"
+                    element={<Protected Component={DeletePlant} />}
+                />
+                <Route
+                    path="/select-plants"
+                    element={<Protected Component={SelectPlant} />}
+                />
+                <Route
+                    path="/add-plant"
+                    element={<Protected Component={AddPlant} />}
+                />
+                <Route
+                    path="/groups"
+                    element={<Protected Component={GroupHome} />}
+                />
+                <Route
+                    path="/delete-groups"
+                    element={<Protected Component={DeleteGroup} />}
+                />
+                <Route
+                    path="/group-plants"
+                    element={<Protected Component={GroupPlant} />}
+                />
+                <Route
+                    path="/group-detail"
+                    element={<Protected Component={GroupDetail} />}
+                />
+
+                <Route
+                    path="/plant-detail"
+                    element={<Protected Component={PlantDetail} />}
+                />
+                <Route
+                    path="/ranking"
+                    element={<Protected Component={Ranking} />}
+                />
+                <Route
+                    path="/setting"
+                    element={<Protected Component={Setting} />}
+                />
+                <Route
+                    path="/change-password"
+                    element={<Protected Component={ChangePassword} />}
+                />
+                <Route path="/private-policy" element={<PrivatePolicy />} />
             </Routes>
         </Router>
     );

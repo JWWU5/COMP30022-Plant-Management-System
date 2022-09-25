@@ -18,6 +18,7 @@ exports.register = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         console.log(hashedPassword, "after hashing");
         const user = new User({
+            image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userId: req.body.userName,
@@ -90,10 +91,11 @@ exports.login = async (req, res, next) => {
         .catch((e) => {
             res.status(404).send({
                 message: "Login failed! Please check your email and password.",
-                e,
             });
         });
 };
+
+
 exports.list = async (req, res, next) => {
     const result = await User.find();
     res.status(200).json(result);

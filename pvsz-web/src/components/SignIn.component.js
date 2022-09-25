@@ -12,7 +12,6 @@ import { Alert } from "@mui/material";
 import "./dynamicButton.scss";
 
 const cookies = new Cookies();
-
 export default function Login() {
     const navigate = useNavigate();
     const [successTxt, setSuccessTxt] = useState("");
@@ -41,6 +40,7 @@ export default function Login() {
                 clearTimeout(window.timer);
             }
             setErrorTxt("Password cannot be empty");
+
             window.timer = window.setTimeout(() => {
                 setErrorTxt("");
             }, 1000);
@@ -64,8 +64,8 @@ export default function Login() {
                 cookies.set("TOKEN", result.data.token, {
                     path: "/",
                 });
+
                 // redirect user to the auth page
-                window.location.href = "/auth";
 
                 setLogin(true);
 

@@ -16,8 +16,11 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import zombie_hand from '../assets/images/halloween.svg';
 import Button from '@mui/material/Button';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
 
 const theme = createTheme({
     palette: {
@@ -27,84 +30,76 @@ const theme = createTheme({
         height: 55,
       },
     },
-  });
+});
 
+export default function SelectPlant() {
+    
+    let navigate = useNavigate();
 
-export default class Dashboard extends Component {
-    render() {
-        return (
-            <body className='Dashboard'>
-                <Header />
-                <main>
-                    <div class="bg">
-                        <div class="topic">
-                            <h2>Select</h2>
-                            <img class="hand"src={zombie_hand}></img>
-                        </div>
-                        <h4>Your Plant</h4>
-                        
-                        <div class="plant">
-                            <Stack spacing={3} justify-Content="center">
-                                <div class="search">
-                                    <Paper
-                                        component="form" sx={{ 
-                                            p: '2px 4px', 
-                                            display: 'flex', 
-                                            alignItems: 'center', 
-                                            width: 1, 
-                                            height: 50,
-                                            borderRadius: 25 }}
-                                        >
-                                        <b>Name</b>
-                                        <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                                        <InputBase
-                                            sx={{ ml: 1, flex: 1 }}
-                                            placeholder="Search the plant"
-                                            inputProps={{ 'aria-label': 'search your plant' }}
-                                        />
-                                        <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-                                            <SearchIcon />
-                                        </IconButton>
-                                    </Paper>
-                                </div>
-                                <ThemeProvider theme={theme}>
-                                    <Button variant="contained" color="primary" sx={{
-                                        height: 50,
-                                        borderRadius: 25,
-                                        color: '#646464', 
-                                        textTransform: 'capitalize',
-                                        fontFamily: 'Tamil HM', fontSize: 15}}>Customise new plant</Button>
-                                </ThemeProvider>
-                                <Divider />
-                                <Box display='flex' justify-Content="center" sx={{
-                                    width: 1, 
-                                    height: 55,
-                                    backgroundColor: '#ffffff',
-                                    alignItems: 'center',
-                                    borderRadius: 25}}>
-                                    <Avatar src="avatar.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
-                                    <Grid container justifyContent="flex-end">
-                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
-                                    </Grid>
-                                </Box>
-                                <Box display='flex' justify-Content="center" sx={{
-                                    width: 1, 
-                                    height: 55, 
-                                    backgroundColor: '#ffffff',
-                                    alignItems: 'center',
-                                    borderRadius: 25}}>
-                                    <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
-                                    <a>Plant</a>
-                                    <Grid container justifyContent="flex-end">
-                                        <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
-                                    </Grid>
-                                </Box>
-                            </Stack>
-                        </div>
+    function CostomiseIcon() {
+        navigate("/add-plant");
+    };
+
+    return (
+        <body className='Dashboard'>
+            <Header />
+            <main>
+                <div class="bg">
+                    <div class="topic">
+                        <h2>Select</h2>
+                        <img class="hand"src={zombie_hand}></img>
                     </div>
-                </main>
-            </body>
-        )
-    }
+                    <h4>Your Plant</h4>
+                    
+                    <div class="plant">
+                        <Stack spacing={3} justify-Content="center">
+                            <div class="search">
+                                <Paper
+                                    component="form" sx={{ 
+                                        p: '2px 4px', 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        width: 1, 
+                                        height: 50,
+                                        borderRadius: 25 }}
+                                    >
+                                    <b>Name</b>
+                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                                    <InputBase
+                                        sx={{ ml: 1, flex: 1 }}
+                                        placeholder="Search the plant"
+                                        inputProps={{ 'aria-label': 'search your plant' }}
+                                    />
+                                    <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
+                                        <SearchIcon />
+                                    </IconButton>
+                                </Paper>
+                            </div>
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained" color="primary" onClick={CostomiseIcon} sx={{
+                                    height: 50,
+                                    borderRadius: 25,
+                                    color: '#646464', 
+                                    textTransform: 'capitalize',
+                                    fontFamily: 'Tamil HM', fontSize: 15}}>Customise new plant</Button>
+                            </ThemeProvider>
+                            <Divider />
+                            <Box display='flex' justify-Content="center" sx={{
+                                width: 1, 
+                                height: 55, 
+                                backgroundColor: '#ffffff',
+                                alignItems: 'center',
+                                borderRadius: 25}}>
+                                <Avatar src="avatar1.jpg" sx={{ml: 2.5}}/>
+                                <a>Plant</a>
+                                <Grid container justifyContent="flex-end">
+                                    <ArrowForwardIosOutlinedIcon sx={{mr: 2.5}} />
+                                </Grid>
+                            </Box>
+                        </Stack>
+                    </div>
+                </div>
+            </main>
+        </body>
+    )
 }
