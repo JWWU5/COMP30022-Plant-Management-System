@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 import "./sidebar.scss";
 
@@ -102,6 +104,8 @@ const sidebarNavItems2 = [
 ];
 
 const Header = (menubarColour) => {
+    const [enableOverlay, setEnableOverlay] = useState(true);
+
     const [activeIndex, setActiveIndex] = useState(0);
     const [stepHeight, setStepHeight] = useState(0);
     const sidebarRef = useRef();
@@ -110,26 +114,10 @@ const Header = (menubarColour) => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector(
-                ".sidebar__menu__item"
-            );
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
-        }, 50);
-    }, []);
+    const toggleLeft = () => {
+        setSidebar((prev) => !prev);
+    };
 
-    // change active index
-    useEffect(() => {
-        const curPath = window.location.pathname.split("/")[1];
-        const activeItem = sidebarNavItems.findIndex(
-            (item) => item.section === curPath
-        );
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-    }, [location]);
-
-    console.log(window.location.pathname.split("/")[1]);
     if (
         window.location.pathname.split("/")[1] === "sign-in" ||
         window.location.pathname.split("/")[1] === "sign-up" ||
@@ -143,6 +131,16 @@ const Header = (menubarColour) => {
                         <MenuIcon sx={{ color: "#ffffff", width: 1 }} />
                     </button>
                 </nav>
+                <Drawer
+                    open={sidebar}
+                    onClose={toggleLeft}
+                    direction="left"
+                    style={{
+                        width: "66%",
+                        backgroundColor: "transparent",
+                    }}
+                    enableOverlay={enableOverlay}
+                ></Drawer>
                 <div className={sidebar ? "sidebar" : "nav-menu"}>
                     <div
                         ref={sidebarRef}
@@ -177,6 +175,16 @@ const Header = (menubarColour) => {
                         <MenuIcon sx={{ color: "#44533B", width: 1 }} />
                     </button>
                 </nav>
+                <Drawer
+                    open={sidebar}
+                    onClose={toggleLeft}
+                    direction="left"
+                    style={{
+                        width: "66%",
+                        backgroundColor: "transparent",
+                    }}
+                    enableOverlay={enableOverlay}
+                ></Drawer>
                 <div className={sidebar ? "sidebar" : "nav-menu"}>
                     <div
                         ref={sidebarRef}
