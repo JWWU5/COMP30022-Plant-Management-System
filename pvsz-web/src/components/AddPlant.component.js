@@ -103,17 +103,6 @@ export default function AddPlant() {
             }, 1000);
             return;
         }
-        if (!otherDetail) {
-            if (window.timer) {
-                clearTimeout(window.timer);
-            }
-            setErrorTxt("otherDetail cannot be empty");
-
-            window.timer = window.setTimeout(() => {
-                setErrorTxt("");
-            }, 1000);
-            return;
-        }
         // plantName waterRate lastWaterTime sunshineRate lastSunshineTime otherDetail
         // console.log("plantName = ", plantName);
         // console.log("waterRate = ", waterRate);

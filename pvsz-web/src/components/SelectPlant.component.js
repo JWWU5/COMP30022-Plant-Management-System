@@ -158,7 +158,7 @@ export default function SelectPlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src="avatar1.jpg" sx={{ ml: 2.5 }} />
+                                        <Avatar src={v.imageSource} sx={{ ml: 2.5 }} />
                                         <a className="wordHidden" style={{
                                             flex: 1,
                                             fontSize: 14

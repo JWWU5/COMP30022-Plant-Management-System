@@ -99,7 +99,16 @@ export default function Register() {
             }, 1000);
             return;
         }
-
+        if (password.length < 6) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Length of Password cannot be smaller than six");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         // prevent the form from refreshing the whole page
         e.preventDefault();
 
