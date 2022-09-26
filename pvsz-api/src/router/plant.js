@@ -3,5 +3,6 @@ const router = express.Router();
 const plantController = require("./../controllers/plantController");
 
 router.post("/select-plants",plantController.displayPlantLibrary)
+router.post("/list",plantController.list)
 
 module.exports = router;

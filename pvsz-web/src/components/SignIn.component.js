@@ -64,7 +64,7 @@ export default function Login() {
                 cookies.set("TOKEN", result.data.token, {
                     path: "/",
                 });
-
+                window.localStorage.token = result.data.token;
                 // redirect user to the auth page
 
                 setLogin(true);

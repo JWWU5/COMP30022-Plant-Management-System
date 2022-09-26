@@ -83,3 +83,12 @@
     padding-top: 3%;
     overflow-y: scroll;
 }
+
+.tipsBox{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}

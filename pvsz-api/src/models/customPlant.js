@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const CustomPlantSchema = mongoose.Schema({
 	name: { type: String },
-	waterPeriod: { type: Number },
+	waterPeriod: { type: String },
 	lastWaterDate: { type: Date },
-	sunPeriod: { type: Number},
+	sunPeriod: { type: String},
 	lastSunDate: { type: Date },
 	chooseGroup: { type: String },
 	otherDetails: { type: String }
