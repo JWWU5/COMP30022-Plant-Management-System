@@ -6,5 +6,8 @@ exports.displayPlantLibrary = async (req, res, next) => {
 
 exports.list = async (req, res, next) => {
     const result = await Plant.find();
-    res.status(200).json(result);
+    res.status(200).json({
+        data: result,
+        code: 200
+    });
 };

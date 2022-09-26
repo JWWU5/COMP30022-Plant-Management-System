@@ -2,7 +2,9 @@ import "./Header.css";
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 import "./sidebar.scss";
 
@@ -32,7 +34,7 @@ const sidebarNavItems = [
         section: "groups",
     },
     {
-        display: "RANKINGT",
+        display: "RANKING",
         icon: <i className="bx bx-line-chart"></i>,
         to: "/ranking",
         section: "ranking",
@@ -46,14 +48,14 @@ const sidebarNavItems = [
     {
         display: "ABOUT US",
         icon: <i className="bx bx-book"></i>,
-        to: "/about-us",
-        section: "about",
+        to: "/about-us-protected",
+        section: "about-us-protected",
     },
     {
         display: "CONTACT US",
         icon: <i className="bx bx-phone-call"></i>,
-        to: "/contact-us",
-        section: "contact",
+        to: "/contact-us-protected",
+        section: "contact-us-protected",
     },
     {
         display: "SETTING",
@@ -62,8 +64,48 @@ const sidebarNavItems = [
         section: "setting",
     },
 ];
+const sidebarNavItems2 = [
+    {
+        display: "< RETURN",
+
+        to: window.location.pathname.split("/")[0],
+        section: "",
+    },
+    {
+        display: "HOME",
+        icon: <i className="bx bx-home"></i>,
+        to: "/",
+        section: "/",
+    },
+    {
+        display: "ABOUT US",
+        icon: <i className="bx bx-book"></i>,
+        to: "/about-us",
+        section: "/about-us",
+    },
+    {
+        display: "CONTACT US",
+        icon: <i className="bx bx-phone-call"></i>,
+        to: "/contact-us",
+        section: "contact-us",
+    },
+    {
+        display: "SIGN-IN",
+        icon: <i className="bx bx-user-check"></i>,
+        to: "/sign-in",
+        section: "setting",
+    },
+    {
+        display: "SIGN-UP",
+        icon: <i className="bx bx-edit-alt"></i>,
+        to: "/sign-up",
+        section: "setting",
+    },
+];
 
 const Header = (menubarColour) => {
+    const [enableOverlay, setEnableOverlay] = useState(true);
+
     const [activeIndex, setActiveIndex] = useState(0);
     const [stepHeight, setStepHeight] = useState(0);
     const sidebarRef = useRef();
@@ -72,58 +114,104 @@ const Header = (menubarColour) => {
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
-    useEffect(() => {
-        setTimeout(() => {
-            const sidebarItem = sidebarRef.current.querySelector(
-                ".sidebar__menu__item"
-            );
-            indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`;
-            setStepHeight(sidebarItem.clientHeight);
-        }, 50);
-    }, []);
+    const toggleLeft = () => {
+        setSidebar((prev) => !prev);
+    };
 
-    // change active index
-    useEffect(() => {
-        const curPath = window.location.pathname.split("/")[1];
-        const activeItem = sidebarNavItems.findIndex(
-            (item) => item.section === curPath
-        );
-        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
-    }, [location]);
-
-    return (
-        <>
-            <nav className="navbar_style">
-                <button onClick={showSidebar}>
-                    <MenuIcon sx={{color: '#44533B', width: 1}}/>
-                </button>
-            </nav>
-            <div className={sidebar ? "sidebar" : "nav-menu"}>
-                <div
-                    ref={sidebarRef}
-                    className="sidebar__menu"
-                    onClick={showSidebar}
-                >
-                    {sidebarNavItems.map((item, index) => (
-                        <Link to={item.to} key={index}>
-                            <div
-                                className={`sidebar__menu__item ${
-                                    activeIndex === index ? "active" : ""
-                                }`}
-                            >
-                                <div className="sidebar__menu__item__icon">
-                                    {item.icon}
+    if (
+        window.location.pathname.split("/")[1] === "sign-in" ||
+        window.location.pathname.split("/")[1] === "sign-up" ||
+        window.location.pathname.split("/")[1] === "contact-us" ||
+        window.location.pathname.split("/")[1] === "about-us"
+    ) {
+        return (
+            <>
+                <nav className="navbar_style">
+                    <button onClick={showSidebar}>
+                        <MenuIcon sx={{ color: "#ffffff", width: 1 }} />
+                    </button>
+                </nav>
+                <Drawer
+                    open={sidebar}
+                    onClose={toggleLeft}
+                    direction="left"
+                    style={{
+                        width: "66%",
+                        backgroundColor: "transparent",
+                    }}
+                    enableOverlay={enableOverlay}
+                ></Drawer>
+                <div className={sidebar ? "sidebar" : "nav-menu"}>
+                    <div
+                        ref={sidebarRef}
+                        className="sidebar__menu"
+                        onClick={showSidebar}
+                    >
+                        {sidebarNavItems2.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div
+                                    className={`sidebar__menu__item ${
+                                        activeIndex === index ? "active" : ""
+                                    }`}
+                                >
+                                    <div className="sidebar__menu__item__icon">
+                                        {item.icon}
+                                    </div>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
                                 </div>
-                                <div className="sidebar__menu__item__text">
-                                    {item.display}
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    } else {
+        return (
+            <>
+                <nav className="navbar_style">
+                    <button onClick={showSidebar}>
+                        <MenuIcon sx={{ color: "#44533B", width: 1 }} />
+                    </button>
+                </nav>
+                <Drawer
+                    open={sidebar}
+                    onClose={toggleLeft}
+                    direction="left"
+                    style={{
+                        width: "66%",
+                        backgroundColor: "transparent",
+                    }}
+                    enableOverlay={enableOverlay}
+                ></Drawer>
+                <div className={sidebar ? "sidebar" : "nav-menu"}>
+                    <div
+                        ref={sidebarRef}
+                        className="sidebar__menu"
+                        onClick={showSidebar}
+                    >
+                        {sidebarNavItems.map((item, index) => (
+                            <Link to={item.to} key={index}>
+                                <div
+                                    className={`sidebar__menu__item ${
+                                        activeIndex === index ? "active" : ""
+                                    }`}
+                                >
+                                    <div className="sidebar__menu__item__icon">
+                                        {item.icon}
+                                    </div>
+                                    <div className="sidebar__menu__item__text">
+                                        {item.display}
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </>
+        );
+    }
 };
 
 export default Header;
