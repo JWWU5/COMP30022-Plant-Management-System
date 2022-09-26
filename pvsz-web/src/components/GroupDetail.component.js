@@ -15,22 +15,37 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Divider } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
 export default function GroupDetail() {
+    const [open, setOpen] = React.useState(false);
+
+    const deleteDoubleCheck = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+    setOpen(false);
+    };
 
     let navigate = useNavigate();
 
@@ -38,13 +53,14 @@ export default function GroupDetail() {
         navigate("/group-plants");
     };
 
-    function deleteGroup() {
-        navigate("/groups");
-    }
-
     function toGroupDetail() {
         navigate("/group-detail");
     }
+
+    function Agree() {
+        setOpen(false);
+        navigate("/groups");
+    };
 
     const [state, setState] = React.useState({
         bottom: false,
@@ -80,11 +96,24 @@ export default function GroupDetail() {
                     </ListItemButton>
                 </ListItem>
                 <ListItem >
-                    <ListItemButton onClick={deleteGroup}>
+                    <ListItemButton onClick={deleteDoubleCheck}>
                         <DeleteOutlineIcon sx={{ml:2, color:'#ffffff'}}/>
                         <ListItemText primary="Delete this group" sx={{ml:5, color:'#ffffff'}}/>
+                        
                     </ListItemButton>
-                </ListItem>
+                    <Dialog
+                        open={open}
+                        TransitionComponent={Transition}
+                        keepMounted
+                        onClose={handleClose}
+                    >
+                        <DialogTitle sx={{fontWeight: 'bold', fontSize: 20}}>{"Are you sure to delete this plant?"}</DialogTitle>
+                        <DialogActions>
+                        <Button color="success" onClick={handleClose}>No</Button>
+                        <Button color="error" onClick={Agree}>yes!</Button>
+                        </DialogActions>
+                    </Dialog>
+            </ListItem>
 
                 </List>
             </nav>
