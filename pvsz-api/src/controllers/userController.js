@@ -2,6 +2,7 @@ const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = 'RANDOM-TOKEN';
+const mongoose = require('mongoose');
 
 exports.register = async (req, res, next) => {
     console.log(req.body, "data");
@@ -129,11 +130,6 @@ exports.getUserInfo = async (req, res, next) => {
 };
 
 
-exports.list = async (req, res, next) => {
-    const result = await User.find();
-    res.status(200).json(result);
-};
-
 exports.setUserInfo = async (req, res, next) => {
     let token = req.get('Authorization');
     if (!token) {
@@ -150,32 +146,24 @@ exports.setUserInfo = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            console.log("body = ", req.body)
-            cusPlant.save((err, item) => {
+            User.findByIdAndUpdate({
+                _id: userId
+            }, {
+                firstName:req.body.firstName,
+                lastName: req.body.lastName,
+                userName: req.body.userName
+            }
+            , (err, doc) => {
                 if (err) {
                     res.status(500).send('Exceptions in server');
-                } else {
-                    console.log("item = ", item.id)
-                    let itemId = item.id;
-                    // User.updateOne({
-                    //     '_id': userId
-                    // }, {
-                    //     '$push': {
-                    //         plantList: itemId
-                    //     }
-                    // }, (err, doc) => {
-                    //     if (err) {
-                    //         res.status(500).send('Exceptions in server');
-                    //         return
-                    //     }
-
-                    //     res.json({
-                    //         code: 200,
-                    //     })
-                    //     console.log(doc)
-                    // })
+                    return
                 }
-            });
+                res.status(201).send({
+                    message: "User Changed Successfully",
+                });
+                console.log(doc)
+            })
+
         }
     })
 };

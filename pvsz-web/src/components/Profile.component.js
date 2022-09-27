@@ -3,6 +3,7 @@ import Header from "./Header";
 import avatar from "../assets/images/avatar.png";
 import "./Profile.css";
 import "./dynamicButton.scss";
+import { Alert } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -11,7 +12,7 @@ export default function Profile() {
     const [readonlyValue, setReadonlyValue] = useState(true);
     const [inputType, setInputType] = useState("blocked");
     const [nullInput, setnullInput] = useState(false);
-
+    const [successTxt, setSuccessTxt] = useState("");
     // Below consts could be replaced by data stored in our database
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -78,9 +79,11 @@ export default function Profile() {
         }
         axios
             .post(
-                "http://localhost:5000/api/v1/customPlant/add",
+                "http://localhost:5000/api/v1/user/setUserInfo",
                 {
-                    firstName: firstName
+                    firstName: firstName,
+                    lastName: lastName,
+                    userName: userName,
                 },
                 {
                     headers: {
@@ -88,6 +91,21 @@ export default function Profile() {
                     },
                 }
             )
+            .then((res) => {
+                console.log("res = ", res.data);
+                if (readonlyValue === false) {
+                    if (window.timer) {
+                        clearTimeout(window.timer);
+                    }
+                    setSuccessTxt("Update is successful!");
+                    window.timer = window.setTimeout(() => {
+                        setSuccessTxt("");
+                    }, 1000);
+                }
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
     }
 
     const inputFirstName = (e) => {
@@ -107,6 +125,9 @@ export default function Profile() {
 
     return (
         <body>
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+            </div>
             <Header />
             <header>
                 <h1 className="profileTitle">PROFILE</h1>

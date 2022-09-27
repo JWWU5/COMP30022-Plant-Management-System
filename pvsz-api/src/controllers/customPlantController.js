@@ -4,6 +4,7 @@ const {
 } = require('../models');
 const jwt = require("jsonwebtoken");
 const jwtKey = 'RANDOM-TOKEN';
+const mongoose = require('mongoose');
 
 exports.add = async (req, res, next) => {
     let token = req.get('Authorization');
@@ -77,6 +78,18 @@ exports.dels = async (req, res, next) => {
                 '$pullAll': {
                     plantList: idsArr
                 }
+            }, (err, doc) => {
+                if (err) {
+                    res.status(500).send('Exceptions in server');
+                    return
+                }
+                res.json({
+                    code: 200,
+                })
+                console.log(doc)
+            })
+            CustomPlant.deleteMany({
+                _id: {$in: idsArr}
             }, (err, doc) => {
                 if (err) {
                     res.status(500).send('Exceptions in server');

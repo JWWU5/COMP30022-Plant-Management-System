@@ -71,3 +71,11 @@ input[type="blocked"] {
     color: #44533B;
 }
 
+.tipsBox{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}
