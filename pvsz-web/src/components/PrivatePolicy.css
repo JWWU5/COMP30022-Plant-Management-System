@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 .policyContentDiv {
     height: 72vh;
@@ -20,7 +20,8 @@
 
 .policyTitle {
     font-size: 12vw !important;
-    font-family: 'Architects Daughter', cursive !important;
+    font-family: 'BM HANNA 11yrs old', cursive !important;
+    font-weight: 300;
     text-shadow: 3px 3px #FFFFFF !important;
     color: #44533B !important;
     position: absolute !important;

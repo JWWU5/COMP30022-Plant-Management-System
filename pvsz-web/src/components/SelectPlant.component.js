@@ -147,7 +147,6 @@ export default function SelectPlant() {
                                         display="flex"
                                         justify-Content="center"
                                         onClick={() => {
-                                            // console.log("v = ", v)
                                             navigate(`/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}`);
                                         }}
                                         sx={{

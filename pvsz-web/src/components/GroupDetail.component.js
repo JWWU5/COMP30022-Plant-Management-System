@@ -176,8 +176,4 @@ export default function GroupDetail() {
             </main>
         </body>
     )
-
-    
-    
-    
 }

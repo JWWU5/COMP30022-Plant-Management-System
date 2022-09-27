@@ -154,7 +154,6 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
-        // console.log(input)
         alert(`The name you entered was: ${userName}`);
     };
 
@@ -203,28 +202,15 @@ export default function Register() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="image-upload">
-                    <label for="file-input">
-                        {/* <img alt="avatar" src={selectedImage} style={avatarStyle}></img>
-                    {console.log(selectedImage)} */}
+                <div class="imageUpload">
+                    <label for="fileInput">
                         <FileBase64
-                            id="file-input"
+                            id="fileInput"
                             name="avatar"
                             multiple={false}
                             onDone={({ base64 }) => setImage(base64)}
                         />
-                        {/* {console.log(image)} */}
                     </label>
-
-                    {/* <input id="file-input" type="file" name="avatar" accept="image/png, image/jpeg, image/jpg" onChange={(e) => {
-                    // if(e.target.files.length !== 0){
-                        setSelectedImage({image: URL.createObjectURL(e.target.files[0])});
-                    // }
-                    // else {
-                    //   setSelectedImage({image:URL.createObjectURL(e.target.files[0])});
-                    // }
-                    }}
-                /> */}
                 </div>
             </Grid>
             <form>
@@ -309,9 +295,7 @@ export default function Register() {
                         name="agreePolicy"
                         value={agreePolicy}
                         onChange={(e) => {
-                            // console.log("e = ", e)
                             setPagreePolicy(e.target.checked);
-                            // checkAgreePolicy(e)
                         }}
                         className="largerCheckBox"
                     ></input>

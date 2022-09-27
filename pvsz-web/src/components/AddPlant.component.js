@@ -37,8 +37,6 @@ export default function AddPlant() {
     };
 
     useEffect(() => {
-        // console.log("searchParams = ", searchParams[0].getAll('sunExposure')[0])
-        // console.log("searchParams = ", searchParams[0].getAll('waterPeriod')[0])
         let sunExposure = searchParams[0].getAll('sunExposure')[0];
         let waterPeriod = searchParams[0].getAll('waterPeriod')[0];
         if (sunExposure) {
@@ -103,13 +101,6 @@ export default function AddPlant() {
             }, 1000);
             return;
         }
-        // plantName waterRate lastWaterTime sunshineRate lastSunshineTime otherDetail
-        // console.log("plantName = ", plantName);
-        // console.log("waterRate = ", waterRate);
-        // console.log("lastWaterTime = ", lastWaterTime);
-        // console.log("sunshineRate = ", sunshineRate);
-        // console.log("lastSunshineTime = ", lastSunshineTime);
-        // console.log("otherDetail = ", otherDetail);
         axios
             .post(
                 "http://localhost:5000/api/v1/customPlant/add",
@@ -159,13 +150,13 @@ export default function AddPlant() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="image-upload">
-                    <label for="file-input">
+                <div class="imageUpload">
+                    <label for="fileInput">
                         <img alt="avatar" src={selectedImage} style={imageStyle}></img>
                         {console.log(selectedImage)}
                     </label>
                     <input
-                        id="file-input"
+                        id="fileInput"
                         type="file"
                         name="plantImage"
                         accept="image/png, image/jpeg, image/jpg"

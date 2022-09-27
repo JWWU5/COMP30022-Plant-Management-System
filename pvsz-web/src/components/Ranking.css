@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 .rankingContentDiv {
     height: 72vh;
@@ -19,7 +19,8 @@
 
 .rankingTitle {
     font-size: 12vw;
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     text-shadow: 3px 3px #FFFFFF;
     color: #44533B;
     position: absolute;

@@ -134,8 +134,6 @@ export default function GroupHome() {
                                     <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
                                         <SearchIcon />
                                     </IconButton>
-
-
                                 </Paper>
                             </div>
                             <Divider />
@@ -165,15 +163,8 @@ export default function GroupHome() {
                             </Box>
                         </Stack>
                     </div>
-                    
-
-
                 </div>
             </main>
         </body>
     )
-
-    
-    
-    
 }

@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import axios from "axios";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 

@@ -15,6 +15,7 @@
     .topic h2 {
         display: block;
         font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
         color: #ffffff;
         font-weight:lighter;
         font-size: 40px;
@@ -60,6 +61,7 @@
         flex: 0.6;
         display: block;
         font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
         color: #ffffff;
         font-weight:lighter;
         font-size: 25px;
@@ -89,6 +91,7 @@
     .topic h2 {
         display: block;
         font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
         color: #ffffff;
         font-weight:lighter;
         font-size: 50px;
@@ -134,6 +137,7 @@
         flex: 0.6;
         display: block;
         font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
         color: #ffffff;
         font-weight:lighter;
         font-size: 35px;

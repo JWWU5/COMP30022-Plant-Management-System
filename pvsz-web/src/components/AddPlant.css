@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 .addPlantTitle {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     font-size: 10vw;
     color: #44533B;
     margin-top: 8%;

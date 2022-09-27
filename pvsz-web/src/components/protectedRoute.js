@@ -5,7 +5,7 @@ const cookies = new Cookies();
 export default function Protected({ Component }) {
     const token = cookies.get("TOKEN");
     console.log(token);
-    console.log("sb");
+    console.log("unauthentification user");
 
     return token ? <Component /> : <Navigate to="/" />;
 }

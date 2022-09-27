@@ -266,59 +266,6 @@ export default function DeletePlant() {
                                     </Box>
                                 );
                             })}
-                            {/* <Box
-                display="flex"
-                justify-Content="center"
-                sx={{
-                  width: 1,
-                  height: 55,
-                  backgroundColor: "#ffffff",
-                  alignItems: "center",
-                  borderRadius: 25,
-                }}
-              >
-                <Avatar src="avatar.jpg" sx={{ ml: 2.5 }} />
-                <a>Plant</a>
-                <a2>Livingroom</a2>
-                <Grid container justifyContent="flex-end">
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#44533B",
-                      mr: 1,
-                      "&.Mui-checked": {
-                        color: "#44533B",
-                      },
-                    }}
-                  />
-                </Grid>
-              </Box>
-              <Box
-                display="flex"
-                justify-Content="center"
-                sx={{
-                  width: 1,
-                  height: 55,
-                  backgroundColor: "#ffffff",
-                  alignItems: "center",
-                  borderRadius: 25,
-                }}
-              >
-                <Avatar src="avatar1.jpg" sx={{ ml: 2.5 }} />
-                <a>Plant</a>
-                <Grid container justifyContent="flex-end">
-                  <Checkbox
-                    {...label}
-                    sx={{
-                      color: "#44533B",
-                      mr: 1,
-                      "&.Mui-checked": {
-                        color: "#44533B",
-                      },
-                    }}
-                  />
-                </Grid>
-              </Box> */}
                         </Stack>
                     </div>
                 </div>
