@@ -94,12 +94,13 @@ export default function SelectPlant() {
                                         placeholder="Search the plant"
                                         inputProps={{ "aria-label": "search your plant" }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
+                                            console.log(e.target.value)
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.name.indexOf(val) !== -1;
+                                                return v.commonName.toUpperCase().indexOf(val) !== -1;
                                             });
+
                                             setPlantList(deepList);
                                         }}
                                     />

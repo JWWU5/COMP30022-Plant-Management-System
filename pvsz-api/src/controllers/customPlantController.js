@@ -71,35 +71,57 @@ exports.dels = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            // add user customPlant
-            User.updateOne({
-                '_id': userId
-            }, {
-                '$pullAll': {
-                    plantList: idsArr
-                }
-            }, (err, doc) => {
-                if (err) {
-                    res.status(500).send('Exceptions in server');
-                    return
-                }
-                res.json({
-                    code: 200,
+            
+            try {
+                let r1 = await User.updateOne({
+                    '_id': userId
+                }, {
+                    '$pullAll': {
+                        plantList: idsArr
+                    }
                 })
-                console.log(doc)
-            })
-            CustomPlant.deleteMany({
-                _id: {$in: idsArr}
-            }, (err, doc) => {
-                if (err) {
-                    res.status(500).send('Exceptions in server');
-                    return
-                }
+                let r2 = await CustomPlant.deleteMany({
+                    _id: {$in: idsArr}
+                });
                 res.json({
-                    code: 200,
+                    code: 200
                 })
-                console.log(doc)
-            })
+            } catch (error) {
+                res.status(500).send('Exceptions in server');
+            }
+    
+
+            // // add user customPlant
+            // User.updateOne({
+            //     '_id': userId
+            // }, {
+            //     '$pullAll': {
+            //         plantList: idsArr
+            //     }
+            // }, (err, doc) => {
+            //     if (err) {
+            //         res.status(500).send('Exceptions in server');
+            //         return
+            //     }
+            //     // res.json({
+            //     //     code: 200,
+            //     // })
+            //     console.log(doc)
+            //     CustomPlant.deleteMany({
+            //         _id: {$in: idsArr}
+            //     }, (err, doc) => {
+            //         if (err) {
+            //             res.status(500).send('Exceptions in server');
+            //             return
+            //         }
+            //         res.json({
+            //             code: 200,
+            //         })
+            //         console.log(doc)
+            //     })
+            // })
+     
+   
         }
     })
 };
