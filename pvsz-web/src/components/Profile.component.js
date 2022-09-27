@@ -1,9 +1,10 @@
 import { Grid } from "@mui/material";
 import Header from "./Header";
 import avatar from "../assets/images/avatar.png";
-import { useState } from "react";
 import "./Profile.css";
 import "./dynamicButton.scss";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
@@ -12,15 +13,45 @@ export default function Profile() {
     const [nullInput, setnullInput] = useState(false);
 
     // Below consts could be replaced by data stored in our database
-    const [firstName, setFirstName] = useState("Dave");
-    const [lastName, setLastName] = useState("Smith");
-    const [userName, setUserName] = useState("Crazy_Dave");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
     const [buttonClass, setButtonClass] = useState("editButton");
+    const [birthdayDate, setBirthdayDate] = useState("");
+    const [email, setEmail] = useState("");
+    const [image, setImage] = useState("");
+
+
+    useEffect(() => {
+        axios
+            .post(
+                "http://localhost:5000/api/v1/user/getUserInfo",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log("res = ", res.data.data);
+                setFirstName(res.data.data.firstName);
+                setLastName(res.data.data.lastName);
+                setUserName(res.data.data.userName);
+                setBirthdayDate(res.data.data.dateOfBirth)
+                setEmail(res.data.data.email)
+                setImage(res.data.data.image)
+                console.log("image: ", image)
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
+    }, []);
 
     // These two consts can not be changed
     // So no need to write the set function
-    const birthdayDate = "01/01/2000";
-    const email = "Crazy_Dave@gmail.com";
+    // const birthdayDate = "01/01/2000";
+    // const email = "Crazy_Dave@gmail.com";
 
     function checkNullInput(inputValue) {
         if (inputValue.trim().length - 1 === 0) {
@@ -45,6 +76,18 @@ export default function Profile() {
             setInputType("blocked");
             setButtonClass("editButton");
         }
+        axios
+            .post(
+                "http://localhost:5000/api/v1/customPlant/add",
+                {
+                    firstName: firstName
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
     }
 
     const inputFirstName = (e) => {
@@ -74,7 +117,7 @@ export default function Profile() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <img src={avatar} className="avatarIcon"></img>
+                <img src={image} className="avatarIcon"></img>
                 <div className="valueDiv">
                     <h3 className="valueTitle">First Name</h3>
                     <input

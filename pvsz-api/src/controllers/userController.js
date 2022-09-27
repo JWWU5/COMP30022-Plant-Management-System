@@ -1,6 +1,4 @@
-const {
-    User
-} = require("./../models");
+const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = 'RANDOM-TOKEN';
@@ -98,7 +96,7 @@ exports.login = async (req, res, next) => {
         });
 };
 
-exports.getUserinfo = async (req, res, next) => {
+exports.getUserInfo = async (req, res, next) => {
     let token = req.get('Authorization');
     if (!token) {
         res.status(401).send({
@@ -134,4 +132,50 @@ exports.getUserinfo = async (req, res, next) => {
 exports.list = async (req, res, next) => {
     const result = await User.find();
     res.status(200).json(result);
+};
+
+exports.setUserInfo = async (req, res, next) => {
+    let token = req.get('Authorization');
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split('Bearer ')[1];
+    jwt.verify(token, jwtKey, (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            console.log("body = ", req.body)
+            cusPlant.save((err, item) => {
+                if (err) {
+                    res.status(500).send('Exceptions in server');
+                } else {
+                    console.log("item = ", item.id)
+                    let itemId = item.id;
+                    // User.updateOne({
+                    //     '_id': userId
+                    // }, {
+                    //     '$push': {
+                    //         plantList: itemId
+                    //     }
+                    // }, (err, doc) => {
+                    //     if (err) {
+                    //         res.status(500).send('Exceptions in server');
+                    //         return
+                    //     }
+
+                    //     res.json({
+                    //         code: 200,
+                    //     })
+                    //     console.log(doc)
+                    // })
+                }
+            });
+        }
+    })
 };

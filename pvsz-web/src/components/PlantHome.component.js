@@ -26,7 +26,7 @@ export default function PlantHome() {
     useEffect(() => {
         axios
             .post(
-                "http://localhost:5000/api/v1/user/getUserinfo",
+                "http://localhost:5000/api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
