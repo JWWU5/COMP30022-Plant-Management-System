@@ -17,6 +17,6 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', require('./router'));
 
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log('the server is running:localhost:5000');
 });

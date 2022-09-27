@@ -26,7 +26,7 @@ export default function Profile() {
     useEffect(() => {
         axios
             .post(
-                "http://localhost:5000/api/v1/user/getUserInfo",
+                "/api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {

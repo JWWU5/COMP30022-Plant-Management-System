@@ -103,7 +103,7 @@ export default function AddPlant() {
         }
         axios
             .post(
-                "http://localhost:5000/api/v1/customPlant/add",
+                "/api/v1/customPlant/add",
                 {
                     name: plantName,
                     waterPeriod: waterRate,

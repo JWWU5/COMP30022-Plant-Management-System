@@ -50,7 +50,7 @@ export default function Login() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "http://localhost:5000/api/v1/user/login",
+            url: "/api/v1/user/login",
             data: {
                 email,
                 password,

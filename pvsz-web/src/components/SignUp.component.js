@@ -115,7 +115,7 @@ export default function Register() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "http://localhost:5000/api/v1/user/register",
+            url: "/api/v1/user/register",
             data: {
                 image,
                 firstName,
