@@ -1,0 +1,170 @@
+@media screen and (max-width: 350px) {
+    .bg {
+        background-color: #BACB94;
+        border-radius: 20px;
+        margin: 6% 5%;
+        padding-top: 8%;
+        padding-bottom: 100%;
+    }
+
+    .topic {
+        margin: 0;
+        display: flex;
+    }
+
+    .topic h2 {
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 40px;
+        margin-left: 5%;
+        margin-top: 0px;
+    }
+
+    .tomb {
+        height: 150%;
+    }
+
+    .plant {
+        position: relative;
+        margin: auto 5%;
+        margin-top: 15%;
+    }
+
+    .plant a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+
+    .plant a2 {
+        font-family: "Devanagari MT";
+        color: #768457;
+        font-weight:bold;
+        margin-left: 5%;
+        font-size: 15px;
+    }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 18px;
+    }
+
+    .bg h4 {
+        flex: 0.6;
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 25px;
+        margin-left: 30%;
+        margin-top: 20px;
+    }
+
+    .hand {
+        margin: 0;
+        height: 150%;
+    }
+}
+@media screen and (min-width: 350px) {
+    .bg {
+        background-color: #BACB94;
+        border-radius: 20px;
+        margin: 6% 5%;
+        padding-top: 8%;
+        padding-bottom: 100%;
+    }
+
+    .topic {
+        margin: 0;
+        display: flex;
+    }
+
+    .topic h2 {
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 50px;
+        margin-left: 5%;
+        margin-top: 0px;
+    }
+
+    .tomb {
+        height: 180%;
+    }
+
+    .plant {
+        position: relative;
+        margin: auto 5%;
+        margin-top: 10%;
+    }
+
+    .plant a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+
+    .plant a2 {
+        font-family: "Devanagari MT";
+        color: #768457;
+        font-weight:bold;
+        margin-left: 5%;
+        font-size: 15px;
+    }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 18px;
+    }
+
+    .bg h4 {
+        flex: 0.6;
+        display: block;
+        font-family: "BM Hanna 11yrs Old";
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 35px;
+        margin-left: 100px;
+        margin-top: 30px;
+    }
+
+    .hand {
+        margin: 0;
+        height: 200%;
+    }
+}
+
+.tipsBox {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}
+
+.wordHidden {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    white-space: nowrap;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
