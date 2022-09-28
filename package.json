@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "",
     "scripts": {
-        "start": "npm start --prefix pvsz-api",
+        "start": "cd pvsz-api && node index.js",
         "install-client": "cd pvsz-web && npm install --only=dev && npm install && npm run build && cd ..",
         "install-server": "cd pvsz-api && npm install && cd .. ",
         "heroku-postbuild": "npm run install-client && npm run install-server"
