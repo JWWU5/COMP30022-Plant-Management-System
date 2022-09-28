@@ -88,17 +88,27 @@ export default function SelectPlant() {
                                     }}
                                 >
                                     <b>Name</b>
-                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                                    <Divider
+                                        sx={{ height: 28, m: 0.5 }}
+                                        orientation="vertical"
+                                    />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
                                         placeholder="Search the plant"
-                                        inputProps={{ "aria-label": "search your plant" }}
+                                        inputProps={{
+                                            "aria-label": "search your plant",
+                                        }}
                                         onChange={(e) => {
-                                            console.log(e.target.value)
-                                            let val = e.target.value.toUpperCase();
+                                            console.log(e.target.value);
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.commonName.toUpperCase().indexOf(val) !== -1;
+                                                return (
+                                                    v.commonName
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
+                                                );
                                             });
 
                                             setPlantList(deepList);
@@ -148,7 +158,9 @@ export default function SelectPlant() {
                                         display="flex"
                                         justify-Content="center"
                                         onClick={() => {
-                                            navigate(`/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}`);
+                                            navigate(
+                                                `/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}`
+                                            );
                                         }}
                                         sx={{
                                             width: 1,
@@ -158,13 +170,23 @@ export default function SelectPlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src={v.imageSource} sx={{ ml: 2.5 }} />
-                                        <a className="wordHidden" style={{
-                                            flex: 1,
-                                            fontSize: 14
-                                        }}>{v.commonName}</a>
+                                        <Avatar
+                                            src={v.imageSource}
+                                            sx={{ ml: 2.5 }}
+                                        />
+                                        <a
+                                            className="wordHidden"
+                                            style={{
+                                                flex: 1,
+                                                fontSize: 14,
+                                            }}
+                                        >
+                                            {v.commonName}
+                                        </a>
                                         <Grid justifyContent="flex-end">
-                                            <ArrowForwardIosOutlinedIcon sx={{ mr: 2.5 }} />
+                                            <ArrowForwardIosOutlinedIcon
+                                                sx={{ mr: 2.5 }}
+                                            />
                                         </Grid>
                                     </Box>
                                 );

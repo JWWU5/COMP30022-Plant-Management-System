@@ -21,6 +21,7 @@
     "react-file-base64": "^1.0.3",
     "react-helmet": "^6.1.0",
     "react-modern-drawer": "^1.1.2",
+    "react-native-swipe-gestures": "^1.0.5",
     "react-router-dom": "^6.4.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.4.0",
