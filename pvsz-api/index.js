@@ -11,11 +11,6 @@ app.use(express.json({
 }));
 
 app.use(express.urlencoded({ extended: true }));
-
-app.get('/', (req, res) => {
-    res.json({ code: 0, message: 'success' });
-});
-
 app.use('/api/v1', require('./router'));
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, "..","pvsz-web", "build")))
