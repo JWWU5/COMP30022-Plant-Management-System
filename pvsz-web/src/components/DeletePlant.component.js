@@ -101,7 +101,7 @@ export default function DeletePlant() {
 
         axios
             .post(
-                "http://localhost:5000/api/v1/customPlant/dels",
+                "/api/v1/customPlant/dels",
                 checkedPlantArr.map((v) => {
                     return v._id;
                 }),

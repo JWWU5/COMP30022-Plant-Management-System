@@ -79,7 +79,7 @@ export default function Profile() {
         }
         axios
             .post(
-                "http://localhost:5000/api/v1/user/setUserInfo",
+                "/api/v1/user/setUserInfo",
                 {
                     firstName: firstName,
                     lastName: lastName,
