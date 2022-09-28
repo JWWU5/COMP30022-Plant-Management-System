@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', require('./router'));
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, "pvsz-web", "build")))
+    app.use(express.static(path.join(__dirname, "..","pvsz-web", "build")))
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "pvsz-web", "build", "index.html"));
+        res.sendFile(path.join(__dirname,"..", "pvsz-web", "build", "index.html"));
     });
 }
 app.listen(process.env.PORT || 5000, () => {
