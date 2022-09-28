@@ -51,7 +51,7 @@ export default function PlantHome() {
     function handleDeleteIcon() {
         navigate("/delete-plants");
     }
-
+    console.log(plantList);
     return (
         <div className="Dashboard">
             <Header />
@@ -85,18 +85,25 @@ export default function PlantHome() {
                                     }}
                                 >
                                     <b>Name</b>
-                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                                    <Divider
+                                        sx={{ height: 28, m: 0.5 }}
+                                        orientation="vertical"
+                                    />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
                                         placeholder="Search your plant"
-                                        inputProps={{ "aria-label": "search your plant" }}
+                                        inputProps={{
+                                            "aria-label": "search your plant",
+                                        }}
                                         onChange={(e) => {
                                             // console.log(e.target.value)
                                             let val = e.target.value;
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.name.indexOf(val) !== -1;
-                                            })
+                                                return (
+                                                    v.name.indexOf(val) !== -1
+                                                );
+                                            });
                                             setPlantList(deepList);
                                         }}
                                     />
@@ -127,10 +134,18 @@ export default function PlantHome() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src="avatar1.jpg" sx={{ ml: 2.5 }} />
+                                        <Avatar
+                                            src="avatar1.jpg"
+                                            sx={{ ml: 2.5 }}
+                                        />
                                         <a>{v.name}</a>
-                                        <Grid container justifyContent="flex-end">
-                                            <ArrowForwardIosOutlinedIcon sx={{ mr: 2.5 }} />
+                                        <Grid
+                                            container
+                                            justifyContent="flex-end"
+                                        >
+                                            <ArrowForwardIosOutlinedIcon
+                                                sx={{ mr: 2.5 }}
+                                            />
                                         </Grid>
                                     </Box>
                                 );

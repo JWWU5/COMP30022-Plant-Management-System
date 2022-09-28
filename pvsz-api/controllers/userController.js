@@ -1,18 +1,18 @@
 const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const jwtKey = 'RANDOM-TOKEN';
-const mongoose = require('mongoose');
+const jwtKey = "RANDOM-TOKEN";
+const mongoose = require("mongoose");
 
 exports.register = async (req, res, next) => {
     console.log(req.body, "data");
     let user = await User.findOne({
-        email: req.body.email
+        email: req.body.email,
     });
-    console.log("user = ", user)
+    console.log("user = ", user);
     if (user) {
         res.status(500).send({
-            message: "The mailbox already exists"
+            message: "The mailbox already exists",
         });
         return;
     }
@@ -20,7 +20,7 @@ exports.register = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         console.log(hashedPassword, "after hashing");
         const user = new User({
-            image:req.body.image,
+            image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
             userId: req.body.userName,
@@ -46,12 +46,12 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     console.log(req.body, "data");
     User.findOne({
-            email: req.body.email
-        })
+        email: req.body.email,
+    })
         // if email exists
         .then((user) => {
             // compare the password entered and the hashed password found
-            console.log("user8888 = ", user)
+            console.log("user8888 = ", user);
             bcrypt
                 .compare(req.body.password, user.password)
 
@@ -60,17 +60,20 @@ exports.login = async (req, res, next) => {
                     // check if password matches
                     if (!passwordCheck) {
                         return res.status(400).send({
-                            message: "Login failed! Please check your email and password.",
+                            message:
+                                "Login failed! Please check your email and password.",
                             error,
                         });
                     }
                     //   create JWT token
-                    const token = jwt.sign({
+                    const token = jwt.sign(
+                        {
                             userId: user._id,
                             userName: user.userName,
                         },
-                        jwtKey, {
-                            expiresIn: "24h"
+                        jwtKey,
+                        {
+                            expiresIn: "24h",
                         }
                     );
 
@@ -84,7 +87,8 @@ exports.login = async (req, res, next) => {
                 // catch error if password does not match
                 .catch((error) => {
                     res.status(400).send({
-                        message: "Login failed! Please check your email and password.",
+                        message:
+                            "Login failed! Please check your email and password.",
                         error,
                     });
                 });
@@ -98,18 +102,18 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
-    let token = req.get('Authorization');
+    let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
             message: "Unauthenticated request",
         });
         return;
     }
-    token = token.split('Bearer ')[1];
-    console.log("token = ", token)
+    token = token.split("Bearer ")[1];
+    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
-        console.log("err = ", err)
-        console.log("decode = ", decode)
+        console.log("err = ", err);
+        console.log("decode = ", decode);
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
@@ -117,28 +121,64 @@ exports.getUserInfo = async (req, res, next) => {
         } else {
             let userId = decode.userId;
             try {
-                let userItem = await User.findById(userId).populate('plantList');
+                let userItem = await User.findById(userId).populate(
+                    "plantList"
+                );
+                let userGroup = await User.findById(userId).populate("groups");
+
                 res.json({
                     code: 200,
-                    data: userItem
-                })
+
+                    data: userItem,
+                });
             } catch (error) {
-                res.status(500).send('Exceptions in server query');
+                res.status(500).send("Exceptions in server query");
             }
         }
-    })
+    });
 };
-
-
-exports.setUserInfo = async (req, res, next) => {
-    let token = req.get('Authorization');
+exports.getUserGroupInfo = async (req, res, next) => {
+    let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
             message: "Unauthenticated request",
         });
         return;
     }
-    token = token.split('Bearer ')[1];
+    token = token.split("Bearer ")[1];
+    console.log("token = ", token);
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        console.log("err = ", err);
+        console.log("decode = ", decode);
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            try {
+                let userGroup = await User.findById(userId).populate("groups");
+
+                res.json({
+                    code: 200,
+
+                    data: userGroup,
+                });
+            } catch (error) {
+                res.status(500).send("Exceptions in server query");
+            }
+        }
+    });
+};
+exports.setUserInfo = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
     jwt.verify(token, jwtKey, (err, decode) => {
         if (err) {
             res.status(401).send({
@@ -146,24 +186,26 @@ exports.setUserInfo = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            User.findByIdAndUpdate({
-                _id: userId
-            }, {
-                firstName:req.body.firstName,
-                lastName: req.body.lastName,
-                userName: req.body.userName
-            }
-            , (err, doc) => {
-                if (err) {
-                    res.status(500).send('Exceptions in server');
-                    return
+            User.findByIdAndUpdate(
+                {
+                    _id: userId,
+                },
+                {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    userName: req.body.userName,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "User Changed Successfully",
+                    });
+                    console.log(doc);
                 }
-                res.status(201).send({
-                    message: "User Changed Successfully",
-                });
-                console.log(doc)
-            })
-
+            );
         }
-    })
+    });
 };
