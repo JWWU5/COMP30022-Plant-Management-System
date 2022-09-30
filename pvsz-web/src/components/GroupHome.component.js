@@ -121,6 +121,7 @@ export default function GroupHome() {
             .catch((err) => {
                 console.log("err = ", err);
             });
+        toGroupDetail();
     };
     console.log(groups);
     const list = (anchor) => (
@@ -272,6 +273,7 @@ export default function GroupHome() {
                                             justifyContent="flex-end"
                                         >
                                             <ArrowForwardIosOutlinedIcon
+                                                onClick={toGroupDetail}
                                                 sx={{ mr: 2.5 }}
                                             />
                                         </Grid>
