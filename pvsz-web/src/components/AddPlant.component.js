@@ -37,15 +37,15 @@ export default function AddPlant() {
     };
 
     useEffect(() => {
-        let sunExposure = searchParams[0].getAll('sunExposure')[0];
-        let waterPeriod = searchParams[0].getAll('waterPeriod')[0];
+        let sunExposure = searchParams[0].getAll("sunExposure")[0];
+        let waterPeriod = searchParams[0].getAll("waterPeriod")[0];
         if (sunExposure) {
             setWaterRate(waterPeriod);
         }
         if (waterPeriod) {
             setSunshineRate(sunExposure);
         }
-    }, [])
+    }, []);
 
     const handleSubmit = () => {
         if (!plantName) {
@@ -152,7 +152,11 @@ export default function AddPlant() {
             >
                 <div class="imageUpload">
                     <label for="fileInput">
-                        <img alt="avatar" src={selectedImage} style={imageStyle}></img>
+                        <img
+                            alt="avatar"
+                            src={selectedImage}
+                            style={imageStyle}
+                        ></img>
                         {console.log(selectedImage)}
                     </label>
                     <input

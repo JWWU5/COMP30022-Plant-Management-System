@@ -97,3 +97,54 @@ exports.dels = async (req, res, next) => {
         }
     });
 };
+exports.addGroupPlant = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+    jwt.verify(token, jwtKey, (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            console.log("body = ", req.body);
+            let plantGroup = new PlantGroup(req.body);
+            plantGroup.save((err, item) => {
+                if (err) {
+                    res.status(500).send("Exceptions in server");
+                } else {
+                    console.log("item = ", item.id);
+                    let itemId = item.id;
+                    // add user plant group
+                    User.updateOne(
+                        {
+                            _id: userId,
+                        },
+                        {
+                            $push: {
+                                groups: itemId,
+                            },
+                        },
+                        (err, doc) => {
+                            if (err) {
+                                res.status(500).send("Exceptions in server");
+                                return;
+                            }
+
+                            res.json({
+                                code: 200,
+                            });
+                            console.log(doc);
+                        }
+                    );
+                }
+            });
+        }
+    });
+};

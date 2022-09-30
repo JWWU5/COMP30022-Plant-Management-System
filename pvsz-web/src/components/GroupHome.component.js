@@ -64,10 +64,6 @@ export default function GroupHome() {
         navigate("/delete-groups");
     }
 
-    function toGroupDetail() {
-        navigate("/group-detail");
-    }
-
     const [state, setState] = React.useState({
         bottom: false,
     });
@@ -254,6 +250,11 @@ export default function GroupHome() {
                                         key={v._id}
                                         display="flex"
                                         justify-Content="center"
+                                        onClick={() => {
+                                            navigate(
+                                                `/group-detail?groupname=${v.groupname}&plants=${v.plants}`
+                                            );
+                                        }}
                                         sx={{
                                             width: 1,
                                             height: 55,
