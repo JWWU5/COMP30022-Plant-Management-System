@@ -70,10 +70,6 @@ export default function DeleteGroup() {
             });
     }, []);
 
-    // const deleteDoubleCheck = () => {
-    //     setOpen(true);
-    // };
-
     const deleteDoubleCheck = () => {
         let checkedGroupArr = groups.filter((v) => {
             return v.checked;
