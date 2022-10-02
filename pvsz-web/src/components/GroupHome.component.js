@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Header from "./Header";
 import "./PlantHome.css";
-
+import { Alert } from "@mui/material";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
@@ -163,6 +163,10 @@ export default function GroupHome() {
 
     return (
         <body className="Dashboard">
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <Header />
             <main>
                 <div class="bg">

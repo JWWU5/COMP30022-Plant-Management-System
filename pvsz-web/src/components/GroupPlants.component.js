@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Checkbox from "@mui/material/Checkbox";
-
+import { Alert } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
@@ -95,6 +95,10 @@ export default function GroupPlants() {
 
     return (
         <body className="Dashboard">
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <Header />
             <main>
                 <div class="bg">
