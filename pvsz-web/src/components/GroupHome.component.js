@@ -85,7 +85,7 @@ export default function GroupHome() {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
-            setErrorTxt("groupName cannot be empty");
+            setErrorTxt("GroupName cannot be empty");
             window.timer = window.setTimeout(() => {
                 setErrorTxt("");
             }, 1000);

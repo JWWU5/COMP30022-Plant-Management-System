@@ -124,7 +124,6 @@ exports.getUserInfo = async (req, res, next) => {
                 let userItem = await User.findById(userId).populate(
                     "plantList"
                 );
-                let userGroup = await User.findById(userId).populate("groups");
 
                 res.json({
                     code: 200,

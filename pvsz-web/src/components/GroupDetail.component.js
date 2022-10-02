@@ -46,11 +46,11 @@ export default function GroupDetail() {
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
     const [plants, setPlants] = useState("");
+
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
         setPlants(searchParams[0].getAll("plants")[0]);
     }, []);
-
     const deleteDoubleCheck = () => {
         setOpen(true);
     };
@@ -89,8 +89,6 @@ export default function GroupDetail() {
 
         setState({ ...state, [anchor]: open });
     };
-    console.log(plants.length);
-
     const list = (anchor) => (
         <Box
             sx={{
