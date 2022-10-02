@@ -59,11 +59,10 @@ export default function AddPlant() {
                 console.log("groups length = ", groupLength);
                 var groupOptions = new Array();
                 for(var i = 0; i < groupLength; i++){
-                    groupOptions[i] = { value: res.data.data.groups[i].groupname, label: res.data.data.groups[i].groupname};
+                    groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname};
                 }
                 console.log("groupOptions: ", groupOptions)
                 setGroupOptions(groupOptions);
-                setGroups(res.data.data.groups);
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -80,6 +79,7 @@ export default function AddPlant() {
     }, []);
 
     const handleSubmit = () => {
+        console.log(groups)
         if (!plantName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -143,6 +143,7 @@ export default function AddPlant() {
                     sunPeriod: sunshineRate,
                     lastSunDate: lastSunshineTime,
                     otherDetails: otherDetail,
+                    groups:groups,
                 },
                 {
                     headers: {
@@ -257,6 +258,7 @@ export default function AddPlant() {
                         options={groupOptions}
                         className="basic-multi-select"
                         classNamePrefix="mySelect"
+                        onChange={(e)=> setGroups(e.map(value=>value.value))}
                     />
                 </div>
                 <div className="plantValueDiv">

@@ -1,4 +1,4 @@
-const { CustomPlant, User } = require("../models");
+const { CustomPlant, User, PlantGroup } = require("../models");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
 const mongoose = require("mongoose");
@@ -21,39 +21,45 @@ exports.add = async (req, res, next) => {
             let userId = decode.userId;
             console.log("body = ", req.body);
             let cusPlant = new CustomPlant(req.body);
-            cusPlant.save((err, item) => {
+            cusPlant.save(async(err, item) => {
                 if (err) {
                     res.status(500).send("Exceptions in server");
                 } else {
                     console.log("item = ", item.id);
                     let itemId = item.id;
                     // add user customPlant
-                    User.updateOne(
-                        {
-                            _id: userId,
-                        },
-                        {
-                            $push: {
-                                plantList: itemId,
+                    try {
+                        let r1 = await User.updateOne(
+                            {
+                                _id: userId,
                             },
-                        },
-                        (err, doc) => {
-                            if (err) {
-                                res.status(500).send("Exceptions in server");
-                                return;
-                            }
-
-                            res.json({
-                                code: 200,
+                            {
+                                $push: {
+                                    plantList: itemId,
+                                },
                             });
-                            console.log(doc);
-                        }
-                    );
+                        let r2 = await PlantGroup.updateMany(
+                            {
+                                _id: req.body.groups,
+                            },
+                            {
+                                $push: {
+                                    plants: itemId,
+                                },
+                            }
+                        )
+                        res.json({
+                            code: 200,
+                        });
+                    } catch (error) {
+                        res.status(500).send("Exceptions in server");
+                    }
                 }
-            });
+            })
         }
     });
-};
+}
+
 
 exports.dels = async (req, res, next) => {
     let idsArr = req.body;
