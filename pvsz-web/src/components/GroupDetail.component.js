@@ -141,7 +141,7 @@ export default function GroupDetail() {
                             <DialogTitle
                                 sx={{ fontWeight: "bold", fontSize: 20 }}
                             >
-                                {"Are you sure to delete this plant?"}
+                                {"Are you sure to delete this group?"}
                             </DialogTitle>
                             <DialogActions>
                                 <Button color="success" onClick={handleClose}>
