@@ -82,7 +82,7 @@ export default function DeleteGroup() {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
-            setErrorTxt("Please select at least one plant!");
+            setErrorTxt("Please select at least one group!");
             window.timer = window.setTimeout(() => {
                 setErrorTxt("");
             }, 1000);
@@ -98,8 +98,6 @@ export default function DeleteGroup() {
     let navigate = useNavigate();
 
     function Agree() {
-        setOpen(false);
-        navigate("/groups");
         let checkedGroupArr = groups.filter((v) => {
             return v.checked;
         });
