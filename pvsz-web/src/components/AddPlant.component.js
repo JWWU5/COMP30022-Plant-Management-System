@@ -21,15 +21,22 @@ export default function AddPlant() {
     const [lastWaterTime, setLastWaterTime] = useState("");
     const [sunshineRate, setSunshineRate] = useState("");
     const [lastSunshineTime, setLastSunshineTime] = useState("");
-    const [belongGroup, setBelongGroup] = useState("");
     const [otherDetail, setOtherDetail] = useState("");
     const [selectedImage, setSelectedImage] = useState(ImageUpload);
+    const [groups, setGroups] = useState([]);
+    const [groupOptions, setGroupOptions] = useState([]);
 
-    const groupOptions = [
-        { value: "chocolate", label: "Chocolate" },
-        { value: "strawberry", label: "Strawberry" },
-        { value: "vanilla", label: "Vanilla" },
-    ];
+    // const groupOptions = [
+        // { value: "chocolate", label: "Chocolate" },
+        // { value: "strawberry", label: "Strawberry" },
+        // { value: "vanilla", label: "Vanilla" },
+        // { label: "Chocolate" },
+        // { label: "Strawberry" },
+        // { label: "Vanilla" },
+    //     { value: "chocolate" },
+    //     { value: "strawberry" },
+    //     { value: "vanilla" },
+    // ];
 
     var imageStyle = {
         height: "10vh",
@@ -37,6 +44,30 @@ export default function AddPlant() {
     };
 
     useEffect(() => {
+        axios
+            .post(
+                "/api/v1/user/getUserGroupInfo",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                const groupLength = res.data.data.groups.length;
+                console.log("groups length = ", groupLength);
+                var groupOptions = new Array();
+                for(var i = 0; i < groupLength; i++){
+                    groupOptions[i] = { value: res.data.data.groups[i].groupname, label: res.data.data.groups[i].groupname};
+                }
+                console.log("groupOptions: ", groupOptions)
+                setGroupOptions(groupOptions);
+                setGroups(res.data.data.groups);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
         let sunExposure = searchParams[0].getAll("sunExposure")[0];
         let waterPeriod = searchParams[0].getAll("waterPeriod")[0];
         if (sunExposure) {
@@ -45,6 +76,7 @@ export default function AddPlant() {
         if (waterPeriod) {
             setSunshineRate(sunExposure);
         }
+
     }, []);
 
     const handleSubmit = () => {
