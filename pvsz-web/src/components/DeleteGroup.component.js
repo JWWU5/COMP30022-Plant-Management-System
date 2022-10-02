@@ -61,7 +61,7 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
+                console.log("group res = ", res.data.data.groups);
                 setGroups(res.data.data.groups);
                 setCacheGroupName(res.data.data.groups);
             })
@@ -70,7 +70,24 @@ export default function DeleteGroup() {
             });
     }, []);
 
+    // const deleteDoubleCheck = () => {
+    //     setOpen(true);
+    // };
+
     const deleteDoubleCheck = () => {
+        let checkedGroupArr = groups.filter((v) => {
+            return v.checked;
+        });
+        if (!checkedGroupArr.length) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Please select at least one plant!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         setOpen(true);
     };
 
@@ -83,14 +100,14 @@ export default function DeleteGroup() {
     function Agree() {
         setOpen(false);
         navigate("/groups");
-        let checkedPlantArr = groups.filter((v) => {
+        let checkedGroupArr = groups.filter((v) => {
             return v.checked;
         });
 
         axios
             .post(
                 "/api/v1/plantGroup/dels",
-                checkedPlantArr.map((v) => {
+                checkedGroupArr.map((v) => {
                     return v._id;
                 }),
                 {
