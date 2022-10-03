@@ -40,8 +40,8 @@ export default function PlantDetail() {
     return (
         <body>
             <div className="detailContainer">
+                <Header />
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
-                    <Header />
                     {/* <img src={Cactus} className="plantImage"></img> */}
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
                 </div>

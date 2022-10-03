@@ -20,6 +20,8 @@
 .navbar_style {
     padding-left: 5%;
     padding-top: 5%;
+    position: absolute;
+    z-index: 1;
 }
 
 main h1 {
