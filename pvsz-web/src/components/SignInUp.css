@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 body .signIn {
     background: url("../assets/images/leaves_green.png"), #E2ECC6;
@@ -13,7 +13,8 @@ body .signIn {
 }  
 
 header h1 {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     font-size: 15vw;
     color: #FFFFFF;
     margin-top: 8%;
@@ -159,7 +160,7 @@ input {
     height: 4vw;
 }
 
-.image-upload>input {
+.imageUpload>input {
     display: none;
   }
 

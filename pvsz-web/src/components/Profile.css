@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 .profileTitle {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     font-size: 12vw;
     color: #44533B;
     margin-top: 8%;
@@ -50,7 +51,8 @@ input[type="blocked"] {
 }
 
 .valueDiv {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     text-align: left;
     margin-top: 1%;
     margin-bottom: 3%;
@@ -71,3 +73,11 @@ input[type="blocked"] {
     color: #44533B;
 }
 
+.tipsBox{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}

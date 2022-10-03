@@ -13,11 +13,6 @@ Backend
 ```sh
 $ cd pvsz-api
 $ npm install
-$ npm i jsonwebtoken -s
-$ npm i universal-cookie -s
-$ npm install --save bcrypt
-$ npm install mongoose
-$ npm install -g nodemon
 
 ```
 
@@ -26,9 +21,6 @@ Frontend
 ```sh
 $ cd pvsz-web
 $ npm install
-$ npm install -g i sass
-$ npm install sass-loader node-sass webpack --save-dev
-$ npm install @mui/icons-material
 ```
 
 ## Run
