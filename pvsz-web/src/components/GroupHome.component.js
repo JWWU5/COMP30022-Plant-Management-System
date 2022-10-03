@@ -126,6 +126,10 @@ export default function GroupHome() {
                 backgroundColor: "#BACB94",
             }}
         >
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <div class="createNewGroup">
                 <Stack spacing={5} justify-Content="center">
                     <div className="newGroupName">
@@ -163,10 +167,6 @@ export default function GroupHome() {
 
     return (
         <body className="Dashboard">
-            <div className="tipsBox">
-                {successTxt && <Alert severity="success">{successTxt}</Alert>}
-                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
-            </div>
             <Header />
             <main>
                 <div class="bg">
