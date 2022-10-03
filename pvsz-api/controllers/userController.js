@@ -169,6 +169,7 @@ exports.getUserGroupInfo = async (req, res, next) => {
         }
     });
 };
+
 exports.setUserInfo = async (req, res, next) => {
     let token = req.get("Authorization");
     if (!token) {
@@ -208,3 +209,44 @@ exports.setUserInfo = async (req, res, next) => {
         }
     });
 };
+
+exports.changePassword = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+            User.findByIdAndUpdate(
+                {
+                    _id: userId,
+                },
+                {
+                    password: hashedPassword
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "Password has Changed Successfully",
+                    });
+                    console.log(doc);
+                }
+            );
+        }
+    });
+}
+
+
