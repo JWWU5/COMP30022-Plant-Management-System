@@ -18,6 +18,7 @@ import zombie_hand from "../assets/images/halloween.svg";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -32,14 +33,19 @@ const theme = createTheme({
 });
 
 export default function GroupPlants() {
+    let searchParams = useSearchParams();
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
     const [cachePlantList, setCachePlantList] = useState([]);
     const [groupList, setGroupList] = useState([]);
+    const [groupId, setgroupId] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
 
     useEffect(() => {
+        setgroupId(searchParams[0].getAll("groupId")[0]);
+        console.log(groupId);
+        console.log("HAHA");
         axios
             .post(
                 "/api/v1/user/getUserInfo",
@@ -60,12 +66,13 @@ export default function GroupPlants() {
             });
     }, []);
 
-    function handleInput(e) {
+    function addPlantToGroup() {
         axios
             .post(
-                "/api/v1/plantGroup/addGroupPlant",
+                "/api/v1/plantGroup/addPlantToGroup",
                 {
                     plants: groupList,
+                    groupId: groupId,
                 },
                 {
                     headers: {
@@ -87,10 +94,7 @@ export default function GroupPlants() {
             .catch((err) => {
                 console.log("err = ", err);
             });
-    }
-
-    function toGroupDetail() {
-        navigate("/group-detail");
+        navigate("/groups");
     }
 
     return (
@@ -147,7 +151,7 @@ export default function GroupPlants() {
                                 <Button
                                     variant="contained"
                                     color="primary"
-                                    onClick={toGroupDetail}
+                                    onClick={addPlantToGroup}
                                     sx={{
                                         height: 50,
                                         borderRadius: 25,
@@ -197,7 +201,7 @@ export default function GroupPlants() {
                                                         color: "#44533B",
                                                     },
                                                 }}
-                                                value={v}
+                                                value={v._id}
                                                 onChange={(e) =>
                                                     setGroupList((groupList) =>
                                                         groupList.concat(

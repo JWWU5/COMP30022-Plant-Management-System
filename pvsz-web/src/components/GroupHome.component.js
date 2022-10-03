@@ -256,7 +256,7 @@ export default function GroupHome() {
                                         justify-Content="center"
                                         onClick={() => {
                                             navigate(
-                                                `/group-detail?groupname=${v.groupname}&plants=${v.plants}`
+                                                `/group-detail?groupId=${v._id}&groupname=${v.groupname}&plants=${v.plants}`
                                             );
                                         }}
                                         sx={{

@@ -97,7 +97,8 @@ exports.dels = async (req, res, next) => {
         }
     });
 };
-exports.addGroupPlant = async (req, res, next) => {
+exports.addPlantToGroup = async (req, res, next) => {
+    let idsArr = req.body;
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -106,45 +107,32 @@ exports.addGroupPlant = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    jwt.verify(token, jwtKey, (err, decode) => {
+    console.log(req.body.plants);
+    jwt.verify(token, jwtKey, async (err, decode) => {
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
             });
         } else {
-            let userId = decode.userId;
-            console.log("body = ", req.body);
-            let plantGroup = new PlantGroup(req.body);
-            plantGroup.save((err, item) => {
-                if (err) {
-                    res.status(500).send("Exceptions in server");
-                } else {
-                    console.log("item = ", item.id);
-                    let itemId = item.id;
-                    // add user plant group
-                    User.updateOne(
-                        {
-                            _id: userId,
-                        },
-                        {
-                            $push: {
-                                groups: itemId,
-                            },
-                        },
-                        (err, doc) => {
-                            if (err) {
-                                res.status(500).send("Exceptions in server");
-                                return;
-                            }
-
-                            res.json({
-                                code: 200,
-                            });
-                            console.log(doc);
-                        }
-                    );
+            PlantGroup.updateOne(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    $push: {
+                        plants: { $each: req.body.plants },
+                    },
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "User Changed Successfully",
+                    });
                 }
-            });
+            );
         }
     });
 };

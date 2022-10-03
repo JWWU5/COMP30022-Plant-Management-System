@@ -4,5 +4,5 @@ const plantGroupController = require("../controllers/plantGroupController");
 
 router.post("/add", plantGroupController.add);
 router.post("/dels", plantGroupController.dels);
-router.post("/addGroupPlant", plantGroupController.addGroupPlant);
+router.post("/addPlantToGroup", plantGroupController.addPlantToGroup);
 module.exports = router;

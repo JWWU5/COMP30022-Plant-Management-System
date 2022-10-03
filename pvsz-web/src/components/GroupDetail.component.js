@@ -45,12 +45,15 @@ export default function GroupDetail() {
     let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
-    const [plants, setPlants] = useState("");
+    const [plants, setPlants] = useState([]);
+    const [groupId, setgroupId] = useState("");
 
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
         setPlants(searchParams[0].getAll("plants")[0]);
+        setgroupId(searchParams[0].getAll("groupId")[0]);
     }, []);
+    console.log(plants);
     const deleteDoubleCheck = () => {
         setOpen(true);
     };
@@ -61,14 +64,6 @@ export default function GroupDetail() {
 
     let navigate = useNavigate();
 
-    function addPlants() {
-        navigate("/group-plants");
-    }
-
-    function toGroupDetail() {
-        navigate("/group-detail");
-    }
-
     function Agree() {
         setOpen(false);
         navigate("/groups");
@@ -77,6 +72,9 @@ export default function GroupDetail() {
     const [state, setState] = React.useState({
         bottom: false,
     });
+    function toPlantDetail() {
+        navigate("/plant-detail");
+    }
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -99,7 +97,11 @@ export default function GroupDetail() {
             <nav aria-label="main mailbox folders">
                 <List>
                     <ListItem>
-                        <ListItemButton onClick={addPlants}>
+                        <ListItemButton
+                            onClick={() => {
+                                navigate(`/group-plants?groupId=${groupId}`);
+                            }}
+                        >
                             <AddCircleOutlineIcon
                                 sx={{ ml: 2, color: "#ffffff" }}
                             />
