@@ -72,6 +72,14 @@
         margin-left: 10%;
         font-size: 18px;
     }
+
+    #group-header {
+        height: 55px;
+    }
+
+    #group-header a {
+        margin: auto 11%;
+    }
 }
 
 
@@ -147,5 +155,13 @@
         color: #555A6E;
         margin-left: 10%;
         font-size: 18px;
+    }
+
+    #group-header {
+        height: 55px;
+    }
+
+    #group-header a {
+        margin: auto 11%;
     }
 }

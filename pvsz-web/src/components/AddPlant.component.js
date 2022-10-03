@@ -26,18 +26,6 @@ export default function AddPlant() {
     const [groups, setGroups] = useState([]);
     const [groupOptions, setGroupOptions] = useState([]);
 
-    // const groupOptions = [
-        // { value: "chocolate", label: "Chocolate" },
-        // { value: "strawberry", label: "Strawberry" },
-        // { value: "vanilla", label: "Vanilla" },
-        // { label: "Chocolate" },
-        // { label: "Strawberry" },
-        // { label: "Vanilla" },
-    //     { value: "chocolate" },
-    //     { value: "strawberry" },
-    //     { value: "vanilla" },
-    // ];
-
     var imageStyle = {
         height: "10vh",
         width: "10vh",
