@@ -1,3 +1,5 @@
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
+
 body .signIn {
     background: url("../assets/images/leaves_green.png"), #E2ECC6;
     background-position: 0% 0%;
@@ -11,7 +13,8 @@ body .signIn {
 }  
 
 header h1 {
-    font-family: "BM Hanna 11yrs Old";
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     font-size: 15vw;
     color: #FFFFFF;
     margin-top: 8%;
@@ -156,5 +159,9 @@ input {
     width: 4vw;
     height: 4vw;
 }
+
+.imageUpload>input {
+    display: none;
+  }
 
     

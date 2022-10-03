@@ -1,0 +1,167 @@
+@media screen and (max-width: 350px) {
+    .bg {
+        background-color: #BACB94;
+        border-radius: 20px;
+        margin: 6% 5%;
+        padding-top: 8%;
+        padding-bottom: 100%;
+    }
+
+    .topic {
+        margin: 0;
+        display: flex;
+    }
+
+    .topic h1 {
+        flex: 0.9;
+        display: block;
+        font-family: 'BM HANNA 11yrs old', cursive;
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:bold;
+        font-size: 40px;
+        margin-left: 5%;
+        margin-top: 0px;
+    }
+
+    .icons {
+        display: block;
+        background-color: #768457;
+        border-radius: 25px;
+        justify-content: flex-end;
+        padding-top: 3px;
+        padding-bottom: 10px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .plant {
+        position: relative;
+        margin: auto 5%;
+        margin-top: 15%;
+    }
+
+    .plant a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 18px;
+    }
+
+    .createNewGroup {
+        position: relative;
+        margin: auto 10%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+
+    .newGroupNameTitle {
+        font-family: "Devanagari MT";
+        color: #ffffff;
+        margin-left: 15px;
+        font-size: 15px;
+    }
+
+    .plantValueBlock {
+        height: 40px;
+    }
+}
+
+@media screen and (min-width: 350px) {
+    .bg {
+        background-color: #BACB94;
+        border-radius: 20px;
+        margin: 6% 5%;
+        padding-top: 8%;
+        padding-bottom: 100%;
+    }
+
+    .topic {
+        margin: 0;
+        display: flex;
+    }
+
+    .topic h1 {
+        flex: 0.9;
+        display: block;
+        font-family: 'BM HANNA 11yrs old', cursive;
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:bold;
+        font-size: 50px;
+        margin-left: 5%;
+        margin-top: 0px;
+    }
+
+    .icons {
+        display: block;
+        background-color: #768457;
+        border-radius: 25px;
+        justify-content: flex-end;
+        padding-top: 3px;
+        padding-bottom: 10px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .plant {
+        position: relative;
+        margin: auto 5%;
+        margin-top: 15%;
+    }
+
+    .plant a {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        margin-left: 10%;
+        font-size: 18px;
+    }
+
+    .plant a2 {
+        font-family: "Devanagari MT";
+        color: #768457;
+        font-weight:bold;
+        margin-left: 5%;
+        font-size: 15px;
+    }
+
+    .plant b {
+        font-family: "Devanagari MT";
+        color: #555A6E;
+        font-weight:lighter;
+        margin-left: 4%;
+        margin-right: 2%;
+        font-size: 18px;
+    }
+
+    .createNewGroup {
+        position: relative;
+        margin: auto 10%;
+        margin-top: 40px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+
+    .newGroupNameTitle {
+        font-family: "Devanagari MT";
+        color: #ffffff;
+        margin-left: 20px;
+    }
+
+    .plantValueBlock {
+        height: 50px;
+    }
+
+}
+.noData{
+    color: #666;
+    text-align: center;
+}

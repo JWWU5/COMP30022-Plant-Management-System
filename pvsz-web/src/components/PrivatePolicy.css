@@ -1,0 +1,77 @@
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
+
+.policyContentDiv {
+    height: 72vh;
+    width: 100vw;
+    position: relative;
+}
+
+.policyContentRec {
+    height: 75vh;
+    width: 90vw;
+    margin-left: 5vw;
+    background-color: #BACB94;
+    border-radius: 25px;
+    margin-top: 8vh;
+    padding-top: 5vh;
+    padding-bottom: 2vh;
+    overflow-y: scroll;
+}
+
+.policyTitle {
+    font-size: 12vw !important;
+    font-family: 'BM HANNA 11yrs old', cursive !important;
+    font-weight: 300;
+    text-shadow: 3px 3px #FFFFFF !important;
+    color: #44533B !important;
+    position: absolute !important;
+    z-index: 2 !important;
+    margin-left: 5vw !important;
+    margin-top: -9vh !important;
+}
+
+.policyContentRec p {
+    color: #555A6E;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: "Times New Roman";
+    font-size: 2vh;
+}
+
+.policyContentRec h1 {
+    color: #555A6E;
+    margin-top: 1.5vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: "Times New Roman";
+    font-size: 2.7vh;
+    font-weight: 800;
+}
+
+.policyContentRec h2 {
+    color: #555A6E;
+    margin-top: 1vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: "Times New Roman";
+    font-size: 2.5vh;
+    font-weight: 800;
+}
+
+.policyContentRec h3 {
+    color: #555A6E;
+    margin-top: 1vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: "Times New Roman";
+    font-size: 2vh;
+    font-weight: 700;
+}
+
+.policyContentRec li {
+    color: #555A6E;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: "Times New Roman";
+    font-size: 2vh;
+}

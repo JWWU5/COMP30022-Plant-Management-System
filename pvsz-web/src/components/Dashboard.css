@@ -42,7 +42,6 @@
 
     .group {
         width: 40px;
-
         float: left;
         margin-left: 1%;
     }
@@ -56,7 +55,7 @@
 
     .listbg {
         background-color: #BACB94;
-        border-radius: 25px;
+        border-radius: 20px;
         margin: auto 5%;
         padding-top: 10%;
         padding-bottom: 100%;
