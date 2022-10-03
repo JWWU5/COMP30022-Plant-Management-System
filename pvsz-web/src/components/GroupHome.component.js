@@ -167,7 +167,9 @@ export default function GroupHome() {
 
     return (
         <body className="Dashboard">
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <main>
                 <div class="bg">
                     <div class="topic">

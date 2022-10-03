@@ -56,108 +56,113 @@ export default function PlantHome() {
     }
     console.log(plantList);
     return (
-        <div className="Dashboard">
-            <Header />
-            <main>
-                <div class="bg">
-                    <div class="topic">
-                        <h1>Plants</h1>
-                        <div class="icons">
-                            <AddCircleOutlineIcon
-                                sx={{ color: "#ffffff", width: 30 }}
-                                onClick={handleAddIcon}
-                            />
-                            <RemoveCircleOutlineIcon
-                                sx={{ color: "#ffffff", width: 30 }}
-                                onClick={handleDeleteIcon}
-                            />
-                        </div>
-                    </div>
-                    <div class="plant">
-                        <Stack spacing={3} justify-Content="center">
-                            <div class="search">
-                                <Paper
-                                    component="form"
-                                    sx={{
-                                        p: "2px 4px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        width: 1,
-                                        height: 50,
-                                        borderRadius: 25,
-                                    }}
-                                >
-                                    <b>Name</b>
-                                    <Divider
-                                        sx={{ height: 28, m: 0.5 }}
-                                        orientation="vertical"
-                                    />
-                                    <InputBase
-                                        sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search your plant"
-                                        inputProps={{
-                                            "aria-label": "search your plant",
-                                        }}
-                                        onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
-                                            let deepList = [...cachePlantList];
-                                            deepList = deepList.filter((v) => {
-                                                return (
-                                                    v.name.indexOf(val) !== -1
-                                                );
-                                            });
-                                            setPlantList(deepList);
-                                        }}
-                                    />
-                                    <IconButton
-                                        type="button"
-                                        sx={{ p: "10px" }}
-                                        aria-label="search"
-                                    >
-                                        <SearchIcon />
-                                    </IconButton>
-                                </Paper>
+        <body>
+            <div className="navBarPosition">
+                <Header />
+            </div>
+            <div className="Dashboard">
+                <main>
+                    <div class="bg">
+                        <div class="topic">
+                            <h1>Plants</h1>
+                            <div class="icons">
+                                <AddCircleOutlineIcon
+                                    sx={{ color: "#ffffff", width: 30 }}
+                                    onClick={handleAddIcon}
+                                />
+                                <RemoveCircleOutlineIcon
+                                    sx={{ color: "#ffffff", width: 30 }}
+                                    onClick={handleDeleteIcon}
+                                />
                             </div>
-                            <Divider />
-                            {plantList && plantList.length == 0 && (
-                                <div className="noData">no plant</div>
-                            )}
-                            {plantList.map((v) => {
-                                return (
-                                    <Box
-                                        key={v._id}
-                                        display="flex"
-                                        justify-Content="center"
+                        </div>
+                        <div class="plant">
+                            <Stack spacing={3} justify-Content="center">
+                                <div class="search">
+                                    <Paper
+                                        component="form"
                                         sx={{
-                                            width: 1,
-                                            height: 55,
-                                            backgroundColor: "#ffffff",
+                                            p: "2px 4px",
+                                            display: "flex",
                                             alignItems: "center",
+                                            width: 1,
+                                            height: 50,
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar
-                                            src="avatar1.jpg"
-                                            sx={{ ml: 2.5 }}
+                                        <b>Name</b>
+                                        <Divider
+                                            sx={{ height: 28, m: 0.5 }}
+                                            orientation="vertical"
                                         />
-                                        <a>{v.name}</a>
-                                        <Grid
-                                            container
-                                            justifyContent="flex-end"
+                                        <InputBase
+                                            sx={{ ml: 1, flex: 1 }}
+                                            placeholder="Search your plant"
+                                            inputProps={{
+                                                "aria-label": "search your plant",
+                                            }}
+                                            onChange={(e) => {
+                                                // console.log(e.target.value)
+                                                let val = e.target.value;
+                                                let deepList = [...cachePlantList];
+                                                deepList = deepList.filter((v) => {
+                                                    return (
+                                                        v.name.indexOf(val) !== -1
+                                                    );
+                                                });
+                                                setPlantList(deepList);
+                                            }}
+                                        />
+                                        <IconButton
+                                            type="button"
+                                            sx={{ p: "10px" }}
+                                            aria-label="search"
                                         >
-                                            <ArrowForwardIosOutlinedIcon
-                                                onClick={toPlantDetail}
-                                                sx={{ mr: 2.5 }}
+                                            <SearchIcon />
+                                        </IconButton>
+                                    </Paper>
+                                </div>
+                                <Divider />
+                                {plantList && plantList.length == 0 && (
+                                    <div className="noData">no plant</div>
+                                )}
+                                {plantList.map((v) => {
+                                    return (
+                                        <Box
+                                            key={v._id}
+                                            display="flex"
+                                            justify-Content="center"
+                                            sx={{
+                                                width: 1,
+                                                height: 55,
+                                                backgroundColor: "#ffffff",
+                                                alignItems: "center",
+                                                borderRadius: 25,
+                                            }}
+                                        >
+                                            <Avatar
+                                                src="avatar1.jpg"
+                                                sx={{ ml: 2.5 }}
                                             />
-                                        </Grid>
-                                    </Box>
-                                );
-                            })}
-                        </Stack>
+                                            <a>{v.name}</a>
+                                            <Grid
+                                                container
+                                                justifyContent="flex-end"
+                                            >
+                                                <ArrowForwardIosOutlinedIcon
+                                                    onClick={toPlantDetail}
+                                                    sx={{ mr: 2.5 }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    );
+                                })}
+                            </Stack>
+                        </div>
                     </div>
-                </div>
-            </main>
-        </div>
+                </main>
+            </div>
+        </body>
+        
     );
 }

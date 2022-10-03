@@ -1,4 +1,5 @@
 body {
+    position: relative;
     background: #E2ECC6;
     height: 100vh;
     width: 100vw;

@@ -28,7 +28,9 @@ export default function Setting() {
 
     return (
         <body>
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <div className="rankingContentDiv">
                 <div className="rankingContentRec">
                     <h1 className="rankingTitle">SETTING</h1>

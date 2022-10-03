@@ -1,3 +1,8 @@
+.navBarPosition {
+    height: 5vh;
+    width: 100vw;
+}
+
 @media screen and (max-width: 350px) {
     .bg {
         background-color: #BACB94;

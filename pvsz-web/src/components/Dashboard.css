@@ -1,3 +1,8 @@
+.navBarPositionDashboard {
+    height: 3vh;
+    width: 100vw;
+}
+
 @media screen and (max-width: 350px) {
     .welcome h2 {
         font-family: "Tamil MN";

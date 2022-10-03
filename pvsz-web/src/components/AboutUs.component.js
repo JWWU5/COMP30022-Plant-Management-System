@@ -9,7 +9,9 @@ export default class AboutUs extends Component {
     render() {
         return (
             <body className="about">
-                <Header />
+                <div className="navBarPosition">
+                    <Header />
+                </div>
                 <main>
                     <div class="body">
                         <div class="aboutTitle">

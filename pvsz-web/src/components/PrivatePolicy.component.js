@@ -5,7 +5,9 @@ import Header from "./Header";
 export default function PrivatePolicy() {
     return (
         <body>
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <div className="policyContentDiv">
                 <div className="policyContentRec">
                     <h1 className="policyTitle">Private Policy</h1>

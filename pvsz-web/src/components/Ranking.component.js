@@ -32,7 +32,9 @@ export default function Ranking() {
 
     return (
        <body>
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <div className="rankingContentDiv">
                 <div className="rankingContentRec">
                     <h1 className="rankingTitle">RANKING</h1>

@@ -173,7 +173,9 @@ export default function AddPlant() {
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
                 {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <header>
                 <h1 className="addPlantTitle">ADD PLANT</h1>
             </header>

@@ -9,14 +9,16 @@ export default class ContactUS extends Component {
             <body className='about'>
                 <main>
                     <header>
-                        <Header />
+                        <div className="navBarPosition">
+                            <Header />
+                        </div>
                     </header>
                     <div>
-                        <div class="aboutTitle">
+                        <div className="aboutTitle">
                             <h1>Contact Us</h1>
                         </div>
-                        <div class="rectangle">
-                            <div class="content">
+                        <div className="rectangle">
+                            <div className="content">
                                 <p>Feel free to contact us and give us any feedback or advice.</p>
                                 <h3>Email</h3>
                                 <p>team@PvZ.com</p>
@@ -25,8 +27,8 @@ export default class ContactUS extends Component {
                                 <h3>Contact Number</h3>
                                 <p class="last_line">+61 452123456</p>
                             </div>
-                            <div class="img">
-                                <img class="zombieImg"src={zombieHead}></img>
+                            <div className="img">
+                                <img className="zombieImg"src={zombieHead}></img>
                             </div>
                         </div> 
                     </div>

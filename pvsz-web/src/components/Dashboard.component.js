@@ -31,7 +31,9 @@ export default function Dashboard() {
 
     return (
         <body className='Dashboard'>
-            <Header />
+            <div className="navBarPositionDashboard">
+                <Header />
+            </div>
             <main>
                 <div class="welcome">
                     <h2>Welcome, Dave</h2>

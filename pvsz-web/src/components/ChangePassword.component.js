@@ -57,7 +57,9 @@ export default function ChangePassword() {
 
     return (
         <body>
-            <Header />
+            <div className="navBarPositionDashboard">
+                <Header />
+            </div>
             <header>
                 <h1 style={{color: "#44533B", fontSize: "3vh"}}>Change Password</h1>
             </header>

@@ -128,7 +128,10 @@ export default function Profile() {
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
             </div>
-            <Header />
+            {/* <Header /> */}
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <header>
                 <h1 className="profileTitle">PROFILE</h1>
             </header>

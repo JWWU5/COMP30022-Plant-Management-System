@@ -136,7 +136,9 @@ export default function DeletePlant() {
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
                 {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
-            <Header />
+            <div className="navBarPosition">
+                <Header />
+            </div>
             <main>
                 <div class="bg">
                     <div class="topic">
