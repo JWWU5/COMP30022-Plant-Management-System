@@ -112,8 +112,6 @@ export default function Dashboard() {
                                 </AccordionDetails>
                             </Accordion>
                         </Stack>
-                        
-                        
                     </div>
                 </div>
             </main>
