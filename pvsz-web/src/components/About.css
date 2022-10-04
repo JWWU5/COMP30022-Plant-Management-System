@@ -21,8 +21,6 @@
 .navbar_style {
     padding-left: 5%;
     padding-top: 5%;
-    position: absolute;
-    z-index: 1;
 }
 
 main h1 {
@@ -60,7 +58,6 @@ main p {
 
 .rectangle {
     border-radius: 25px;
-    /* z-index: 1; */
     background-color: #BACB94;
     height: 80vh;
     width: auto;

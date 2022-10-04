@@ -3,19 +3,12 @@
 }
 
 .imageDiv {
-    /* background-image: url("../assets/images/Cactus.jpg"); */
     background-size: 100vw 40vh;
     height: 50vh;
     width: 100vw;
     position: absolute;
     z-index: 0;
 }
-
-/* .plantImage {
-    size: ;
-    position: absolute;
-    z-index: 0;
-} */
 
 .detailContentDiv {
     position: absolute;
@@ -39,7 +32,7 @@
     .plantNameTitle {
         font-family: "Tamil MN";
         margin-left: 5%;
-        margin-top: 8vh;
+        margin-top: 5vh;
         font-size: 9vw;
         font-weight: 200;
         color: #FFFFFF;
@@ -100,7 +93,7 @@
     .plantNameTitle {
         font-family: "Tamil MN";
         margin-left: 5%;
-        margin-top: 8vh;
+        margin-top: 5vh;
         font-size: 7vw;
         font-weight: 200;
         color: #FFFFFF;
