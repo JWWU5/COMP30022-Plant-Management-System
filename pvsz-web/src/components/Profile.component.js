@@ -6,6 +6,7 @@ import "./dynamicButton.scss";
 import { Alert } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
 
 export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
@@ -42,7 +43,6 @@ export default function Profile() {
                 setBirthdayDate(res.data.data.dateOfBirth)
                 setEmail(res.data.data.email)
                 setImage(res.data.data.image)
-                console.log("image: ", image)
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -84,6 +84,7 @@ export default function Profile() {
                     firstName: firstName,
                     lastName: lastName,
                     userName: userName,
+                    image: image,
                 },
                 {
                     headers: {
@@ -187,6 +188,12 @@ export default function Profile() {
                         value={email}
                     ></input>
                 </div>
+                <FileBase64
+                    id="fileInput"
+                    name="avatar"
+                    multiple={false}
+                    onDone={({ base64 }) => setImage(base64)}
+                />
                 <button
                     className={buttonClass}
                     onClick={handleInput}

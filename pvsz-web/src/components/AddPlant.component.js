@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import Header from "./Header";
-import ImageUpload from "../assets/images/addPlantImage.svg";
 import { useState } from "react";
 import axios from "axios";
 import { Alert } from "@mui/material";
@@ -13,6 +12,7 @@ import Select from "react-select";
 import { useEffect } from "react";
 
 export default function AddPlant() {
+    const defaultImage = "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v112-pla-118-shopicons_2.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=80&usm=15&vib=3&w=1300&s=ccfe8a4597928fe048abb6fd06f6a82e"
     let searchParams = useSearchParams();
     let navigate = useNavigate();
     const [successTxt, setSuccessTxt] = useState("");
@@ -23,7 +23,6 @@ export default function AddPlant() {
     const [sunshineRate, setSunshineRate] = useState("");
     const [lastSunshineTime, setLastSunshineTime] = useState("");
     const [otherDetail, setOtherDetail] = useState("");
-    const [selectedImage, setSelectedImage] = useState(ImageUpload);
     const [groups, setGroups] = useState([]);
     const [groupOptions, setGroupOptions] = useState([]);
     const [image, setImage] = useState("");
@@ -54,6 +53,7 @@ export default function AddPlant() {
                 }
                 // console.log("groupOptions: ", groupOptions)
                 setGroupOptions(groupOptions);
+                setImage(defaultImage);
             })
             .catch((err) => {
                 console.log("err = ", err);

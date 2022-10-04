@@ -194,6 +194,7 @@ exports.setUserInfo = async (req, res, next) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     userName: req.body.userName,
+                    image: req.body.image,
                 },
                 (err, doc) => {
                     if (err) {
