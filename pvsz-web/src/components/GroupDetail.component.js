@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Header from "./Header";
 import "./GroupDetail.css";
@@ -250,7 +250,7 @@ export default function GroupDetail() {
                 <div class="bg">
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
-                            {plants.length == 0 && (
+                            {plants.length === 0 && (
                                 <div className="noData">
                                     no plants in this group
                                 </div>

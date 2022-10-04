@@ -120,7 +120,7 @@ export default function PlantHome() {
                                 </Paper>
                             </div>
                             <Divider />
-                            {plantList && plantList.length == 0 && (
+                            {plantList && plantList.length === 0 && (
                                 <div className="noData">no plant</div>
                             )}
                             {plantList.map((v) => {

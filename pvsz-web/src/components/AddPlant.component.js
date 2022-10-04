@@ -7,6 +7,7 @@ import { Alert } from "@mui/material";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import "./AddPlant.css";
 import "./dynamicButton.scss";
+import FileBase64 from "react-file-base64";
 
 import Select from "react-select";
 import { useEffect } from "react";
@@ -25,11 +26,13 @@ export default function AddPlant() {
     const [selectedImage, setSelectedImage] = useState(ImageUpload);
     const [groups, setGroups] = useState([]);
     const [groupOptions, setGroupOptions] = useState([]);
+    const [image, setImage] = useState("");
 
-    var imageStyle = {
-        height: "10vh",
-        width: "10vh",
-    };
+
+    // var imageStyle = {
+    //     height: "10vh",
+    //     width: "10vh",
+    // };
 
     useEffect(() => {
         axios
@@ -49,7 +52,7 @@ export default function AddPlant() {
                 for(var i = 0; i < groupLength; i++){
                     groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname};
                 }
-                console.log("groupOptions: ", groupOptions)
+                // console.log("groupOptions: ", groupOptions)
                 setGroupOptions(groupOptions);
             })
             .catch((err) => {
@@ -125,13 +128,14 @@ export default function AddPlant() {
             .post(
                 "/api/v1/customPlant/add",
                 {
+                    image: image,
                     name: plantName,
                     waterPeriod: waterRate,
                     lastWaterDate: lastWaterTime,
                     sunPeriod: sunshineRate,
                     lastSunDate: lastSunshineTime,
                     otherDetails: otherDetail,
-                    groups:groups,
+                    chooseGroup: groups,
                 },
                 {
                     headers: {
@@ -173,6 +177,16 @@ export default function AddPlant() {
             >
                 <div class="imageUpload">
                     <label for="fileInput">
+                        <FileBase64
+                            id="fileInput"
+                            name="avatar"
+                            multiple={false}
+                            onDone={({ base64 }) => setImage(base64)}
+                        />
+                    </label>
+                </div>
+                {/* <div class="imageUpload">
+                    <label for="fileInput">
                         <img
                             alt="avatar"
                             src={selectedImage}
@@ -191,7 +205,7 @@ export default function AddPlant() {
                             });
                         }}
                     />
-                </div>
+                </div> */}
                 <div className="plantValueDiv">
                     <h3 className="plantValueTitle">Plant Name</h3>
                     <input

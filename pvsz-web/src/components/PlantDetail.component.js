@@ -2,7 +2,6 @@ import React from "react";
 import "./PlantDetail.css";
 import Header from './Header';
 import Grid from '@mui/material/Grid';
-import Cactus from "../assets/images/Cactus.jpg";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
@@ -17,6 +16,8 @@ export default function PlantDetail() {
     const [lastSunDate, setLastSunDate] = useState("");
     const [lastWaterDate, setLastWaterDate] = useState("");
     const [otherDetails, setOtherDetails] = useState("");
+    const [plantImage, setPlantImage] = useState("");
+
 
 
 
@@ -48,6 +49,7 @@ export default function PlantDetail() {
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
                 setOtherDetails(plant.otherDetails)
+                setPlantImage(plant.image)
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -56,7 +58,7 @@ export default function PlantDetail() {
 
     // Below consts can be replaced with the content stored in database.  
     // const plantName = "Cactus";
-    const plantImage = Cactus;
+    // const plantImage = Cactus;
     // const plantGroupName = "Bedroom";
     // const plantOtherDetail = "This pot of Cactus is a gift from my gf. "
 

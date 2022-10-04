@@ -149,7 +149,7 @@ exports.getPlant = async (req, res, next) => {
                 message: "Unauthenticated request",
             });
         } else {
-            console.log(req.body);
+            // console.log(req.body);
             let plantId = req.body.plantId;
 
             try {

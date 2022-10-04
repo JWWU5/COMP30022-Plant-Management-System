@@ -3,9 +3,9 @@
 }
 
 .imageDiv {
-    background-size: 100vw 40vh;
+    background-size: 50vh 50vh;
     height: 50vh;
-    width: 100vw;
+    width: 50vh;
     position: absolute;
     z-index: 0;
 }

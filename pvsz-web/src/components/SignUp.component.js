@@ -181,10 +181,10 @@ export default function Register() {
         }
     };
 
-    var avatarStyle = {
-        height: "10vh",
-        width: "10vh",
-    };
+    // var avatarStyle = {
+    //     height: "10vh",
+    //     width: "10vh",
+    // };
 
     return (
         <body className="signIn">
