@@ -1,4 +1,4 @@
-const { CustomPlant, User, PlantGroup } = require("../models");
+const { CustomPlant, User, PlantGroup, Plant } = require("../models");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
 const mongoose = require("mongoose");
@@ -129,6 +129,40 @@ exports.dels = async (req, res, next) => {
             //         console.log(doc)
             //     })
             // })
+        }
+    });
+};
+
+exports.getPlant = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            let plantId = req.body.plantId;
+
+            try {
+                let plant = await CustomPlant.findById(plantId);
+
+                res.json({
+                    code: 200,
+
+                    data: plant,
+                });
+            } catch (error) {
+                res.status(500).send("Exceptions in server query");
+            }
         }
     });
 };

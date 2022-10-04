@@ -20,5 +20,8 @@
         "mongoose": "^6.6.0",
         "nodemon": "^2.0.19",
         "universal-cookie": "^4.0.4"
+    },
+    "devDependencies": {
+        "supertest": "^6.2.4"
     }
 }

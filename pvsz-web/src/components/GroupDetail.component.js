@@ -124,9 +124,9 @@ export default function GroupDetail() {
     const [state, setState] = React.useState({
         bottom: false,
     });
-    function toPlantDetail() {
-        navigate("/plant-detail");
-    }
+    // function toPlantDetail() {
+    //     navigate("/plant-detail");
+    // }
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -280,6 +280,11 @@ export default function GroupDetail() {
                                             justifyContent="flex-end"
                                         >
                                             <ArrowForwardIosOutlinedIcon
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/plant-detail?plantId=${v._id}`
+                                                    );
+                                                }}
                                                 sx={{ mr: 2.5 }}
                                             />
                                         </Grid>

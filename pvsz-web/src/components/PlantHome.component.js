@@ -51,9 +51,9 @@ export default function PlantHome() {
     function handleDeleteIcon() {
         navigate("/delete-plants");
     }
-    function toPlantDetail(){
-        navigate("/plant-detail");
-    }
+    // function toPlantDetail(){
+    //     navigate("/plant-detail");
+    // }
     console.log(plantList);
     return (
         <div className="Dashboard">
@@ -147,7 +147,11 @@ export default function PlantHome() {
                                             justifyContent="flex-end"
                                         >
                                             <ArrowForwardIosOutlinedIcon
-                                                onClick={toPlantDetail}
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/plant-detail?plantId=${v._id}`
+                                                    );
+                                                }}
                                                 sx={{ mr: 2.5 }}
                                             />
                                         </Grid>
