@@ -135,7 +135,7 @@ export default function AddPlant() {
                     sunPeriod: sunshineRate,
                     lastSunDate: lastSunshineTime,
                     otherDetails: otherDetail,
-                    chooseGroup: groups,
+                    groups: groups,
                 },
                 {
                     headers: {
