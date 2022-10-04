@@ -169,22 +169,23 @@ export default function AddPlant() {
             <header>
                 <h1 className="addPlantTitle">ADD PLANT</h1>
             </header>
+            <div class="imageUpload">
+                <label for="fileInput">
+                    <FileBase64
+                        id="fileInput"
+                        name="avatar"
+                        multiple={false}
+                        onDone={({ base64 }) => setImage(base64)}
+                    />
+                </label>
+            </div>
             <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="imageUpload">
-                    <label for="fileInput">
-                        <FileBase64
-                            id="fileInput"
-                            name="avatar"
-                            multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
-                        />
-                    </label>
-                </div>
+                
                 {/* <div class="imageUpload">
                     <label for="fileInput">
                         <img
