@@ -27,6 +27,7 @@ import GroupHome from "./components/GroupHome.component";
 import DeleteGroup from "./components/DeleteGroup.component";
 import GroupPlant from "./components/GroupPlants.component";
 import GroupDetail from "./components/GroupDetail.component";
+import GroupPlantDelete from "./components/GroupPlantDelete.component";
 
 // ranking
 import Ranking from "./components/Ranking.component";
@@ -118,6 +119,10 @@ function App() {
                 <Route
                     path="/change-password"
                     element={<Protected Component={ChangePassword} />}
+                />
+                <Route
+                    path="/Delete-Group-Plants"
+                    element={<Protected Component={GroupPlantDelete} />}
                 />
                 <Route path="/private-policy" element={<PrivatePolicy />} />
             </Routes>

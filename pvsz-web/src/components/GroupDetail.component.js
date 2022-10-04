@@ -42,19 +42,43 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function GroupDetail() {
+    const [successTxt, setSuccessTxt] = useState("");
+    const [errorTxt, setErrorTxt] = useState("");
     let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
     const [plants, setPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
+    const [delGroup, setDelGroup] = useState([]);
 
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
-        setPlants(searchParams[0].getAll("plants")[0]);
         setgroupId(searchParams[0].getAll("groupId")[0]);
-    }, []);
-    console.log(plants);
+    });
+
+    useEffect(() => {
+        axios
+            .post(
+                "/api/v1/plantGroup/getPlantGroupList",
+                {
+                    groupId: groupId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                setPlants(res.data.data.plants);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
+    });
+
     const deleteDoubleCheck = () => {
+        setDelGroup([...delGroup, groupId]);
         setOpen(true);
     };
 
@@ -65,8 +89,36 @@ export default function GroupDetail() {
     let navigate = useNavigate();
 
     function Agree() {
-        setOpen(false);
-        navigate("/groups");
+        console.log(delGroup);
+
+        axios
+            .post(
+                "api/v1/plantGroup/dels",
+
+                delGroup.map((v) => {
+                    return v;
+                }),
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log("res = ", res.data);
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                navigate("/groups");
+                setSuccessTxt("Submit is successful!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                    window.location.reload(false);
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
     }
 
     const [state, setState] = React.useState({
@@ -112,7 +164,13 @@ export default function GroupDetail() {
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton
+                            onClick={() => {
+                                navigate(
+                                    `/Delete-Group-Plants?groupId=${groupId}`
+                                );
+                            }}
+                        >
                             <RemoveCircleOutlineIcon
                                 sx={{ ml: 2, color: "#ffffff" }}
                             />
@@ -197,6 +255,37 @@ export default function GroupDetail() {
                                     no plants in this group
                                 </div>
                             )}
+                            {plants.map((v) => {
+                                return (
+                                    <Box
+                                        key={v._id}
+                                        display="flex"
+                                        justify-Content="center"
+                                        onClick={() => {}}
+                                        sx={{
+                                            width: 1,
+                                            height: 55,
+                                            backgroundColor: "#ffffff",
+                                            alignItems: "center",
+                                            borderRadius: 25,
+                                        }}
+                                    >
+                                        <Avatar
+                                            src="avatar1.jpg"
+                                            sx={{ ml: 2.5 }}
+                                        />
+                                        <a>{v.name}</a>
+                                        <Grid
+                                            container
+                                            justifyContent="flex-end"
+                                        >
+                                            <ArrowForwardIosOutlinedIcon
+                                                sx={{ mr: 2.5 }}
+                                            />
+                                        </Grid>
+                                    </Box>
+                                );
+                            })}
                         </Stack>
                     </div>
                 </div>

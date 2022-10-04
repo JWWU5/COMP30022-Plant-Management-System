@@ -136,3 +136,78 @@ exports.addPlantToGroup = async (req, res, next) => {
         }
     });
 };
+
+exports.getPlantGroupList = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            let groupId = req.body.groupId;
+
+            try {
+                let plants = await PlantGroup.findById(groupId).populate(
+                    "plants"
+                );
+
+                res.json({
+                    code: 200,
+
+                    data: plants,
+                });
+            } catch (error) {
+                res.status(500).send("Exceptions in server query");
+            }
+        }
+    });
+};
+
+exports.delPlantInGroup = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            PlantGroup.updateOne(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    $pullAll: {
+                        plants: req.body.idsArr,
+                    },
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "User Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};

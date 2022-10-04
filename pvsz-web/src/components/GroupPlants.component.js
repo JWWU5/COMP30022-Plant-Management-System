@@ -38,14 +38,17 @@ export default function GroupPlants() {
     const [plantList, setPlantList] = useState([]);
     const [cachePlantList, setCachePlantList] = useState([]);
     const [groupList, setGroupList] = useState([]);
+    const [groupPlants, setGroupPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
+    const [difference, setDifference] = useState([]);
 
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
-        console.log(groupId);
-        console.log("HAHA");
+        console.log("HaAAH");
+    }, []);
+    useEffect(() => {
         axios
             .post(
                 "/api/v1/user/getUserInfo",
@@ -65,6 +68,33 @@ export default function GroupPlants() {
                 console.log("err = ", err);
             });
     }, []);
+    useEffect(() => {
+        axios
+            .post(
+                "/api/v1/plantGroup/getPlantGroupList",
+                {
+                    groupId: groupId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                setGroupPlants(res.data.data.plants);
+            })
+            .catch((err) => {
+                console.log("er = ", err);
+            });
+    }, [groupId]);
+
+    useEffect(() => {
+        let difference = plantList.filter(
+            (x) => !groupPlants.find((rm) => rm._id === x._id)
+        );
+        setDifference(difference);
+    }, [groupPlants]);
 
     function addPlantToGroup() {
         axios
@@ -166,10 +196,12 @@ export default function GroupPlants() {
                                 </Button>
                             </ThemeProvider>
                             <Divider />
-                            {plantList && plantList.length == 0 && (
-                                <div className="noData">no plant</div>
+                            {difference && difference.length == 0 && (
+                                <div className="noData">
+                                    no plants can be added
+                                </div>
                             )}
-                            {plantList.map((v) => {
+                            {difference.map((v, i) => {
                                 return (
                                     <Box
                                         key={v._id}
@@ -202,13 +234,14 @@ export default function GroupPlants() {
                                                     },
                                                 }}
                                                 value={v._id}
-                                                onChange={(e) =>
-                                                    setGroupList((groupList) =>
-                                                        groupList.concat(
-                                                            e.target.value
-                                                        )
-                                                    )
-                                                }
+                                                onChange={(e) => {
+                                                    let deepList = [
+                                                        ...difference,
+                                                    ];
+                                                    deepList[i].checked =
+                                                        e.target.checked;
+                                                    setGroupList(deepList);
+                                                }}
                                             />
                                         </Grid>
                                     </Box>
