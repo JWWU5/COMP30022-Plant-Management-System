@@ -97,11 +97,14 @@ export default function GroupPlants() {
     }, [groupPlants]);
 
     function addPlantToGroup() {
+        let checkedArr = groupList.filter((v) => {
+            return v.checked;
+        });
         axios
             .post(
                 "/api/v1/plantGroup/addPlantToGroup",
                 {
-                    plants: groupList,
+                    plants: checkedArr,
                     groupId: groupId,
                 },
                 {
