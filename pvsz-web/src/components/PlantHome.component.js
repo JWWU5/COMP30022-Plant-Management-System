@@ -138,7 +138,8 @@ export default function PlantHome() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            // src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>

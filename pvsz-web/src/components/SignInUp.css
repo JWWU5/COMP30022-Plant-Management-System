@@ -23,6 +23,11 @@ header h1 {
     display: inline-block;
 }
 
+/* .imageUpload {
+    text-align: center;
+    font-size: small;
+} */
+
 .infoDiv {
     height: 30vh;
     margin-top: 15%;

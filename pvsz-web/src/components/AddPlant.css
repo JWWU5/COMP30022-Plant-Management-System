@@ -30,11 +30,16 @@
         padding-right: 6%;
     }
 
+    .fileInput {
+        width: 90%;
+    }
+
     .mySelect__value-container {
         width: 70vw;
         height: 7vh;
         font-size: 2.5vh;
     }
+
 }
 
 @media screen and (max-width: 350px) {
