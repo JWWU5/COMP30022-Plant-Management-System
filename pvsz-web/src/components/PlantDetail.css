@@ -23,6 +23,40 @@
     height: 62.7vh;
     width: 100vw;
     padding-top: 10%;
+    overflow-y: scroll;
+    padding-bottom: 5%;
+}
+
+.editButtonPlantDetail {
+    background: #788E6C;
+    margin-top: 5%;
+    margin-left: 5vw;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 90vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submitButtonPlantDetail {
+    background: #FFFFFF;
+    margin-top: 5%;
+    margin-left: 5vw;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 90vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @media screen and (min-width: 350px) {
@@ -76,13 +110,20 @@
     }
     
     .otherDetailContent {
-        padding-left: 5%;
-        padding-top: 3%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 2vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 600;
-        color: #555A6E;
+        margin-top: 2vh;
+        margin-left: 5vw;
+        border: hidden;
+        height: 15vh;
+        width: 90vw;
+        border-radius: 25px;
+        overflow-y: scroll;
     }
 }
 
@@ -137,12 +178,19 @@
     }
     
     .otherDetailContent {
-        padding-left: 5%;
-        padding-top: 3%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 2vh;
         text-align: left;
         font-family: "Times New Roman";
-        font-size: 4vw;
+        font-size: 4.5vw;
         font-weight: 600;
-        color: #555A6E;
+        margin-top: 2vh;
+        margin-left: 5vw;
+        border: hidden;
+        height: 15vh;
+        width: 90vw;
+        border-radius: 25px;
+        overflow-y: scroll;
     }
 }

@@ -17,9 +17,11 @@ export default function PlantDetail() {
     const [lastWaterDate, setLastWaterDate] = useState("");
     const [otherDetails, setOtherDetails] = useState("");
     const [plantImage, setPlantImage] = useState("");
-
-
-
+    const [isEditable, setIsEditable] = useState(false);
+    const [buttonClass, setButtonClass] = useState("editButtonPlantDetail");
+    const [buttonText, setbuttonText] = useState("Edit");
+    const [detailBackgroundColor, setDetailBackgroundColor] = useState("#44533B");
+    const [detailTextColor, setDetailTextColor] = useState("#555A6E");
 
     useEffect(() => {
         setPlantId(searchParams[0].getAll("plantId")[0]);
@@ -55,12 +57,34 @@ export default function PlantDetail() {
                 console.log("err = ", err);
             });
     });
+
+    function handleInput() {
+        if (isEditable === false) {
+            setIsEditable(true);
+            setDetailBackgroundColor("#44533B");
+            setDetailTextColor("#FFFFFF");
+            setbuttonText("Submit");
+            setButtonClass("submitButtonPlantDetail");
+        } else {
+            setIsEditable(false);
+            setDetailBackgroundColor("#788E6C");
+            setDetailTextColor("#555A6E");
+            setbuttonText("Edit");
+            setButtonClass("editButtonPlantDetail");
+        }
+    };
+
+    const inputOtherDetails = (e) => {
+        setOtherDetails(e.target.value);
+    };
+
     return (
         <body>
             <div className="detailContainer">
                 
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
+                    {/* <h3 className="plantNameTitle"><span>{plantName}</span></h3> */}
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
                 </div>
                 <div className="detailContentDiv">
@@ -87,7 +111,21 @@ export default function PlantDetail() {
                             </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
-                        <p className="otherDetailContent">{otherDetails}</p>
+                        <textarea 
+                            className="otherDetailContent" 
+                            style={{background: {detailBackgroundColor}, 
+                                    color: {detailTextColor}}}
+                            disabled={!isEditable}
+                            onChange={(e) => inputOtherDetails(e)}
+                        >
+                        {otherDetails}
+                        </textarea>
+                        <button
+                            className={buttonClass}
+                            onClick={handleInput}
+                        >
+                            {buttonText}
+                        </button>
                     </div>
                 </div>
             </div>
