@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
 
 export default function PlantDetail() {
     let searchParams = useSearchParams();
@@ -81,11 +82,15 @@ export default function PlantDetail() {
     return (
         <body>
             <div className="detailContainer">
-                
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
-                    {/* <h3 className="plantNameTitle"><span>{plantName}</span></h3> */}
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                    <FileBase64
+                        id="fileInput"
+                        name="plantImage"
+                        multiple={false}
+                        onDone={({ base64 }) => setPlantImage(base64)}
+                    />
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
