@@ -7,6 +7,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import "./AddPlant.css";
 import "./dynamicButton.scss";
 import FileBase64 from "react-file-base64";
+import Stack from '@mui/material/Stack';
 
 import Select from "react-select";
 import { useEffect } from "react";
@@ -169,7 +170,8 @@ export default function AddPlant() {
             <header>
                 <h1 className="addPlantTitle">ADD PLANT</h1>
             </header>
-            <div class="imageUpload">
+            
+            {/* <div class="imageUpload">
                 <label for="fileInput">
                     <FileBase64
                         id="fileInput"
@@ -178,7 +180,7 @@ export default function AddPlant() {
                         onDone={({ base64 }) => setImage(base64)}
                     />
                 </label>
-            </div>
+            </div> */}
             <Grid
                 container
                 direction="column"
@@ -207,6 +209,16 @@ export default function AddPlant() {
                         }}
                     />
                 </div> */}
+                <div class="imageUpload">
+                    <label for="fileInput">
+                        <FileBase64
+                            id="fileInput"
+                            name="avatar"
+                            multiple={false}
+                            onDone={({ base64 }) => setImage(base64)}
+                        />
+                    </label>
+                </div>
                 <div className="plantValueDiv">
                     <h3 className="plantValueTitle">Plant Name</h3>
                     <input

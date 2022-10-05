@@ -271,7 +271,7 @@ export default function GroupDetail() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>
