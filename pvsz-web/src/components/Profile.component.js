@@ -7,6 +7,7 @@ import { Alert } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
+import Avatar from "@mui/material/Avatar";
 
 export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
@@ -139,7 +140,12 @@ export default function Profile() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <img src={image} className="avatarIcon"></img>
+                {/* <img src={image} className="avatarIcon"></img> */}
+                <Avatar
+                    // src="avatar1.jpg"
+                    src={image}
+                    sx={{ width:100, height:100 }}
+                />
                 <div className="valueDiv">
                     <h3 className="valueTitle">First Name</h3>
                     <input

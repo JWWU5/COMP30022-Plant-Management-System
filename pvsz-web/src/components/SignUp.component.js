@@ -7,6 +7,7 @@ import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
+import Avatar from "@mui/material/Avatar";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -202,6 +203,11 @@ export default function Register() {
                 justifyContent="center"
                 alignItems="center"
             >
+                <Avatar
+                    // src="avatar1.jpg"
+                    src={image}
+                    sx={{ width:100, height:100 }}
+                />
                 <div class="imageUpload">
                     <label for="fileInput">
                         <FileBase64
