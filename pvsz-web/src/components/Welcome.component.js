@@ -31,7 +31,6 @@ export default function Welcome() {
 
     return (
         <main className='welcome'>
-            {/* <body> */}
             <p className='welcomeText'>Welcome to</p> 
             <Grid
             container
@@ -40,24 +39,18 @@ export default function Welcome() {
             alignItems="center"
             >
                 <div>
-                    {/* <p className='welcomeText'>Welcome to</p>  */}
                     <img src={logo} className='logoStyle'></img>
                 </div>
             
                 <div>
-                    {/* <a href='/sign-up'> */}
                         <div className="buttonContainer1">
                             <span className="mas1"></span>
                             <button id='work' type="button" name="Hover" onClick={handleSignUP}>SIGN UP</button>
                         </div>
-                    {/* </a> */}
-                    {/* <a href='sign-in'> */}
                     <div className="buttonContainer1">
                         <span className="mas1"></span>
                         <button id='work' type="button" name="Hover" onClick={handleSignIN}>SIGN IN</button>
                     </div>
-                        {/* <button className='signButton'>SIGN IN</button>  */}
-                    {/* </a> */}
                     
                 </div>
                 <div>
@@ -67,7 +60,6 @@ export default function Welcome() {
                     </ul>
                 </div>
             </Grid>
-            {/* </body> */}
         </main>
     )
 }

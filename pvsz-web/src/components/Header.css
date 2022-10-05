@@ -14,7 +14,6 @@ button {
     height: 100vh;
     display: flex;
     justify-content: center;
-    /* position: fixed; */
     position: absolute;
     z-index: 2;
     top: 0;

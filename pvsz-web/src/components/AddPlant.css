@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
 
 .addPlantTitle {
-    font-family: 'Architects Daughter', cursive;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
     font-size: 10vw;
     color: #44533B;
     margin-top: 8%;
@@ -29,11 +30,16 @@
         padding-right: 6%;
     }
 
-    .mySelect__value-container{
+    .fileInput {
+        width: 90%;
+    }
+
+    .mySelect__value-container {
         width: 70vw;
         height: 7vh;
         font-size: 2.5vh;
     }
+
 }
 
 @media screen and (max-width: 350px) {
@@ -55,7 +61,7 @@
         overflow-x: scroll;
     }
 
-    .mySelect__value-container{
+    .mySelect__value-container {
         width: 70vw;
         height: 7vw;
         font-size: 4.5vw;
@@ -81,4 +87,14 @@
     font-size: 2.5vh;
     padding-right: 6%;
     padding-top: 3%;
+    overflow-y: scroll;
+}
+
+.tipsBox{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
 }
