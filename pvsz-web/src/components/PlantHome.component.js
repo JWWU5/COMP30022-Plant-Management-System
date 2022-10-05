@@ -95,11 +95,11 @@ export default function PlantHome() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.name.indexOf(val) !== -1
+                                                    v.name.toUpperCase().indexOf(val) !== -1
                                                 );
                                             });
                                             setPlantList(deepList);

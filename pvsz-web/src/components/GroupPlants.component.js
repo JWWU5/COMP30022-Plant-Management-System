@@ -36,13 +36,14 @@ export default function GroupPlants() {
     let searchParams = useSearchParams();
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
-    const [cachePlantList, setCachePlantList] = useState([]);
     const [groupList, setGroupList] = useState([]);
     const [groupPlants, setGroupPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
     const [difference, setDifference] = useState([]);
+
+
 
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
@@ -60,7 +61,6 @@ export default function GroupPlants() {
             )
             .then((res) => {
                 setPlantList(res.data.data.plantList);
-                setCachePlantList(res.data.data.plantList);
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -98,6 +98,17 @@ export default function GroupPlants() {
         let checkedArr = groupList.filter((v) => {
             return v.checked;
         });
+        if (!checkedArr.length) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Please select at least one plant!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+
         axios
             .post(
                 "/api/v1/plantGroup/addPlantToGroup",
@@ -119,12 +130,13 @@ export default function GroupPlants() {
                 setSuccessTxt("Update is successful!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
+                    navigate("/groups");
                 }, 1000);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
-        navigate("/groups");
+
     }
 
     return (
@@ -192,7 +204,7 @@ export default function GroupPlants() {
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    RETURN
+                                    ADD
                                 </Button>
                             </ThemeProvider>
                             <Divider />
@@ -216,7 +228,7 @@ export default function GroupPlants() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>
