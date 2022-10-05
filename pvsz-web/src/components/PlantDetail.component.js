@@ -55,43 +55,12 @@ export default function PlantDetail() {
                 console.log("err = ", err);
             });
     });
-
-    // Below consts can be replaced with the content stored in database.  
-    // const plantName = "Cactus";
-    // const plantImage = Cactus;
-    // const plantGroupName = "Bedroom";
-    // const plantOtherDetail = "This pot of Cactus is a gift from my gf. "
-
-    // Get last three sunlight times from backend. 
-    // const lastThreeSunlights = [
-    //     {time: "2022 AUG 2"}, 
-    //     {time: "2022 Jun 20"},
-    //     {time: "2022 Jun 10"},  
-    // ];
-
-    // Get last three watering times from backend. 
-    // const lastThreeWaterings = [
-    //     {time: "2022 Jun 10"}, 
-    //     {time: "2022 Jun 9"}, 
-    //     {time: "2022 Jun 8"}, 
-    // ];
-
-    // Loop the lastThreeSunlights list. 
-    // const getSunlightTime = lastThreeSunlights.map((lastThreeSunlight) =>
-    //     <p className="detailContentText">{lastThreeSunlight.time}</p>
-    // );
-
-    // Loop the lastThreeWaterings list. 
-    // const getWateringTime = lastThreeWaterings.map((lastThreeWatering) =>
-    //     <p className="detailContentText">{lastThreeWatering.time}</p>
-    // );
-
     return (
         <body>
             <div className="detailContainer">
-                <Header />
+                
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
-                    {/* <img src={Cactus} className="plantImage"></img> */}
+                    <Header />
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
                 </div>
                 <div className="detailContentDiv">

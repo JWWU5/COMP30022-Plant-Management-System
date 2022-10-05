@@ -35,7 +35,6 @@ export default function PlantHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -51,10 +50,7 @@ export default function PlantHome() {
     function handleDeleteIcon() {
         navigate("/delete-plants");
     }
-    // function toPlantDetail(){
-    //     navigate("/plant-detail");
-    // }
-    console.log(plantList);
+
     return (
         <div className="Dashboard">
             <Header />
@@ -99,7 +95,6 @@ export default function PlantHome() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
                                             let val = e.target.value;
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {

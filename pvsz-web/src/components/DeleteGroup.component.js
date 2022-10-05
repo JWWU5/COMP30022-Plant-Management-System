@@ -61,7 +61,6 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("group res = ", res.data.data.groups);
                 setGroups(res.data.data.groups);
                 setCacheGroupName(res.data.data.groups);
             })
@@ -111,7 +110,6 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -166,7 +164,6 @@ export default function DeleteGroup() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
                                             let val = e.target.value;
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
@@ -266,7 +263,6 @@ export default function DeleteGroup() {
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    // console.log("e = ", e.target.checked)
                                                     let deepList = [...groups];
                                                     deepList[i].checked =
                                                         e.target.checked;

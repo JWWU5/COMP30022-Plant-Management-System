@@ -46,7 +46,6 @@ export default function GroupPlants() {
 
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
-        console.log("HaAAH");
     }, []);
     useEffect(() => {
         axios
@@ -60,7 +59,6 @@ export default function GroupPlants() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -114,7 +112,6 @@ export default function GroupPlants() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
 
                 if (window.timer) {
                     clearTimeout(window.timer);

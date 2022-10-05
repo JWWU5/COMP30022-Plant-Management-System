@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import Header from "./Header";
-import avatar from "../assets/images/avatar.png";
 import "./Profile.css";
 import "./dynamicButton.scss";
 import { Alert } from "@mui/material";
@@ -37,7 +36,6 @@ export default function Profile() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setFirstName(res.data.data.firstName);
                 setLastName(res.data.data.lastName);
                 setUserName(res.data.data.userName);
@@ -49,11 +47,6 @@ export default function Profile() {
                 console.log("err = ", err);
             });
     }, []);
-
-    // These two consts can not be changed
-    // So no need to write the set function
-    // const birthdayDate = "01/01/2000";
-    // const email = "Crazy_Dave@gmail.com";
 
     function checkNullInput(inputValue) {
         if (inputValue.trim().length - 1 === 0) {
@@ -94,7 +87,6 @@ export default function Profile() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (readonlyValue === false) {
                     if (window.timer) {
                         clearTimeout(window.timer);
@@ -140,9 +132,7 @@ export default function Profile() {
                 justifyContent="center"
                 alignItems="center"
             >
-                {/* <img src={image} className="avatarIcon"></img> */}
                 <Avatar
-                    // src="avatar1.jpg"
                     src={image}
                     sx={{ width:100, height:100 }}
                 />

@@ -34,7 +34,6 @@ export default function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log("agreePolicy = ", agreePolicy);
         if (!firstName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -150,7 +149,6 @@ export default function Register() {
                 }, 1000);
                 error = new Error();
             });
-        console.log(configuration);
     };
 
     const submit = (e) => {

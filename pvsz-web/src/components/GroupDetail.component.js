@@ -89,7 +89,6 @@ export default function GroupDetail() {
     let navigate = useNavigate();
 
     function Agree() {
-        console.log(delGroup);
 
         axios
             .post(
@@ -105,7 +104,6 @@ export default function GroupDetail() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }

@@ -104,11 +104,6 @@ export default function DeleteGroup() {
         let checkedGroupArr = plants.filter((v) => {
             return v.checked;
         });
-        console.log(
-            checkedGroupArr.map((v) => {
-                return v._id;
-            })
-        );
         axios
             .post(
                 "/api/v1/plantGroup/delPlantInGroup",
@@ -125,7 +120,6 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -235,7 +229,6 @@ export default function DeleteGroup() {
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    // console.log("e = ", e.target.checked)
                                                     let deepList = [...plants];
 
                                                     deepList[i].checked =

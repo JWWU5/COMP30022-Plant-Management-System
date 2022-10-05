@@ -7,7 +7,6 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import "./AddPlant.css";
 import "./dynamicButton.scss";
 import FileBase64 from "react-file-base64";
-import Stack from '@mui/material/Stack';
 
 import Select from "react-select";
 import { useEffect } from "react";
@@ -28,12 +27,6 @@ export default function AddPlant() {
     const [groupOptions, setGroupOptions] = useState([]);
     const [image, setImage] = useState("");
 
-
-    // var imageStyle = {
-    //     height: "10vh",
-    //     width: "10vh",
-    // };
-
     useEffect(() => {
         axios
             .post(
@@ -47,12 +40,10 @@ export default function AddPlant() {
             )
             .then((res) => {
                 const groupLength = res.data.data.groups.length;
-                console.log("groups length = ", groupLength);
                 var groupOptions = new Array();
                 for(var i = 0; i < groupLength; i++){
                     groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname};
                 }
-                // console.log("groupOptions: ", groupOptions)
                 setGroupOptions(groupOptions);
                 setImage(defaultImage);
             })
@@ -71,7 +62,6 @@ export default function AddPlant() {
     }, []);
 
     const handleSubmit = () => {
-        console.log(groups)
         if (!plantName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -145,7 +135,6 @@ export default function AddPlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -171,44 +160,12 @@ export default function AddPlant() {
                 <h1 className="addPlantTitle">ADD PLANT</h1>
             </header>
             
-            {/* <div class="imageUpload">
-                <label for="fileInput">
-                    <FileBase64
-                        id="fileInput"
-                        name="avatar"
-                        multiple={false}
-                        onDone={({ base64 }) => setImage(base64)}
-                    />
-                </label>
-            </div> */}
             <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
             >
-                
-                {/* <div class="imageUpload">
-                    <label for="fileInput">
-                        <img
-                            alt="avatar"
-                            src={selectedImage}
-                            style={imageStyle}
-                        ></img>
-                        {console.log(selectedImage)}
-                    </label>
-                    <input
-                        id="fileInput"
-                        type="file"
-                        name="plantImage"
-                        accept="image/png, image/jpeg, image/jpg"
-                        onChange={(e) => {
-                            setSelectedImage({
-                                image: URL.createObjectURL(e.target.files[0]),
-                            });
-                        }}
-                    />
-                </div> */}
                 <div class="imageUpload">
                     <label for="fileInput">
                         <FileBase64

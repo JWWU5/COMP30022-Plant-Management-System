@@ -51,7 +51,6 @@ export default function GroupHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setGroups(res.data.data.groups);
                 setCacheGroupName(res.data.data.groups);
             })
@@ -104,7 +103,6 @@ export default function GroupHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -118,7 +116,6 @@ export default function GroupHome() {
                 console.log("err = ", err);
             });
     };
-    console.log(groups);
     const list = (anchor) => (
         <Box
             sx={{
@@ -222,7 +219,6 @@ export default function GroupHome() {
                                             "aria-label": "search the group",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
                                             let val = e.target.value;
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
@@ -267,10 +263,10 @@ export default function GroupHome() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar
+                                        {/* <Avatar
                                             src="avatar1.jpg"
                                             sx={{ ml: 2.5 }}
-                                        />
+                                        /> */}
                                         <a>{v.groupname}</a>
                                         <Grid
                                             container

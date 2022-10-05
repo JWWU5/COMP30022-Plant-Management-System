@@ -47,7 +47,6 @@ export default function SelectPlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data);
                 setCachePlantList(res.data.data);
             })
@@ -99,7 +98,6 @@ export default function SelectPlant() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            console.log(e.target.value);
                                             let val =
                                                 e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];

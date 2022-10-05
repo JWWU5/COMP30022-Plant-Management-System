@@ -60,7 +60,6 @@ export default function DeletePlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -112,7 +111,6 @@ export default function DeletePlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -165,7 +163,6 @@ export default function DeletePlant() {
                                         placeholder="Search your plant"
                                         inputProps={{ "aria-label": "search your plant" }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
                                             let val = e.target.value;
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
@@ -248,7 +245,6 @@ export default function DeletePlant() {
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    // console.log("e = ", e.target.checked)
                                                     let deepList = [...plantList];
                                                     deepList[i].checked = e.target.checked;
                                                     setCachePlantList(deepList);

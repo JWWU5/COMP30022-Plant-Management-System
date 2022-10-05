@@ -20,13 +20,11 @@ exports.add = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            console.log("body = ", req.body);
             let plantGroup = new PlantGroup(req.body);
             plantGroup.save((err, item) => {
                 if (err) {
                     res.status(500).send("Exceptions in server");
                 } else {
-                    console.log("item = ", item.id);
                     let itemId = item.id;
                     // add user plant group
                     User.updateOne(
@@ -47,7 +45,6 @@ exports.add = async (req, res, next) => {
                             res.json({
                                 code: 200,
                             });
-                            console.log(doc);
                         }
                     );
                 }
@@ -107,7 +104,6 @@ exports.addPlantToGroup = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log(req.body.plants);
     jwt.verify(token, jwtKey, async (err, decode) => {
         if (err) {
             res.status(401).send({
@@ -153,7 +149,6 @@ exports.getPlantGroupList = async (req, res, next) => {
                 message: "Unauthenticated request",
             });
         } else {
-            console.log(req.body);
             let groupId = req.body.groupId;
 
             try {
