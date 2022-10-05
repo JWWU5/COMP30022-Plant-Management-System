@@ -19,6 +19,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -148,6 +149,18 @@ export default function GroupDetail() {
         >
             <nav aria-label="main mailbox folders">
                 <List>
+                    <ListItem>
+                        <ListItemButton
+                        >
+                            <ModeEditOutlineOutlinedIcon
+                                sx={{ ml: 2, color: "#ffffff" }}
+                            />
+                            <ListItemText
+                                primary="Edit group name"
+                                sx={{ ml: 5, color: "#ffffff" }}
+                            />
+                        </ListItemButton>
+                    </ListItem>
                     <ListItem>
                         <ListItemButton
                             onClick={() => {
