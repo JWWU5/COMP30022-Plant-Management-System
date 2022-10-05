@@ -13,15 +13,17 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Divider from '@mui/material/Divider';
 
-import watercan from '../assets/images/water_can.png';
-import sun from '../assets/images/sun.png';
-import group from '../assets/images/group.png';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import FireExtinguisherRoundedIcon from '@mui/icons-material/FireExtinguisherRounded';
+import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
 export default function Dashboard() {
+    const [value, setValue] = React.useState(0);
     
     let navigate = useNavigate();
 
@@ -39,12 +41,24 @@ export default function Dashboard() {
                     <h3>Happy Birthday!</h3>
                 </div>
                 <div class="topic">
-                    <img class="watercan"src={watercan}></img>
-                    <img class="sun"src={sun}></img>
-                    <img class="group"src={group}></img>
+                    <Box sx={{ width: 2/3}}>
+                        <BottomNavigation
+                            showLabels
+                            value={value}
+                            onChange={(event, newValue) => {
+                            setValue(newValue);
+                            }}
+                        >
+                            <BottomNavigationAction label="Watering" icon={<FireExtinguisherRoundedIcon />} />
+                            <BottomNavigationAction label="Sunlight" icon={<WbSunnyRoundedIcon />} />
+                        </BottomNavigation>
+                    </Box>
+
                     <AddCircleOutlineIcon onClick={handleAddIcon}/>
                 </div>
+
                 <div class="listbg">
+                    
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
                             <Box display='flex' justify-Content="center" sx={{
