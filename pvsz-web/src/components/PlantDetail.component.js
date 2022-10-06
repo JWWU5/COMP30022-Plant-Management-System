@@ -45,7 +45,6 @@ export default function PlantDetail() {
             )
             .then((res) => {
                 setPlant(res.data.data);
-                // setPlantName(plant.name);
                 if(plant.chooseGroup !== ""){
                     setPlantGroupName(plant.chooseGroup)
                 } else{
@@ -53,12 +52,10 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                // setOtherDetails(plant.otherDetails)
-                // setPlantImage(plant.image)
-                // setOtherDetails(res.data.data.otherDetails)
-                // setPlantImage(plant.image)
                 if (!isEditable){
-                    setOtherDetails(res.data.data.otherDetails)
+                    setOtherDetails(plant.otherDetails)
+                    setPlantImage(plant.image)
+                    setPlantName(plant.name);
                 }
             })
             .catch((err) => {
@@ -85,7 +82,9 @@ export default function PlantDetail() {
                 "/api/v1/customPlant/setCustomPlant",
                 {
                     plantId: plantId,
-                    otherDetails: otherDetails
+                    otherDetails: otherDetails,
+                    plantImage: plantImage,
+                    plantName: plantName,
                 },
                 {
                     headers: {
@@ -115,7 +114,6 @@ export default function PlantDetail() {
 
     const inputPlantName = (e) => {
         setPlantName(e.target.value);
-        console.log(plantName);
     }
 
     return (
@@ -127,10 +125,13 @@ export default function PlantDetail() {
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
-                    { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
-                    {/* <h3 className="plantNameTitle" onChange={(e) => setPlantName(e.target.value)}><span>{plantName}</span></h3>
-                    <textarea className="plantNameTextarea" onChange={(e) => setPlantName(e.target.value)}>{plantName}</textarea> */}
-                    {   isEditable && <FileBase64
+                    <input 
+                        className="plantNameTextarea" 
+                        value={plantName} 
+                        disabled={!isEditable} 
+                        onChange={(e) => inputPlantName(e)}
+                    ></input>
+                    {isEditable && <FileBase64
                             id="fileInput"
                             name="plantImage"
                             multiple={false}
