@@ -134,7 +134,7 @@ export default function Profile() {
             >
                 <Avatar
                     src={image}
-                    sx={{ width:100, height:100 }}
+                    sx={{ width: 100, height: 100 }}
                 />
                 <div className="valueDiv">
                     <h3 className="valueTitle">First Name</h3>
@@ -184,17 +184,20 @@ export default function Profile() {
                         value={email}
                     ></input>
                 </div>
-                {!readonlyValue && (
-                    <h3 className="valueTitle">Upload new Avatar</h3>
-                )}
-                {!readonlyValue && (
-                    <FileBase64
-                        id="fileInput"
-                        name="avatar"
-                        multiple={false}
-                        onDone={({ base64 }) => setImage(base64)}
-                    />
-                )}
+                <div className="valueDiv">
+                    {!readonlyValue && (
+                        <h3 className="valueTitle">Upload new Avatar</h3>
+                    )}
+                    {!readonlyValue && (
+                        <FileBase64
+                            id="fileInput"
+                            name="avatar"
+                            multiple={false}
+                            onDone={({ base64 }) => setImage(base64)}
+                        />
+                    )}               
+                </div>
+
                 <button
                     className={buttonClass}
                     onClick={handleInput}

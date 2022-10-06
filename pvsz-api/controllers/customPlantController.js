@@ -91,6 +91,18 @@ exports.dels = async (req, res, next) => {
                 let r2 = await CustomPlant.deleteMany({
                     _id: { $in: idsArr },
                 });
+                for (const id of idsArr){
+                    let r3 = await PlantGroup.findOneAndUpdate(
+                        {
+                             plants:id
+                        },
+                        {
+                            $pull: {
+                                plants: id,
+                            },
+                        }
+                    );
+                }
                 res.json({
                     code: 200,
                 });

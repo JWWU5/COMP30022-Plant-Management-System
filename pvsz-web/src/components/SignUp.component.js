@@ -206,7 +206,17 @@ export default function Register() {
                     src={image}
                     sx={{ width:100, height:100 }}
                 />
-                <div class="imageUpload">
+                
+
+            </Grid>
+            <form>
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                <div class="image">
                     <label for="fileInput">
                         <FileBase64
                             id="fileInput"
@@ -216,14 +226,6 @@ export default function Register() {
                         />
                     </label>
                 </div>
-            </Grid>
-            <form>
-                <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                >
                     <input
                         type="text"
                         placeholder="First Name"
