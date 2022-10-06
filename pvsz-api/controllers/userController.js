@@ -104,7 +104,6 @@ exports.getUserInfo = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
         if (err) {
             res.status(401).send({

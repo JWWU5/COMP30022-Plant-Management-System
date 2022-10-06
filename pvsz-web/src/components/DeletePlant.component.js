@@ -163,10 +163,10 @@ export default function DeletePlant() {
                                         placeholder="Search your plant"
                                         inputProps={{ "aria-label": "search your plant" }}
                                         onChange={(e) => {
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.name.indexOf(val) !== -1;
+                                                return v.name.toUpperCase().indexOf(val) !== -1;
                                             });
                                             setPlantList(deepList);
                                         }}
@@ -239,7 +239,7 @@ export default function DeletePlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src="avatar1.jpg" sx={{ ml: 2.5 }} />
+                                        <Avatar src={v.image} sx={{ ml: 2.5 }} />
                                         <a>{v.name}</a>
                                         <Grid container justifyContent="flex-end">
                                             <Checkbox

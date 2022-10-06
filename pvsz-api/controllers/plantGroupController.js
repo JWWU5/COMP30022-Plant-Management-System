@@ -150,7 +150,6 @@ exports.getPlantGroupList = async (req, res, next) => {
             });
         } else {
             let groupId = req.body.groupId;
-
             try {
                 let plants = await PlantGroup.findById(groupId).populate(
                     "plants"

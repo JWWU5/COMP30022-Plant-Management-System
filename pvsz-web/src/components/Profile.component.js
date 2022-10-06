@@ -184,12 +184,17 @@ export default function Profile() {
                         value={email}
                     ></input>
                 </div>
-                <FileBase64
-                    id="fileInput"
-                    name="avatar"
-                    multiple={false}
-                    onDone={({ base64 }) => setImage(base64)}
-                />
+                {!readonlyValue && (
+                    <h3 className="valueTitle">Upload new Avatar</h3>
+                )}
+                {!readonlyValue && (
+                    <FileBase64
+                        id="fileInput"
+                        name="avatar"
+                        multiple={false}
+                        onDone={({ base64 }) => setImage(base64)}
+                    />
+                )}
                 <button
                     className={buttonClass}
                     onClick={handleInput}

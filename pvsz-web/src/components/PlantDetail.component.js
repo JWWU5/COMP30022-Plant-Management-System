@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
+import { Alert } from "@mui/material";
 
 export default function PlantDetail() {
     let searchParams = useSearchParams();
@@ -23,6 +24,7 @@ export default function PlantDetail() {
     const [buttonText, setbuttonText] = useState("Edit");
     const [detailBackgroundColor, setDetailBackgroundColor] = useState("#44533B");
     const [detailTextColor, setDetailTextColor] = useState("#555A6E");
+    const [successTxt, setSuccessTxt] = useState("");
 
     useEffect(() => {
         setPlantId(searchParams[0].getAll("plantId")[0]);
@@ -51,15 +53,20 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                setOtherDetails(plant.otherDetails)
+                // setOtherDetails(plant.otherDetails)
                 // setPlantImage(plant.image)
+                // setOtherDetails(res.data.data.otherDetails)
+                // setPlantImage(plant.image)
+                if (!isEditable){
+                    setOtherDetails(res.data.data.otherDetails)
+                }
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
     });
 
-    function handleInput() {
+    function handleInput(e) {
         if (isEditable === false) {
             setIsEditable(true);
             setDetailBackgroundColor("#44533B");
@@ -73,6 +80,33 @@ export default function PlantDetail() {
             setbuttonText("Edit");
             setButtonClass("editButtonPlantDetail");
         }
+        axios
+            .post(
+                "/api/v1/customPlant/setCustomPlant",
+                {
+                    plantId: plantId,
+                    otherDetails: otherDetails
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                if (isEditable === true) {
+                    if (window.timer) {
+                        clearTimeout(window.timer);
+                    }
+                    setSuccessTxt("Update is successful!");
+                    window.timer = window.setTimeout(() => {
+                        setSuccessTxt("");
+                    }, 1000);
+                }
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
     };
 
     const inputOtherDetails = (e) => {
@@ -86,6 +120,9 @@ export default function PlantDetail() {
 
     return (
         <body>
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+            </div>
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
@@ -125,15 +162,17 @@ export default function PlantDetail() {
                             </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
-                        <textarea 
+                        <input 
                             className="otherDetailContent" 
                             style={{background: {detailBackgroundColor}, 
                                     color: {detailTextColor}}}
                             disabled={!isEditable}
+                            type="text"
+                            value = {otherDetails}
                             onChange={(e) => inputOtherDetails(e)}
                         >
-                        {otherDetails}
-                        </textarea>
+                        {/* {otherDetails} */}
+                        </input>
                         <button
                             className={buttonClass}
                             onClick={handleInput}

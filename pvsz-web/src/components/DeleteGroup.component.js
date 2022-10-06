@@ -164,11 +164,11 @@ export default function DeleteGroup() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.groupname.indexOf(val) !==
+                                                    v.groupname.toUpperCase().indexOf(val) !==
                                                     -1
                                                 );
                                             });
