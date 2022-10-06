@@ -43,7 +43,7 @@ export default function PlantDetail() {
             )
             .then((res) => {
                 setPlant(res.data.data);
-                setPlantName(plant.name);
+                // setPlantName(plant.name);
                 if(plant.chooseGroup !== ""){
                     setPlantGroupName(plant.chooseGroup)
                 } else{
@@ -52,7 +52,7 @@ export default function PlantDetail() {
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
                 setOtherDetails(plant.otherDetails)
-                setPlantImage(plant.image)
+                // setPlantImage(plant.image)
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -79,18 +79,27 @@ export default function PlantDetail() {
         setOtherDetails(e.target.value);
     };
 
+    const inputPlantName = (e) => {
+        setPlantName(e.target.value);
+        console.log(plantName);
+    }
+
     return (
         <body>
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
-                    <FileBase64
-                        id="fileInput"
-                        name="plantImage"
-                        multiple={false}
-                        onDone={({ base64 }) => setPlantImage(base64)}
-                    />
+                    { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
+                    {/* <h3 className="plantNameTitle" onChange={(e) => setPlantName(e.target.value)}><span>{plantName}</span></h3>
+                    <textarea className="plantNameTextarea" onChange={(e) => setPlantName(e.target.value)}>{plantName}</textarea> */}
+                    {   isEditable && <FileBase64
+                            id="fileInput"
+                            name="plantImage"
+                            multiple={false}
+                            onDone={({ base64 }) => setPlantImage(base64)}
+                        />
+                    }
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
