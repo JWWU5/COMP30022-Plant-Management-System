@@ -133,3 +133,41 @@ exports.getPlant = async (req, res, next) => {
         }
     });
 };
+
+exports.setCustomPlant = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+    jwt.verify(token, jwtKey, (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let plantId = req.body.plantId;
+            console.log("plantId =", plantId)
+            CustomPlant.findByIdAndUpdate(
+                {
+                    _id: plantId,
+                },
+                {
+                    otherDetails: req.body.otherDetails,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "User Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};
