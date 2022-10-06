@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
 import { Alert } from "@mui/material";
 
 export default function PlantDetail() {
@@ -44,7 +45,7 @@ export default function PlantDetail() {
             )
             .then((res) => {
                 setPlant(res.data.data);
-                setPlantName(plant.name);
+                // setPlantName(plant.name);
                 if(plant.chooseGroup !== ""){
                     setPlantGroupName(plant.chooseGroup)
                 } else{
@@ -52,8 +53,10 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
+                // setOtherDetails(plant.otherDetails)
+                // setPlantImage(plant.image)
                 // setOtherDetails(res.data.data.otherDetails)
-                setPlantImage(plant.image)
+                // setPlantImage(plant.image)
                 if (!isEditable){
                     setOtherDetails(res.data.data.otherDetails)
                 }
@@ -110,16 +113,30 @@ export default function PlantDetail() {
         setOtherDetails(e.target.value);
     };
 
+    const inputPlantName = (e) => {
+        setPlantName(e.target.value);
+        console.log(plantName);
+    }
+
     return (
         <body>
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
             </div>
             <div className="detailContainer">
-                
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
                     <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                    { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
+                    {/* <h3 className="plantNameTitle" onChange={(e) => setPlantName(e.target.value)}><span>{plantName}</span></h3>
+                    <textarea className="plantNameTextarea" onChange={(e) => setPlantName(e.target.value)}>{plantName}</textarea> */}
+                    {   isEditable && <FileBase64
+                            id="fileInput"
+                            name="plantImage"
+                            multiple={false}
+                            onDone={({ base64 }) => setPlantImage(base64)}
+                        />
+                    }
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>

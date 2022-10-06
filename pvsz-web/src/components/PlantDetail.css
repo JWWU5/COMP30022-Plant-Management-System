@@ -59,6 +59,20 @@
     text-overflow: ellipsis;
 }
 
+.plantNameTextarea {
+    margin-left: 5vw;
+    background: #788E6C;
+    border-radius: 30px;
+    height: 7vh;
+    width: 90vw;
+    border: hidden;
+    color: #FFFFFF;
+    overflow-y: scroll;
+    padding-left: 5%;
+    padding-top: 5%;
+    font-size: 5vw;
+    font-family: "Tamil MN";
+
 .tipsBox{
     position: absolute;
     width: 90%;
