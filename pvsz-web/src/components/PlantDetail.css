@@ -61,25 +61,31 @@
 
 .plantNameTextarea {
     margin-left: 5vw;
-    background: #788E6C;
+    background: #FFFFFF;
     border-radius: 30px;
     height: 7vh;
     width: 90vw;
     border: hidden;
-    color: #FFFFFF;
+    color: #555A6E;
     overflow-y: scroll;
     padding-left: 5%;
-    padding-top: 5%;
+    padding-top: 2vh;
     font-size: 5vw;
     font-family: "Tamil MN";
+}
+
+.plantNameTitleDiv{
+    height: 7vh;
+    width: 90vw;
+    overflow-x: scroll;
+    margin-top: 5vh;
+    margin-left: 5vw;
 }
 
 @media screen and (min-width: 350px) {
 
     .plantNameTitle {
         font-family: "Tamil MN";
-        margin-left: 5%;
-        margin-top: 5vh;
         font-size: 9vw;
         font-weight: 200;
         color: #FFFFFF;
@@ -100,6 +106,7 @@
     
     .detailContentType {
         text-align: right;
+        /* margin-left: 6vw; */
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 700;
@@ -116,7 +123,8 @@
     
     .otherDetailTitle {
         padding-left: 5%;
-        padding-top: 15%;
+        margin-top: 5vh;
+        margin-bottom: 1vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4.5vw;
@@ -132,7 +140,6 @@
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 600;
-        margin-top: 2vh;
         margin-left: 5vw;
         border: hidden;
         height: 15vh;
@@ -146,8 +153,6 @@
 
     .plantNameTitle {
         font-family: "Tamil MN";
-        margin-left: 5%;
-        margin-top: 5vh;
         font-size: 7vw;
         font-weight: 200;
         color: #FFFFFF;
@@ -168,6 +173,7 @@
     
     .detailContentType {
         text-align: right;
+        /* margin-left: 6vw; */
         font-family: "Times New Roman";
         font-size: 4vw;
         font-weight: 700;
@@ -184,7 +190,8 @@
     
     .otherDetailTitle {
         padding-left: 5%;
-        padding-top: 15%;
+        margin-top: 5vh;
+        margin-bottom: 1vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4vw;
@@ -200,7 +207,6 @@
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 600;
-        margin-top: 2vh;
         margin-left: 5vw;
         border: hidden;
         height: 15vh;

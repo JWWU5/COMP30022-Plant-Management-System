@@ -18,6 +18,10 @@ export default function PlantDetail() {
     const [lastWaterDate, setLastWaterDate] = useState("");
     const [otherDetails, setOtherDetails] = useState("");
     const [plantImage, setPlantImage] = useState("");
+    const [waterPeriod, setWaterPeriod] = useState("");
+    const [sunshinePeriod, setSunshinePeriod] = useState("");
+
+    // Variables for frontend. 
     const [isEditable, setIsEditable] = useState(false);
     const [buttonClass, setButtonClass] = useState("editButtonPlantDetail");
     const [buttonText, setbuttonText] = useState("Edit");
@@ -89,22 +93,15 @@ export default function PlantDetail() {
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
-                    <h3 className="plantNameTitle"><span>{plantName}</span></h3>
-                    { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
-                    {/* <h3 className="plantNameTitle" onChange={(e) => setPlantName(e.target.value)}><span>{plantName}</span></h3>
-                    <textarea className="plantNameTextarea" onChange={(e) => setPlantName(e.target.value)}>{plantName}</textarea> */}
-                    {   isEditable && <FileBase64
-                            id="fileInput"
-                            name="plantImage"
-                            multiple={false}
-                            onDone={({ base64 }) => setPlantImage(base64)}
-                        />
-                    }
+                    <div className="plantNameTitleDiv">
+                        <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                    </div>
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
                     <div className="detailTextRec">
                         <Grid container spacing={4}>
+
                             <Grid item xs={6}>
                                 <p className="detailContentType">Group</p>
                             </Grid>
@@ -123,6 +120,18 @@ export default function PlantDetail() {
                             <Grid item xs={6}>
                                 <p className="detailContentText">{lastWaterDate}</p>
                             </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">Watering Period</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">{waterPeriod}</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">Sunshine Period</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">{sunshinePeriod}</p>
+                            </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
                         <textarea 
@@ -134,6 +143,16 @@ export default function PlantDetail() {
                         >
                         {otherDetails}
                         </textarea>
+                        { isEditable && <p className="otherDetailTitle">Update the plant name</p> }
+                        { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
+                        { isEditable && <p className="otherDetailTitle">Update the plant image</p>}
+                        { isEditable && <FileBase64
+                                id="fileInput"
+                                name="plantImage"
+                                multiple={false}
+                                onDone={({ base64 }) => setPlantImage(base64)}
+                                />
+                        }
                         <button
                             className={buttonClass}
                             onClick={handleInput}
