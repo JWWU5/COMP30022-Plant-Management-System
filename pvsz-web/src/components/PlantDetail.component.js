@@ -24,6 +24,7 @@ export default function PlantDetail() {
     const [buttonText, setbuttonText] = useState("Edit");
     const [detailBackgroundColor, setDetailBackgroundColor] = useState("#44533B");
     const [detailTextColor, setDetailTextColor] = useState("#555A6E");
+    const [errorTxt, setErrorTxt] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
 
     useEffect(() => {
@@ -116,10 +117,34 @@ export default function PlantDetail() {
         setPlantName(e.target.value);
     }
 
+    function uploadingImage(base64) {
+        var count = 0;
+        if (base64.slice(0,10) === "data:image") {
+            
+            setPlantImage(base64);
+            if(count === 0){
+                setSuccessTxt("The selected file is a image")
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        }else{
+            if(count === 0){
+                setErrorTxt("Only accept uploading image");
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+        }
+    }
+
     return (
         <body>
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
@@ -135,7 +160,7 @@ export default function PlantDetail() {
                             id="fileInput"
                             name="plantImage"
                             multiple={false}
-                            onDone={({ base64 }) => setPlantImage(base64)}
+                            onDone={({ base64 }) => uploadingImage(base64)}
                         />
                     }
                 </div>

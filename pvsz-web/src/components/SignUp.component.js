@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./SignInUp.css";
@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Register() {
@@ -18,8 +18,6 @@ export default function Register() {
     const [errorTxt, setErrorTxt] = useState("");
     const [isCorrect, setIsCorrect] = useState("");
     const [information, setInformation] = useState("");
-    // const [buttonContent, setButtonContent] = useState("");
-    // const [selectedImage, setSelectedImage] = useState(avatar);
 
     const [image, setImage] = useState(avatar);
     const [firstName, setFirstName] = useState("");
@@ -29,7 +27,6 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [agreePolicy, setPagreePolicy] = useState("");
-    const [register, setRegister] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -151,17 +148,6 @@ export default function Register() {
             });
     };
 
-    const submit = (e) => {
-        e.preventDefault();
-        alert(`The name you entered was: ${userName}`);
-    };
-
-    function componentDidMount() {
-        const container = document.querySelector(".buttonContainer1");
-        container.addEventListener("animationend", () => {
-            container.classList.remove("active");
-        });
-    }
 
     const checkEmail = (value) => {
         //reg express
@@ -180,10 +166,28 @@ export default function Register() {
         }
     };
 
-    // var avatarStyle = {
-    //     height: "10vh",
-    //     width: "10vh",
-    // };
+    function uploadingImage(base64) {
+        var count = 0;
+        if (base64.slice(0,10) === "data:image") {
+            
+            setImage(base64);
+            if(count === 0){
+                setSuccessTxt("The selected file is a image")
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        }else{
+            if(count === 0){
+                setErrorTxt("Only accept uploading image");
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+        }
+    }
 
     return (
         <body className="signIn">
@@ -222,7 +226,7 @@ export default function Register() {
                             id="fileInput"
                             name="avatar"
                             multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
+                            onDone={({ base64 }) => uploadingImage(base64)}
                         />
                     </label>
                 </div>

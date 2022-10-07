@@ -157,6 +157,29 @@ export default function AddPlant() {
             });
     };
 
+    function uploadingImage(base64) {
+        var count = 0;
+        if (base64.slice(0,10) === "data:image") {
+            
+            setImage(base64);
+            if(count === 0){
+                setSuccessTxt("The selected file is a image")
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        }else{
+            if(count === 0){
+                setErrorTxt("Only accept uploading image");
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+        }
+    }
+
     return (
         <body>
             <div className="tipsBox">
@@ -187,7 +210,7 @@ export default function AddPlant() {
                             id="fileInput"
                             name="avatar"
                             multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
+                            onDone={({ base64 }) => uploadingImage(base64)}
                         />
                     </label>
                 </div>

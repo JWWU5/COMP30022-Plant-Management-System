@@ -13,6 +13,7 @@ export default function Profile() {
     const [readonlyValue, setReadonlyValue] = useState(true);
     const [inputType, setInputType] = useState("blocked");
     const [nullInput, setnullInput] = useState(false);
+    const [errorTxt, setErrorTxt] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     // Below consts could be replaced by data stored in our database
     const [firstName, setFirstName] = useState("");
@@ -117,10 +118,34 @@ export default function Profile() {
         checkNullInput(userName);
     };
 
+    function uploadingImage(base64) {
+        var count = 0;
+        if (base64.slice(0,10) === "data:image") {
+            
+            setImage(base64);
+            if(count === 0){
+                setSuccessTxt("The selected file is a image")
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        }else{
+            if(count === 0){
+                setErrorTxt("Only accept uploading image");
+                count++;
+            }
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+        }
+    }
+
     return (
         <body>
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
             <Header />
             <header>
@@ -193,7 +218,7 @@ export default function Profile() {
                             id="fileInput"
                             name="avatar"
                             multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
+                            onDone={({ base64 }) => uploadingImage(base64)}
                         />
                     )}               
                 </div>
