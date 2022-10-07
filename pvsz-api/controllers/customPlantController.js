@@ -92,7 +92,7 @@ exports.dels = async (req, res, next) => {
                     _id: { $in: idsArr },
                 });
                 for (const id of idsArr){
-                    let r3 = await PlantGroup.findOneAndUpdate(
+                    let r3 = await PlantGroup.updateMany(
                         {
                              plants:id
                         },
