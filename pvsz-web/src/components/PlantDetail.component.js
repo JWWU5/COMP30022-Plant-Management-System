@@ -57,7 +57,7 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                // setOtherDetails(plant.otherDetails)
+                setOtherDetails(plant.otherDetails)
                 // setPlantImage(plant.image)
                 // setOtherDetails(res.data.data.otherDetails)
                 // setPlantImage(plant.image)
@@ -137,7 +137,6 @@ export default function PlantDetail() {
                     <h3 className="detailText">Details</h3>
                     <div className="detailTextRec">
                         <Grid container spacing={4}>
-
                             <Grid item xs={6}>
                                 <p className="detailContentType">Group</p>
                             </Grid>
@@ -176,7 +175,7 @@ export default function PlantDetail() {
                                     color: {detailTextColor}}}
                             disabled={!isEditable}
                             type="text"
-                            // value = {otherDetails}
+                            // value = 
                             onChange={(e) => inputOtherDetails(e)}
                         >
                         {otherDetails}
