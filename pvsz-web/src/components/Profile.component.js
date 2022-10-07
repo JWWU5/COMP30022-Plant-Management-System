@@ -124,19 +124,25 @@ export default function Profile() {
             
             setImage(base64);
             if(count === 0){
-                setSuccessTxt("The selected file is a image")
                 count++;
             }
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setSuccessTxt("The selected file is a image!");
             window.timer = window.setTimeout(() => {
                 setSuccessTxt("");
             }, 1000);
         }else{
             if(count === 0){
-                setErrorTxt("Only accept uploading image");
                 count++;
             }
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setSuccessTxt("Only accept uploading image");
             window.timer = window.setTimeout(() => {
-                setErrorTxt("");
+                setSuccessTxt("");
             }, 1000);
         }
     }
@@ -218,7 +224,7 @@ export default function Profile() {
                             id="fileInput"
                             name="avatar"
                             multiple={false}
-                            onDone={({ base64 }) => uploadingImage(base64)}
+                            onDone={({ base64 }) => setImage(base64)}
                         />
                     )}               
                 </div>

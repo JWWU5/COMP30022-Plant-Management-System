@@ -30,7 +30,16 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        if (image.slice(0,10) !== "data:image") {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Only accept uploading image");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!firstName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -166,28 +175,28 @@ export default function Register() {
         }
     };
 
-    function uploadingImage(base64) {
-        var count = 0;
-        if (base64.slice(0,10) === "data:image") {
+    // function uploadingImage(base64) {
+    //     var count = 0;
+    //     if (base64.slice(0,10) === "data:image") {
             
-            setImage(base64);
-            if(count === 0){
-                setSuccessTxt("The selected file is a image")
-                count++;
-            }
-            window.timer = window.setTimeout(() => {
-                setSuccessTxt("");
-            }, 1000);
-        }else{
-            if(count === 0){
-                setErrorTxt("Only accept uploading image");
-                count++;
-            }
-            window.timer = window.setTimeout(() => {
-                setErrorTxt("");
-            }, 1000);
-        }
-    }
+    //         setImage(base64);
+    //         if(count === 0){
+    //             setSuccessTxt("The selected file is a image")
+    //             count++;
+    //         }
+    //         window.timer = window.setTimeout(() => {
+    //             setSuccessTxt("");
+    //         }, 1000);
+    //     }else{
+    //         if(count === 0){
+    //             setErrorTxt("Only accept uploading image");
+    //             count++;
+    //         }
+    //         window.timer = window.setTimeout(() => {
+    //             setErrorTxt("");
+    //         }, 1000);
+    //     }
+    // }
 
     return (
         <body className="signIn">
@@ -226,7 +235,7 @@ export default function Register() {
                             id="fileInput"
                             name="avatar"
                             multiple={false}
-                            onDone={({ base64 }) => uploadingImage(base64)}
+                            onDone={({ base64 }) => setImage(base64)}
                         />
                     </label>
                 </div>
