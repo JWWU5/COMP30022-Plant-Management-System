@@ -83,7 +83,7 @@ export default function GroupPlants() {
                 setGroupPlants(res.data.data.plants);
             })
             .catch((err) => {
-                console.log("er = ", err);
+                console.log("er = ", err.response.data);
             });
     }, [groupId]);
 

@@ -74,7 +74,7 @@ export default function GroupDetail() {
                 setPlants(res.data.data.plants);
             })
             .catch((err) => {
-                console.log("err = ", err);
+                console.log("err = ", err.response.data);
             });
     });
 
