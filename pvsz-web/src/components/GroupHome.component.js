@@ -106,7 +106,7 @@ export default function GroupHome() {
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
-                setSuccessTxt("Submit is successful!");
+                setSuccessTxt("Creation is successful!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
                     window.location.reload(false);
@@ -219,11 +219,11 @@ export default function GroupHome() {
                                             "aria-label": "search the group",
                                         }}
                                         onChange={(e) => {
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.groupname.indexOf(val) !==
+                                                    v.groupname.toUpperCase().indexOf(val) !==
                                                     -1
                                                 );
                                             });

@@ -74,6 +74,15 @@
     font-family: "Tamil MN";
 }
 
+.tipsBox {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}
+
 .plantNameTitleDiv{
     height: 7vh;
     width: 90vw;

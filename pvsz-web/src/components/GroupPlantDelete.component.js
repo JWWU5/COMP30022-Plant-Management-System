@@ -218,7 +218,7 @@ export default function DeleteGroup() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>
