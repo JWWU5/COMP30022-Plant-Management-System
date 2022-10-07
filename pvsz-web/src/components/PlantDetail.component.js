@@ -57,10 +57,8 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                // setOtherDetails(plant.otherDetails)
-                // setPlantImage(plant.image)
-                // setOtherDetails(res.data.data.otherDetails)
-                // setPlantImage(plant.image)
+                setWaterPeriod(plant.waterPeriod + " days")
+                setSunshinePeriod(plant.sunPeriod + " days")
                 if (!isEditable){
                     setOtherDetails(plant.otherDetails)
                     setPlantImage(plant.image)
@@ -204,8 +202,8 @@ export default function PlantDetail() {
                             disabled={!isEditable}
                             type="text"
                             onChange={(e) => inputOtherDetails(e)}
+                            value={otherDetails}
                         >
-                        {otherDetails}
                         </textarea>
                         { isEditable && <p className="otherDetailTitle">Update the plant name</p> }
                         { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
@@ -214,7 +212,7 @@ export default function PlantDetail() {
                                 id="fileInput"
                                 name="plantImage"
                                 multiple={false}
-                                onDone={({ base64 }) => setPlantImage(base64)}
+                                onDone={({ base64 }) => uploadingImage(base64)}
                                 />
                         }
                         <button
