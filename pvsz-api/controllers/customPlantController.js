@@ -91,6 +91,18 @@ exports.dels = async (req, res, next) => {
                 let r2 = await CustomPlant.deleteMany({
                     _id: { $in: idsArr },
                 });
+                for (const id of idsArr){
+                    let r3 = await PlantGroup.updateMany(
+                        {
+                             plants:id
+                        },
+                        {
+                            $pull: {
+                                plants: id,
+                            },
+                        }
+                    );
+                }
                 res.json({
                     code: 200,
                 });
@@ -150,13 +162,14 @@ exports.setCustomPlant = async (req, res, next) => {
             });
         } else {
             let plantId = req.body.plantId;
-            console.log("plantId =", plantId)
             CustomPlant.findByIdAndUpdate(
                 {
                     _id: plantId,
                 },
                 {
                     otherDetails: req.body.otherDetails,
+                    image: req.body.plantImage,
+                    name: req.body.plantName,
                 },
                 (err, doc) => {
                     if (err) {

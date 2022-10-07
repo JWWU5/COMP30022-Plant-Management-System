@@ -57,6 +57,13 @@ ul {
     width: 80vw;
 }
 
+.ImageTitle {
+    padding-left: 5%;
+    font-size: 4vw;
+    color: #44533B;
+    font-family: "Times New Roman";
+    overflow-x: scroll;
+}
 .avatarIcon {
     height: 10vh;
     width: 10vh;

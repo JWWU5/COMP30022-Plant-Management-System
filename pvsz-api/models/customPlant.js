@@ -4,9 +4,9 @@ const CustomPlantSchema = mongoose.Schema({
 	image: { type: String},
 	name: { type: String },
 	waterPeriod: { type: String },
-	lastWaterDate: { type: Date },
+	lastWaterDate: { type: String },
 	sunPeriod: { type: String},
-	lastSunDate: { type: Date },
+	lastSunDate: { type: String },
 	otherDetails: { type: String }
 },{
 	timestamps: { createdAt: "createTime", updatedAt: "updateTime" },

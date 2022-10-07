@@ -7,6 +7,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import "./AddPlant.css";
 import "./dynamicButton.scss";
 import FileBase64 from "react-file-base64";
+import Avatar from "@mui/material/Avatar";
 
 import Select from "react-select";
 import { useEffect } from "react";
@@ -26,6 +27,7 @@ export default function AddPlant() {
     const [groups, setGroups] = useState([]);
     const [groupOptions, setGroupOptions] = useState([]);
     const [image, setImage] = useState("");
+    const [date, setDate] = useState("");
 
     useEffect(() => {
         axios
@@ -41,8 +43,8 @@ export default function AddPlant() {
             .then((res) => {
                 const groupLength = res.data.data.groups.length;
                 var groupOptions = new Array();
-                for(var i = 0; i < groupLength; i++){
-                    groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname};
+                for (var i = 0; i < groupLength; i++) {
+                    groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname };
                 }
                 setGroupOptions(groupOptions);
                 setImage(defaultImage);
@@ -50,6 +52,10 @@ export default function AddPlant() {
             .catch((err) => {
                 console.log("err = ", err);
             });
+
+        let today = new Date().toLocaleDateString('en-AU').split('/').reverse().join('-');
+        setDate(today);
+
         let sunExposure = searchParams[0].getAll("sunExposure")[0];
         let waterPeriod = searchParams[0].getAll("waterPeriod")[0];
         if (sunExposure) {
@@ -62,6 +68,17 @@ export default function AddPlant() {
     }, []);
 
     const handleSubmit = () => {
+        console.log(lastSunshineTime)
+        if (image.slice(0,10) !== "data:image") {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Only accept uploading image");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!plantName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -135,6 +152,7 @@ export default function AddPlant() {
                 }
             )
             .then((res) => {
+
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -149,6 +167,29 @@ export default function AddPlant() {
             });
     };
 
+    // function uploadingImage(base64) {
+    //     var count = 0;
+    //     if (base64.slice(0,10) === "data:image") {
+            
+    //         setImage(base64);
+    //         if(count === 0){
+    //             setSuccessTxt("The selected file is a image")
+    //             count++;
+    //         }
+    //         window.timer = window.setTimeout(() => {
+    //             setSuccessTxt("");
+    //         }, 1000);
+    //     }else{
+    //         if(count === 0){
+    //             setErrorTxt("Only accept uploading image");
+    //             count++;
+    //         }
+    //         window.timer = window.setTimeout(() => {
+    //             setErrorTxt("");
+    //         }, 1000);
+    //     }
+    // }
+
     return (
         <body>
             <div className="tipsBox">
@@ -159,14 +200,21 @@ export default function AddPlant() {
             <header>
                 <h1 className="addPlantTitle">ADD PLANT</h1>
             </header>
-            
+
             <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="imageUpload">
+                <Avatar
+                    // src="avatar1.jpg"
+                    src={image}
+                    sx={{ width: 100, height: 100 }}
+                />
+                
+                <div class="plantValueDiv">
+                    <h3 className="plantValueTitle">Plant Avatar</h3>
                     <label for="fileInput">
                         <FileBase64
                             id="fileInput"
@@ -200,6 +248,7 @@ export default function AddPlant() {
                     <input
                         className="plantValueBlock"
                         type="date"
+                        max={date}
                         value={lastWaterTime}
                         onChange={(e) => setLastWaterTime(e.target.value)}
                     ></input>
@@ -214,14 +263,16 @@ export default function AddPlant() {
                     ></input>
                 </div>
                 <div className="plantValueDiv">
-                    <h3 className="plantValueTitle">Last Sublight</h3>
+                    <h3 className="plantValueTitle">Last Sunlight</h3>
                     <input
                         className="plantValueBlock"
                         type="date"
+                        max={date}
                         value={lastSunshineTime}
                         onChange={(e) => setLastSunshineTime(e.target.value)}
                     ></input>
                 </div>
+
                 <div className="plantValueDiv">
                     <h3 className="plantValueTitle">Choose a group: </h3>
                     <Select
@@ -230,7 +281,7 @@ export default function AddPlant() {
                         options={groupOptions}
                         className="basic-multi-select"
                         classNamePrefix="mySelect"
-                        onChange={(e)=> setGroups(e.map(value=>value.value))}
+                        onChange={(e) => setGroups(e.map(value => value.value))}
                     />
                 </div>
                 <div className="plantValueDiv">
