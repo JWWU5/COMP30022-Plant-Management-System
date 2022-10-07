@@ -49,7 +49,7 @@ export default function PlantDetail() {
             )
             .then((res) => {
                 setPlant(res.data.data);
-                setPlantName(plant.name);
+                // setPlantName(plant.name);
                 if(plant.chooseGroup !== ""){
                     setPlantGroupName(plant.chooseGroup)
                 } else{
@@ -57,8 +57,8 @@ export default function PlantDetail() {
                 }
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                setOtherDetails(plant.otherDetails)
-                setPlantImage(plant.image)
+                // setOtherDetails(plant.otherDetails)
+                // setPlantImage(plant.image)
                 // setOtherDetails(res.data.data.otherDetails)
                 // setPlantImage(plant.image)
                 if (!isEditable){
@@ -119,7 +119,6 @@ export default function PlantDetail() {
 
     const inputPlantName = (e) => {
         setPlantName(e.target.value);
-        console.log(plantName);
     }
 
     return (
@@ -171,17 +170,17 @@ export default function PlantDetail() {
                             </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
-                        <input 
+                        <textarea 
                             className="otherDetailContent" 
                             style={{background: {detailBackgroundColor}, 
                                     color: {detailTextColor}}}
                             disabled={!isEditable}
                             type="text"
-                            value = {otherDetails}
+                            // value = {otherDetails}
                             onChange={(e) => inputOtherDetails(e)}
                         >
                         {otherDetails}
-                        </input>
+                        </textarea>
                         { isEditable && <p className="otherDetailTitle">Update the plant name</p> }
                         { isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea> }
                         { isEditable && <p className="otherDetailTitle">Update the plant image</p>}
