@@ -162,7 +162,6 @@ exports.setCustomPlant = async (req, res, next) => {
             });
         } else {
             let plantId = req.body.plantId;
-            console.log(req.body.plantName);
             CustomPlant.findByIdAndUpdate(
                 {
                     _id: plantId,
