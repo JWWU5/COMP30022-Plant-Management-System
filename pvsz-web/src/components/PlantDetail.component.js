@@ -38,7 +38,7 @@ export default function PlantDetail() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/customPlant/getPlant",
+                "api/v1/customPlant/getPlant",
                 {
                     plantId: plantId,
                 },
@@ -99,7 +99,7 @@ export default function PlantDetail() {
 
             axios
                 .post(
-                    "/api/v1/customPlant/setCustomPlant",
+                    "api/v1/customPlant/setCustomPlant",
                     {
                         plantId: plantId,
                         otherDetails: otherDetails,

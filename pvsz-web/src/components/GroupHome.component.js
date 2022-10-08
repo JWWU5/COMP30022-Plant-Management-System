@@ -42,7 +42,7 @@ export default function GroupHome() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {

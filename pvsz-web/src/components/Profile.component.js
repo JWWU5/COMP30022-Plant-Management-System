@@ -28,7 +28,7 @@ export default function Profile() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -81,7 +81,7 @@ export default function Profile() {
             }
             axios
                 .post(
-                    "/api/v1/user/setUserInfo",
+                    "api/v1/user/setUserInfo",
                     {
                         firstName: firstName,
                         lastName: lastName,

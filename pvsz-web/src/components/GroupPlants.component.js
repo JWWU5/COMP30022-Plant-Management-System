@@ -51,7 +51,7 @@ export default function GroupPlants() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -69,7 +69,7 @@ export default function GroupPlants() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/getPlantGroupList",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
                     groupId: groupId,
                 },
@@ -111,7 +111,7 @@ export default function GroupPlants() {
 
         axios
             .post(
-                "/api/v1/plantGroup/addPlantToGroup",
+                "api/v1/plantGroup/addPlantToGroup",
                 {
                     plants: checkedArr,
                     groupId: groupId,

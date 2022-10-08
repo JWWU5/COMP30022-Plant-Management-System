@@ -114,6 +114,7 @@ exports.dels = async (req, res, next) => {
 };
 
 exports.getPlant = async (req, res, next) => {
+
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({

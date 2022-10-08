@@ -60,7 +60,7 @@ export default function GroupDetail() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/getPlantGroupList",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
                     groupId: groupId,
                 },

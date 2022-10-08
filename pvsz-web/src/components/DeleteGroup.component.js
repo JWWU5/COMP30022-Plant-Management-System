@@ -52,7 +52,7 @@ export default function DeleteGroup() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -99,7 +99,7 @@ export default function DeleteGroup() {
 
         axios
             .post(
-                "/api/v1/plantGroup/dels",
+                "api/v1/plantGroup/dels",
                 checkedGroupArr.map((v) => {
                     return v._id;
                 }),

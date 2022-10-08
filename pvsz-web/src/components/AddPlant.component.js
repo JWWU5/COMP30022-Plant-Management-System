@@ -32,7 +32,7 @@ export default function AddPlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -136,7 +136,7 @@ export default function AddPlant() {
         }
         axios
             .post(
-                "/api/v1/customPlant/add",
+                "api/v1/customPlant/add",
                 {
                     image: image,
                     name: plantName,

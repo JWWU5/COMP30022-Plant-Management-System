@@ -1,10 +1,11 @@
-const { User } = require("./../models");
+const { User ,CustomPlant} = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
 const mongoose = require("mongoose");
 
 exports.register = async (req, res, next) => {
+
     let user = await User.findOne({
         email: req.body.email,
     });
@@ -96,6 +97,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
+
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -111,6 +113,8 @@ exports.getUserInfo = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
+            
+
             try {
                 let userItem = await User.findById(userId).populate(
                     "plantList"
@@ -118,7 +122,6 @@ exports.getUserInfo = async (req, res, next) => {
 
                 res.json({
                     code: 200,
-
                     data: userItem,
                 });
             } catch (error) {
