@@ -43,8 +43,6 @@ export default function GroupPlants() {
     const [errorTxt, setErrorTxt] = useState("");
     const [difference, setDifference] = useState([]);
 
-
-
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
     }, []);
@@ -123,7 +121,6 @@ export default function GroupPlants() {
                 }
             )
             .then((res) => {
-
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -136,7 +133,6 @@ export default function GroupPlants() {
             .catch((err) => {
                 console.log("err = ", err);
             });
-
     }
 
     return (

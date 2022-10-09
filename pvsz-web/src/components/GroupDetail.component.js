@@ -19,7 +19,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -51,6 +51,7 @@ export default function GroupDetail() {
     const [plants, setPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [delGroup, setDelGroup] = useState([]);
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
@@ -72,10 +73,26 @@ export default function GroupDetail() {
             )
             .then((res) => {
                 setPlants(res.data.data.plants);
+                setLiked(res.data.data.like);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
+    });
+    useEffect(() => {
+        axios.post(
+            "api/v1/plantGroup/changeLiked",
+
+            {
+                groupId: groupId,
+                like: liked,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.token}`,
+                },
+            }
+        );
     });
 
     const deleteDoubleCheck = () => {
@@ -90,7 +107,6 @@ export default function GroupDetail() {
     let navigate = useNavigate();
 
     function Agree() {
-
         axios
             .post(
                 "api/v1/plantGroup/dels",
@@ -148,8 +164,7 @@ export default function GroupDetail() {
             <nav aria-label="main mailbox folders">
                 <List>
                     <ListItem>
-                        <ListItemButton
-                        >
+                        <ListItemButton>
                             <ModeEditOutlineOutlinedIcon
                                 sx={{ ml: 2, color: "#ffffff" }}
                             />
@@ -238,6 +253,10 @@ export default function GroupDetail() {
                         color="error"
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}
+                        defaultChecked={liked}
+                        onChange={() => {
+                            setLiked(!liked);
+                        }}
                     />
                     <div class="editIcon">
                         {["bottom"].map((anchor) => (

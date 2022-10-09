@@ -205,3 +205,40 @@ exports.delPlantInGroup = async (req, res, next) => {
         }
     });
 };
+
+exports.changeLiked = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            PlantGroup.findByIdAndUpdate(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    like: req.body.liked,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "liked Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};

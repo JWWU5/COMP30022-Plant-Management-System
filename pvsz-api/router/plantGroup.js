@@ -7,5 +7,6 @@ router.post("/dels", plantGroupController.dels);
 router.post("/addPlantToGroup", plantGroupController.addPlantToGroup);
 router.post("/getPlantGroupList", plantGroupController.getPlantGroupList);
 router.post("/delPlantInGroup", plantGroupController.delPlantInGroup);
+router.post("/changeLiked", plantGroupController.changeLiked);
 
 module.exports = router;
