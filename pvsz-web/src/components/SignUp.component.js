@@ -8,7 +8,7 @@ import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
-
+import moment from "moment";
 import { useState } from "react";
 import axios from "axios";
 
@@ -264,6 +264,7 @@ export default function Register() {
                         type="date"
                         placeholder="DOB"
                         className="signUpInputBlock"
+                        max={moment().format("YYYY-MM-DD")}
                         value={birthdayDate}
                         onChange={(e) => setBirthdayDate(e.target.value)}
                     ></input>

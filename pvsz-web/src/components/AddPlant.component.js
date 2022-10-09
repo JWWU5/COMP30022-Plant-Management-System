@@ -8,7 +8,7 @@ import "./AddPlant.css";
 import "./dynamicButton.scss";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
-
+import moment from "moment";
 import Select from "react-select";
 import { useEffect } from "react";
 
@@ -52,7 +52,7 @@ export default function AddPlant() {
                 console.log("err = ", err);
             });
 
-        let today = new Date().toLocaleDateString('en-AU').split('/').reverse().join('-');
+        let today = moment().format("YYYY-MM-DD");
         setDate(today);
 
         let sunExposure = searchParams[0].getAll("sunExposure")[0];
