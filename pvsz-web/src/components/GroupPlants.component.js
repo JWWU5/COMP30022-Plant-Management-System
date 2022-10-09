@@ -42,6 +42,7 @@ export default function GroupPlants() {
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
     const [difference, setDifference] = useState([]);
+    const [cachePlantList, setCachePlantList] = useState([]);
 
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
@@ -49,7 +50,7 @@ export default function GroupPlants() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -59,6 +60,7 @@ export default function GroupPlants() {
             )
             .then((res) => {
                 setPlantList(res.data.data.plantList);
+                setCachePlantList(res.data.data.plantList);
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -67,7 +69,7 @@ export default function GroupPlants() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/getPlantGroupList",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
                     groupId: groupId,
                 },
@@ -81,7 +83,7 @@ export default function GroupPlants() {
                 setGroupPlants(res.data.data.plants);
             })
             .catch((err) => {
-                console.log("er = ", err);
+                console.log("er = ", err.response.data);
             });
     }, [groupId]);
 
@@ -90,7 +92,7 @@ export default function GroupPlants() {
             (x) => !groupPlants.find((rm) => rm._id === x._id)
         );
         setDifference(difference);
-    }, [groupPlants]);
+    }, [difference]);
 
     function addPlantToGroup() {
         let checkedArr = groupList.filter((v) => {
@@ -109,7 +111,7 @@ export default function GroupPlants() {
 
         axios
             .post(
-                "/api/v1/plantGroup/addPlantToGroup",
+                "api/v1/plantGroup/addPlantToGroup",
                 {
                     plants: checkedArr,
                     groupId: groupId,
@@ -174,6 +176,19 @@ export default function GroupPlants() {
                                         placeholder="Search the plant"
                                         inputProps={{
                                             "aria-label": "search your plant",
+                                        }}
+                                        onChange={(e) => {
+                                            let val =
+                                                e.target.value.toUpperCase();
+                                            let deepList = [...cachePlantList];
+                                            deepList = deepList.filter((v) => {
+                                                return (
+                                                    v.name
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
+                                                );
+                                            });
+                                            setPlantList(deepList);
                                         }}
                                     />
                                     <IconButton

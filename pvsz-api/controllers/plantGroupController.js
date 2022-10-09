@@ -222,12 +222,13 @@ exports.changeLiked = async (req, res, next) => {
                 message: "Unauthenticated request",
             });
         } else {
+            console.log(req.body);
             PlantGroup.findByIdAndUpdate(
                 {
                     _id: req.body.groupId,
                 },
                 {
-                    like: req.body.liked,
+                    like: req.body.like,
                 },
                 (err, doc) => {
                     if (err) {

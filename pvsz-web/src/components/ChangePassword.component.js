@@ -80,7 +80,7 @@ export default function ChangePassword() {
         }
         axios
             .post(
-                "/api/v1/user/changePassword",
+                "api/v1/user/changePassword",
                 {
                     newPassword: newPassword,
                 },

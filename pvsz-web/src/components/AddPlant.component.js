@@ -26,13 +26,13 @@ export default function AddPlant() {
     const [otherDetail, setOtherDetail] = useState("");
     const [groups, setGroups] = useState([]);
     const [groupOptions, setGroupOptions] = useState([]);
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(defaultImage);
     const [date, setDate] = useState("");
 
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -47,7 +47,6 @@ export default function AddPlant() {
                     groupOptions[i] = { value: res.data.data.groups[i]._id, label: res.data.data.groups[i].groupname };
                 }
                 setGroupOptions(groupOptions);
-                setImage(defaultImage);
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -69,16 +68,19 @@ export default function AddPlant() {
 
     const handleSubmit = () => {
         console.log(lastSunshineTime)
-        if (image.slice(0,10) !== "data:image") {
-            if (window.timer) {
-                clearTimeout(window.timer);
+        if(image !== defaultImage){
+            if (image.slice(0,10) !== "data:image" ) {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Only accept uploading image");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
             }
-            setErrorTxt("Only accept uploading image");
-            window.timer = window.setTimeout(() => {
-                setErrorTxt("");
-            }, 1000);
-            return;
         }
+
         if (!plantName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -134,7 +136,7 @@ export default function AddPlant() {
         }
         axios
             .post(
-                "/api/v1/customPlant/add",
+                "api/v1/customPlant/add",
                 {
                     image: image,
                     name: plantName,
@@ -166,29 +168,6 @@ export default function AddPlant() {
                 console.log("err = ", err);
             });
     };
-
-    // function uploadingImage(base64) {
-    //     var count = 0;
-    //     if (base64.slice(0,10) === "data:image") {
-            
-    //         setImage(base64);
-    //         if(count === 0){
-    //             setSuccessTxt("The selected file is a image")
-    //             count++;
-    //         }
-    //         window.timer = window.setTimeout(() => {
-    //             setSuccessTxt("");
-    //         }, 1000);
-    //     }else{
-    //         if(count === 0){
-    //             setErrorTxt("Only accept uploading image");
-    //             count++;
-    //         }
-    //         window.timer = window.setTimeout(() => {
-    //             setErrorTxt("");
-    //         }, 1000);
-    //     }
-    // }
 
     return (
         <body>

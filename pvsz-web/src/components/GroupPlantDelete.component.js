@@ -59,7 +59,7 @@ export default function DeleteGroup() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/getPlantGroupList",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
                     groupId: groupId,
                 },
@@ -106,7 +106,7 @@ export default function DeleteGroup() {
         });
         axios
             .post(
-                "/api/v1/plantGroup/delPlantInGroup",
+                "api/v1/plantGroup/delPlantInGroup",
                 {
                     idsArr: checkedGroupArr.map((v) => {
                         return v._id;
@@ -176,7 +176,7 @@ export default function DeleteGroup() {
                                             fontSize: 20,
                                         }}
                                     >
-                                        {"Are you sure to delete this group?"}
+                                        {"Are you sure to delete?"}
                                     </DialogTitle>
                                     <DialogActions>
                                         <Button

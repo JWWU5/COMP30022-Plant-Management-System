@@ -114,6 +114,7 @@ exports.dels = async (req, res, next) => {
 };
 
 exports.getPlant = async (req, res, next) => {
+
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -130,14 +131,14 @@ exports.getPlant = async (req, res, next) => {
             });
         } else {
             let plantId = req.body.plantId;
-
             try {
                 let plant = await CustomPlant.findById(plantId);
-
+                let group = await PlantGroup.find({plants: plantId});
+                let groupname = group.map(doc => doc.groupname)
                 res.json({
                     code: 200,
-
                     data: plant,
+                    group:groupname,
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server query");

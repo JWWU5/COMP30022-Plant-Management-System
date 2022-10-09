@@ -19,6 +19,10 @@ export default function PlantDetail() {
     const [lastWaterDate, setLastWaterDate] = useState("");
     const [otherDetails, setOtherDetails] = useState("");
     const [plantImage, setPlantImage] = useState("");
+    const [waterPeriod, setWaterPeriod] = useState("");
+    const [sunshinePeriod, setSunshinePeriod] = useState("");
+
+    // Variables for frontend. 
     const [isEditable, setIsEditable] = useState(false);
     const [buttonClass, setButtonClass] = useState("editButtonPlantDetail");
     const [buttonText, setbuttonText] = useState("Edit");
@@ -34,7 +38,7 @@ export default function PlantDetail() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/customPlant/getPlant",
+                "api/v1/customPlant/getPlant",
                 {
                     plantId: plantId,
                 },
@@ -46,21 +50,19 @@ export default function PlantDetail() {
             )
             .then((res) => {
                 setPlant(res.data.data);
-                if(plant.chooseGroup !== ""){
-                    setPlantGroupName(plant.chooseGroup)
-                } else{
-                    setPlantGroupName("no group")
-                }
+                setPlantGroupName(res.data.group.join(", "))
                 setLastSunDate(plant.lastSunDate)
                 setLastWaterDate(plant.lastWaterDate)
-                if (!isEditable){
+                setWaterPeriod(plant.waterPeriod)
+                setSunshinePeriod(plant.sunPeriod)
+                if (!isEditable) {
                     setOtherDetails(plant.otherDetails)
                     setPlantImage(plant.image)
                     setPlantName(plant.name);
                 }
             })
             .catch((err) => {
-                console.log("err = ", err);
+                console.log("err = ", err.response.data);
             });
     });
 
@@ -72,41 +74,66 @@ export default function PlantDetail() {
             setbuttonText("Submit");
             setButtonClass("submitButtonPlantDetail");
         } else {
-            setIsEditable(false);
-            setDetailBackgroundColor("#788E6C");
-            setDetailTextColor("#555A6E");
-            setbuttonText("Edit");
-            setButtonClass("editButtonPlantDetail");
-        }
-        axios
-            .post(
-                "/api/v1/customPlant/setCustomPlant",
-                {
-                    plantId: plantId,
-                    otherDetails: otherDetails,
-                    plantImage: plantImage,
-                    plantName: plantName,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${window.localStorage.token}`,
-                    },
-                }
-            )
-            .then((res) => {
-                if (isEditable === true) {
+            if (plantImage !== plant.image) {
+                if (plantImage.slice(0, 10) !== "data:image") {
                     if (window.timer) {
                         clearTimeout(window.timer);
                     }
-                    setSuccessTxt("Update is successful!");
+                    setErrorTxt("Only accept uploading image!");
                     window.timer = window.setTimeout(() => {
-                        setSuccessTxt("");
+                        setErrorTxt("");
                     }, 1000);
+                    return;
                 }
-            })
-            .catch((err) => {
-                console.log("err = ", err);
-            });
+            }
+            if (!plantName) {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Plant name can't be empty!");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
+
+            axios
+                .post(
+                    "api/v1/customPlant/setCustomPlant",
+                    {
+                        plantId: plantId,
+                        otherDetails: otherDetails,
+                        plantImage: plantImage,
+                        plantName: plantName,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.token}`,
+                        },
+                    }
+                )
+                .then((res) => {
+                    if (isEditable === true) {
+                        if (window.timer) {
+                            clearTimeout(window.timer);
+                        }
+                        setSuccessTxt("Update is successful!");
+                        window.timer = window.setTimeout(() => {
+                            setSuccessTxt("");
+                        }, 1000); 
+                        setIsEditable(false);
+                        setDetailBackgroundColor("#788E6C");
+                        setDetailTextColor("#555A6E");
+                        setbuttonText("Edit");
+                        setButtonClass("editButtonPlantDetail");
+                    }
+                })
+                .catch((err) => {
+                    console.log("err = ", err);
+                });
+
+        }
+
     };
 
     const inputOtherDetails = (e) => {
@@ -117,28 +144,7 @@ export default function PlantDetail() {
         setPlantName(e.target.value);
     }
 
-    function uploadingImage(base64) {
-        var count = 0;
-        if (base64.slice(0,10) === "data:image") {
-            
-            setPlantImage(base64);
-            if(count === 0){
-                setSuccessTxt("The selected file is a image")
-                count++;
-            }
-            window.timer = window.setTimeout(() => {
-                setSuccessTxt("");
-            }, 1000);
-        }else{
-            if(count === 0){
-                setErrorTxt("Only accept uploading image");
-                count++;
-            }
-            window.timer = window.setTimeout(() => {
-                setErrorTxt("");
-            }, 1000);
-        }
-    }
+
 
     return (
         <body>
@@ -149,20 +155,9 @@ export default function PlantDetail() {
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
-                    <h3 className="plantNameTitle"><span>{plantName}</span></h3>
-                    <input 
-                        className="plantNameTextarea" 
-                        value={plantName} 
-                        disabled={!isEditable} 
-                        onChange={(e) => inputPlantName(e)}
-                    ></input>
-                    {isEditable && <FileBase64
-                            id="fileInput"
-                            name="plantImage"
-                            multiple={false}
-                            onDone={({ base64 }) => uploadingImage(base64)}
-                        />
-                    }
+                    <div className="plantNameTitleDiv">
+                        <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                    </div>
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
@@ -186,19 +181,43 @@ export default function PlantDetail() {
                             <Grid item xs={6}>
                                 <p className="detailContentText">{lastWaterDate}</p>
                             </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">Watering Period</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">{waterPeriod} Days</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">Sunshine Period</p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">{sunshinePeriod} Days</p>
+                            </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
-                        <input 
-                            className="otherDetailContent" 
-                            style={{background: {detailBackgroundColor}, 
-                                    color: {detailTextColor}}}
+                        <textarea
+                            className="otherDetailContent"
+                            style={{
+                                background: { detailBackgroundColor },
+                                color: { detailTextColor }
+                            }}
                             disabled={!isEditable}
                             type="text"
                             value = {otherDetails}
                             onChange={(e) => inputOtherDetails(e)}
                         >
-                        {/* {otherDetails} */}
-                        </input>
+
+                        </textarea>
+                        {isEditable && <p className="otherDetailTitle">Update the plant name</p>}
+                        {isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea>}
+                        {isEditable && <p className="otherDetailTitle">Update the plant image</p>}
+                        {isEditable && <FileBase64
+                            id="fileInput"
+                            name="plantImage"
+                            multiple={false}
+                            onDone={({ base64 }) => setPlantImage(base64)}
+                        />
+                        }
                         <button
                             className={buttonClass}
                             onClick={handleInput}

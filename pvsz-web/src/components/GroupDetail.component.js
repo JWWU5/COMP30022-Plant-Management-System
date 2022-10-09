@@ -61,7 +61,7 @@ export default function GroupDetail() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/getPlantGroupList",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
                     groupId: groupId,
                 },
@@ -76,16 +76,17 @@ export default function GroupDetail() {
                 setLiked(res.data.data.like);
             })
             .catch((err) => {
-                console.log("err = ", err);
+                console.log("err = ", err.response.data);
             });
-    });
-    useEffect(() => {
+    }, [groupId]);
+
+    function changeLike() {
         axios.post(
             "api/v1/plantGroup/changeLiked",
 
             {
                 groupId: groupId,
-                like: liked,
+                like: !liked,
             },
             {
                 headers: {
@@ -93,7 +94,8 @@ export default function GroupDetail() {
                 },
             }
         );
-    });
+        setLiked(!liked);
+    }
 
     const deleteDoubleCheck = () => {
         setDelGroup([...delGroup, groupId]);
@@ -253,10 +255,8 @@ export default function GroupDetail() {
                         color="error"
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}
-                        defaultChecked={liked}
-                        onChange={() => {
-                            setLiked(!liked);
-                        }}
+                        checked={liked}
+                        onChange={changeLike}
                     />
                     <div class="editIcon">
                         {["bottom"].map((anchor) => (

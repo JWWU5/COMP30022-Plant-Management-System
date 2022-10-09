@@ -52,7 +52,7 @@ export default function DeleteGroup() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -99,7 +99,7 @@ export default function DeleteGroup() {
 
         axios
             .post(
-                "/api/v1/plantGroup/dels",
+                "api/v1/plantGroup/dels",
                 checkedGroupArr.map((v) => {
                     return v._id;
                 }),
@@ -164,12 +164,14 @@ export default function DeleteGroup() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            let val = e.target.value.toUpperCase();
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.groupname.toUpperCase().indexOf(val) !==
-                                                    -1
+                                                    v.groupname
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
                                                 );
                                             });
                                             setGroups(deepList);
@@ -210,7 +212,7 @@ export default function DeleteGroup() {
                                             fontSize: 20,
                                         }}
                                     >
-                                        {"Are you sure to delete this group?"}
+                                        {"Are you sure to delete?"}
                                     </DialogTitle>
                                     <DialogActions>
                                         <Button

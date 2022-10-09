@@ -8,7 +8,7 @@ require("dotenv").config();
 app.use(
     express.json({
         extended: true,
-        limit: "50mb",
+        limit: "30mb",
     })
 );
 

@@ -30,7 +30,7 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (image.slice(0,10) !== "data:image") {
+        if (image.slice(0,10) !== "data:image" || image !== avatar) {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
@@ -121,7 +121,7 @@ export default function Register() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/register",
+            url: "api/v1/user/register",
             data: {
                 image,
                 firstName,

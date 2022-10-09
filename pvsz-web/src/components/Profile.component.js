@@ -28,7 +28,7 @@ export default function Profile() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -61,46 +61,58 @@ export default function Profile() {
 
     // Could save the input to our backend end in this function.
     function handleInput(e) {
+
         if (readonlyValue === true) {
             setReadonlyValue(false);
             setbuttonText("Submit");
             setInputType("text");
             setButtonClass("submitButton");
+
         } else {
-            setReadonlyValue(true);
-            setbuttonText("Edit");
-            setInputType("blocked");
-            setButtonClass("editButton");
-        }
-        axios
-            .post(
-                "/api/v1/user/setUserInfo",
-                {
-                    firstName: firstName,
-                    lastName: lastName,
-                    userName: userName,
-                    image: image,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${window.localStorage.token}`,
+            if (image.slice(0, 10) !== "data:image") {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Only accept uploading image");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
+            axios
+                .post(
+                    "api/v1/user/setUserInfo",
+                    {
+                        firstName: firstName,
+                        lastName: lastName,
+                        userName: userName,
+                        image: image,
                     },
-                }
-            )
-            .then((res) => {
-                if (readonlyValue === false) {
-                    if (window.timer) {
-                        clearTimeout(window.timer);
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.token}`,
+                        },
                     }
-                    setSuccessTxt("Update is successful!");
-                    window.timer = window.setTimeout(() => {
-                        setSuccessTxt("");
-                    }, 1000);
-                }
-            })
-            .catch((err) => {
-                console.log("err = ", err);
-            });
+                )
+                .then((res) => {
+                    if (readonlyValue === false) {
+                        if (window.timer) {
+                            clearTimeout(window.timer);
+                        }
+                        setSuccessTxt("Update is successful!");
+                        window.timer = window.setTimeout(() => {
+                            setSuccessTxt("");
+                        }, 1000);
+                        setReadonlyValue(true);
+                        setbuttonText("Edit");
+                        setInputType("blocked");
+                        setButtonClass("editButton");
+                    }
+                })
+                .catch((err) => {
+                    console.log("err = ", err);
+                });
+        }
     }
 
     const inputFirstName = (e) => {
@@ -120,10 +132,10 @@ export default function Profile() {
 
     function uploadingImage(base64) {
         var count = 0;
-        if (base64.slice(0,10) === "data:image") {
-            
+        if (base64.slice(0, 10) === "data:image") {
+
             setImage(base64);
-            if(count === 0){
+            if (count === 0) {
                 count++;
             }
             if (window.timer) {
@@ -133,8 +145,8 @@ export default function Profile() {
             window.timer = window.setTimeout(() => {
                 setSuccessTxt("");
             }, 1000);
-        }else{
-            if(count === 0){
+        } else {
+            if (count === 0) {
                 count++;
             }
             if (window.timer) {
@@ -226,7 +238,7 @@ export default function Profile() {
                             multiple={false}
                             onDone={({ base64 }) => setImage(base64)}
                         />
-                    )}               
+                    )}
                 </div>
 
                 <button

@@ -38,7 +38,7 @@ export default function SelectPlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plant/list",
+                "api/v1/plant/list",
                 {},
                 {
                     headers: {
