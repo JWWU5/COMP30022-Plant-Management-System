@@ -1,4 +1,4 @@
-import React , { Component } from 'react';
+import React, { Component } from 'react';
 import Header from './Header';
 import './About.css';
 import zombieHead from '../assets/images/zombie.png';
@@ -26,9 +26,9 @@ export default class ContactUS extends Component {
                                 <p class="last_line">+61 452123456</p>
                             </div>
                             <div class="img">
-                                <img class="zombieImg"src={zombieHead}></img>
+                                <img class="zombieImg" src={zombieHead}></img>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </main>
             </body>

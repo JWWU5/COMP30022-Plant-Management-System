@@ -93,7 +93,7 @@ export default function SelectPlant() {
                                     />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the plant"
+                                        placeholder="Search your plant"
                                         inputProps={{
                                             "aria-label": "search your plant",
                                         }}

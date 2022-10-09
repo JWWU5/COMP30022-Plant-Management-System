@@ -21,7 +21,7 @@ exports.register = async (req, res, next) => {
             image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userId: req.body.userName,
+            userName: req.body.userName,
             dateOfBirth: req.body.birthdayDate,
             email: req.body.email,
             password: hashedPassword,
@@ -97,7 +97,6 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
-
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -106,22 +105,30 @@ exports.getUserInfo = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
+    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
+        console.log("err = ", err);
+        console.log("decode = ", decode);
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
             });
         } else {
             let userId = decode.userId;
-            
-
             try {
                 let userItem = await User.findById(userId).populate(
                     "plantList"
-                );
-
+                ).populate({
+                    path: 'groups',
+                    populate: {
+                        path: 'plants'
+                    }
+                });
+                let user = await User.findOne({_id:userId})
                 res.json({
                     code: 200,
+                    userName: user.userName,
+                    birthday: user.dateOfBirth,
                     data: userItem,
                 });
             } catch (error) {

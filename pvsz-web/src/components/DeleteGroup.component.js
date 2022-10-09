@@ -161,7 +161,7 @@ export default function DeleteGroup() {
                                         sx={{ ml: 1, flex: 1 }}
                                         placeholder="Search your group"
                                         inputProps={{
-                                            "aria-label": "search your plant",
+                                            "aria-label": "search your group",
                                         }}
                                         onChange={(e) => {
                                             let val =
