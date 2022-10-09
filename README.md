@@ -44,4 +44,4 @@ $ npm run start
 - Wuge Liu @https://github.com/jzh398
 - Jiayi Wu @https://github.com/JWWU5
 - Xuanhao Zhang @https://github.com/XUANHZHANG
-- Yikun Tu @https://github.com/Tykkk1026
+- Yikun Tu @Tykkk1026
