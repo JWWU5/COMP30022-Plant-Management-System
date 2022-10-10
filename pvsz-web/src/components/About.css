@@ -28,7 +28,7 @@ main h1 {
     font-weight: 300;
     font-size: 3.5em;
     color: #FFFFFF;
-    margin-top: 5%; 
+    /* margin-top: 5%;  */
     margin-left: 5%;
     margin-bottom: 0%;
     text-shadow: 3px 3px #44533B;
@@ -98,7 +98,7 @@ main p {
 .titleImg {
     width: 20vw;
     height: 20vw;
-    margin-left: -8vw;
+    /* margin-left: -8vw; */
 }
 
 .aboutTextPosition {

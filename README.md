@@ -6,7 +6,7 @@ See the full list of requirements at our [Confluence](https://jwwu5.atlassian.ne
 
 ### This is our logo: 
 <p align="center">
-  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=200>
+  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
 </p>
 
 ## Building Technologies
