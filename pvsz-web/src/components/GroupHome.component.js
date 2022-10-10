@@ -21,6 +21,8 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -273,11 +275,8 @@ export default function GroupHome() {
                                                 borderRadius: 25,
                                             }}
                                         >
-                                            {/* <Avatar
-                                            src="avatar1.jpg"
-                                            sx={{ ml: 2.5 }}
-                                        /> */}
                                             <a>{v.groupname}</a>
+                                            <FavoriteIcon color="error" sx= {{ml: 2}}/>
                                             <Grid
                                                 container
                                                 justifyContent="flex-end"
