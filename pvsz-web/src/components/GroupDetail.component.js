@@ -5,6 +5,7 @@ import "./GroupDetail.css";
 import "./PlantHome.css";
 
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -35,6 +36,18 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FFFFFF",
+            width: 1,
+            height: 55,
+        },
+    },
+});
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -163,19 +176,38 @@ export default function GroupDetail() {
                 backgroundColor: "#BACB94",
             }}
         >
+            <div class="updateGroupName">
+                <Stack spacing={3} justify-Content="center">
+                    <div className="newGroupName">
+                        <h3 className="newGroupNameTitle">Group Name</h3>
+                        <input
+                            className="plantValueBlock"
+                            type="text"
+                        />
+                    </div>
+
+                    <ThemeProvider theme={theme}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            sx={{
+                                height: 50,
+                                borderRadius: 25,
+                                color: "#646464",
+                                textTransform: "capitalize",
+                                fontFamily: "Tamil HM",
+                                fontSize: 15,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Update Group Name
+                        </Button>
+                    </ThemeProvider>
+                </Stack>
+            </div>
             <nav aria-label="main mailbox folders">
                 <List>
-                    <ListItem>
-                        <ListItemButton>
-                            <ModeEditOutlineOutlinedIcon
-                                sx={{ ml: 2, color: "#ffffff" }}
-                            />
-                            <ListItemText
-                                primary="Edit group name"
-                                sx={{ ml: 5, color: "#ffffff" }}
-                            />
-                        </ListItemButton>
-                    </ListItem>
+                    <Divider />
                     <ListItem>
                         <ListItemButton
                             onClick={() => {
