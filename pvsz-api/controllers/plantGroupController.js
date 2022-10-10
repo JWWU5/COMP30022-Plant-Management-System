@@ -43,7 +43,7 @@ exports.add = async (req, res, next) => {
 
                             res.json({
                                 code: 200,
-                                data: plantGroup
+                                data: plantGroup,
                             });
                         }
                     );
@@ -237,6 +237,44 @@ exports.changeLiked = async (req, res, next) => {
                     }
                     res.status(201).send({
                         message: "liked Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};
+
+exports.update = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            PlantGroup.findByIdAndUpdate(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    groupname: req.body.groupname,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "update Successfully",
                     });
                 }
             );

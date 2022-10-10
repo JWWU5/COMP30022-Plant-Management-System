@@ -69,7 +69,7 @@ export default function GroupDetail() {
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
         setgroupId(searchParams[0].getAll("groupId")[0]);
-    });
+    }, []);
 
     useEffect(() => {
         axios
@@ -110,6 +110,48 @@ export default function GroupDetail() {
         setLiked(!liked);
     }
 
+    const handleUpdate = () => {
+        if (!groupname) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("GroupName cannot be empty");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+        console.log(groupname);
+        axios
+            .post(
+                "api/v1/plantGroup/update",
+                {
+                    groupId: groupId,
+                    groupname: groupname,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setSuccessTxt("Update is successful!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                    navigate(
+                        `/group-detail?groupId=${groupId}&groupname=${groupname}`
+                    );
+                    window.location.reload(false);
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
+    };
     const deleteDoubleCheck = () => {
         setDelGroup([...delGroup, groupId]);
         setOpen(true);
@@ -183,6 +225,8 @@ export default function GroupDetail() {
                         <input
                             className="plantValueBlock"
                             type="text"
+                            value={groupname}
+                            onChange={(e) => setgroupname(e.target.value)}
                         />
                     </div>
 
@@ -190,6 +234,7 @@ export default function GroupDetail() {
                         <Button
                             variant="contained"
                             color="primary"
+                            onClick={handleUpdate}
                             sx={{
                                 height: 50,
                                 borderRadius: 25,
