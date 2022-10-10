@@ -84,11 +84,143 @@
 }
 
 .plantNameTitleDiv{
-    height: 7vh;
-    width: 90vw;
+    height: 35vh;
+    width: 100vw;
     overflow-x: scroll;
-    margin-top: 5vh;
+    padding-top: 5vh;
+    padding-left: 5vw;
+    overscroll-behavior: contain;
+}
+
+.rankingContentDiv {
+    height: 72vh;
+    width: 100vw;
+    position: relative;
+}
+
+.rankingContentRec {
+    height: 69vh;
+    width: 90vw;
     margin-left: 5vw;
+    background-color: #BACB94;
+    border-radius: 25px;
+    margin-top: 8vh;
+    padding-top: 5vh;
+    overflow-y: scroll;
+}
+
+.rankingTitle {
+    font-size: 12vw;
+    font-family: 'BM HANNA 11yrs old', cursive;
+    font-weight: 300;
+    text-shadow: 3px 3px #FFFFFF;
+    color: #44533B;
+    position: absolute;
+    z-index: 2;
+    margin-left: 5vw;
+    margin-top: -9vh;
+}
+
+.thanksMSG {
+    font-family: "Tamil MN";
+    color: #44533B;
+    font-size: 7vw;
+    margin-left: 8vw;
+    margin-top: 2vh;
+}
+
+.plantIcon {
+    height: 16vw;
+    width: 16vw;
+    margin-top: 1.5vh;
+    margin-left: 3vw;
+}
+
+.userAvatar {
+    height: 7vh;
+    width: 7vh;
+    margin-left: 1vw;
+}
+
+.rankingIcon {
+    height: 4vh;
+    width: 4vh;
+    margin-left: 10vw;
+    margin-top: 2vh;
+}
+
+.rankingContent1 {
+    font-family: "Times New Roman";
+    font-size: 4vw;
+    color: #44533B;
+    font-weight: 600;
+    margin-top: 1vh;
+    margin-left: 3vw;
+}
+
+.rankingContent2 {
+    font-family: "Times New Roman";
+    font-size: 4vw;
+    color: #44533B;
+    font-weight: 600;
+    margin-left: 3vw;
+}
+
+.blankSpace {
+    height: 2vh;
+    width: 100vw;
+}
+
+.rankingNum {
+    font-family: "Times New Roman";
+    font-size: 6vw;
+    font-weight: 700;
+    color: #44533B;
+    margin-top: 2vh;
+    margin-left: 12vw;
+}
+
+.selfRanking {
+    height: 10vh;
+    width: 80vw;
+    margin-top: 1vh;
+    margin-left: 5vw;
+    background-color: #44533B;
+    border-radius: 25px;
+    overflow-y: scroll;
+}
+
+.userRankingNum {
+    font-family: "Times New Roman";
+    font-size: 6vw;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 3.5vh;
+    margin-left: 5vw;
+}
+
+.userRankingAvatar {
+    height: 7vh;
+    width: 7vh;
+    margin-left: -2vw;
+    margin-top: 1.5vh;
+}
+
+.userRankingContent1 {
+    font-family: "Times New Roman";
+    font-size: 4vw;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-top: 2.5vh;
+    margin-left: 3vw;
+}
+
+.userRankingContent2 {
+    font-family: "Times New Roman";
+    font-size: 4vw;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-left: 3vw;
 }
 
 @media screen and (min-width: 350px) {

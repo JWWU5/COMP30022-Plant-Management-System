@@ -16,9 +16,20 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Divider from "@mui/material/Divider";
 import { Alert } from "@mui/material";
-import watercan from "../assets/images/water_can.png";
-import sun from "../assets/images/sun.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FFFFFF",
+            width: 1,
+            height: 55,
+        },
+    },
+});
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -50,7 +61,7 @@ export default function Dashboard() {
                     let plants = element.plants;
                     plants.forEach((plantsItem) => {
                         for (let i = deepPlantList.length - 1; i >= 0; i--) {
-                            if (deepPlantList[i]._id == plantsItem._id) {
+                            if (deepPlantList[i]._id === plantsItem._id) {
                                 deepPlantList.splice(i, 1);
                             }
                         }
@@ -62,7 +73,7 @@ export default function Dashboard() {
                     if (item.plants) {
                         for (let j = item.plants.length - 1; j >= 0; j--) {
                             let plantItem = item.plants[j];
-                            if (curFilter == "sun") {
+                            if (curFilter === "sun") {
                                 let sunPeriod = parseInt(plantItem.sunPeriod);
                                 if (
                                     moment().diff(moment(plantItem.lastSunDate), "days") <=
@@ -71,7 +82,7 @@ export default function Dashboard() {
                                     item.plants.splice(j, 1);
                                 }
                             }
-                            if (curFilter == "water") {
+                            if (curFilter === "water") {
                                 let waterPeriod = parseInt(plantItem.waterPeriod);
                                 if (
                                     moment().diff(moment(plantItem.lastWaterDate), "days") <=
@@ -82,7 +93,7 @@ export default function Dashboard() {
                             }
                         }
                     } else {
-                        if (curFilter == "sun") {
+                        if (curFilter === "sun") {
                             let sunPeriod = parseInt(item.sunPeriod);
                             if (
                                 moment().diff(moment(item.lastSunDate), "days") <= sunPeriod
@@ -91,7 +102,7 @@ export default function Dashboard() {
                             }
                         }
 
-                        if (curFilter == "water") {
+                        if (curFilter === "water") {
                             let waterPeriod = parseInt(item.waterPeriod);
                             if (
                                 moment().diff(moment(item.lastWaterDate), "days") <= waterPeriod
@@ -120,7 +131,7 @@ export default function Dashboard() {
             ).then((res) => {
                 setBirthday(res.data.birthday);
                 const today1 = moment().format("YYYY-MM-DD");
-                if (birthday == today1) {
+                if (birthday === today1) {
                     setisBirthday(true)
                 }
                 setUserName(res.data.userName);
@@ -208,29 +219,18 @@ export default function Dashboard() {
                     <h3>Today is {today}.</h3>
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
-                <div class="topic">
-                    <img
-                        onClick={() => {
+                <div class="switchIcons">
+                    <FireExtinguisherOutlinedIcon onClick={() => {
                             setCurFilter("water");
                         }}
-                        class="watercan"
-                        src={watercan}
                     />
-                    <img
-                        onClick={() => {
+                    <WbSunnyIcon onClick={() => {
                             setCurFilter("sun");
                         }}
-                        class="sun"
-                        src={sun}
+                        sx = {{ml: 3}}
                     />
-                    <AddCircleOutlineIcon onClick={handleAddIcon} />
+                    <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 3}}/>
                 </div>
-                <Button
-                    onClick={handleSubmit}
-                    variant="contained"
-                >
-                    update
-                </Button>
                 <div class="listbg">
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
@@ -322,6 +322,23 @@ export default function Dashboard() {
                                     </Box>
                                 );
                             })}
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleSubmit}
+                                        sx={{
+                                            height: 50,
+                                            borderRadius: 25,
+                                            color: "#646464",
+                                            textTransform: "capitalize",
+                                            fontFamily: "Tamil HM",
+                                            fontSize: 15,
+                                        }}
+                                    >
+                                    UPDATE
+                                </Button>
+                            </ThemeProvider>
                         </Stack>
                     </div>
                 </div>

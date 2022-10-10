@@ -14,15 +14,15 @@ export default class AboutUs extends Component {
                     <div class="body">
                         <div class="aboutTitle">
                             <Grid container spacing={0}>
-                                <Grid item xs={6}>
+                                <Grid item xs={7}>
                                     <h1 className="aboutTextPosition">
-                                        About{" "}
+                                        About
                                     </h1>
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={5}>
                                     <Grid container spacing={0}>
                                         <Grid item xs={6}>
-                                            <h1>Us </h1>
+                                            <h1>Us</h1>
                                         </Grid>
                                         <Grid item xs={6}>
                                             <img
