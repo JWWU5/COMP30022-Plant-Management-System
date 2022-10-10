@@ -42,7 +42,7 @@ export default function GroupHome() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -51,7 +51,6 @@ export default function GroupHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setGroups(res.data.data.groups);
                 setCacheGroupName(res.data.data.groups);
             })
@@ -104,11 +103,10 @@ export default function GroupHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
-                setSuccessTxt("Submit is successful!");
+                setSuccessTxt("Creation is successful!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
                     window.location.reload(false);
@@ -118,7 +116,6 @@ export default function GroupHome() {
                 console.log("err = ", err);
             });
     };
-    console.log(groups);
     const list = (anchor) => (
         <Box
             sx={{
@@ -222,13 +219,14 @@ export default function GroupHome() {
                                             "aria-label": "search the group",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.groupname.indexOf(val) !==
-                                                    -1
+                                                    v.groupname
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
                                                 );
                                             });
                                             setGroups(deepList);
@@ -248,41 +246,46 @@ export default function GroupHome() {
                             {groups && groups.length == 0 && (
                                 <div className="noData">no group</div>
                             )}
-                            {groups.map((v) => {
-                                return (
-                                    <Box
-                                        key={v._id}
-                                        display="flex"
-                                        justify-Content="center"
-                                        onClick={() => {
-                                            navigate(
-                                                `/group-detail?groupId=${v._id}&groupname=${v.groupname}&plants=${v.plants}`
-                                            );
-                                        }}
-                                        sx={{
-                                            width: 1,
-                                            height: 55,
-                                            backgroundColor: "#ffffff",
-                                            alignItems: "center",
-                                            borderRadius: 25,
-                                        }}
-                                    >
-                                        <Avatar
+
+                            {groups
+                                .sort((a, b) =>
+                                    a.like === b.like ? 0 : a.like ? -1 : 1
+                                )
+                                .map((v) => {
+                                    return (
+                                        <Box
+                                            key={v._id}
+                                            display="flex"
+                                            justify-Content="center"
+                                            onClick={() => {
+                                                navigate(
+                                                    `/group-detail?groupId=${v._id}&groupname=${v.groupname}`
+                                                );
+                                            }}
+                                            sx={{
+                                                width: 1,
+                                                height: 55,
+                                                backgroundColor: "#ffffff",
+                                                alignItems: "center",
+                                                borderRadius: 25,
+                                            }}
+                                        >
+                                            {/* <Avatar
                                             src="avatar1.jpg"
                                             sx={{ ml: 2.5 }}
-                                        />
-                                        <a>{v.groupname}</a>
-                                        <Grid
-                                            container
-                                            justifyContent="flex-end"
-                                        >
-                                            <ArrowForwardIosOutlinedIcon
-                                                sx={{ mr: 2.5 }}
-                                            />
-                                        </Grid>
-                                    </Box>
-                                );
-                            })}
+                                        /> */}
+                                            <a>{v.groupname}</a>
+                                            <Grid
+                                                container
+                                                justifyContent="flex-end"
+                                            >
+                                                <ArrowForwardIosOutlinedIcon
+                                                    sx={{ mr: 2.5 }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    );
+                                })}
                         </Stack>
                     </div>
                 </div>

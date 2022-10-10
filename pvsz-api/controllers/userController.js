@@ -2,14 +2,12 @@ const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.register = async (req, res, next) => {
-    console.log(req.body, "data");
+
     let user = await User.findOne({
         email: req.body.email,
     });
-    console.log("user = ", user);
     if (user) {
         res.status(500).send({
             message: "The mailbox already exists",
@@ -18,18 +16,16 @@ exports.register = async (req, res, next) => {
     }
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        console.log(hashedPassword, "after hashing");
         const user = new User({
             image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userId: req.body.userName,
+            userName: req.body.userName,
             dateOfBirth: req.body.birthdayDate,
             email: req.body.email,
             password: hashedPassword,
         });
         const result = await user.save();
-        console.log(result, "register result");
         res.status(201).send({
             message: "User Created Successfully",
             result,
@@ -44,14 +40,12 @@ exports.register = async (req, res, next) => {
 };
 
 exports.login = async (req, res, next) => {
-    console.log(req.body, "data");
     User.findOne({
         email: req.body.email,
     })
         // if email exists
         .then((user) => {
             // compare the password entered and the hashed password found
-            console.log("user8888 = ", user);
             bcrypt
                 .compare(req.body.password, user.password)
 
@@ -102,6 +96,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
+    r = bcrypt.compare("1","1")
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -110,10 +105,7 @@ exports.getUserInfo = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
-        console.log("err = ", err);
-        console.log("decode = ", decode);
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
@@ -123,11 +115,17 @@ exports.getUserInfo = async (req, res, next) => {
             try {
                 let userItem = await User.findById(userId).populate(
                     "plantList"
-                );
-
+                ).populate({
+                    path: 'groups',
+                    populate: {
+                        path: 'plants'
+                    }
+                });
+                let user = await User.findOne({_id:userId})
                 res.json({
                     code: 200,
-
+                    userName: user.userName,
+                    birthday: user.dateOfBirth,
                     data: userItem,
                 });
             } catch (error) {
@@ -145,10 +143,7 @@ exports.getUserGroupInfo = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
-        console.log("err = ", err);
-        console.log("decode = ", decode);
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
@@ -169,6 +164,7 @@ exports.getUserGroupInfo = async (req, res, next) => {
         }
     });
 };
+
 exports.setUserInfo = async (req, res, next) => {
     let token = req.get("Authorization");
     if (!token) {
@@ -193,6 +189,7 @@ exports.setUserInfo = async (req, res, next) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     userName: req.body.userName,
+                    image: req.body.image,
                 },
                 (err, doc) => {
                     if (err) {
@@ -202,9 +199,63 @@ exports.setUserInfo = async (req, res, next) => {
                     res.status(201).send({
                         message: "User Changed Successfully",
                     });
-                    console.log(doc);
                 }
             );
         }
     });
 };
+
+exports.changePassword = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            user = await User.findById(userId);
+            bcrypt.compare(req.body.newPassword, user.password, async function(err, result) {
+                if (err) {
+                    res.status(500).send("Exceptions in server");
+                    return;
+                }
+                if(result){
+                    res.status(400).send({
+                        message: "Password is same as previous one",
+                        err,
+                    });
+                } else {
+                    const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+                    User.findByIdAndUpdate(
+                        {
+                            _id: userId,
+                        },
+                        {
+                            password: hashedPassword
+                        },
+                        (err, doc) => {
+                            if (err) {
+                                res.status(500).send("Exceptions in server");
+                                return;
+                            }
+                            res.status(201).send({
+                                message: "Password has Changed Successfully",
+                            });
+                        }
+                    );
+                }
+            });
+
+        }
+    });
+}
+
+

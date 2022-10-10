@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./SignInUp.css";
@@ -7,8 +7,9 @@ import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
-
-import { useEffect, useState } from "react";
+import Avatar from "@mui/material/Avatar";
+import moment from "moment";
+import { useState } from "react";
 import axios from "axios";
 
 export default function Register() {
@@ -17,8 +18,6 @@ export default function Register() {
     const [errorTxt, setErrorTxt] = useState("");
     const [isCorrect, setIsCorrect] = useState("");
     const [information, setInformation] = useState("");
-    // const [buttonContent, setButtonContent] = useState("");
-    // const [selectedImage, setSelectedImage] = useState(avatar);
 
     const [image, setImage] = useState(avatar);
     const [firstName, setFirstName] = useState("");
@@ -28,12 +27,19 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [agreePolicy, setPagreePolicy] = useState("");
-    const [register, setRegister] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        console.log("agreePolicy = ", agreePolicy);
+        if (image.slice(0,10) !== "data:image" || image !== avatar) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Only accept uploading image");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!firstName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -115,7 +121,7 @@ export default function Register() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/register",
+            url: "api/v1/user/register",
             data: {
                 image,
                 firstName,
@@ -149,20 +155,8 @@ export default function Register() {
                 }, 1000);
                 error = new Error();
             });
-        console.log(configuration);
     };
 
-    const submit = (e) => {
-        e.preventDefault();
-        alert(`The name you entered was: ${userName}`);
-    };
-
-    function componentDidMount() {
-        const container = document.querySelector(".buttonContainer1");
-        container.addEventListener("animationend", () => {
-            container.classList.remove("active");
-        });
-    }
 
     const checkEmail = (value) => {
         //reg express
@@ -181,11 +175,6 @@ export default function Register() {
         }
     };
 
-    var avatarStyle = {
-        height: "10vh",
-        width: "10vh",
-    };
-
     return (
         <body className="signIn">
             <div className="tipsBox">
@@ -194,7 +183,7 @@ export default function Register() {
             </div>
             <Header />
             <header>
-                <h1>SIGN UP</h1>
+                <h1>Sigh Up</h1>
             </header>
             <Grid
                 container
@@ -202,7 +191,22 @@ export default function Register() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="imageUpload">
+                <Avatar
+                    // src="avatar1.jpg"
+                    src={image}
+                    sx={{ width:100, height:100 }}
+                />
+                
+
+            </Grid>
+            <form>
+                <Grid
+                    container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                <div class="image">
                     <label for="fileInput">
                         <FileBase64
                             id="fileInput"
@@ -212,14 +216,6 @@ export default function Register() {
                         />
                     </label>
                 </div>
-            </Grid>
-            <form>
-                <Grid
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                >
                     <input
                         type="text"
                         placeholder="First Name"
@@ -245,6 +241,7 @@ export default function Register() {
                         type="date"
                         placeholder="DOB"
                         className="signUpInputBlock"
+                        max={moment().format("YYYY-MM-DD")}
                         value={birthdayDate}
                         onChange={(e) => setBirthdayDate(e.target.value)}
                     ></input>

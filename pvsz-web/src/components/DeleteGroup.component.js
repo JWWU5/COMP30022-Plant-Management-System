@@ -44,7 +44,7 @@ export default function DeleteGroup() {
     const [open, setOpen] = React.useState(false);
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
-    const [groupName, setGroupName] = useState("");
+
     const [groups, setGroups] = useState([]);
     const [cacheGroupName, setCacheGroupName] = useState([]);
 
@@ -52,7 +52,7 @@ export default function DeleteGroup() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserGroupInfo",
                 {},
                 {
                     headers: {
@@ -61,7 +61,6 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("group res = ", res.data.data.groups);
                 setGroups(res.data.data.groups);
                 setCacheGroupName(res.data.data.groups);
             })
@@ -100,7 +99,7 @@ export default function DeleteGroup() {
 
         axios
             .post(
-                "/api/v1/plantGroup/dels",
+                "api/v1/plantGroup/dels",
                 checkedGroupArr.map((v) => {
                     return v._id;
                 }),
@@ -111,7 +110,6 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -163,16 +161,17 @@ export default function DeleteGroup() {
                                         sx={{ ml: 1, flex: 1 }}
                                         placeholder="Search your group"
                                         inputProps={{
-                                            "aria-label": "search your plant",
+                                            "aria-label": "search your group",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cacheGroupName];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.groupname.indexOf(val) !==
-                                                    -1
+                                                    v.groupname
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
                                                 );
                                             });
                                             setGroups(deepList);
@@ -213,7 +212,7 @@ export default function DeleteGroup() {
                                             fontSize: 20,
                                         }}
                                     >
-                                        {"Are you sure to delete this group?"}
+                                        {"Are you sure to delete?"}
                                     </DialogTitle>
                                     <DialogActions>
                                         <Button
@@ -266,7 +265,6 @@ export default function DeleteGroup() {
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    // console.log("e = ", e.target.checked)
                                                     let deepList = [...groups];
                                                     deepList[i].checked =
                                                         e.target.checked;

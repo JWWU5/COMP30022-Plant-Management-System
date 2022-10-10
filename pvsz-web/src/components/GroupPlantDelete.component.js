@@ -1,16 +1,14 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component } from "react";
 import Header from "./Header";
-import axios from "axios";
-import { Alert } from "@mui/material";
 import "./delete.css";
 
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
-import Grid from "@mui/material/Grid";
+import { Grid } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Checkbox from "@mui/material/Checkbox";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
+import { Alert } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import Divider from "@mui/material/Divider";
@@ -19,12 +17,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import tomb from "../assets/images/tomb.png";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const theme = createTheme({
@@ -41,18 +40,29 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function DeletePlant() {
+export default function DeleteGroup() {
+    let searchParams = useSearchParams();
+    const [open, setOpen] = React.useState(false);
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
-    const [plantList, setPlantList] = useState([]);
-    const [cachePlantList, setCachePlantList] = useState([]);
+
+    const [plants, setPlants] = useState([]);
+    const [groupId, setgroupId] = useState("");
+    const [count, setCount] = useState(0);
 
     // get my userinfo by token
     useEffect(() => {
+        setgroupId(searchParams[0].getAll("groupId")[0]);
+        setCount(count + 1);
+    }, []);
+
+    useEffect(() => {
         axios
             .post(
-                "api/v1/user/getUserInfo",
-                {},
+                "api/v1/plantGroup/getPlantGroupList",
+                {
+                    groupId: groupId,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -60,25 +70,22 @@ export default function DeletePlant() {
                 }
             )
             .then((res) => {
-                setPlantList(res.data.data.plantList);
-                setCachePlantList(res.data.data.plantList);
+                setPlants(res.data.data.plants);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
-    }, []);
-
-    const [open, setOpen] = React.useState(false);
-
+    }, [count]);
     const deleteDoubleCheck = () => {
-        let checkedPlantArr = plantList.filter((v) => {
+        let checkedGroupArr = plants.filter((v) => {
             return v.checked;
         });
-        if (!checkedPlantArr.length) {
+
+        if (!checkedGroupArr.length) {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
-            setErrorTxt("Please select at least one plant!");
+            setErrorTxt("Please select at least one group!");
             window.timer = window.setTimeout(() => {
                 setErrorTxt("");
             }, 1000);
@@ -94,16 +101,18 @@ export default function DeletePlant() {
     let navigate = useNavigate();
 
     function Agree() {
-        let checkedPlantArr = plantList.filter((v) => {
+        let checkedGroupArr = plants.filter((v) => {
             return v.checked;
         });
-
         axios
             .post(
-                "api/v1/customPlant/dels",
-                checkedPlantArr.map((v) => {
-                    return v._id;
-                }),
+                "api/v1/plantGroup/delPlantInGroup",
+                {
+                    idsArr: checkedGroupArr.map((v) => {
+                        return v._id;
+                    }),
+                    groupId: groupId,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -118,14 +127,12 @@ export default function DeletePlant() {
                 setOpen(false);
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
-                    navigate("/plants");
+                    navigate("/groups");
                 }, 1000);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
-
-
     }
 
     return (
@@ -141,45 +148,8 @@ export default function DeletePlant() {
                         <h2>Delete?</h2>
                         <img class="tomb" src={tomb}></img>
                     </div>
-
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
-                            <div class="search">
-                                <Paper
-                                    component="form"
-                                    sx={{
-                                        p: "2px 4px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        width: 1,
-                                        height: 55,
-                                        borderRadius: 25,
-                                    }}
-                                >
-                                    <b>Name</b>
-                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                                    <InputBase
-                                        sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search your plant"
-                                        inputProps={{ "aria-label": "search your plant" }}
-                                        onChange={(e) => {
-                                            let val = e.target.value.toUpperCase();
-                                            let deepList = [...cachePlantList];
-                                            deepList = deepList.filter((v) => {
-                                                return v.name.toUpperCase().indexOf(val) !== -1;
-                                            });
-                                            setPlantList(deepList);
-                                        }}
-                                    />
-                                    <IconButton
-                                        type="button"
-                                        sx={{ p: "10px" }}
-                                        aria-label="search"
-                                    >
-                                        <SearchIcon />
-                                    </IconButton>
-                                </Paper>
-                            </div>
                             <ThemeProvider theme={theme}>
                                 <Button
                                     variant="contained"
@@ -200,21 +170,29 @@ export default function DeletePlant() {
                                     keepMounted
                                     onClose={handleClose}
                                 >
-                                    <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
-                                        {"Are you sure to delete this plant?"}
+                                    <DialogTitle
+                                        sx={{
+                                            fontWeight: "bold",
+                                            fontSize: 20,
+                                        }}
+                                    >
+                                        {"Are you sure to delete?"}
                                     </DialogTitle>
                                     <DialogActions>
-                                        <Button color="success" onClick={handleClose}>
+                                        <Button
+                                            color="success"
+                                            onClick={handleClose}
+                                        >
                                             No
                                         </Button>
                                         <Button color="error" onClick={Agree}>
-                                            yes!
+                                            Yes!
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
                             </ThemeProvider>
                             <Divider />
-                            {plantList && plantList.length == 0 && (
+                            {plants && plants.length == 0 && (
                                 <div
                                     style={{
                                         color: "#666",
@@ -225,7 +203,7 @@ export default function DeletePlant() {
                                     no plant
                                 </div>
                             )}
-                            {plantList.map((v, i) => {
+                            {plants.map((v, i) => {
                                 return (
                                     <Box
                                         key={v._id}
@@ -239,16 +217,24 @@ export default function DeletePlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src={v.image} sx={{ ml: 2.5 }} />
+                                        <Avatar
+                                            src={v.image}
+                                            sx={{ ml: 2.5 }}
+                                        />
                                         <a>{v.name}</a>
-                                        <Grid container justifyContent="flex-end">
+                                        <Grid
+                                            container
+                                            justifyContent="flex-end"
+                                        >
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    let deepList = [...plantList];
-                                                    deepList[i].checked = e.target.checked;
-                                                    setCachePlantList(deepList);
-                                                    setPlantList(deepList);
+                                                    let deepList = [...plants];
+
+                                                    deepList[i].checked =
+                                                        e.target.checked;
+
+                                                    setPlants(deepList);
                                                 }}
                                                 sx={{
                                                     color: "#44533B",

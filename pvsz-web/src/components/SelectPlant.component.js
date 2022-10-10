@@ -19,8 +19,6 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 const theme = createTheme({
     palette: {
         primary: {
@@ -38,7 +36,7 @@ export default function SelectPlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plant/list",
+                "api/v1/plant/list",
                 {},
                 {
                     headers: {
@@ -47,7 +45,6 @@ export default function SelectPlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data);
                 setCachePlantList(res.data.data);
             })
@@ -94,12 +91,11 @@ export default function SelectPlant() {
                                     />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the plant"
+                                        placeholder="Search your plant"
                                         inputProps={{
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            console.log(e.target.value);
                                             let val =
                                                 e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];

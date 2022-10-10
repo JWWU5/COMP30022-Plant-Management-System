@@ -26,7 +26,7 @@ export default function PlantHome() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -35,7 +35,6 @@ export default function PlantHome() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -51,10 +50,7 @@ export default function PlantHome() {
     function handleDeleteIcon() {
         navigate("/delete-plants");
     }
-    function toPlantDetail(){
-        navigate("/plant-detail");
-    }
-    console.log(plantList);
+
     return (
         <div className="Dashboard">
             <Header />
@@ -99,12 +95,11 @@ export default function PlantHome() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.name.indexOf(val) !== -1
+                                                    v.name.toUpperCase().indexOf(val) !== -1
                                                 );
                                             });
                                             setPlantList(deepList);
@@ -120,7 +115,7 @@ export default function PlantHome() {
                                 </Paper>
                             </div>
                             <Divider />
-                            {plantList && plantList.length == 0 && (
+                            {plantList && plantList.length === 0 && (
                                 <div className="noData">no plant</div>
                             )}
                             {plantList.map((v) => {
@@ -138,7 +133,8 @@ export default function PlantHome() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            // src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>
@@ -147,7 +143,11 @@ export default function PlantHome() {
                                             justifyContent="flex-end"
                                         >
                                             <ArrowForwardIosOutlinedIcon
-                                                onClick={toPlantDetail}
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/plant-detail?plantId=${v._id}`
+                                                    );
+                                                }}
                                                 sx={{ mr: 2.5 }}
                                             />
                                         </Grid>

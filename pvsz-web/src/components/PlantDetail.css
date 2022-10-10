@@ -3,26 +3,17 @@
 }
 
 .imageDiv {
-    /* background-image: url("../assets/images/Cactus.jpg"); */
-    background-size: 100vw 40vh;
-    height: 50vh;
-    width: 100vw;
+    background-size: 100% 100%;
+    height: 100vw;
+    width: 100%;
     position: absolute;
-    z-index: 0;
 }
-
-/* .plantImage {
-    size: ;
-    position: absolute;
-    z-index: 0;
-} */
 
 .detailContentDiv {
     position: absolute;
     margin-top: 34vh;
     height: 65vh;
     width: 100vw;
-    z-index: 1;
 }
 
 .detailTextRec {
@@ -32,14 +23,78 @@
     height: 62.7vh;
     width: 100vw;
     padding-top: 10%;
+    overflow-y: scroll;
+    padding-bottom: 5%;
+}
+
+.editButtonPlantDetail {
+    background: #788E6C;
+    margin-top: 5%;
+    margin-left: 5vw;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 90vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submitButtonPlantDetail {
+    background: #FFFFFF;
+    margin-top: 5%;
+    margin-left: 5vw;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 90vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #44533B;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.plantNameTextarea {
+    margin-left: 5vw;
+    background: #FFFFFF;
+    border-radius: 30px;
+    height: 7vh;
+    width: 90vw;
+    border: hidden;
+    color: #555A6E;
+    overflow-y: scroll;
+    padding-left: 5%;
+    padding-top: 2vh;
+    font-size: 5vw;
+    font-family: "Tamil MN";
+}
+
+.tipsBox {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}
+
+.plantNameTitleDiv{
+    height: 7vh;
+    width: 90vw;
+    overflow-x: scroll;
+    margin-top: 5vh;
+    margin-left: 5vw;
 }
 
 @media screen and (min-width: 350px) {
 
     .plantNameTitle {
         font-family: "Tamil MN";
-        margin-left: 5%;
-        margin-top: 8vh;
         font-size: 9vw;
         font-weight: 200;
         color: #FFFFFF;
@@ -60,6 +115,7 @@
     
     .detailContentType {
         text-align: right;
+        /* margin-left: 6vw; */
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 700;
@@ -76,7 +132,8 @@
     
     .otherDetailTitle {
         padding-left: 5%;
-        padding-top: 15%;
+        margin-top: 5vh;
+        margin-bottom: 1vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4.5vw;
@@ -85,13 +142,19 @@
     }
     
     .otherDetailContent {
-        padding-left: 5%;
-        padding-top: 3%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 2vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4.5vw;
         font-weight: 600;
-        color: #555A6E;
+        margin-left: 5vw;
+        border: hidden;
+        height: 15vh;
+        width: 90vw;
+        border-radius: 25px;
+        overflow-y: scroll;
     }
 }
 
@@ -99,8 +162,6 @@
 
     .plantNameTitle {
         font-family: "Tamil MN";
-        margin-left: 5%;
-        margin-top: 8vh;
         font-size: 7vw;
         font-weight: 200;
         color: #FFFFFF;
@@ -121,6 +182,7 @@
     
     .detailContentType {
         text-align: right;
+        /* margin-left: 6vw; */
         font-family: "Times New Roman";
         font-size: 4vw;
         font-weight: 700;
@@ -137,7 +199,8 @@
     
     .otherDetailTitle {
         padding-left: 5%;
-        padding-top: 15%;
+        margin-top: 5vh;
+        margin-bottom: 1vh;
         text-align: left;
         font-family: "Times New Roman";
         font-size: 4vw;
@@ -146,12 +209,18 @@
     }
     
     .otherDetailContent {
-        padding-left: 5%;
-        padding-top: 3%;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 2vh;
         text-align: left;
         font-family: "Times New Roman";
-        font-size: 4vw;
+        font-size: 4.5vw;
         font-weight: 600;
-        color: #555A6E;
+        margin-left: 5vw;
+        border: hidden;
+        height: 15vh;
+        width: 90vw;
+        border-radius: 25px;
+        overflow-y: scroll;
     }
 }

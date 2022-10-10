@@ -1,7 +1,7 @@
-@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
 
 .addPlantTitle {
-    font-family: 'BM HANNA 11yrs old', cursive;
+    font-family: 'Peralta', cursive;
     font-weight: 300;
     font-size: 10vw;
     color: #44533B;
@@ -30,11 +30,16 @@
         padding-right: 6%;
     }
 
+    .fileInput {
+        width: 90%;
+    }
+
     .mySelect__value-container {
         width: 70vw;
         height: 7vh;
         font-size: 2.5vh;
     }
+
 }
 
 @media screen and (max-width: 350px) {

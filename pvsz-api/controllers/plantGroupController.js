@@ -2,7 +2,6 @@ const { PlantGroup, User } = require("../models");
 
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.add = async (req, res, next) => {
     let token = req.get("Authorization");
@@ -20,13 +19,11 @@ exports.add = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            console.log("body = ", req.body);
             let plantGroup = new PlantGroup(req.body);
             plantGroup.save((err, item) => {
                 if (err) {
                     res.status(500).send("Exceptions in server");
                 } else {
-                    console.log("item = ", item.id);
                     let itemId = item.id;
                     // add user plant group
                     User.updateOne(
@@ -47,7 +44,6 @@ exports.add = async (req, res, next) => {
                             res.json({
                                 code: 200,
                             });
-                            console.log(doc);
                         }
                     );
                 }
@@ -107,7 +103,6 @@ exports.addPlantToGroup = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log(req.body.plants);
     jwt.verify(token, jwtKey, async (err, decode) => {
         if (err) {
             res.status(401).send({
@@ -130,6 +125,117 @@ exports.addPlantToGroup = async (req, res, next) => {
                     }
                     res.status(201).send({
                         message: "User Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};
+
+exports.getPlantGroupList = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let groupId = req.body.groupId;
+            try {
+                let plants = await PlantGroup.findById(groupId).populate(
+                    "plants"
+                );
+
+                res.json({
+                    code: 200,
+
+                    data: plants,
+                });
+            } catch (error) {
+                res.status(500).send("Exceptions in server query");
+            }
+        }
+    });
+};
+
+exports.delPlantInGroup = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            PlantGroup.updateOne(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    $pullAll: {
+                        plants: req.body.idsArr,
+                    },
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "User Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};
+
+exports.changeLiked = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            PlantGroup.findByIdAndUpdate(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    like: req.body.like,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "liked Changed Successfully",
                     });
                 }
             );

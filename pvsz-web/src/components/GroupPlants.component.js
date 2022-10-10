@@ -36,19 +36,21 @@ export default function GroupPlants() {
     let searchParams = useSearchParams();
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
-    const [cachePlantList, setCachePlantList] = useState([]);
     const [groupList, setGroupList] = useState([]);
+    const [groupPlants, setGroupPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
+    const [difference, setDifference] = useState([]);
+    const [cachePlantList, setCachePlantList] = useState([]);
 
     useEffect(() => {
         setgroupId(searchParams[0].getAll("groupId")[0]);
-        console.log(groupId);
-        console.log("HAHA");
+    }, []);
+    useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -57,7 +59,6 @@ export default function GroupPlants() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -65,13 +66,11 @@ export default function GroupPlants() {
                 console.log("err = ", err);
             });
     }, []);
-
-    function addPlantToGroup() {
+    useEffect(() => {
         axios
             .post(
-                "/api/v1/plantGroup/addPlantToGroup",
+                "api/v1/plantGroup/getPlantGroupList",
                 {
-                    plants: groupList,
                     groupId: groupId,
                 },
                 {
@@ -81,20 +80,61 @@ export default function GroupPlants() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
+                setGroupPlants(res.data.data.plants);
+            })
+            .catch((err) => {
+                console.log("er = ", err.response.data);
+            });
+    }, [groupId]);
 
+    useEffect(() => {
+        let difference = plantList.filter(
+            (x) => !groupPlants.find((rm) => rm._id === x._id)
+        );
+        setDifference(difference);
+    }, [difference]);
+
+    function addPlantToGroup() {
+        let checkedArr = groupList.filter((v) => {
+            return v.checked;
+        });
+        if (!checkedArr.length) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Please select at least one plant!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+
+        axios
+            .post(
+                "api/v1/plantGroup/addPlantToGroup",
+                {
+                    plants: checkedArr,
+                    groupId: groupId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
                 setSuccessTxt("Update is successful!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
+                    navigate("/groups");
                 }, 1000);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
-        navigate("/groups");
     }
 
     return (
@@ -133,9 +173,22 @@ export default function GroupPlants() {
                                     />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the plant"
+                                        placeholder="Search your plant"
                                         inputProps={{
                                             "aria-label": "search your plant",
+                                        }}
+                                        onChange={(e) => {
+                                            let val =
+                                                e.target.value.toUpperCase();
+                                            let deepList = [...cachePlantList];
+                                            deepList = deepList.filter((v) => {
+                                                return (
+                                                    v.name
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
+                                                );
+                                            });
+                                            setPlantList(deepList);
                                         }}
                                     />
                                     <IconButton
@@ -162,14 +215,16 @@ export default function GroupPlants() {
                                         fontWeight: "bold",
                                     }}
                                 >
-                                    RETURN
+                                    ADD
                                 </Button>
                             </ThemeProvider>
                             <Divider />
-                            {plantList && plantList.length == 0 && (
-                                <div className="noData">no plant</div>
+                            {difference && difference.length == 0 && (
+                                <div className="noData">
+                                    no plants can be added
+                                </div>
                             )}
-                            {plantList.map((v) => {
+                            {difference.map((v, i) => {
                                 return (
                                     <Box
                                         key={v._id}
@@ -184,7 +239,7 @@ export default function GroupPlants() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
                                         <a>{v.name}</a>
@@ -202,13 +257,14 @@ export default function GroupPlants() {
                                                     },
                                                 }}
                                                 value={v._id}
-                                                onChange={(e) =>
-                                                    setGroupList((groupList) =>
-                                                        groupList.concat(
-                                                            e.target.value
-                                                        )
-                                                    )
-                                                }
+                                                onChange={(e) => {
+                                                    let deepList = [
+                                                        ...difference,
+                                                    ];
+                                                    deepList[i].checked =
+                                                        e.target.checked;
+                                                    setGroupList(deepList);
+                                                }}
                                             />
                                         </Grid>
                                     </Box>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Header from "./Header";
 import "./GroupDetail.css";
@@ -19,6 +19,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -42,19 +43,62 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function GroupDetail() {
+    const [successTxt, setSuccessTxt] = useState("");
+    const [errorTxt, setErrorTxt] = useState("");
     let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
     const [plants, setPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
+    const [delGroup, setDelGroup] = useState([]);
+    const [liked, setLiked] = useState(false);
 
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
-        setPlants(searchParams[0].getAll("plants")[0]);
         setgroupId(searchParams[0].getAll("groupId")[0]);
-    }, []);
-    console.log(plants);
+    });
+
+    useEffect(() => {
+        axios
+            .post(
+                "api/v1/plantGroup/getPlantGroupList",
+                {
+                    groupId: groupId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                setPlants(res.data.data.plants);
+                setLiked(res.data.data.like);
+            })
+            .catch((err) => {
+                console.log("err = ", err.response.data);
+            });
+    }, [groupId]);
+
+    function changeLike() {
+        axios.post(
+            "api/v1/plantGroup/changeLiked",
+
+            {
+                groupId: groupId,
+                like: !liked,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.token}`,
+                },
+            }
+        );
+        setLiked(!liked);
+    }
+
     const deleteDoubleCheck = () => {
+        setDelGroup([...delGroup, groupId]);
         setOpen(true);
     };
 
@@ -65,16 +109,41 @@ export default function GroupDetail() {
     let navigate = useNavigate();
 
     function Agree() {
-        setOpen(false);
-        navigate("/groups");
+        axios
+            .post(
+                "api/v1/plantGroup/dels",
+
+                delGroup.map((v) => {
+                    return v;
+                }),
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                navigate("/groups");
+                setSuccessTxt("Submit is successful!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                    window.location.reload(false);
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
     }
 
     const [state, setState] = React.useState({
         bottom: false,
     });
-    function toPlantDetail() {
-        navigate("/plant-detail");
-    }
+    // function toPlantDetail() {
+    //     navigate("/plant-detail");
+    // }
 
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -97,6 +166,17 @@ export default function GroupDetail() {
             <nav aria-label="main mailbox folders">
                 <List>
                     <ListItem>
+                        <ListItemButton>
+                            <ModeEditOutlineOutlinedIcon
+                                sx={{ ml: 2, color: "#ffffff" }}
+                            />
+                            <ListItemText
+                                primary="Edit group name"
+                                sx={{ ml: 5, color: "#ffffff" }}
+                            />
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
                         <ListItemButton
                             onClick={() => {
                                 navigate(`/group-plants?groupId=${groupId}`);
@@ -112,7 +192,13 @@ export default function GroupDetail() {
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
-                        <ListItemButton>
+                        <ListItemButton
+                            onClick={() => {
+                                navigate(
+                                    `/Delete-Group-Plants?groupId=${groupId}`
+                                );
+                            }}
+                        >
                             <RemoveCircleOutlineIcon
                                 sx={{ ml: 2, color: "#ffffff" }}
                             />
@@ -169,6 +255,8 @@ export default function GroupDetail() {
                         color="error"
                         icon={<FavoriteBorder />}
                         checkedIcon={<Favorite />}
+                        checked={liked}
+                        onChange={changeLike}
                     />
                     <div class="editIcon">
                         {["bottom"].map((anchor) => (
@@ -192,11 +280,47 @@ export default function GroupDetail() {
                 <div class="bg">
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
-                            {plants.length == 0 && (
+                            {plants.length === 0 && (
                                 <div className="noData">
                                     no plants in this group
                                 </div>
                             )}
+                            {plants.map((v) => {
+                                return (
+                                    <Box
+                                        key={v._id}
+                                        display="flex"
+                                        justify-Content="center"
+                                        onClick={() => {}}
+                                        sx={{
+                                            width: 1,
+                                            height: 55,
+                                            backgroundColor: "#ffffff",
+                                            alignItems: "center",
+                                            borderRadius: 25,
+                                        }}
+                                    >
+                                        <Avatar
+                                            src={v.image}
+                                            sx={{ ml: 2.5 }}
+                                        />
+                                        <a>{v.name}</a>
+                                        <Grid
+                                            container
+                                            justifyContent="flex-end"
+                                        >
+                                            <ArrowForwardIosOutlinedIcon
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/plant-detail?plantId=${v._id}`
+                                                    );
+                                                }}
+                                                sx={{ mr: 2.5 }}
+                                            />
+                                        </Grid>
+                                    </Box>
+                                );
+                            })}
                         </Stack>
                     </div>
                 </div>
