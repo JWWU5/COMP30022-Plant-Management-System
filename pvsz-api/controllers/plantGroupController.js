@@ -260,13 +260,12 @@ exports.update = async (req, res, next) => {
                 message: "Unauthenticated request",
             });
         } else {
-            console.log(req.body);
             PlantGroup.findByIdAndUpdate(
                 {
                     _id: req.body.groupId,
                 },
                 {
-                    groupname: req.body.newgroupname,
+                    groupname: req.body.groupname,
                 },
                 (err, doc) => {
                     if (err) {
