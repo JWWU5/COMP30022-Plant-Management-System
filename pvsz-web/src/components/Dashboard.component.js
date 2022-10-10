@@ -231,6 +231,12 @@ export default function Dashboard() {
                     />
                     <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 3}}/>
                 </div>
+                <Button
+                    onClick={handleSubmit}
+                    variant="contained"
+                >
+                    update
+                </Button>
                 <div class="listbg">
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
@@ -322,23 +328,6 @@ export default function Dashboard() {
                                     </Box>
                                 );
                             })}
-                            <ThemeProvider theme={theme}>
-                                <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleSubmit}
-                                        sx={{
-                                            height: 50,
-                                            borderRadius: 25,
-                                            color: "#646464",
-                                            textTransform: "capitalize",
-                                            fontFamily: "Tamil HM",
-                                            fontSize: 15,
-                                        }}
-                                    >
-                                    UPDATE
-                                </Button>
-                            </ThemeProvider>
                         </Stack>
                     </div>
                 </div>
