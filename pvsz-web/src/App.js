@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 
@@ -34,11 +33,6 @@ import PrivatePolicy from "./components/PrivatePolicy.component";
 import Protected from "./components/protectedRoute";
 
 function App() {
-    const getDataHandler = () => {
-        axios.get("http://localhost:5000/api/v1/user").then((res) => {
-            console.log(res, "require data");
-        });
-    };
 
     return (
         <Router>

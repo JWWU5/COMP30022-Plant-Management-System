@@ -98,9 +98,9 @@ const sidebarNavItems2 = [
 ];
 
 const Header = (menubarColour) => {
-    const [enableOverlay, setEnableOverlay] = useState(true);
+    const [enableOverlay] = useState(true);
 
-    const [activeIndex, setActiveIndex] = useState(0);
+    const [activeIndex] = useState(0);
     const sidebarRef = useRef();
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
