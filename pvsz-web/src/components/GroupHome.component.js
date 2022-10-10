@@ -109,6 +109,9 @@ export default function GroupHome() {
                 setSuccessTxt("Creation is successful!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
+                    navigate(
+                        `/group-detail?groupId=${res.data.data._id}&groupname=${res.data.data.groupname}`
+                    );
                     window.location.reload(false);
                 }, 1000);
             })
