@@ -61,7 +61,7 @@ export default function Dashboard() {
                     let plants = element.plants;
                     plants.forEach((plantsItem) => {
                         for (let i = deepPlantList.length - 1; i >= 0; i--) {
-                            if (deepPlantList[i]._id == plantsItem._id) {
+                            if (deepPlantList[i]._id === plantsItem._id) {
                                 deepPlantList.splice(i, 1);
                             }
                         }
@@ -73,7 +73,7 @@ export default function Dashboard() {
                     if (item.plants) {
                         for (let j = item.plants.length - 1; j >= 0; j--) {
                             let plantItem = item.plants[j];
-                            if (curFilter == "sun") {
+                            if (curFilter === "sun") {
                                 let sunPeriod = parseInt(plantItem.sunPeriod);
                                 if (
                                     moment().diff(moment(plantItem.lastSunDate), "days") <=
@@ -82,7 +82,7 @@ export default function Dashboard() {
                                     item.plants.splice(j, 1);
                                 }
                             }
-                            if (curFilter == "water") {
+                            if (curFilter === "water") {
                                 let waterPeriod = parseInt(plantItem.waterPeriod);
                                 if (
                                     moment().diff(moment(plantItem.lastWaterDate), "days") <=
@@ -93,7 +93,7 @@ export default function Dashboard() {
                             }
                         }
                     } else {
-                        if (curFilter == "sun") {
+                        if (curFilter === "sun") {
                             let sunPeriod = parseInt(item.sunPeriod);
                             if (
                                 moment().diff(moment(item.lastSunDate), "days") <= sunPeriod
@@ -102,7 +102,7 @@ export default function Dashboard() {
                             }
                         }
 
-                        if (curFilter == "water") {
+                        if (curFilter === "water") {
                             let waterPeriod = parseInt(item.waterPeriod);
                             if (
                                 moment().diff(moment(item.lastWaterDate), "days") <= waterPeriod
@@ -131,7 +131,7 @@ export default function Dashboard() {
             ).then((res) => {
                 setBirthday(res.data.birthday);
                 const today1 = moment().format("YYYY-MM-DD");
-                if (birthday == today1) {
+                if (birthday === today1) {
                     setisBirthday(true)
                 }
                 setUserName(res.data.userName);
