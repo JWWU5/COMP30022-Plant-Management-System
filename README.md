@@ -40,3 +40,8 @@ $ npm run start
 ```
 
 ### Contributors
+- Zhenchen Wan [@ZhenchenWan](https://github.com/ZhenchenWan)
+- Wuge Liu [@jzh398](https://github.com/jzh398)
+- Jiayi Wu [@JWWU5](https://github.com/JWWU5)
+- Xuanhao Zhang [@XUANHZHANG](https://github.com/XUANHZHANG)
+- Yikun Tu [@Tykkk1026](https://github.com/Tykkk1026)

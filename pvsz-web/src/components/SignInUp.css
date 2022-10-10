@@ -1,4 +1,4 @@
-@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
 
 body .signIn {
     background: url("../assets/images/leaves_green.png"), #E2ECC6;
@@ -13,7 +13,7 @@ body .signIn {
 }  
 
 header h1 {
-    font-family: 'BM HANNA 11yrs old', cursive;
+    font-family: 'Peralta', cursive;
     font-weight: 300;
     font-size: 15vw;
     color: #FFFFFF;

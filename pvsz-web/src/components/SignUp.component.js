@@ -8,7 +8,7 @@ import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
-
+import moment from "moment";
 import { useState } from "react";
 import axios from "axios";
 
@@ -30,7 +30,7 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (image.slice(0,10) !== "data:image") {
+        if (image.slice(0,10) !== "data:image" || image !== avatar) {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
@@ -121,7 +121,7 @@ export default function Register() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/register",
+            url: "api/v1/user/register",
             data: {
                 image,
                 firstName,
@@ -175,29 +175,6 @@ export default function Register() {
         }
     };
 
-    // function uploadingImage(base64) {
-    //     var count = 0;
-    //     if (base64.slice(0,10) === "data:image") {
-            
-    //         setImage(base64);
-    //         if(count === 0){
-    //             setSuccessTxt("The selected file is a image")
-    //             count++;
-    //         }
-    //         window.timer = window.setTimeout(() => {
-    //             setSuccessTxt("");
-    //         }, 1000);
-    //     }else{
-    //         if(count === 0){
-    //             setErrorTxt("Only accept uploading image");
-    //             count++;
-    //         }
-    //         window.timer = window.setTimeout(() => {
-    //             setErrorTxt("");
-    //         }, 1000);
-    //     }
-    // }
-
     return (
         <body className="signIn">
             <div className="tipsBox">
@@ -206,7 +183,7 @@ export default function Register() {
             </div>
             <Header />
             <header>
-                <h1>SIGN UP</h1>
+                <h1>Sigh Up</h1>
             </header>
             <Grid
                 container
@@ -264,6 +241,7 @@ export default function Register() {
                         type="date"
                         placeholder="DOB"
                         className="signUpInputBlock"
+                        max={moment().format("YYYY-MM-DD")}
                         value={birthdayDate}
                         onChange={(e) => setBirthdayDate(e.target.value)}
                     ></input>

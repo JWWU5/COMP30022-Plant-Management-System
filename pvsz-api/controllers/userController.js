@@ -2,9 +2,9 @@ const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.register = async (req, res, next) => {
+
     let user = await User.findOne({
         email: req.body.email,
     });
@@ -20,7 +20,7 @@ exports.register = async (req, res, next) => {
             image: req.body.image,
             firstName: req.body.firstName,
             lastName: req.body.lastName,
-            userId: req.body.userName,
+            userName: req.body.userName,
             dateOfBirth: req.body.birthdayDate,
             email: req.body.email,
             password: hashedPassword,
@@ -96,6 +96,7 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
+    r = bcrypt.compare("1","1")
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -114,11 +115,17 @@ exports.getUserInfo = async (req, res, next) => {
             try {
                 let userItem = await User.findById(userId).populate(
                     "plantList"
-                );
-
+                ).populate({
+                    path: 'groups',
+                    populate: {
+                        path: 'plants'
+                    }
+                });
+                let user = await User.findOne({_id:userId})
                 res.json({
                     code: 200,
-
+                    userName: user.userName,
+                    birthday: user.dateOfBirth,
                     data: userItem,
                 });
             } catch (error) {
@@ -214,24 +221,39 @@ exports.changePassword = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
-            User.findByIdAndUpdate(
-                {
-                    _id: userId,
-                },
-                {
-                    password: hashedPassword
-                },
-                (err, doc) => {
-                    if (err) {
-                        res.status(500).send("Exceptions in server");
-                        return;
-                    }
-                    res.status(201).send({
-                        message: "Password has Changed Successfully",
-                    });
+            user = await User.findById(userId);
+            bcrypt.compare(req.body.newPassword, user.password, async function(err, result) {
+                if (err) {
+                    res.status(500).send("Exceptions in server");
+                    return;
                 }
-            );
+                if(result){
+                    res.status(400).send({
+                        message: "Password is same as previous one",
+                        err,
+                    });
+                } else {
+                    const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+                    User.findByIdAndUpdate(
+                        {
+                            _id: userId,
+                        },
+                        {
+                            password: hashedPassword
+                        },
+                        (err, doc) => {
+                            if (err) {
+                                res.status(500).send("Exceptions in server");
+                                return;
+                            }
+                            res.status(201).send({
+                                message: "Password has Changed Successfully",
+                            });
+                        }
+                    );
+                }
+            });
+
         }
     });
 }

@@ -51,7 +51,7 @@ export default function DeletePlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -100,7 +100,7 @@ export default function DeletePlant() {
 
         axios
             .post(
-                "/api/v1/customPlant/dels",
+                "api/v1/customPlant/dels",
                 checkedPlantArr.map((v) => {
                     return v._id;
                 }),

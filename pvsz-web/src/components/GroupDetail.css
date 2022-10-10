@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
+
 @media screen and (min-width: 350px) {
     .groupName {
         display: flex;
@@ -5,7 +7,7 @@
 
     .groupName h5 {
         display: block;
-        font-family: 'BM HANNA 11yrs old', cursive;
+        font-family: 'Peralta', cursive;
         font-weight: 100;
         color: #44533B;
         font-size: 40px;

@@ -2,7 +2,6 @@ const { PlantGroup, User } = require("../models");
 
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.add = async (req, res, next) => {
     let token = req.get("Authorization");
@@ -199,6 +198,44 @@ exports.delPlantInGroup = async (req, res, next) => {
                     }
                     res.status(201).send({
                         message: "User Changed Successfully",
+                    });
+                }
+            );
+        }
+    });
+};
+
+exports.changeLiked = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            PlantGroup.findByIdAndUpdate(
+                {
+                    _id: req.body.groupId,
+                },
+                {
+                    like: req.body.like,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "liked Changed Successfully",
                     });
                 }
             );

@@ -1,6 +1,5 @@
 import React from "react";
 import "./Setting.css";
-import "./Ranking.css";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 
@@ -29,9 +28,9 @@ export default function Setting() {
     return (
         <body>
             <Header />
-            <div className="rankingContentDiv">
-                <div className="rankingContentRec">
-                    <h1 className="rankingTitle">SETTING</h1>
+            <div>
+                <div>
+                    <h1>SETTING</h1>
                     <Grid container direction="column">
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>

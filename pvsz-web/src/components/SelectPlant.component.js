@@ -19,8 +19,6 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 const theme = createTheme({
     palette: {
         primary: {
@@ -38,7 +36,7 @@ export default function SelectPlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plant/list",
+                "api/v1/plant/list",
                 {},
                 {
                     headers: {
@@ -93,7 +91,7 @@ export default function SelectPlant() {
                                     />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the plant"
+                                        placeholder="Search your plant"
                                         inputProps={{
                                             "aria-label": "search your plant",
                                         }}

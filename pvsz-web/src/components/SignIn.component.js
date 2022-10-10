@@ -50,7 +50,7 @@ export default function Login() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/login",
+            url: "api/v1/user/login",
             data: {
                 email,
                 password,
@@ -132,7 +132,7 @@ export default function Login() {
             </div>
             <Header />
             <header>
-                <h1>SIGN IN</h1>
+                <h1>Sigh In</h1>
             </header>
             <Grid
                 container

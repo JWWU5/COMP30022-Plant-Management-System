@@ -1,7 +1,7 @@
-@import url(//db.onlinewebfonts.com/c/8914c48bb6cbcf51c389da71e776340d?family=BM+HANNA+11yrs+old);
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
 
 .profileTitle {
-    font-family: 'BM HANNA 11yrs old', cursive;
+    font-family: 'Peralta', cursive;
     font-weight: 300;
     font-size: 12vw;
     color: #44533B;
@@ -51,7 +51,7 @@ input[type="blocked"] {
 }
 
 .valueDiv {
-    font-family: 'BM HANNA 11yrs old', cursive;
+    font-family: Tamil MN;
     font-weight: 300;
     text-align: left;
     margin-top: 1%;
