@@ -21,7 +21,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const theme = createTheme({
     palette: {
@@ -36,6 +36,7 @@ const theme = createTheme({
 export default function GroupHome() {
     const [groupName, setGroupName] = useState("");
     const [groups, setGroups] = useState([]);
+    const [liked, setLiked] = useState(false);
     const [cacheGroupName, setCacheGroupName] = useState([]);
     let navigate = useNavigate();
     const [successTxt, setSuccessTxt] = useState("");
@@ -257,36 +258,74 @@ export default function GroupHome() {
                                     a.like === b.like ? 0 : a.like ? -1 : 1
                                 )
                                 .map((v) => {
-                                    return (
-                                        <Box
-                                            key={v._id}
-                                            display="flex"
-                                            justify-Content="center"
-                                            onClick={() => {
-                                                navigate(
-                                                    `/group-detail?groupId=${v._id}&groupname=${v.groupname}`
-                                                );
-                                            }}
-                                            sx={{
-                                                width: 1,
-                                                height: 55,
-                                                backgroundColor: "#ffffff",
-                                                alignItems: "center",
-                                                borderRadius: 25,
-                                            }}
-                                        >
-                                            <a>{v.groupname}</a>
-                                            <FavoriteIcon color="error" sx= {{ml: 2}}/>
-                                            <Grid
-                                                container
-                                                justifyContent="flex-end"
+                                    if (v.like) {
+                                        return (
+                                            <Box
+                                                key={v._id}
+                                                display="flex"
+                                                justify-Content="center"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/group-detail?groupId=${v._id}&groupname=${v.groupname}`
+                                                    );
+                                                }}
+                                                sx={{
+                                                    width: 1,
+                                                    height: 55,
+                                                    backgroundColor: "#ffffff",
+                                                    alignItems: "center",
+                                                    borderRadius: 25,
+                                                }}
                                             >
-                                                <ArrowForwardIosOutlinedIcon
-                                                    sx={{ mr: 2.5 }}
+                                                <a>{v.groupname}</a>
+
+                                                <FavoriteIcon
+                                                    color="error"
+                                                    sx={{ ml: 2 }}
                                                 />
-                                            </Grid>
-                                        </Box>
-                                    );
+
+                                                <Grid
+                                                    container
+                                                    justifyContent="flex-end"
+                                                >
+                                                    <ArrowForwardIosOutlinedIcon
+                                                        sx={{ mr: 2.5 }}
+                                                    />
+                                                </Grid>
+                                            </Box>
+                                        );
+                                    } else {
+                                        return (
+                                            <Box
+                                                key={v._id}
+                                                display="flex"
+                                                justify-Content="center"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/group-detail?groupId=${v._id}&groupname=${v.groupname}`
+                                                    );
+                                                }}
+                                                sx={{
+                                                    width: 1,
+                                                    height: 55,
+                                                    backgroundColor: "#ffffff",
+                                                    alignItems: "center",
+                                                    borderRadius: 25,
+                                                }}
+                                            >
+                                                <a>{v.groupname}</a>
+
+                                                <Grid
+                                                    container
+                                                    justifyContent="flex-end"
+                                                >
+                                                    <ArrowForwardIosOutlinedIcon
+                                                        sx={{ mr: 2.5 }}
+                                                    />
+                                                </Grid>
+                                            </Box>
+                                        );
+                                    }
                                 })}
                         </Stack>
                     </div>
