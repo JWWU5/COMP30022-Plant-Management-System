@@ -232,7 +232,6 @@ export default function Dashboard() {
                     update
                 </Button>
                 <div class="listbg">
-                    
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
                             {plantList.map((v, i) => {
