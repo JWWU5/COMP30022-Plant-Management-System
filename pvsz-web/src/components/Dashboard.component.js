@@ -15,7 +15,7 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Divider from "@mui/material/Divider";
-
+import { Alert } from "@mui/material";
 import watercan from "../assets/images/water_can.png";
 import sun from "../assets/images/sun.png";
 import group from "../assets/images/group.png";
@@ -30,6 +30,8 @@ export default function Dashboard() {
     const [userName, setUserName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [isbirthday, setisBirthday] = useState(false);
+    const [successTxt, setSuccessTxt] = useState("");
+    const [errorTxt, setErrorTxt] = useState("");
     const getList = () => {
         axios
             .post(
@@ -142,9 +144,64 @@ export default function Dashboard() {
 
     const today = moment().format("YYYY/MM/DD");
 
+    const handleSubmit = () => {
+        console.log("plantlist = ", plantList);
+        let checkedArr = [];
+        for (let i = plantList.length - 1; i >= 0; i--) {
+            let item = plantList[i];
+            if (item.plants) {
+                for (let j = item.plants.length - 1; j >= 0; j--) {
+                    let plantItem = item.plants[j];
+                    if (plantItem.checked) {
+                        checkedArr.push(plantItem._id);
+                    }
+                }
+            } else {
+                if (item.checked) {
+                    checkedArr.push(item._id);
+                }
+            }
+        }
+        console.log("checkedArr = ", checkedArr)
+        if (checkedArr.length === 0) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Select at least one to update!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+        axios.post(
+            "api/v1/customPlant/update",
+            {
+                idsArr: checkedArr,
+                type: curFilter,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.token}`,
+                },
+            }
+        ).then(() => {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setSuccessTxt("Update is successful!");
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+            getList();
+        });
+    }
 
     return (
         <body className="Dashboard">
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <Header />
             <main>
                 <div class="welcome">
@@ -170,40 +227,7 @@ export default function Dashboard() {
                     <AddCircleOutlineIcon onClick={handleAddIcon} />
                 </div>
                 <Button
-                    onClick={() => {
-                        console.log("plantlist = ", plantList);
-                        let checkedArr = [];
-                        for (let i = plantList.length - 1; i >= 0; i--) {
-                            let item = plantList[i];
-                            if (item.plants) {
-                                for (let j = item.plants.length - 1; j >= 0; j--) {
-                                    let plantItem = item.plants[j];
-                                    if (plantItem.checked) {
-                                        checkedArr.push(plantItem._id);
-                                    }
-                                }
-                            } else {
-                                if (item.checked) {
-                                    checkedArr.push(item._id);
-                                }
-                            }
-                        }
-                        console.log("checkedArr = ", checkedArr)
-                        axios.post(
-                            "api/v1/customPlant/update",
-                            {
-                                idsArr: checkedArr,
-                                type: curFilter,
-                            },
-                            {
-                                headers: {
-                                    Authorization: `Bearer ${window.localStorage.token}`,
-                                },
-                            }
-                        ).then(() => {
-                            getList();
-                        });
-                    }}
+                    onClick={handleSubmit}
                     variant="contained"
                 >
                     update
