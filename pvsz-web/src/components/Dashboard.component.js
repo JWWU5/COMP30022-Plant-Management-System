@@ -224,13 +224,7 @@ export default function Dashboard() {
                 </div>
                 
                 <div class="listbg">
-                    <Button
-                        onClick={handleSubmit}
-                        variant="contained"
-                    >
-                        update
-                    </Button>
-                    
+
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
                             {plantList.map((v, i) => {
