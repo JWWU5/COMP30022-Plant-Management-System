@@ -20,6 +20,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Badge from '@mui/material/Badge';
 
 const theme = createTheme({
     palette: {
@@ -220,16 +221,21 @@ export default function Dashboard() {
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
                 <div class="switchIcons">
-                    <FireExtinguisherOutlinedIcon onClick={() => {
-                            setCurFilter("water");
-                        }}
-                    />
-                    <WbSunnyIcon onClick={() => {
-                            setCurFilter("sun");
-                        }}
-                        sx = {{ml: 3}}
-                    />
-                    <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 3}}/>
+                    <Badge badgeContent={4} color="success">
+                        <FireExtinguisherOutlinedIcon onClick={() => {
+                                setCurFilter("water");
+                            }}
+                        />
+                    </Badge>
+                    <Badge badgeContent={4} color="success">
+                        <WbSunnyIcon onClick={() => {
+                                setCurFilter("sun");
+                            }}
+                            sx = {{ml: 3}}
+                        />
+                    </Badge>
+
+                    <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 5}}/>
                 </div>
                 <div class="listbg">
                     <div class="list">
@@ -277,7 +283,7 @@ export default function Dashboard() {
                                                                     sx={{
                                                                         color: "#44533B",
                                                                         "&.Mui-checked": {
-                                                                            color: "#44533B",
+                                                                            color: "#44533B"
                                                                         },
                                                                     }}
                                                                 />
