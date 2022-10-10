@@ -97,6 +97,8 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
+    r = bcrypt.compare("1","1")
+    // console.log(r)
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -105,10 +107,7 @@ exports.getUserInfo = async (req, res, next) => {
         return;
     }
     token = token.split("Bearer ")[1];
-    console.log("token = ", token);
     jwt.verify(token, jwtKey, async (err, decode) => {
-        console.log("err = ", err);
-        console.log("decode = ", decode);
         if (err) {
             res.status(401).send({
                 message: "Unauthenticated request",
@@ -224,24 +223,39 @@ exports.changePassword = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
-            User.findByIdAndUpdate(
-                {
-                    _id: userId,
-                },
-                {
-                    password: hashedPassword
-                },
-                (err, doc) => {
-                    if (err) {
-                        res.status(500).send("Exceptions in server");
-                        return;
-                    }
-                    res.status(201).send({
-                        message: "Password has Changed Successfully",
-                    });
+            user = await User.findById(userId);
+            bcrypt.compare(req.body.newPassword, user.password, async function(err, result) {
+                if (err) {
+                    res.status(500).send("Exceptions in server");
+                    return;
                 }
-            );
+                if(result){
+                    res.status(400).send({
+                        message: "Password is same as previous one",
+                        err,
+                    });
+                } else {
+                    const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+                    User.findByIdAndUpdate(
+                        {
+                            _id: userId,
+                        },
+                        {
+                            password: hashedPassword
+                        },
+                        (err, doc) => {
+                            if (err) {
+                                res.status(500).send("Exceptions in server");
+                                return;
+                            }
+                            res.status(201).send({
+                                message: "Password has Changed Successfully",
+                            });
+                        }
+                    );
+                }
+            });
+
         }
     });
 }

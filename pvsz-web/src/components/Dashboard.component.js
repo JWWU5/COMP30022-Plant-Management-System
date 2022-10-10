@@ -42,13 +42,7 @@ export default function Dashboard() {
                 }
             )
             .then((res) => {
-                setBirthday(res.data.birthday);
 
-                const today = moment().format("YYYY-MM-DD");
-                if (birthday == today) {
-                    setisBirthday(true)
-                }
-                setUserName(res.data.userName);
                 let { plantList, groups } = res.data.data;
                 let deepPlantList = [...plantList];
                 groups.forEach((element, index) => {
@@ -62,7 +56,6 @@ export default function Dashboard() {
                     });
                 });
                 let needData = deepPlantList.concat(groups);
-
                 for (let i = needData.length - 1; i >= 0; i--) {
                     let item = needData[i];
                     if (item.plants) {
@@ -113,7 +106,28 @@ export default function Dashboard() {
                 console.log("err = ", err);
             });
     };
+    useEffect(() => {
+        axios
+            .post(
+                "api/v1/user/getUserInfo",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            ).then((res) => {
+                setBirthday(res.data.birthday);
+                const today1 = moment().format("YYYY-MM-DD");
+                if (birthday == today1) {
+                    setisBirthday(true)
+                }
+                setUserName(res.data.userName);
 
+            }).catch((err) => {
+                console.log("err = ", err);
+            });
+    },)
     useEffect(
         () => {
             getList();
@@ -127,6 +141,8 @@ export default function Dashboard() {
     }
 
     const today = moment().format("YYYY/MM/DD");
+
+
     return (
         <body className="Dashboard">
             <Header />

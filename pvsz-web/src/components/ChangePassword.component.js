@@ -102,7 +102,13 @@ export default function ChangePassword() {
                 }, 1000);
             })
             .catch((err) => {
-                console.log("err = ", err);
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt(err?.response?.data?.message);
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
             });
     }
 
