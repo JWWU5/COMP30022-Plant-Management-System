@@ -38,6 +38,8 @@ export default function Dashboard() {
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
     const [curFilter, setCurFilter] = useState("water");
+    const [waterLength, setwaterLength] = useState("");
+    const [sunLength, setsunLength] = useState("");
     const [userName, setUserName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [isbirthday, setisBirthday] = useState(false);
@@ -55,7 +57,7 @@ export default function Dashboard() {
                 }
             )
             .then((res) => {
-
+                let count = 0;
                 let { plantList, groups } = res.data.data;
                 let deepPlantList = [...plantList];
                 groups.forEach((element, index) => {
@@ -114,6 +116,22 @@ export default function Dashboard() {
                     }
                 }
                 setPlantList(needData);
+
+                for (var each of needData) {
+                    if (!each.name) {
+                        count += each.plants.length
+                    } else {
+                        count++
+                    }
+                }
+                if (curFilter === "water") {
+                    setwaterLength(count)
+                    setsunLength(0);
+                } else {
+                    setsunLength(count);
+                    setwaterLength(0);
+                }
+
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -156,6 +174,7 @@ export default function Dashboard() {
     const today = moment().format("YYYY/MM/DD");
 
     const handleSubmit = () => {
+        console.log(plantList)
         console.log("plantlist = ", plantList);
         let checkedArr = [];
         for (let i = plantList.length - 1; i >= 0; i--) {
@@ -221,21 +240,21 @@ export default function Dashboard() {
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
                 <div class="switchIcons">
-                    <Badge badgeContent={4} color="success">
+                    <Badge badgeContent={waterLength} color="success">
                         <FireExtinguisherOutlinedIcon onClick={() => {
-                                setCurFilter("water");
-                            }}
+                            setCurFilter("water");
+                        }}
                         />
                     </Badge>
-                    <Badge badgeContent={4} color="success">
+                    <Badge badgeContent={sunLength} color="success">
                         <WbSunnyIcon onClick={() => {
-                                setCurFilter("sun");
-                            }}
-                            sx = {{ml: 3}}
+                            setCurFilter("sun");
+                        }}
+                            sx={{ ml: 3 }}
                         />
                     </Badge>
 
-                    <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 5}}/>
+                    <AddCircleOutlineIcon onClick={handleAddIcon} sx={{ ml: 5 }} />
                 </div>
                 <div class="listbg">
                     <div class="list">
@@ -330,18 +349,18 @@ export default function Dashboard() {
                             })}
                             <ThemeProvider theme={theme}>
                                 <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleSubmit}
-                                        sx={{
-                                            height: 50,
-                                            borderRadius: 25,
-                                            color: "#646464",
-                                            textTransform: "capitalize",
-                                            fontFamily: "Tamil HM",
-                                            fontSize: 15,
-                                        }}
-                                    >
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleSubmit}
+                                    sx={{
+                                        height: 50,
+                                        borderRadius: 25,
+                                        color: "#646464",
+                                        textTransform: "capitalize",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 15,
+                                    }}
+                                >
                                     UPDATE
                                 </Button>
                             </ThemeProvider>
