@@ -177,7 +177,7 @@ export default function AddPlant() {
             </div>
             <Header />
             <header>
-                <h1 className="addPlantTitle">ADD PLANT</h1>
+                <h1 className="addPlantTitle">Add Plant</h1>
             </header>
 
             <Grid
@@ -187,7 +187,6 @@ export default function AddPlant() {
                 alignItems="center"
             >
                 <Avatar
-                    // src="avatar1.jpg"
                     src={image}
                     sx={{ width: 100, height: 100 }}
                 />

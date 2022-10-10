@@ -19,8 +19,6 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 const theme = createTheme({
     palette: {
         primary: {

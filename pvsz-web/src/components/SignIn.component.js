@@ -132,7 +132,7 @@ export default function Login() {
             </div>
             <Header />
             <header>
-                <h1>SIGN IN</h1>
+                <h1>Sigh In</h1>
             </header>
             <Grid
                 container

@@ -1,7 +1,6 @@
-const { CustomPlant, User, PlantGroup, Plant } = require("../models");
+const { CustomPlant, User, PlantGroup } = require("../models");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 const moment = require("moment");
 
 exports.add = async (req, res, next) => {
@@ -212,7 +211,6 @@ exports.update = async (req, res, next) => {
                 message: "Unauthenticated request",
             });
         } else {
-            // let userId = decode.userId;
             try {
                 let result = await CustomPlant.updateMany({ "_id": { $in: idsArr } }, { $set: setObj })
                 res.json({

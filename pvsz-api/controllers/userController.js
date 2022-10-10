@@ -1,8 +1,7 @@
-const { User ,CustomPlant} = require("./../models");
+const { User } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.register = async (req, res, next) => {
 
@@ -98,7 +97,6 @@ exports.login = async (req, res, next) => {
 
 exports.getUserInfo = async (req, res, next) => {
     r = bcrypt.compare("1","1")
-    // console.log(r)
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({

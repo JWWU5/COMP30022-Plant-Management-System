@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 
 // Import components.
 import Welcome from "./components/Welcome.component";
@@ -9,9 +9,7 @@ import ContactUS from "./components/ContactUS.component";
 
 import Login from "./components/SignIn.component";
 import SignUp from "./components/SignUp.component";
-import AppLayout from "./components/AppLayout";
 import AddPlant from "./components/AddPlant.component";
-// import DynamicButton from "./components/dynamicButton";
 import Profile from "./components/Profile.component";
 import "boxicons/css/boxicons.min.css";
 import "./App.css";
@@ -29,14 +27,11 @@ import GroupPlant from "./components/GroupPlants.component";
 import GroupDetail from "./components/GroupDetail.component";
 import GroupPlantDelete from "./components/GroupPlantDelete.component";
 
-// ranking
-import Ranking from "./components/Ranking.component";
 // settings
 import Setting from "./components/Setting.component";
 import ChangePassword from "./components/ChangePassword.component";
 import PrivatePolicy from "./components/PrivatePolicy.component";
 import Protected from "./components/protectedRoute";
-import { useState } from "react";
 
 function App() {
     const getDataHandler = () => {
@@ -107,10 +102,6 @@ function App() {
                 <Route
                     path="/plant-detail"
                     element={<Protected Component={PlantDetail} />}
-                />
-                <Route
-                    path="/ranking"
-                    element={<Protected Component={Ranking} />}
                 />
                 <Route
                     path="/setting"

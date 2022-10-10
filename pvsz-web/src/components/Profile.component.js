@@ -167,7 +167,7 @@ export default function Profile() {
             </div>
             <Header />
             <header>
-                <h1 className="profileTitle">PROFILE</h1>
+                <h1 className="profileTitle">Profile</h1>
             </header>
             <Grid
                 container

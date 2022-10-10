@@ -2,7 +2,6 @@ const { PlantGroup, User } = require("../models");
 
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
-const mongoose = require("mongoose");
 
 exports.add = async (req, res, next) => {
     let token = req.get("Authorization");

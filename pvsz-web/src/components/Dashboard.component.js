@@ -18,7 +18,6 @@ import Divider from "@mui/material/Divider";
 import { Alert } from "@mui/material";
 import watercan from "../assets/images/water_can.png";
 import sun from "../assets/images/sun.png";
-import group from "../assets/images/group.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
