@@ -38,8 +38,9 @@ export default function Dashboard() {
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
     const [curFilter, setCurFilter] = useState("water");
-    const [waterLength, setwaterLength] = useState("");
-    const [sunLength, setsunLength] = useState("");
+    const [waterLength, setwaterLength] = useState(0);
+    const [sunLength, setsunLength] = useState(0);
+    const [countplant, setcountplant] = useState(0);
     const [userName, setUserName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [isbirthday, setisBirthday] = useState(false);
@@ -126,9 +127,11 @@ export default function Dashboard() {
                 }
                 if (curFilter === "water") {
                     setwaterLength(count)
+                    setcountplant(count)
                     setsunLength(0);
                 } else {
                     setsunLength(count);
+                    setcountplant(count);
                     setwaterLength(0);
                 }
 
@@ -347,7 +350,7 @@ export default function Dashboard() {
                                     </Box>
                                 );
                             })}
-                            <ThemeProvider theme={theme}>
+                            {countplant !== 0 && <ThemeProvider theme={theme}>
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -363,7 +366,7 @@ export default function Dashboard() {
                                 >
                                     UPDATE
                                 </Button>
-                            </ThemeProvider>
+                            </ThemeProvider>}
                         </Stack>
                     </div>
                 </div>
