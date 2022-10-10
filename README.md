@@ -5,8 +5,8 @@ This web application named ‘PvsZ’ (only for phone size) used for tracking th
 See the full list of requirements at our [Confluence](https://jwwu5.atlassian.net/wiki/spaces/IP/overview?homepageId=196693). 
 
 ### This is our logo: 
-<p>
-  <img src="/Users/liuwuge/Downloads/COMP30022-Groupwork/pvsz-web/src/assets/images/logo.jpg">
+<p align="center">
+  <img src="./pvsz-web/src/assets/images/logo.jpg">
 </p>
 
 ## Building Technologies
