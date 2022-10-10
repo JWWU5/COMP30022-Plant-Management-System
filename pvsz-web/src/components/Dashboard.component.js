@@ -20,6 +20,17 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
 
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FFFFFF",
+            width: 1,
+            height: 55,
+        },
+    },
+});
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -219,10 +230,9 @@ export default function Dashboard() {
                         }}
                         sx = {{ml: 3}}
                     />
-
                     <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 3}}/>
                 </div>
-                
+
                 <div class="listbg">
 
                     <div class="list">
@@ -315,7 +325,25 @@ export default function Dashboard() {
                                     </Box>
                                 );
                             })}
+                            <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleSubmit}
+                                    sx={{
+                                        height: 50,
+                                        borderRadius: 25,
+                                        color: "#646464",
+                                        textTransform: "capitalize",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 15,
+                                    }}
+                                >
+                                update
+                            </Button>
+
                         </Stack>
+                        
+
                     </div>
                 </div>
             </main>
