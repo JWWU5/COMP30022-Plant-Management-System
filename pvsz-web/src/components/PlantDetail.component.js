@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
-import { Alert } from "@mui/material";
+import { Alert, inputAdornmentClasses } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
 export default function PlantDetail() {
     let searchParams = useSearchParams();
@@ -30,6 +33,8 @@ export default function PlantDetail() {
     const [detailTextColor, setDetailTextColor] = useState("#555A6E");
     const [errorTxt, setErrorTxt] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
+    const [like, setLike] = useState("");
+    const [validNameLength, setValidNameLength] = useState(true);
 
     useEffect(() => {
         setPlantId(searchParams[0].getAll("plantId")[0]);
@@ -142,9 +147,29 @@ export default function PlantDetail() {
 
     const inputPlantName = (e) => {
         setPlantName(e.target.value);
+        checkNameLength(e.target.value);
     }
 
+    function changeLike() {
+        if (like) {
+            setLike(false);
+        }
+        else {
+            setLike(true);
+        }
+    }
 
+    function checkNameLength(inputValue) {
+        if (inputValue.length > 12) {
+            setValidNameLength(false);
+            setButtonClass("editButtonPlantDetail")
+        }
+        else {
+            setValidNameLength(true);
+            setButtonClass("submitButtonPlantDetail")
+        }
+            
+    }
 
     return (
         <body>
@@ -155,9 +180,23 @@ export default function PlantDetail() {
             <div className="detailContainer">
                 <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
                     <Header />
-                    <div className="plantNameTitleDiv">
-                        <h3 className="plantNameTitle"><span>{plantName}</span></h3>
-                    </div>
+                    <Grid container spacing={0}>
+                        <Grid item xs={9}>
+                            <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <div className="likeIconDiv">
+                                <Checkbox
+                                    label="Like"
+                                    color="error"
+                                    icon={<FavoriteBorder />}
+                                    checkedIcon={<Favorite />}
+                                    checked={like}
+                                    onChange={changeLike}
+                                />
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
                 <div className="detailContentDiv">
                     <h3 className="detailText">Details</h3>
@@ -206,10 +245,10 @@ export default function PlantDetail() {
                             value = {otherDetails}
                             onChange={(e) => inputOtherDetails(e)}
                         >
-
                         </textarea>
                         {isEditable && <p className="otherDetailTitle">Update the plant name</p>}
                         {isEditable && <textarea className="plantNameTextarea" onChange={(e) => inputPlantName(e)}>{plantName}</textarea>}
+                        {isEditable && !validNameLength && <p className="unValidLengthMSG">Maximum length of plant name is 12 characters</p>}
                         {isEditable && <p className="otherDetailTitle">Update the plant image</p>}
                         {isEditable && <FileBase64
                             id="fileInput"
@@ -221,6 +260,7 @@ export default function PlantDetail() {
                         <button
                             className={buttonClass}
                             onClick={handleInput}
+                            disabled={!validNameLength}
                         >
                             {buttonText}
                         </button>
