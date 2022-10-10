@@ -43,6 +43,7 @@ exports.add = async (req, res, next) => {
 
                             res.json({
                                 code: 200,
+                                data: plantGroup
                             });
                         }
                     );
