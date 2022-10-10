@@ -266,7 +266,7 @@ exports.update = async (req, res, next) => {
                     _id: req.body.groupId,
                 },
                 {
-                    groupname: req.body.groupname,
+                    groupname: req.body.newgroupname,
                 },
                 (err, doc) => {
                     if (err) {

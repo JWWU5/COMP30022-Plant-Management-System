@@ -21,7 +21,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-
+import { Alert } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -61,6 +61,7 @@ export default function GroupDetail() {
     let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
+    const [newgroupname, setnewgroupname] = useState("");
     const [plants, setPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [delGroup, setDelGroup] = useState([]);
@@ -111,7 +112,7 @@ export default function GroupDetail() {
     }
 
     const handleUpdate = () => {
-        if (!groupname) {
+        if (!newgroupname) {
             if (window.timer) {
                 clearTimeout(window.timer);
             }
@@ -121,13 +122,12 @@ export default function GroupDetail() {
             }, 1000);
             return;
         }
-        console.log(groupname);
         axios
             .post(
                 "api/v1/plantGroup/update",
                 {
                     groupId: groupId,
-                    groupname: groupname,
+                    groupname: newgroupname,
                 },
                 {
                     headers: {
@@ -143,7 +143,7 @@ export default function GroupDetail() {
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
                     navigate(
-                        `/group-detail?groupId=${groupId}&groupname=${groupname}`
+                        `/group-detail?groupId=${groupId}&groupname=${newgroupname}`
                     );
                     window.location.reload(false);
                 }, 1000);
@@ -212,12 +212,17 @@ export default function GroupDetail() {
         setState({ ...state, [anchor]: open });
     };
     const list = (anchor) => (
+        
         <Box
             sx={{
                 width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
                 backgroundColor: "#BACB94",
             }}
         >
+                        <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <div class="updateGroupName">
                 <Stack spacing={3} justify-Content="center">
                     <div className="newGroupName">
@@ -225,8 +230,8 @@ export default function GroupDetail() {
                         <input
                             className="plantValueBlock"
                             type="text"
-                            value={groupname}
-                            onChange={(e) => setgroupname(e.target.value)}
+                            value={newgroupname}
+                            onChange={(e) => setnewgroupname(e.target.value)}
                         />
                     </div>
 
