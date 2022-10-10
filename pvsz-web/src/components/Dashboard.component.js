@@ -16,9 +16,10 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Divider from "@mui/material/Divider";
 import { Alert } from "@mui/material";
-import watercan from "../assets/images/water_can.png";
-import sun from "../assets/images/sun.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
+
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -208,30 +209,27 @@ export default function Dashboard() {
                     <h3>Today is {today}.</h3>
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
-                <div class="topic">
-                    <img
-                        onClick={() => {
+                <div class="switchIcons">
+                    <FireExtinguisherOutlinedIcon onClick={() => {
                             setCurFilter("water");
                         }}
-                        class="watercan"
-                        src={watercan}
                     />
-                    <img
-                        onClick={() => {
+                    <WbSunnyIcon onClick={() => {
                             setCurFilter("sun");
                         }}
-                        class="sun"
-                        src={sun}
+                        sx = {{ml: 3}}
                     />
-                    <AddCircleOutlineIcon onClick={handleAddIcon} />
+
+                    <AddCircleOutlineIcon onClick={handleAddIcon} sx = {{ml: 3}}/>
                 </div>
-                <Button
-                    onClick={handleSubmit}
-                    variant="contained"
-                >
-                    update
-                </Button>
+                
                 <div class="listbg">
+                    <Button
+                        onClick={handleSubmit}
+                        variant="contained"
+                    >
+                        update
+                    </Button>
                     
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
