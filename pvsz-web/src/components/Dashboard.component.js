@@ -229,6 +229,14 @@ export default function Dashboard() {
         });
     }
 
+    const translucentStyle = {
+        opacity: 0.5
+    }
+
+    const nontransparentStyle = {
+        opacity: 1.0
+    }
+
     return (
         <body className="Dashboard">
             <div className="tipsBox">
@@ -244,17 +252,42 @@ export default function Dashboard() {
                 </div>
                 <div class="switchIcons">
                     <Badge badgeContent={waterLength} color="success">
-                        <FireExtinguisherOutlinedIcon onClick={() => {
-                            setCurFilter("water");
-                        }}
-                        />
+                        {curFilter === "water" && 
+                            <FireExtinguisherOutlinedIcon
+                                style={nontransparentStyle}
+                                onClick={() => {
+                                    setCurFilter("water");
+                                }}
+                            />
+                        }
+                        {curFilter !== "water" && 
+                            <FireExtinguisherOutlinedIcon
+                                style={translucentStyle}
+                                onClick={() => {
+                                    setCurFilter("water");
+                                }}
+                            />
+                        }
                     </Badge>
                     <Badge badgeContent={sunLength} color="success">
-                        <WbSunnyIcon onClick={() => {
-                            setCurFilter("sun");
-                        }}
-                            sx={{ ml: 3 }}
-                        />
+                        {curFilter === "sun" && 
+                            <WbSunnyIcon
+                                style={nontransparentStyle}
+                                onClick={() => {
+                                    setCurFilter("sun");
+                                }}
+                                sx={{ ml: 3 }}
+                            />
+                        }
+                        {curFilter !== "sun" && 
+                            <WbSunnyIcon
+                                style={translucentStyle}
+                                onClick={() => {
+                                    setCurFilter("sun");
+                                }}
+                                sx={{ ml: 3 }}
+                            />
+                        }
                     </Badge>
 
                     <AddCircleOutlineIcon onClick={handleAddIcon} sx={{ ml: 5 }} />
