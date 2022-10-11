@@ -251,44 +251,46 @@ export default function Dashboard() {
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
                 <div class="switchIcons">
-                    <Badge badgeContent={waterLength} color="success">
-                        {curFilter === "water" && 
-                            <FireExtinguisherOutlinedIcon
-                                style={nontransparentStyle}
-                                onClick={() => {
-                                    setCurFilter("water");
-                                }}
-                            />
-                        }
-                        {curFilter !== "water" && 
-                            <FireExtinguisherOutlinedIcon
-                                style={translucentStyle}
-                                onClick={() => {
-                                    setCurFilter("water");
-                                }}
-                            />
-                        }
-                    </Badge>
-                    <Badge badgeContent={sunLength} color="success">
-                        {curFilter === "sun" && 
-                            <WbSunnyIcon
-                                style={nontransparentStyle}
-                                onClick={() => {
-                                    setCurFilter("sun");
-                                }}
-                                sx={{ ml: 3 }}
-                            />
-                        }
-                        {curFilter !== "sun" && 
-                            <WbSunnyIcon
-                                style={translucentStyle}
-                                onClick={() => {
-                                    setCurFilter("sun");
-                                }}
-                                sx={{ ml: 3 }}
-                            />
-                        }
-                    </Badge>
+                    <div class="leftIcons">
+                        <Badge badgeContent={waterLength} color="success">
+                            {curFilter === "water" && 
+                                <FireExtinguisherOutlinedIcon
+                                    style={nontransparentStyle}
+                                    onClick={() => {
+                                        setCurFilter("water");
+                                    }}
+                                />
+                            }
+                            {curFilter !== "water" && 
+                                <FireExtinguisherOutlinedIcon
+                                    style={translucentStyle}
+                                    onClick={() => {
+                                        setCurFilter("water");
+                                    }}
+                                />
+                            }
+                        </Badge>
+                        <Badge badgeContent={sunLength} color="success">
+                            {curFilter === "sun" && 
+                                <WbSunnyIcon
+                                    style={nontransparentStyle}
+                                    onClick={() => {
+                                        setCurFilter("sun");
+                                    }}
+                                    sx={{ ml: 3 }}
+                                />
+                            }
+                            {curFilter !== "sun" && 
+                                <WbSunnyIcon
+                                    style={translucentStyle}
+                                    onClick={() => {
+                                        setCurFilter("sun");
+                                    }}
+                                    sx={{ ml: 3 }}
+                                />
+                            }
+                        </Badge>
+                    </div>
 
                     <AddCircleOutlineIcon onClick={handleAddIcon} sx={{ ml: 5 }} />
                 </div>
