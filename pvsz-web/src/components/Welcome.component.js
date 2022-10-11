@@ -7,6 +7,14 @@ import { useNavigate } from 'react-router-dom';
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
+import background from "../assets/images/background.png";
+import { convertLength } from '@mui/material/styles/cssUtils';
+
+var backgroundStyle = {
+    width: "100%",
+    backgroundImage: `url(${background})`,
+    backgroundSize: 'cover'
+};
 
 const theme = createTheme({
     palette: {
@@ -35,7 +43,7 @@ export default function Welcome() {
     }
 
     return (
-        <main className='welcome'>
+        <main className='welcome' style={backgroundStyle}>
             <p className='welcomeText'>Welcome to</p> 
             <Grid
             container
