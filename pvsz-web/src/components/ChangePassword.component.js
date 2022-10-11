@@ -124,7 +124,7 @@ export default function ChangePassword() {
             </div>
             <Header />
             <header>
-                <h1 style={{ color: "#44533B", fontSize: "3vh" }}>Change Password</h1>
+                <h1 style={{ color: "#44533B", fontSize: "3vh", textShadow: "3px 3px #FFFFFF" }}>Change Password</h1>
             </header>
             <Grid
                 container

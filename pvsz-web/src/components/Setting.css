@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
+
 .settingButtonDiv {
     height: 7vh;
     width: 80vw;
@@ -54,7 +56,7 @@
 
 .rankingTitle {
     font-size: 12vw;
-    font-family: 'BM HANNA 11yrs old', cursive;
+    font-family: 'Peralta', cursive;
     font-weight: 300;
     text-shadow: 3px 3px #FFFFFF;
     color: #44533B;

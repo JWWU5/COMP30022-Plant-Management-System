@@ -30,7 +30,7 @@ export default function Setting() {
             <Header />
             <div className="rankingContentDiv">
                 <div className="rankingContentRec">
-                    <h1 className="rankingTitle">SETTING</h1>
+                    <h1 className="rankingTitle">Setting</h1>
                     <Grid container direction="column">
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>
