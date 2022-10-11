@@ -47,6 +47,17 @@ export default function ChangePassword() {
     }
 
     function handleSubmitNewPassword() {
+        if (!oldPassword) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Old password cannot be empty");
+
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!newPassword) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -94,6 +105,7 @@ export default function ChangePassword() {
                 "api/v1/user/changePassword",
                 {
                     newPassword: newPassword,
+                    oldPassword: oldPassword,
                 },
                 {
                     headers: {

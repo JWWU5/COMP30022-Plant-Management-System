@@ -48,6 +48,7 @@ exports.add = async (req, res, next) => {
                         )
                         res.json({
                             code: 200,
+                            message: "Add successfully!"
                         });
                     } catch (error) {
                         res.status(500).send("Exceptions in server");
@@ -61,6 +62,7 @@ exports.add = async (req, res, next) => {
 
 exports.dels = async (req, res, next) => {
     let idsArr = req.body;
+    console.log(idsArr)
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -76,7 +78,6 @@ exports.dels = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-
             try {
                 let r1 = await User.updateOne(
                     {
@@ -105,6 +106,7 @@ exports.dels = async (req, res, next) => {
                 }
                 res.json({
                     code: 200,
+                    message: "Delete is success!"
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server");

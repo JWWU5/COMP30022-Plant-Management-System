@@ -157,7 +157,6 @@ exports.getPlantGroupList = async (req, res, next) => {
 
                 res.json({
                     code: 200,
-
                     data: plants,
                 });
             } catch (error) {
