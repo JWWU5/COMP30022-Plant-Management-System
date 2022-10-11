@@ -14,6 +14,8 @@ export default function ChangePassword() {
     const [newPassword, setNewPassword] = useState("");
     const [confirmationPassword, setConfirmationPassword] = useState("");
     const [newPasswordType, setNewPasswordType] = useState("password");
+    const [oldPassword, setOldPassword] = useState("");
+    const [oldPasswordType, setOldPasswordType] = useState("password");
     const [confirmationPasswordType, setConfirmationNewPasswordType] = useState("password");
 
 
@@ -32,6 +34,15 @@ export default function ChangePassword() {
         }
         else {
             setConfirmationNewPasswordType("password");
+        }
+    }
+
+    function oldPasswordVisiableCheck() {
+        if (oldPasswordType === "password") {
+            setOldPasswordType("text");
+        }
+        else {
+            setOldPasswordType("password");
         }
     }
 
@@ -131,6 +142,16 @@ export default function ChangePassword() {
                 direction="column"
                 alignItems="center"
             >
+                <div className="changePasswordDiv">
+                    <input
+                        className="newPasswordInput"
+                        placeholder="Old Password"
+                        value={oldPassword}
+                        type={oldPasswordType}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                    ></input>
+                    <VisibilityIcon className="visiableIcon" onClick={oldPasswordVisiableCheck} />
+                </div>
                 <div className="changePasswordDiv">
                     <input
                         className="newPasswordInput"
