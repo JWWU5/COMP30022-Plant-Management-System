@@ -48,7 +48,7 @@ exports.add = async (req, res, next) => {
                         )
                         res.json({
                             code: 200,
-                            message: "Add successfully!"
+                            message: "Added successfully!"
                         });
                     } catch (error) {
                         res.status(500).send("Exceptions in server");
@@ -106,7 +106,7 @@ exports.dels = async (req, res, next) => {
                 }
                 res.json({
                     code: 200,
-                    message: "Delete is success!"
+                    message: "Deleted successfully!"
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server");
@@ -180,7 +180,7 @@ exports.setCustomPlant = async (req, res, next) => {
                         return;
                     }
                     res.status(201).send({
-                        message: "User Changed Successfully",
+                        message: "Plant Detail has been Changed Successfully",
                     });
                 }
             );

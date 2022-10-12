@@ -125,7 +125,7 @@ exports.addPlantToGroup = async (req, res, next) => {
                         return;
                     }
                     res.status(201).send({
-                        message: "User Changed Successfully",
+                        message: "Plants has been added Changed Successfully",
                     });
                 }
             );
@@ -197,7 +197,7 @@ exports.delPlantInGroup = async (req, res, next) => {
                         return;
                     }
                     res.status(201).send({
-                        message: "User Changed Successfully",
+                        message: "Plants has been Deleted Successfully",
                     });
                 }
             );

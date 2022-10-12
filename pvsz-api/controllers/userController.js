@@ -27,14 +27,14 @@ exports.register = async (req, res, next) => {
         });
         const result = await user.save();
         res.status(201).send({
-            message: "User Created Successfully",
+            message: "User has been Created Successfully",
             result,
         });
     } catch (e) {
         console.log(e, "fail");
         res.status(200).json({
             code: 1,
-            message: "register fail",
+            message: "Registration Failed",
         });
     }
 };
@@ -168,7 +168,7 @@ exports.setUserInfo = async (req, res, next) => {
                         return;
                     }
                     res.status(201).send({
-                        message: "User Changed Successfully",
+                        message: "User Information has been Changed Successfully",
                     });
                 }
             );
@@ -224,7 +224,7 @@ exports.changePassword = async (req, res, next) => {
                                         return;
                                     }
                                     res.status(201).send({
-                                        message: "Password has Changed Successfully",
+                                        message: "Password has been Changed Successfully",
                                     });
                                 }
                             );
@@ -232,7 +232,7 @@ exports.changePassword = async (req, res, next) => {
                     });
                 } else{
                     res.status(400).send({
-                        message: "Oldpassword is in correct!",
+                        message: "Oldpassword is incorrect!",
                         err,
                     });
                 }
