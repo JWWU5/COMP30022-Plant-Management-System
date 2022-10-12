@@ -7,6 +7,8 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 
 import "./sidebar.scss";
+import backgroundMusic from '../assets/audio/bgM.mp3'
+
 
 const sidebarNavItems = [
     {
@@ -117,6 +119,7 @@ const Header = (menubarColour) => {
     ) {
         return (
             <>
+                <embed src={backgroundMusic} loop="true" autostart="true" hidden="true" width={0} height={0}/>
                 <nav className="navbar_style">
                     <button onClick={showSidebar}>
                         <MenuIcon sx={{ color: "#ffffff", width: 1 }} />
@@ -161,6 +164,7 @@ const Header = (menubarColour) => {
     } else {
         return (
             <>
+                <embed src={backgroundMusic} loop="true" autostart="true" hidden="true" width={0} height={0}/>
                 <nav className="navbar_style">
                     <button onClick={showSidebar}>
                         <MenuIcon sx={{ color: "#44533B", width: 1 }} />
