@@ -20,30 +20,20 @@
 
     .topic {
         height: 30px;
-        margin-top: 10%;
+        margin-top: 2%;
         margin-bottom: 2%;
         margin-left: 3%;
     }
 
-    .watercan {
-        width: 25px;
-        float: left;
-        margin-left: 6%;
-        margin-top: 2%;
+    .switchIcons {
+        margin: auto 10%;
+        margin-top: 10px;
+        display: flex;
     }
 
-    .sun {
-        width: 20px;
-
-        float: left;
-        margin-left: 4%;
-        margin-top: 3%;
-    }
-
-    .group {
-        width: 40px;
-        float: left;
-        margin-left: 1%;
+    .leftIcons {
+        flex: 0.9;
+        display: block;
     }
 
     .add {
@@ -105,29 +95,20 @@
 
     .topic {
         height: 30px;
-        margin-top: 10%;
+        margin-top: 2%;
         margin-bottom: 2%;
         margin-left: 3%;
     }
 
-    .watercan {
-        width: 25px;
-        float: left;
-        margin-left: 6%;
-        margin-top: 2%;
+    .switchIcons {
+        margin: auto 10%;
+        margin-top: 10px;
+        display: flex;
     }
 
-    .sun {
-        width: 20px;
-        float: left;
-        margin-left: 4%;
-        margin-top: 3%;
-    }
-
-    .group {
-        width: 40px;
-        float: left;
-        margin-left: 1%;
+    .leftIcons {
+        flex: 0.9;
+        display: block;
     }
 
     .add {

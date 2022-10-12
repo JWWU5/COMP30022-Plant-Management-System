@@ -5,6 +5,7 @@ import "./GroupDetail.css";
 import "./PlantHome.css";
 
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
 import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
@@ -20,7 +21,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-
+import { Alert } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -36,6 +37,18 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FFFFFF",
+            width: 1,
+            height: 55,
+        },
+    },
+});
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -48,6 +61,7 @@ export default function GroupDetail() {
     let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [groupname, setgroupname] = useState("");
+    const [newgroupname, setnewgroupname] = useState("");
     const [plants, setPlants] = useState([]);
     const [groupId, setgroupId] = useState("");
     const [delGroup, setDelGroup] = useState([]);
@@ -56,7 +70,7 @@ export default function GroupDetail() {
     useEffect(() => {
         setgroupname(searchParams[0].getAll("groupname")[0]);
         setgroupId(searchParams[0].getAll("groupId")[0]);
-    });
+    }, []);
 
     useEffect(() => {
         axios
@@ -97,6 +111,47 @@ export default function GroupDetail() {
         setLiked(!liked);
     }
 
+    const handleUpdate = () => {
+        if (!newgroupname) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("GroupName cannot be empty");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+        axios
+            .post(
+                "api/v1/plantGroup/update",
+                {
+                    groupId: groupId,
+                    groupname: newgroupname,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setSuccessTxt("Update is successful!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                    navigate(
+                        `/group-detail?groupId=${groupId}&groupname=${newgroupname}`
+                    );
+                    window.location.reload(false);
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
+    };
     const deleteDoubleCheck = () => {
         setDelGroup([...delGroup, groupId]);
         setOpen(true);
@@ -157,25 +212,52 @@ export default function GroupDetail() {
         setState({ ...state, [anchor]: open });
     };
     const list = (anchor) => (
+        
         <Box
             sx={{
                 width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
                 backgroundColor: "#BACB94",
             }}
         >
+                        <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
+            <div class="updateGroupName">
+                <Stack spacing={3} justify-Content="center">
+                    <div className="newGroupName">
+                        <h3 className="newGroupNameTitle">Group Name</h3>
+                        <input
+                            className="plantValueBlock"
+                            type="text"
+                            value={newgroupname}
+                            onChange={(e) => setnewgroupname(e.target.value)}
+                        />
+                    </div>
+
+                    <ThemeProvider theme={theme}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleUpdate}
+                            sx={{
+                                height: 50,
+                                borderRadius: 25,
+                                color: "#646464",
+                                textTransform: "capitalize",
+                                fontFamily: "Tamil HM",
+                                fontSize: 15,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Update Group Name
+                        </Button>
+                    </ThemeProvider>
+                </Stack>
+            </div>
             <nav aria-label="main mailbox folders">
                 <List>
-                    <ListItem>
-                        <ListItemButton>
-                            <ModeEditOutlineOutlinedIcon
-                                sx={{ ml: 2, color: "#ffffff" }}
-                            />
-                            <ListItemText
-                                primary="Edit group name"
-                                sx={{ ml: 5, color: "#ffffff" }}
-                            />
-                        </ListItemButton>
-                    </ListItem>
+                    <Divider />
                     <ListItem>
                         <ListItemButton
                             onClick={() => {

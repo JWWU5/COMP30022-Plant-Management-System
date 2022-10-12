@@ -27,14 +27,14 @@ exports.register = async (req, res, next) => {
         });
         const result = await user.save();
         res.status(201).send({
-            message: "User Created Successfully",
+            message: "User has been Created Successfully",
             result,
         });
     } catch (e) {
         console.log(e, "fail");
         res.status(200).json({
             code: 1,
-            message: "register fail",
+            message: "Registration Failed",
         });
     }
 };
@@ -96,8 +96,8 @@ exports.login = async (req, res, next) => {
 };
 
 exports.getUserInfo = async (req, res, next) => {
-    r = bcrypt.compare("1","1")
     let token = req.get("Authorization");
+    console.log(token)
     if (!token) {
         res.status(401).send({
             message: "Unauthenticated request",
@@ -121,7 +121,7 @@ exports.getUserInfo = async (req, res, next) => {
                         path: 'plants'
                     }
                 });
-                let user = await User.findOne({_id:userId})
+                let user = await User.findOne({ _id: userId })
                 res.json({
                     code: 200,
                     userName: user.userName,
@@ -134,36 +134,7 @@ exports.getUserInfo = async (req, res, next) => {
         }
     });
 };
-exports.getUserGroupInfo = async (req, res, next) => {
-    let token = req.get("Authorization");
-    if (!token) {
-        res.status(401).send({
-            message: "Unauthenticated request",
-        });
-        return;
-    }
-    token = token.split("Bearer ")[1];
-    jwt.verify(token, jwtKey, async (err, decode) => {
-        if (err) {
-            res.status(401).send({
-                message: "Unauthenticated request",
-            });
-        } else {
-            let userId = decode.userId;
-            try {
-                let userGroup = await User.findById(userId).populate("groups");
 
-                res.json({
-                    code: 200,
-
-                    data: userGroup,
-                });
-            } catch (error) {
-                res.status(500).send("Exceptions in server query");
-            }
-        }
-    });
-};
 
 exports.setUserInfo = async (req, res, next) => {
     let token = req.get("Authorization");
@@ -197,7 +168,7 @@ exports.setUserInfo = async (req, res, next) => {
                         return;
                     }
                     res.status(201).send({
-                        message: "User Changed Successfully",
+                        message: "User Information has been Changed Successfully",
                     });
                 }
             );
@@ -222,38 +193,50 @@ exports.changePassword = async (req, res, next) => {
         } else {
             let userId = decode.userId;
             user = await User.findById(userId);
-            bcrypt.compare(req.body.newPassword, user.password, async function(err, result) {
+            bcrypt.compare(req.body.oldPassword, user.password, async function (err1, result) {
                 if (err) {
                     res.status(500).send("Exceptions in server");
                     return;
                 }
-                if(result){
+                if (result) {
+                    bcrypt.compare(req.body.newPassword, user.password, async function (err, result) {
+                        if (err) {
+                            res.status(500).send("Exceptions in server");
+                            return;
+                        }
+                        if (result) {
+                            res.status(400).send({
+                                message: "Password is same as previous one",
+                                err,
+                            });
+                        } else {
+                            const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
+                            User.findByIdAndUpdate(
+                                {
+                                    _id: userId,
+                                },
+                                {
+                                    password: hashedPassword
+                                },
+                                (err, doc) => {
+                                    if (err) {
+                                        res.status(500).send("Exceptions in server");
+                                        return;
+                                    }
+                                    res.status(201).send({
+                                        message: "Password has been Changed Successfully",
+                                    });
+                                }
+                            );
+                        }
+                    });
+                } else{
                     res.status(400).send({
-                        message: "Password is same as previous one",
+                        message: "Oldpassword is incorrect!",
                         err,
                     });
-                } else {
-                    const hashedPassword = await bcrypt.hash(req.body.newPassword, 10)
-                    User.findByIdAndUpdate(
-                        {
-                            _id: userId,
-                        },
-                        {
-                            password: hashedPassword
-                        },
-                        (err, doc) => {
-                            if (err) {
-                                res.status(500).send("Exceptions in server");
-                                return;
-                            }
-                            res.status(201).send({
-                                message: "Password has Changed Successfully",
-                            });
-                        }
-                    );
                 }
-            });
-
+            })
         }
     });
 }

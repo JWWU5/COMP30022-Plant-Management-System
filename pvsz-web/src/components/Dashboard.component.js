@@ -16,9 +16,21 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Divider from "@mui/material/Divider";
 import { Alert } from "@mui/material";
-import watercan from "../assets/images/water_can.png";
-import sun from "../assets/images/sun.png";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Badge from '@mui/material/Badge';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FFFFFF",
+            width: 1,
+            height: 55,
+        },
+    },
+});
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -26,6 +38,9 @@ export default function Dashboard() {
     let navigate = useNavigate();
     const [plantList, setPlantList] = useState([]);
     const [curFilter, setCurFilter] = useState("water");
+    const [waterLength, setwaterLength] = useState(0);
+    const [sunLength, setsunLength] = useState(0);
+    const [countplant, setcountplant] = useState(0);
     const [userName, setUserName] = useState("");
     const [birthday, setBirthday] = useState("");
     const [isbirthday, setisBirthday] = useState(false);
@@ -43,7 +58,7 @@ export default function Dashboard() {
                 }
             )
             .then((res) => {
-
+                let count = 0;
                 let { plantList, groups } = res.data.data;
                 let deepPlantList = [...plantList];
                 groups.forEach((element, index) => {
@@ -102,6 +117,24 @@ export default function Dashboard() {
                     }
                 }
                 setPlantList(needData);
+
+                for (var each of needData) {
+                    if (!each.name) {
+                        count += each.plants.length
+                    } else {
+                        count++
+                    }
+                }
+                if (curFilter === "water") {
+                    setwaterLength(count)
+                    setcountplant(count)
+                    setsunLength(0);
+                } else {
+                    setsunLength(count);
+                    setcountplant(count);
+                    setwaterLength(0);
+                }
+
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -144,6 +177,7 @@ export default function Dashboard() {
     const today = moment().format("YYYY/MM/DD");
 
     const handleSubmit = () => {
+        console.log(plantList)
         console.log("plantlist = ", plantList);
         let checkedArr = [];
         for (let i = plantList.length - 1; i >= 0; i--) {
@@ -195,6 +229,14 @@ export default function Dashboard() {
         });
     }
 
+    const translucentStyle = {
+        opacity: 0.5
+    }
+
+    const nontransparentStyle = {
+        opacity: 1.0
+    }
+
     return (
         <body className="Dashboard">
             <div className="tipsBox">
@@ -208,29 +250,50 @@ export default function Dashboard() {
                     <h3>Today is {today}.</h3>
                     {isbirthday && <h3>Happy Birthday!</h3>}
                 </div>
-                <div class="topic">
-                    <img
-                        onClick={() => {
-                            setCurFilter("water");
-                        }}
-                        class="watercan"
-                        src={watercan}
-                    />
-                    <img
-                        onClick={() => {
-                            setCurFilter("sun");
-                        }}
-                        class="sun"
-                        src={sun}
-                    />
-                    <AddCircleOutlineIcon onClick={handleAddIcon} />
+                <div class="switchIcons">
+                    <div class="leftIcons">
+                        <Badge badgeContent={waterLength} color="success">
+                            {curFilter === "water" && 
+                                <FireExtinguisherOutlinedIcon
+                                    style={nontransparentStyle}
+                                    onClick={() => {
+                                        setCurFilter("water");
+                                    }}
+                                />
+                            }
+                            {curFilter !== "water" && 
+                                <FireExtinguisherOutlinedIcon
+                                    style={translucentStyle}
+                                    onClick={() => {
+                                        setCurFilter("water");
+                                    }}
+                                />
+                            }
+                        </Badge>
+                        <Badge badgeContent={sunLength} color="success">
+                            {curFilter === "sun" && 
+                                <WbSunnyIcon
+                                    style={nontransparentStyle}
+                                    onClick={() => {
+                                        setCurFilter("sun");
+                                    }}
+                                    sx={{ ml: 3 }}
+                                />
+                            }
+                            {curFilter !== "sun" && 
+                                <WbSunnyIcon
+                                    style={translucentStyle}
+                                    onClick={() => {
+                                        setCurFilter("sun");
+                                    }}
+                                    sx={{ ml: 3 }}
+                                />
+                            }
+                        </Badge>
+                    </div>
+
+                    <AddCircleOutlineIcon onClick={handleAddIcon} sx={{ ml: 5 }} />
                 </div>
-                <Button
-                    onClick={handleSubmit}
-                    variant="contained"
-                >
-                    update
-                </Button>
                 <div class="listbg">
                     <div class="list">
                         <Stack spacing={3} justify-Content="center">
@@ -277,7 +340,7 @@ export default function Dashboard() {
                                                                     sx={{
                                                                         color: "#44533B",
                                                                         "&.Mui-checked": {
-                                                                            color: "#44533B",
+                                                                            color: "#44533B"
                                                                         },
                                                                     }}
                                                                 />
@@ -322,6 +385,23 @@ export default function Dashboard() {
                                     </Box>
                                 );
                             })}
+                            {countplant !== 0 && <ThemeProvider theme={theme}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleSubmit}
+                                    sx={{
+                                        height: 50,
+                                        borderRadius: 25,
+                                        color: "#646464",
+                                        textTransform: "capitalize",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 15,
+                                    }}
+                                >
+                                    UPDATE
+                                </Button>
+                            </ThemeProvider>}
                         </Stack>
                     </div>
                 </div>

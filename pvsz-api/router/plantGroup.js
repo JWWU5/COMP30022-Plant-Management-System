@@ -8,5 +8,6 @@ router.post("/addPlantToGroup", plantGroupController.addPlantToGroup);
 router.post("/getPlantGroupList", plantGroupController.getPlantGroupList);
 router.post("/delPlantInGroup", plantGroupController.delPlantInGroup);
 router.post("/changeLiked", plantGroupController.changeLiked);
+router.post("/update", plantGroupController.update);
 
 module.exports = router;

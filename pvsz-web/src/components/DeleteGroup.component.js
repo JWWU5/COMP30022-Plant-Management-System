@@ -52,7 +52,7 @@ export default function DeleteGroup() {
     useEffect(() => {
         axios
             .post(
-                "api/v1/user/getUserGroupInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {

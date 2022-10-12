@@ -7,7 +7,7 @@ body {
 
 .welcomeText {
     color: #788E6C;
-    font-family: "Tamil MN";
+    font-family: "Times New Roman";
     font-size: 9vw;
     margin-top: 35%;
     text-align: center;
@@ -15,7 +15,7 @@ body {
 
 .title {
     color: #44533B;
-    font-family: "Tamil MN";
+    font-family: "Times New Roman";
     font-size: 10vh;
     text-align: center;
     margin-top: 0%;
@@ -45,7 +45,7 @@ body {
 }
 
 .aboutText {
-    font-family: "Tamil MN";
+    font-family: "Times New Roman";
     font-size: 2vh;
     font-weight: 600;
     color: #555A6E;
@@ -64,7 +64,7 @@ li a {
     display: block;
     width: 150px;
     margin: auto;
-    font-family: "Tamil MN";
+    font-family: "Times New Roman";
     font-size: 1.2vh;
     font-weight: 600;
     color: #555A6E;
@@ -74,4 +74,9 @@ li a {
     width: 20vh;
     height: 10vh;
     margin-bottom: 25vh;
+}
+
+.signInButtons {
+    margin: auto 5%;
+    width: 80%;
 }

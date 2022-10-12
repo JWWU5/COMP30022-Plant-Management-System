@@ -97,7 +97,9 @@ export default function DeletePlant() {
         let checkedPlantArr = plantList.filter((v) => {
             return v.checked;
         });
-
+        console.log(checkedPlantArr.map((v) => {
+            return v._id;
+        }))
         axios
             .post(
                 "api/v1/customPlant/dels",

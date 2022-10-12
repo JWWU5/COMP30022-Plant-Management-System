@@ -47,6 +47,17 @@ export default function ChangePassword() {
     }
 
     function handleSubmitNewPassword() {
+        if (!oldPassword) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Old password cannot be empty");
+
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!newPassword) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -94,6 +105,7 @@ export default function ChangePassword() {
                 "api/v1/user/changePassword",
                 {
                     newPassword: newPassword,
+                    oldPassword: oldPassword,
                 },
                 {
                     headers: {
@@ -135,7 +147,7 @@ export default function ChangePassword() {
             </div>
             <Header />
             <header>
-                <h1 style={{ color: "#44533B", fontSize: "3vh" }}>Change Password</h1>
+                <h1 style={{ color: "#44533B", fontSize: "3vh", textShadow: "3px 3px #FFFFFF" }}>Change Password</h1>
             </header>
             <Grid
                 container
