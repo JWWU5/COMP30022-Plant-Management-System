@@ -1,18 +1,16 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Test-build
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ,"dev"]
   pull_request:
     branches: [ "main" ]
 jobs:
-  build:
-
+  test-api:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js
@@ -24,6 +22,23 @@ jobs:
     - name: Install dependencies
       working-directory: ./pvsz-api
       run: npm install
-    # - name: Run test
-    #   working-directory: ./pvsz-api
-    #   run: npm test
+    - name: Install newman
+      working-directory: ./pvsz-api
+      run:  |
+       npm install -g newman
+       npm install -g newman-reporter-htmlextra
+    
+    - name: Make Directory for results
+      run: mkdir -p testResults
+      working-directory: ./pvsz-api
+    - name: Run POSTMAN collection
+      working-directory: ./pvsz-api
+      run: |
+        npm run dev
+        newman run test/pvsz-testing.postman_collection.json --environment test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html --reporter-htmlextra-darkTheme  > testResults/runreport1.html
+    - name: Output the run Details
+      working-directory: ./pvsz-api
+      uses: actions/upload-artifact@v2
+      with: 
+       name: RunReports
+       path: testResults
