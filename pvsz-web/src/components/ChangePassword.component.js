@@ -149,45 +149,47 @@ export default function ChangePassword() {
             <header>
                 <h1 style={{ color: "#44533B", fontSize: "3vh", textShadow: "3px 3px #FFFFFF" }}>Change Password</h1>
             </header>
-            <Grid
-                container
-                direction="column"
-                alignItems="center"
-            >
-                <div className="changePasswordDiv">
-                    <input
-                        className="newPasswordInput"
-                        placeholder="Old Password"
-                        value={oldPassword}
-                        type={oldPasswordType}
-                        onChange={(e) => setOldPassword(e.target.value)}
-                    ></input>
-                    <VisibilityIcon className="visiableIcon" onClick={oldPasswordVisiableCheck} />
-                </div>
-                <div className="changePasswordDiv">
-                    <input
-                        className="newPasswordInput"
-                        placeholder="New Password"
-                        value={newPassword}
-                        type={newPasswordType}
-                        onChange={(e) => changePassword(e)}
-                    ></input>
-                    <VisibilityIcon className="visiableIcon" onClick={passwordVisiableCheck} />
-                </div>
-                <div className="changePasswordDiv">
-                    <input
-                        className="newPasswordInput"
-                        placeholder="Confirm New Password"
-                        value={confirmationPassword}
-                        type={confirmationPasswordType}
-                        onChange={(e) => setConfirmationPassword(e.target.value)}
-                    ></input>
-                    <VisibilityIcon className="visiableIcon" onClick={confirmPasswordVisiableCheck} />
-                </div>
-                <div className="changePasswordDiv">
-                    <button className="changePasswordButton" onClick={handleSubmitNewPassword}>Submit</button>
-                </div>
-            </Grid>
+            <form>
+                <Grid
+                    container
+                    direction="column"
+                    alignItems="center"
+                >
+                    <div className="changePasswordDiv">
+                        <input
+                            className="newPasswordInput"
+                            placeholder="Old Password"
+                            value={oldPassword}
+                            type={oldPasswordType}
+                            onChange={(e) => setOldPassword(e.target.value)}
+                        ></input>
+                        <VisibilityIcon className="visiableIcon" onClick={oldPasswordVisiableCheck} />
+                    </div>
+                    <div className="changePasswordDiv">
+                        <input
+                            className="newPasswordInput"
+                            placeholder="New Password"
+                            value={newPassword}
+                            type={newPasswordType}
+                            onChange={(e) => changePassword(e)}
+                        ></input>
+                        <VisibilityIcon className="visiableIcon" onClick={passwordVisiableCheck} />
+                    </div>
+                    <div className="changePasswordDiv">
+                        <input
+                            className="newPasswordInput"
+                            placeholder="Confirm New Password"
+                            value={confirmationPassword}
+                            type={confirmationPasswordType}
+                            onChange={(e) => setConfirmationPassword(e.target.value)}
+                        ></input>
+                        <VisibilityIcon className="visiableIcon" onClick={confirmPasswordVisiableCheck} />
+                    </div>
+                    <div className="changePasswordDiv">
+                        <button className="changePasswordButton" onClick={handleSubmitNewPassword}>Submit</button>
+                    </div>
+                </Grid>
+            </form>
         </body>
     )
 }
