@@ -39,6 +39,7 @@ jobs:
     - name: Run POSTMAN collection
       run: newman run pvsz-api/test/pvsz-testing.postman_collection.json --environment pvsz-api/test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
     - name: Output the run Details
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with: 
-       path: testResults
+       name: htmlreport
+       path: testResults/htmlreport.html
