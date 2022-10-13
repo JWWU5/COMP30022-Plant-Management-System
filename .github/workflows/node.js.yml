@@ -28,8 +28,8 @@ jobs:
     - name: Install newman-reporter
       working-directory: ./pvsz-api
       run: npm install -g newman-reporter-htmlextra
+    
     - name: Make Directory for results
-      working-directory: ./pvsz-api
       run: mkdir -p testResults
 
     - name: Run server
@@ -42,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
        name: RunReports
-       path: /pvsz-api/testResults
+       path: testResults
