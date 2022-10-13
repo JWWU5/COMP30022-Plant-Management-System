@@ -16,6 +16,10 @@
     color: #555A6E;
 }
 
+.cancelAccount {
+    height: 2.5vh;
+}
+
 .switchButton {
     margin-left: 20vw;
 }
