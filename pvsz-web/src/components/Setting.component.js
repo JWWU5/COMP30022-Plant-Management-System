@@ -3,12 +3,12 @@ import "./Setting.css";
 import Header from "./Header";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import Cookies from "universal-cookie";
-
+import { Alert } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -26,7 +26,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const cookies = new Cookies();
 
 export default function Setting() {
-
+    const [successTxt, setSuccessTxt] = useState("");
     const [openWindow, setOpenWindow] = React.useState(false);
 
     let navigate = useNavigate();
@@ -64,11 +64,39 @@ export default function Setting() {
 
     function cancelAccount() {
         setOpenWindow(false);
-        navigate("/");
+        axios
+            .post(
+                "api/v1/user/dels",
+                {
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log("res = ", res.data);
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setSuccessTxt("Account Has Been Deleted!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                    cookies.remove("TOKEN", { path: "/" });
+                    navigate("/");
+                }, 1000);
+            })
+            .catch((err) => {
+                console.log("err = ", err);
+            });
     }
 
     return (
         <body>
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+            </div>
             <Header />
             <div className="rankingContentDiv">
                 <div className="rankingContentRec">
@@ -121,13 +149,13 @@ export default function Setting() {
                                 color="primary"
                                 onClick={handleOpenWindow}
                                 sx={{
-                                    width: 0.9, 
-                                    height: 1, 
+                                    width: 0.9,
+                                    height: 1,
                                     borderRadius: 25,
                                     color: "#646464",
                                     fontFamily: "Tamil HM",
                                     fontSize: 20,
-                                    margin: 2.5, 
+                                    margin: 2.5,
                                 }}
                             >
                                 Delete Account
@@ -143,8 +171,8 @@ export default function Setting() {
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-slide-description">
-                                        Deleting this account means that all your personal details, 
-                                        plants and related information will be removed from our 
+                                        Deleting this account means that all your personal details,
+                                        plants and related information will be removed from our
                                         database permanently.
                                     </DialogContentText>
                                 </DialogContent>
