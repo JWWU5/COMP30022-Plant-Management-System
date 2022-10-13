@@ -22,12 +22,12 @@ jobs:
     - name: Install dependencies
       working-directory: ./pvsz-api
       run: npm install
+    
     - name: Install newman
-      working-directory: ./pvsz-api
-      run: npm install -g newman
-    - name: Install newman-reporter
-      working-directory: ./pvsz-api
-      run: npm install -g newman-reporter-htmlextra
+      run: |
+        npm install -g newman
+        npm install -g newman-reporter-htmlextra
+  
     
     - name: Make Directory for results
       run: mkdir -p testResults
@@ -35,9 +35,9 @@ jobs:
     - name: Run server
       working-directory: ./pvsz-api
       run: npm run dev & sleep 10
+   
     - name: Run POSTMAN collection
-      working-directory: ./pvsz-api
-      run: newman run test/pvsz-testing.postman_collection.json --environment test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html > testResults/runreport1.html
+      run: newman run pvsz-api/test/pvsz-testing.postman_collection.json --environment pvsz-api/test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html > testResults/runreport1.html
     - name: Output the run Details
       uses: actions/upload-artifact@v2
       with: 
