@@ -72,7 +72,54 @@ export default function Setting() {
                                 </Grid>
                             </Grid>
                         </div>
+                        <div className="settingButtonDiv">
+                            <Grid container spacing={0}>
+                                <Grid item xs={8}>
+                                    <p>Cancel account</p>
+                                </Grid>
+                                <Grid item xs={4} alignContent="right">
+                                    <div className="rightArrowIcon">
+                                        <ChevronRightIcon
+                                            onClick={handlePrivatePolicy}
+                                        />
+                                    </div>
+                                </Grid>
+                            </Grid>
+                        </div>
                     </Grid>
+                    {/* <ThemeProvider theme={theme}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={deleteDoubleCheck}
+                                    sx={{
+                                        borderRadius: 25,
+                                        color: "#646464",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 20,
+                                    }}
+                                >
+                                    DELETE
+                                </Button>
+                                <Dialog
+                                    open={open}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={handleClose}
+                                >
+                                    <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
+                                        {"Are you sure to delete this plant?"}
+                                    </DialogTitle>
+                                    <DialogActions>
+                                        <Button color="success" onClick={handleClose}>
+                                            No
+                                        </Button>
+                                        <Button color="error" onClick={Agree}>
+                                            yes!
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                    </ThemeProvider> */}
                 </div>
             </div>
             <Grid
