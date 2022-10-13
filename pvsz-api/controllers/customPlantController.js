@@ -48,7 +48,8 @@ exports.add = async (req, res, next) => {
                         )
                         res.json({
                             code: 200,
-                            message: "Added successfully!"
+                            message: "Added successfully!",
+                            data: item._id
                         });
                     } catch (error) {
                         res.status(500).send("Exceptions in server");
@@ -217,6 +218,7 @@ exports.update = async (req, res, next) => {
                 let result = await CustomPlant.updateMany({ "_id": { $in: idsArr } }, { $set: setObj })
                 res.json({
                     code: 200,
+                    message:"Update Success!",
                     result
                 });
             } catch (error) {

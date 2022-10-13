@@ -1,4 +1,4 @@
-const { User } = require("./../models");
+const { User, PlantGroup,CustomPlant } = require("./../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const jwtKey = "RANDOM-TOKEN";
@@ -242,3 +242,39 @@ exports.changePassword = async (req, res, next) => {
 }
 
 
+exports.dels = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            let userId = decode.userId;
+            try {
+                let user = await User.findById(userId)
+                
+                let r1 = await CustomPlant.deleteMany({
+                    _id: { $in: user.plantList },
+                });
+                let r2 = await PlantGroup.deleteMany({
+                    _id: { $in: user.groups },
+                });
+                let r3 = await User.deleteOne({_id:userId})
+                res.json({
+                    code: 200,
+                    message: "Deleted successfully!"
+                });
+            } catch (error) {
+                res.status(500).send("Exceptions in server");
+            }
+        }
+    });
+};
