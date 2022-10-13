@@ -35,7 +35,8 @@ exports.add = async (req, res, next) => {
                                 $push: {
                                     plantList: itemId,
                                 },
-                            });
+                            }
+                        );
                         let r2 = await PlantGroup.updateMany(
                             {
                                 _id: req.body.groups,
@@ -45,7 +46,7 @@ exports.add = async (req, res, next) => {
                                     plants: itemId,
                                 },
                             }
-                        )
+                        );
                         res.json({
                             code: 200,
                             message: "Added successfully!",
@@ -55,15 +56,14 @@ exports.add = async (req, res, next) => {
                         res.status(500).send("Exceptions in server");
                     }
                 }
-            })
+            });
         }
     });
-}
-
+};
 
 exports.dels = async (req, res, next) => {
     let idsArr = req.body;
-    console.log(idsArr)
+    console.log(idsArr);
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -96,7 +96,7 @@ exports.dels = async (req, res, next) => {
                 for (const id of idsArr) {
                     let r3 = await PlantGroup.updateMany(
                         {
-                            plants: id
+                            plants: id,
                         },
                         {
                             $pull: {
@@ -107,7 +107,7 @@ exports.dels = async (req, res, next) => {
                 }
                 res.json({
                     code: 200,
-                    message: "Deleted successfully!"
+                    message: "Deleted successfully!",
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server");
@@ -117,7 +117,6 @@ exports.dels = async (req, res, next) => {
 };
 
 exports.getPlant = async (req, res, next) => {
-
     let token = req.get("Authorization");
     if (!token) {
         res.status(401).send({
@@ -137,7 +136,7 @@ exports.getPlant = async (req, res, next) => {
             try {
                 let plant = await CustomPlant.findById(plantId);
                 let group = await PlantGroup.find({ plants: plantId });
-                let groupname = group.map(doc => doc.groupname)
+                let groupname = group.map((doc) => doc.groupname);
                 res.json({
                     code: 200,
                     data: plant,
@@ -191,13 +190,13 @@ exports.setCustomPlant = async (req, res, next) => {
 
 exports.update = async (req, res, next) => {
     let { idsArr, type } = req.body;
-    console.log("req.body = ", req.body)
+    console.log("req.body = ", req.body);
     let setObj = {};
-    let now = moment().format('YYYY-MM-DD');
-    if (type == 'water') {
+    let now = moment().format("YYYY-MM-DD");
+    if (type == "water") {
         setObj.lastWaterDate = now;
     }
-    if (type == 'sun') {
+    if (type == "sun") {
         setObj.lastSunDate = now;
     }
     let token = req.get("Authorization");
@@ -215,7 +214,10 @@ exports.update = async (req, res, next) => {
             });
         } else {
             try {
-                let result = await CustomPlant.updateMany({ "_id": { $in: idsArr } }, { $set: setObj })
+                let result = await CustomPlant.updateMany(
+                    { _id: { $in: idsArr } },
+                    { $set: setObj }
+                );
                 res.json({
                     code: 200,
                     message:"Update Success!",
@@ -224,6 +226,44 @@ exports.update = async (req, res, next) => {
             } catch (error) {
                 res.status(500).send("Exceptions in server");
             }
+        }
+    });
+};
+
+exports.changeLiked = async (req, res, next) => {
+    let token = req.get("Authorization");
+    if (!token) {
+        res.status(401).send({
+            message: "Unauthenticated request",
+        });
+        return;
+    }
+    token = token.split("Bearer ")[1];
+
+    jwt.verify(token, jwtKey, async (err, decode) => {
+        if (err) {
+            res.status(401).send({
+                message: "Unauthenticated request",
+            });
+        } else {
+            console.log(req.body);
+            CustomPlant.findByIdAndUpdate(
+                {
+                    _id: req.body.plantId,
+                },
+                {
+                    like: req.body.like,
+                },
+                (err, doc) => {
+                    if (err) {
+                        res.status(500).send("Exceptions in server");
+                        return;
+                    }
+                    res.status(201).send({
+                        message: "liked Changed Successfully",
+                    });
+                }
+            );
         }
     });
 };
