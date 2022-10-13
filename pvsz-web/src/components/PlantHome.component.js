@@ -17,6 +17,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function PlantHome() {
     let navigate = useNavigate();
@@ -95,11 +96,14 @@ export default function PlantHome() {
                                             "aria-label": "search your plant",
                                         }}
                                         onChange={(e) => {
-                                            let val = e.target.value.toUpperCase();
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
                                                 return (
-                                                    v.name.toUpperCase().indexOf(val) !== -1
+                                                    v.name
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
                                                 );
                                             });
                                             setPlantList(deepList);
@@ -118,42 +122,88 @@ export default function PlantHome() {
                             {plantList && plantList.length === 0 && (
                                 <div className="noData">no plant</div>
                             )}
-                            {plantList.map((v) => {
-                                return (
-                                    <Box
-                                        key={v._id}
-                                        display="flex"
-                                        justify-Content="center"
-                                        sx={{
-                                            width: 1,
-                                            height: 55,
-                                            backgroundColor: "#ffffff",
-                                            alignItems: "center",
-                                            borderRadius: 25,
-                                        }}
-                                    >
-                                        <Avatar
-                                            // src="avatar1.jpg"
-                                            src={v.image}
-                                            sx={{ ml: 2.5 }}
-                                        />
-                                        <a>{v.name}</a>
-                                        <Grid
-                                            container
-                                            justifyContent="flex-end"
-                                        >
-                                            <ArrowForwardIosOutlinedIcon
+                            {plantList
+                                .sort((a, b) =>
+                                    a.like === b.like ? 0 : a.like ? -1 : 1
+                                )
+                                .map((v) => {
+                                    if (v.like) {
+                                        return (
+                                            <Box
+                                                key={v._id}
+                                                display="flex"
+                                                justify-Content="center"
                                                 onClick={() => {
                                                     navigate(
                                                         `/plant-detail?plantId=${v._id}`
                                                     );
                                                 }}
-                                                sx={{ mr: 2.5 }}
-                                            />
-                                        </Grid>
-                                    </Box>
-                                );
-                            })}
+                                                sx={{
+                                                    width: 1,
+                                                    height: 55,
+                                                    backgroundColor: "#ffffff",
+                                                    alignItems: "center",
+                                                    borderRadius: 25,
+                                                }}
+                                            >
+                                                <Avatar
+                                                    // src="avatar1.jpg"
+                                                    src={v.image}
+                                                    sx={{ ml: 2.5 }}
+                                                />
+                                                <a>{v.name}</a>
+                                                <FavoriteIcon
+                                                    color="error"
+                                                    sx={{ ml: 2 }}
+                                                />
+                                                <Grid
+                                                    container
+                                                    justifyContent="flex-end"
+                                                >
+                                                    <ArrowForwardIosOutlinedIcon
+                                                        sx={{ mr: 2.5 }}
+                                                    />
+                                                </Grid>
+                                            </Box>
+                                        );
+                                    } else {
+                                        return (
+                                            <Box
+                                                key={v._id}
+                                                display="flex"
+                                                justify-Content="center"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/plant-detail?plantId=${v._id}`
+                                                    );
+                                                }}
+                                                sx={{
+                                                    width: 1,
+                                                    height: 55,
+                                                    backgroundColor: "#ffffff",
+                                                    alignItems: "center",
+                                                    borderRadius: 25,
+                                                }}
+                                            >
+                                                <Avatar
+                                                    // src="avatar1.jpg"
+                                                    src={v.image}
+                                                    sx={{ ml: 2.5 }}
+                                                />
+                                                <a>{v.name}</a>
+
+                                                <Grid
+                                                    container
+                                                    justifyContent="flex-end"
+                                                >
+                                                    <ArrowForwardIosOutlinedIcon
+                                                        sx={{ mr: 2.5 }}
+                                                    />
+                                                </Grid>
+                                            </Box>
+                                        );
+                                    }
+                                })}
                         </Stack>
                     </div>
                 </div>

@@ -212,14 +212,13 @@ export default function GroupDetail() {
         setState({ ...state, [anchor]: open });
     };
     const list = (anchor) => (
-        
         <Box
             sx={{
                 width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
                 backgroundColor: "#BACB94",
             }}
         >
-                        <div className="tipsBox">
+            <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
                 {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
@@ -373,7 +372,11 @@ export default function GroupDetail() {
                                         key={v._id}
                                         display="flex"
                                         justify-Content="center"
-                                        onClick={() => {}}
+                                        onClick={() => {
+                                            navigate(
+                                                `/plant-detail?plantId=${v._id}`
+                                            );
+                                        }}
                                         sx={{
                                             width: 1,
                                             height: 55,
@@ -392,11 +395,6 @@ export default function GroupDetail() {
                                             justifyContent="flex-end"
                                         >
                                             <ArrowForwardIosOutlinedIcon
-                                                onClick={() => {
-                                                    navigate(
-                                                        `/plant-detail?plantId=${v._id}`
-                                                    );
-                                                }}
                                                 sx={{ mr: 2.5 }}
                                             />
                                         </Grid>

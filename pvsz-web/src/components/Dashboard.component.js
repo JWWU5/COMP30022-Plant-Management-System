@@ -17,10 +17,11 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Divider from "@mui/material/Divider";
 import { Alert } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import FireExtinguisherOutlinedIcon from '@mui/icons-material/FireExtinguisherOutlined';
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import FireExtinguisherOutlinedIcon from "@mui/icons-material/FireExtinguisherOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Badge from '@mui/material/Badge';
+import Badge from "@mui/material/Badge";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const theme = createTheme({
     palette: {
@@ -80,17 +81,23 @@ export default function Dashboard() {
                             if (curFilter === "sun") {
                                 let sunPeriod = parseInt(plantItem.sunPeriod);
                                 if (
-                                    moment().diff(moment(plantItem.lastSunDate), "days") <=
-                                    sunPeriod
+                                    moment().diff(
+                                        moment(plantItem.lastSunDate),
+                                        "days"
+                                    ) <= sunPeriod
                                 ) {
                                     item.plants.splice(j, 1);
                                 }
                             }
                             if (curFilter === "water") {
-                                let waterPeriod = parseInt(plantItem.waterPeriod);
+                                let waterPeriod = parseInt(
+                                    plantItem.waterPeriod
+                                );
                                 if (
-                                    moment().diff(moment(plantItem.lastWaterDate), "days") <=
-                                    waterPeriod
+                                    moment().diff(
+                                        moment(plantItem.lastWaterDate),
+                                        "days"
+                                    ) <= waterPeriod
                                 ) {
                                     item.plants.splice(j, 1);
                                 }
@@ -100,7 +107,10 @@ export default function Dashboard() {
                         if (curFilter === "sun") {
                             let sunPeriod = parseInt(item.sunPeriod);
                             if (
-                                moment().diff(moment(item.lastSunDate), "days") <= sunPeriod
+                                moment().diff(
+                                    moment(item.lastSunDate),
+                                    "days"
+                                ) <= sunPeriod
                             ) {
                                 needData.splice(i, 1);
                             }
@@ -109,7 +119,10 @@ export default function Dashboard() {
                         if (curFilter === "water") {
                             let waterPeriod = parseInt(item.waterPeriod);
                             if (
-                                moment().diff(moment(item.lastWaterDate), "days") <= waterPeriod
+                                moment().diff(
+                                    moment(item.lastWaterDate),
+                                    "days"
+                                ) <= waterPeriod
                             ) {
                                 needData.splice(i, 1);
                             }
@@ -120,21 +133,20 @@ export default function Dashboard() {
 
                 for (var each of needData) {
                     if (!each.name) {
-                        count += each.plants.length
+                        count += each.plants.length;
                     } else {
-                        count++
+                        count++;
                     }
                 }
                 if (curFilter === "water") {
-                    setwaterLength(count)
-                    setcountplant(count)
+                    setwaterLength(count);
+                    setcountplant(count);
                     setsunLength(0);
                 } else {
                     setsunLength(count);
                     setcountplant(count);
                     setwaterLength(0);
                 }
-
             })
             .catch((err) => {
                 console.log("err = ", err);
@@ -150,25 +162,22 @@ export default function Dashboard() {
                         Authorization: `Bearer ${window.localStorage.token}`,
                     },
                 }
-            ).then((res) => {
+            )
+            .then((res) => {
                 setBirthday(res.data.birthday);
                 const today1 = moment().format("YYYY-MM-DD");
                 if (birthday === today1) {
-                    setisBirthday(true)
+                    setisBirthday(true);
                 }
                 setUserName(res.data.userName);
-
-            }).catch((err) => {
+            })
+            .catch((err) => {
                 console.log("err = ", err);
             });
-    },)
-    useEffect(
-        () => {
-            getList();
-        },
-        [curFilter]
-    );
-
+    });
+    useEffect(() => {
+        getList();
+    }, [curFilter]);
 
     function handleAddIcon() {
         navigate("/select-plants");
@@ -177,7 +186,7 @@ export default function Dashboard() {
     const today = moment().format("YYYY/MM/DD");
 
     const handleSubmit = () => {
-        console.log(plantList)
+        console.log(plantList);
         console.log("plantlist = ", plantList);
         let checkedArr = [];
         for (let i = plantList.length - 1; i >= 0; i--) {
@@ -195,7 +204,7 @@ export default function Dashboard() {
                 }
             }
         }
-        console.log("checkedArr = ", checkedArr)
+        console.log("checkedArr = ", checkedArr);
         if (checkedArr.length === 0) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -206,36 +215,38 @@ export default function Dashboard() {
             }, 1000);
             return;
         }
-        axios.post(
-            "api/v1/customPlant/update",
-            {
-                idsArr: checkedArr,
-                type: curFilter,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${window.localStorage.token}`,
+        axios
+            .post(
+                "api/v1/customPlant/update",
+                {
+                    idsArr: checkedArr,
+                    type: curFilter,
                 },
-            }
-        ).then(() => {
-            if (window.timer) {
-                clearTimeout(window.timer);
-            }
-            setSuccessTxt("Update is successful!");
-            window.timer = window.setTimeout(() => {
-                setSuccessTxt("");
-            }, 1000);
-            getList();
-        });
-    }
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then(() => {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setSuccessTxt("Update is successful!");
+                window.timer = window.setTimeout(() => {
+                    setSuccessTxt("");
+                }, 1000);
+                getList();
+            });
+    };
 
     const translucentStyle = {
-        opacity: 0.5
-    }
+        opacity: 0.5,
+    };
 
     const nontransparentStyle = {
-        opacity: 1.0
-    }
+        opacity: 1.0,
+    };
 
     return (
         <body className="Dashboard">
@@ -253,25 +264,25 @@ export default function Dashboard() {
                 <div class="switchIcons">
                     <div class="leftIcons">
                         <Badge badgeContent={waterLength} color="success">
-                            {curFilter === "water" && 
+                            {curFilter === "water" && (
                                 <FireExtinguisherOutlinedIcon
                                     style={nontransparentStyle}
                                     onClick={() => {
                                         setCurFilter("water");
                                     }}
                                 />
-                            }
-                            {curFilter !== "water" && 
+                            )}
+                            {curFilter !== "water" && (
                                 <FireExtinguisherOutlinedIcon
                                     style={translucentStyle}
                                     onClick={() => {
                                         setCurFilter("water");
                                     }}
                                 />
-                            }
+                            )}
                         </Badge>
                         <Badge badgeContent={sunLength} color="success">
-                            {curFilter === "sun" && 
+                            {curFilter === "sun" && (
                                 <WbSunnyIcon
                                     style={nontransparentStyle}
                                     onClick={() => {
@@ -279,8 +290,8 @@ export default function Dashboard() {
                                     }}
                                     sx={{ ml: 3 }}
                                 />
-                            }
-                            {curFilter !== "sun" && 
+                            )}
+                            {curFilter !== "sun" && (
                                 <WbSunnyIcon
                                     style={translucentStyle}
                                     onClick={() => {
@@ -288,11 +299,14 @@ export default function Dashboard() {
                                     }}
                                     sx={{ ml: 3 }}
                                 />
-                            }
+                            )}
                         </Badge>
                     </div>
 
-                    <AddCircleOutlineIcon onClick={handleAddIcon} sx={{ ml: 5 }} />
+                    <AddCircleOutlineIcon
+                        onClick={handleAddIcon}
+                        sx={{ ml: 5 }}
+                    />
                 </div>
                 <div class="listbg">
                     <div class="list">
@@ -302,106 +316,295 @@ export default function Dashboard() {
                                     if (!v.plants.length) {
                                         return null;
                                     }
-                                    return (
-                                        <Accordion>
-                                            <AccordionSummary
-                                                aria-controls="panel1a-content"
-                                                id="panel1a-header"
-                                            >
-                                                <a>{v.groupname}</a>
-                                            </AccordionSummary>
-                                            <AccordionDetails>
-                                                <Divider />
-                                                {v.plants.map((plantItem, plantItemIndex) => {
-                                                    return (
-                                                        <Box
-                                                            display="flex"
-                                                            justify-Content="center"
-                                                            sx={{
-                                                                width: 1,
-                                                                height: 55,
-                                                                backgroundColor: "#ffffff",
-                                                                alignItems: "center",
-                                                                borderRadius: 25,
-                                                            }}
-                                                        >
-                                                            <Avatar src={plantItem.image} sx={{ ml: 2.5 }} />
-                                                            <a>{plantItem.name}</a>
-                                                            <Grid container justifyContent="flex-end">
-                                                                <Checkbox
-                                                                    {...label}
-                                                                    onChange={(e) => {
-                                                                        let deepList = [...plantList];
-                                                                        deepList[i]["plants"][
-                                                                            plantItemIndex
-                                                                        ].checked = e.target.checked;
-                                                                        setPlantList(deepList);
-                                                                    }}
+                                    if (v.like) {
+                                        return (
+                                            <Accordion>
+                                                <AccordionSummary
+                                                    aria-controls="panel1a-content"
+                                                    id="panel1a-header"
+                                                >
+                                                    <a>{v.groupname}</a>
+                                                    <FavoriteIcon
+                                                        color="error"
+                                                        sx={{
+                                                            ml: 2,
+                                                        }}
+                                                    />
+                                                </AccordionSummary>
+                                                <AccordionDetails>
+                                                    <Divider />
+                                                    {v.plants.map(
+                                                        (
+                                                            plantItem,
+                                                            plantItemIndex
+                                                        ) => {
+                                                            return (
+                                                                <Box
+                                                                    display="flex"
+                                                                    justify-Content="center"
                                                                     sx={{
-                                                                        color: "#44533B",
-                                                                        "&.Mui-checked": {
-                                                                            color: "#44533B"
-                                                                        },
+                                                                        width: 1,
+                                                                        height: 55,
+                                                                        backgroundColor:
+                                                                            "#ffffff",
+                                                                        alignItems:
+                                                                            "center",
+                                                                        borderRadius: 25,
                                                                     }}
-                                                                />
-                                                            </Grid>
-                                                        </Box>
-                                                    );
-                                                })}
-                                            </AccordionDetails>
-                                        </Accordion>
-                                    );
+                                                                >
+                                                                    <Avatar
+                                                                        src={
+                                                                            plantItem.image
+                                                                        }
+                                                                        sx={{
+                                                                            ml: 2.5,
+                                                                        }}
+                                                                    />
+                                                                    <a>
+                                                                        {
+                                                                            plantItem.name
+                                                                        }
+                                                                    </a>
+
+                                                                    <Grid
+                                                                        container
+                                                                        justifyContent="flex-end"
+                                                                    >
+                                                                        <Checkbox
+                                                                            {...label}
+                                                                            onChange={(
+                                                                                e
+                                                                            ) => {
+                                                                                let deepList =
+                                                                                    [
+                                                                                        ...plantList,
+                                                                                    ];
+                                                                                deepList[
+                                                                                    i
+                                                                                ][
+                                                                                    "plants"
+                                                                                ][
+                                                                                    plantItemIndex
+                                                                                ].checked =
+                                                                                    e.target.checked;
+                                                                                setPlantList(
+                                                                                    deepList
+                                                                                );
+                                                                            }}
+                                                                            sx={{
+                                                                                color: "#44533B",
+                                                                                "&.Mui-checked":
+                                                                                    {
+                                                                                        color: "#44533B",
+                                                                                    },
+                                                                            }}
+                                                                        />
+                                                                    </Grid>
+                                                                </Box>
+                                                            );
+                                                        }
+                                                    )}
+                                                </AccordionDetails>
+                                            </Accordion>
+                                        );
+                                    } else {
+                                        return (
+                                            <Accordion>
+                                                <AccordionSummary
+                                                    aria-controls="panel1a-content"
+                                                    id="panel1a-header"
+                                                >
+                                                    <a>{v.groupname}</a>
+                                                </AccordionSummary>
+                                                <AccordionDetails>
+                                                    <Divider />
+                                                    {v.plants.map(
+                                                        (
+                                                            plantItem,
+                                                            plantItemIndex
+                                                        ) => {
+                                                            return (
+                                                                <Box
+                                                                    display="flex"
+                                                                    justify-Content="center"
+                                                                    sx={{
+                                                                        width: 1,
+                                                                        height: 55,
+                                                                        backgroundColor:
+                                                                            "#ffffff",
+                                                                        alignItems:
+                                                                            "center",
+                                                                        borderRadius: 25,
+                                                                    }}
+                                                                >
+                                                                    <Avatar
+                                                                        src={
+                                                                            plantItem.image
+                                                                        }
+                                                                        sx={{
+                                                                            ml: 2.5,
+                                                                        }}
+                                                                    />
+                                                                    <a>
+                                                                        {
+                                                                            plantItem.name
+                                                                        }
+                                                                    </a>
+
+                                                                    <Grid
+                                                                        container
+                                                                        justifyContent="flex-end"
+                                                                    >
+                                                                        <Checkbox
+                                                                            {...label}
+                                                                            onChange={(
+                                                                                e
+                                                                            ) => {
+                                                                                let deepList =
+                                                                                    [
+                                                                                        ...plantList,
+                                                                                    ];
+                                                                                deepList[
+                                                                                    i
+                                                                                ][
+                                                                                    "plants"
+                                                                                ][
+                                                                                    plantItemIndex
+                                                                                ].checked =
+                                                                                    e.target.checked;
+                                                                                setPlantList(
+                                                                                    deepList
+                                                                                );
+                                                                            }}
+                                                                            sx={{
+                                                                                color: "#44533B",
+                                                                                "&.Mui-checked":
+                                                                                    {
+                                                                                        color: "#44533B",
+                                                                                    },
+                                                                            }}
+                                                                        />
+                                                                    </Grid>
+                                                                </Box>
+                                                            );
+                                                        }
+                                                    )}
+                                                </AccordionDetails>
+                                            </Accordion>
+                                        );
+                                    }
                                 }
-                                return (
-                                    <Box
-                                        display="flex"
-                                        justify-Content="center"
-                                        sx={{
-                                            width: 1,
-                                            height: 55,
-                                            backgroundColor: "#ffffff",
-                                            alignItems: "center",
-                                            borderRadius: 25,
-                                        }}
-                                    >
-                                        <Avatar src={v.image} sx={{ ml: 2.5 }} />
-                                        <a>{v.name}</a>
-                                        <Grid container justifyContent="flex-end">
-                                            <Checkbox
-                                                {...label}
-                                                onChange={(e) => {
-                                                    let deepList = [...plantList];
-                                                    deepList[i].checked = e.target.checked;
-                                                    setPlantList(deepList);
-                                                }}
+                                if (v.like) {
+                                    return (
+                                        <Box
+                                            display="flex"
+                                            justify-Content="center"
+                                            sx={{
+                                                width: 1,
+                                                height: 55,
+                                                backgroundColor: "#ffffff",
+                                                alignItems: "center",
+                                                borderRadius: 25,
+                                            }}
+                                        >
+                                            <Avatar
+                                                src={v.image}
+                                                sx={{ ml: 2.5 }}
+                                            />
+                                            <a>{v.name}</a>
+                                            <FavoriteIcon
+                                                color="error"
                                                 sx={{
-                                                    color: "#44533B",
-                                                    "&.Mui-checked": {
-                                                        color: "#44533B",
-                                                    },
+                                                    ml: 2,
                                                 }}
                                             />
-                                        </Grid>
-                                    </Box>
-                                );
+                                            <Grid
+                                                container
+                                                justifyContent="flex-end"
+                                            >
+                                                <Checkbox
+                                                    {...label}
+                                                    onChange={(e) => {
+                                                        let deepList = [
+                                                            ...plantList,
+                                                        ];
+                                                        deepList[i].checked =
+                                                            e.target.checked;
+                                                        setPlantList(deepList);
+                                                    }}
+                                                    sx={{
+                                                        color: "#44533B",
+                                                        "&.Mui-checked": {
+                                                            color: "#44533B",
+                                                        },
+                                                    }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    );
+                                } else {
+                                    return (
+                                        <Box
+                                            display="flex"
+                                            justify-Content="center"
+                                            sx={{
+                                                width: 1,
+                                                height: 55,
+                                                backgroundColor: "#ffffff",
+                                                alignItems: "center",
+                                                borderRadius: 25,
+                                            }}
+                                        >
+                                            <Avatar
+                                                src={v.image}
+                                                sx={{ ml: 2.5 }}
+                                            />
+                                            <a>{v.name}</a>
+                                            <Grid
+                                                container
+                                                justifyContent="flex-end"
+                                            >
+                                                <Checkbox
+                                                    {...label}
+                                                    onChange={(e) => {
+                                                        let deepList = [
+                                                            ...plantList,
+                                                        ];
+                                                        deepList[i].checked =
+                                                            e.target.checked;
+                                                        setPlantList(deepList);
+                                                    }}
+                                                    sx={{
+                                                        color: "#44533B",
+                                                        "&.Mui-checked": {
+                                                            color: "#44533B",
+                                                        },
+                                                    }}
+                                                />
+                                            </Grid>
+                                        </Box>
+                                    );
+                                }
                             })}
-                            {countplant !== 0 && <ThemeProvider theme={theme}>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={handleSubmit}
-                                    sx={{
-                                        height: 50,
-                                        borderRadius: 25,
-                                        color: "#646464",
-                                        textTransform: "capitalize",
-                                        fontFamily: "Tamil HM",
-                                        fontSize: 15,
-                                    }}
-                                >
-                                    UPDATE
-                                </Button>
-                            </ThemeProvider>}
+                            {countplant !== 0 && (
+                                <ThemeProvider theme={theme}>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={handleSubmit}
+                                        sx={{
+                                            height: 50,
+                                            borderRadius: 25,
+                                            color: "#646464",
+                                            textTransform: "capitalize",
+                                            fontFamily: "Tamil HM",
+                                            fontSize: 15,
+                                        }}
+                                    >
+                                        UPDATE
+                                    </Button>
+                                </ThemeProvider>
+                            )}
                         </Stack>
                     </div>
                 </div>
