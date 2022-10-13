@@ -37,9 +37,8 @@ jobs:
       run: npm run dev & sleep 10
    
     - name: Run POSTMAN collection
-      run: newman run pvsz-api/test/pvsz-testing.postman_collection.json --environment pvsz-api/test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html > testResults/runreport1.html
+      run: newman run pvsz-api/test/pvsz-testing.postman_collection.json --environment pvsz-api/test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
     - name: Output the run Details
       uses: actions/upload-artifact@v2
       with: 
-       name: RunReports
        path: testResults
