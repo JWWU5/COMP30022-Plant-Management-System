@@ -50,6 +50,7 @@ exports.add = async (req, res, next) => {
                         res.json({
                             code: 200,
                             message: "Added successfully!",
+                            data: item._id
                         });
                     } catch (error) {
                         res.status(500).send("Exceptions in server");
@@ -219,7 +220,8 @@ exports.update = async (req, res, next) => {
                 );
                 res.json({
                     code: 200,
-                    result,
+                    message:"Update Success!",
+                    result
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server");

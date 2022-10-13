@@ -130,7 +130,9 @@ export default function Login() {
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
                 {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
-            <Header />
+            <header> 
+                <Header />
+            </header>
             <header>
                 <h1>Sigh In</h1>
             </header>

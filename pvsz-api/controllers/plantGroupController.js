@@ -43,6 +43,7 @@ exports.add = async (req, res, next) => {
 
                             res.json({
                                 code: 200,
+                                message: "Added Successfully",
                                 data: plantGroup,
                             });
                         }
@@ -87,6 +88,7 @@ exports.dels = async (req, res, next) => {
                 });
                 res.json({
                     code: 200,
+                    message:"Delete Successfully"
                 });
             } catch (error) {
                 res.status(500).send("Exceptions in server");
