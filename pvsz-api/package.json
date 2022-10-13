@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon index.js",
-        "test": "jest"
+        "test": "newman run test/pvsz-testing.postman_collection.json --environment test/PVSZ.postman_environment.json -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html"
     },
     "author": "",
     "license": "ISC",
