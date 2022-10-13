@@ -1,6 +1,7 @@
 .navbar_style {
     padding-left: 5%;
     padding-top: 5%;
+   
 }
 
 button {
@@ -26,8 +27,4 @@ button {
     transition: 350ms;
 }
 
-.menuIcon {
-    height: 2vh;
-    width: 6vw;
-}
 
