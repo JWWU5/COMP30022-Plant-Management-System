@@ -71,7 +71,8 @@ export default function PlantDetail() {
             .catch((err) => {
                 console.log("err = ", err.response.data);
             });
-    }, [plantId]);
+        });
+
 
     function handleInput(e) {
         if (isEditable === false) {

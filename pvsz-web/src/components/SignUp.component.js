@@ -30,7 +30,10 @@ export default function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (image.slice(0,10) !== "data:image" || image !== avatar) {
+        // if (image.slice(0,10) !== "data:image" || image !== avatar) {
+        if (image.slice(0,10) !== "data:image") {
+
+            console.log(image.slice(0,10));
             if (window.timer) {
                 clearTimeout(window.timer);
             }
@@ -192,7 +195,6 @@ export default function Register() {
                 alignItems="center"
             >
                 <Avatar
-                    // src="avatar1.jpg"
                     src={image}
                     sx={{ width:100, height:100 }}
                 />
