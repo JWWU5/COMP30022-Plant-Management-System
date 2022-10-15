@@ -165,8 +165,9 @@ export default function Dashboard() {
             )
             .then((res) => {
                 setBirthday(res.data.birthday);
-                const today1 = moment().format("YYYY-MM-DD");
-                if (birthday === today1) {
+                const today1 = moment().format("MM-DD");
+                console.log(today1)
+                if (moment(birthday).format("MM-DD") === today1) {
                     setisBirthday(true);
                 }
                 setUserName(res.data.userName);
