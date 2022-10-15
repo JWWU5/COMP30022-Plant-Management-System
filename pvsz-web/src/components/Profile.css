@@ -4,7 +4,7 @@
     font-family: 'Peralta', cursive;
     text-shadow: 3px 3px #FFFFFF;
     font-weight: 300;
-    font-size: 12vw;
+    font-size: 10vw;
     color: #44533B;
     margin-top: 8%;
     margin-left: 5%;
@@ -12,7 +12,28 @@
     display: inline-block;
 }
 
+.valueTitle {
+    padding-left: 5%;
+    font-size: 2.2vh;
+    color: #555A6E;
+}
+
 .editButton {
+    background: #788E6C;
+    margin-bottom: 8%;
+    border-radius: 30px;
+    border: #FFFFFF;
+    height: 7vh;
+    width: 80vw;
+    font-size: 3vh;
+    font-family: "Times New Roman";
+    font-weight: 900;
+    color: #FFFFFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.submitButton {
     background: #788E6C;
     margin-top: 7%;
     margin-bottom: 8%;
@@ -28,50 +49,27 @@
     text-overflow: ellipsis;
 }
 
-.submitButton {
-    background: #FFFFFF;
-    margin-top: 7%;
-    margin-bottom: 8%;
-    border-radius: 30px;
-    border: #FFFFFF;
-    height: 7vh;
-    width: 80vw;
-    font-size: 3vh;
-    font-family: "Times New Roman";
-    font-weight: 900;
-    color: #44533B;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 input[type="blocked"] {    
-    background-color :#788E6C;
-    border:0px;
-    border-bottom:1px solid #ccc;
-    color: #FFFFFF;
+    background-color: #CCCCCC;
+    color: #555A6E;
 }
 
 .valueDiv {
-    font-family: Tamil MN;
+    font-family: 'Times New Roman';
     font-weight: 300;
     text-align: left;
-    margin-top: 1%;
+    margin-top: 1.5%;
     margin-bottom: 3%;
     padding-left: 3%;
 }
 
 .valueBlock {
+    background-color: #ffffff;
     border-radius: 30px;
     border: #FFFFFF;
     height: 7vh;
     width: 80vw;
     font-weight: 600;
-}
-
-.valueTitle {
-    padding-left: 5%;
-    font-size: 2.5vh;
-    color: #44533B;
 }
 
 .tipsBox{

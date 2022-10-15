@@ -7,6 +7,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
+import background from "../assets/images/background.png";
+
+var backgroundStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: "150%",
+    backgroundRepeat: "no-repeat",
+};
 
 export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
@@ -174,10 +181,11 @@ export default function Profile() {
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
+                style={backgroundStyle}
             >
                 <Avatar
                     src={image}
-                    sx={{ width: 100, height: 100 }}
+                    sx={{ width: 80, height: 80 }}
                 />
                 <div className="valueDiv">
                     <h3 className="valueTitle">First Name</h3>
@@ -240,14 +248,15 @@ export default function Profile() {
                         />
                     )}
                 </div>
-
-                <button
-                    className={buttonClass}
-                    onClick={handleInput}
-                    disabled={nullInput}
-                >
-                    {buttonText}
-                </button>
+                <div className="valueDiv">
+                    <button
+                        className={buttonClass}
+                        onClick={handleInput}
+                        disabled={nullInput}
+                    >
+                        {buttonText}
+                    </button>
+                </div>
             </Grid>
         </body>
     );
