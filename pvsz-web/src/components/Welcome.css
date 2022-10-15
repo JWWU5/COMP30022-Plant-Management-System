@@ -27,21 +27,9 @@ body {
     align-items: center;
 }
 
-.signButton {
-    background: #FFFFFF;
-    border-radius: 28px;
-    font-size: 1.8vh;
-    font-family: "Times New Roman";
-    font-weight: 800;
-    color: #44533B;
-    height: 8vh;
-    width: 70vw;
-    padding-top: 3%;
-    padding-bottom: 3%;
-    margin-left: 17%;
-    margin-top: 8%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.signInButtons {
+    margin: auto 5%;
+    width: 80%;
 }
 
 .aboutText {
@@ -76,7 +64,3 @@ li a {
     margin-bottom: 25vh;
 }
 
-.signInButtons {
-    margin: auto 5%;
-    width: 80%;
-}

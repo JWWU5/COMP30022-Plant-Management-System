@@ -11,6 +11,18 @@ import Avatar from "@mui/material/Avatar";
 import moment from "moment";
 import { useState } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        green: {
+            main: "#768457",
+            width: 1,
+            height: 60,
+        },
+    },
+});
 
 export default function Register() {
     const navigate = useNavigate();
@@ -196,10 +208,8 @@ export default function Register() {
             >
                 <Avatar
                     src={image}
-                    sx={{ width:100, height:100 }}
+                    sx={{ width:80, height:80, mt: 2}}
                 />
-                
-
             </Grid>
             <form>
                 <Grid
@@ -208,16 +218,16 @@ export default function Register() {
                     justifyContent="center"
                     alignItems="center"
                 >
-                <div class="image">
-                    <label for="fileInput">
-                        <FileBase64
-                            id="fileInput"
-                            name="avatar"
-                            multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
-                        />
-                    </label>
-                </div>
+                    <div class="image">
+                        <label for="fileInput">
+                            <FileBase64
+                                id="fileInput"
+                                name="avatar"
+                                multiple={false}
+                                onDone={({ base64 }) => setImage(base64)}
+                            />
+                        </label>
+                    </div>
                     <input
                         type="text"
                         placeholder="First Name"
@@ -264,26 +274,41 @@ export default function Register() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     ></input>
-                    <div className="buttonContainer1">
+                    <div className="signUpInputBlock">
                         {agreePolicy && <span className="mas1"></span>}
                         {agreePolicy && (
-                            <button
-                                id="work"
-                                type="button"
-                                name="Hover"
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained"
+                                color="green"
                                 onClick={(e) => handleSubmit(e)}
-                                disabled={!agreePolicy}
-                            >
-                                SIGN UP
-                            </button>
+                                sx={{
+                                    height: 55,
+                                    width: 1,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}>SIGN UP</Button>
+                            </ThemeProvider>
                         )}
                         {!agreePolicy && (
-                            <button
-                                className="disabledSignUpButton"
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained"
                                 disabled={!agreePolicy}
-                            >
-                                Please agree the privacy policy
-                            </button>
+                                color="green"
+                                sx={{
+                                    height: 55,
+                                    width: 1,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}>Please agree the privacy policy</Button>
+                            </ThemeProvider>
                         )}
                     </div>
                 </Grid>
