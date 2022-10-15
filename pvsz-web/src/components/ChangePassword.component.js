@@ -6,9 +6,11 @@ import { Grid } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "universal-cookie";
 export default function ChangePassword() {
 
     let navigate = useNavigate();
+    const cookies = new Cookies();
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -121,7 +123,8 @@ export default function ChangePassword() {
                 setSuccessTxt("Password has changed successfully!");
                 window.timer = window.setTimeout(() => {
                     setSuccessTxt("");
-                    navigate("/setting");
+                    cookies.remove("TOKEN", { path: "/" });
+                    navigate("/sign-in");
                 }, 1000);
             })
             .catch((err) => {
@@ -149,47 +152,45 @@ export default function ChangePassword() {
             <header>
                 <h1 style={{ color: "#44533B", fontSize: "3vh", textShadow: "3px 3px #FFFFFF" }}>Change Password</h1>
             </header>
-            <form>
-                <Grid
-                    container
-                    direction="column"
-                    alignItems="center"
-                >
-                    <div className="changePasswordDiv">
-                        <input
-                            className="newPasswordInput"
-                            placeholder="Old Password"
-                            value={oldPassword}
-                            type={oldPasswordType}
-                            onChange={(e) => setOldPassword(e.target.value)}
-                        ></input>
-                        <VisibilityIcon className="visiableIcon" onClick={oldPasswordVisiableCheck} />
-                    </div>
-                    <div className="changePasswordDiv">
-                        <input
-                            className="newPasswordInput"
-                            placeholder="New Password"
-                            value={newPassword}
-                            type={newPasswordType}
-                            onChange={(e) => changePassword(e)}
-                        ></input>
-                        <VisibilityIcon className="visiableIcon" onClick={passwordVisiableCheck} />
-                    </div>
-                    <div className="changePasswordDiv">
-                        <input
-                            className="newPasswordInput"
-                            placeholder="Confirm New Password"
-                            value={confirmationPassword}
-                            type={confirmationPasswordType}
-                            onChange={(e) => setConfirmationPassword(e.target.value)}
-                        ></input>
-                        <VisibilityIcon className="visiableIcon" onClick={confirmPasswordVisiableCheck} />
-                    </div>
-                    <div className="changePasswordDiv">
-                        <button className="changePasswordButton" onClick={handleSubmitNewPassword}>Submit</button>
-                    </div>
-                </Grid>
-            </form>
+            <Grid
+                container
+                direction="column"
+                alignItems="center"
+            >
+                <div className="changePasswordDiv">
+                    <input
+                        className="newPasswordInput"
+                        placeholder="Old Password"
+                        value={oldPassword}
+                        type={oldPasswordType}
+                        onChange={(e) => setOldPassword(e.target.value)}
+                    ></input>
+                    <VisibilityIcon className="visiableIcon" onClick={oldPasswordVisiableCheck} />
+                </div>
+                <div className="changePasswordDiv">
+                    <input
+                        className="newPasswordInput"
+                        placeholder="New Password"
+                        value={newPassword}
+                        type={newPasswordType}
+                        onChange={(e) => changePassword(e)}
+                    ></input>
+                    <VisibilityIcon className="visiableIcon" onClick={passwordVisiableCheck} />
+                </div>
+                <div className="changePasswordDiv">
+                    <input
+                        className="newPasswordInput"
+                        placeholder="Confirm New Password"
+                        value={confirmationPassword}
+                        type={confirmationPasswordType}
+                        onChange={(e) => setConfirmationPassword(e.target.value)}
+                    ></input>
+                    <VisibilityIcon className="visiableIcon" onClick={confirmPasswordVisiableCheck} />
+                </div>
+                <div className="changePasswordDiv">
+                    <button className="changePasswordButton" onClick={handleSubmitNewPassword}>Submit</button>
+                </div>
+            </Grid>
         </body>
     )
 }

@@ -192,15 +192,15 @@ exports.changePassword = async (req, res, next) => {
             });
         } else {
             let userId = decode.userId;
-            user = await User.findById(userId);
-            bcrypt.compare(req.body.oldPassword, user.password, async function (err1, result) {
+            let user = await User.findById(userId);
+            bcrypt.compare(req.body.oldPassword, user.password, async function (err, result) {
                 if (err) {
                     res.status(500).send("Exceptions in server");
                     return;
                 }
                 if (result) {
-                    bcrypt.compare(req.body.newPassword, user.password, async function (err, result) {
-                        if (err) {
+                    bcrypt.compare(req.body.newPassword, user.password, async function (err1, result) {
+                        if (err1) {
                             res.status(500).send("Exceptions in server");
                             return;
                         }
@@ -218,8 +218,8 @@ exports.changePassword = async (req, res, next) => {
                                 {
                                     password: hashedPassword
                                 },
-                                (err, doc) => {
-                                    if (err) {
+                                (err2, doc) => {
+                                    if (err2) {
                                         res.status(500).send("Exceptions in server");
                                         return;
                                     }
@@ -239,7 +239,7 @@ exports.changePassword = async (req, res, next) => {
             })
         }
     });
-}
+};
 
 
 exports.dels = async (req, res, next) => {
