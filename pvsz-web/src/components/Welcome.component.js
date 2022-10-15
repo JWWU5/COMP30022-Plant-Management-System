@@ -11,9 +11,9 @@ import background from "../assets/images/background.png";
 import { convertLength } from '@mui/material/styles/cssUtils';
 
 var backgroundStyle = {
-    width: "100%",
     backgroundImage: `url(${background})`,
-    backgroundSize: 'cover'
+    backgroundSize: "150%",
+    backgroundRepeat: "no-repeat",
 };
 
 const theme = createTheme({

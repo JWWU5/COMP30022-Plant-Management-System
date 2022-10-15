@@ -105,11 +105,12 @@ export default function Setting() {
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>
                                 <Grid item xs={6}>
-                                    <p>Darkmode</p>
+                                    {/* <p>Darkmode</p> */}
+                                    <p>BGM</p>
                                 </Grid>
                                 <Grid item xs={6} alignContent="right">
                                     <div className="switchButton">
-                                        <Switch defaultChecked size="small" />
+                                        <Switch defaultUnChecked size="small" />
                                     </div>
                                 </Grid>
                             </Grid>

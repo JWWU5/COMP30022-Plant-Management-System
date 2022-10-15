@@ -129,7 +129,7 @@ const Header = (menubarColour) => {
     ) {
         return (
             <>
-                {bgmOn && (
+                {/* {bgmOn && (
                     <embed
                         src={backgroundMusic}
                         loop="true"
@@ -140,7 +140,7 @@ const Header = (menubarColour) => {
                     />
                 )}
                 {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
-                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />}
+                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />} */}
                 <nav className="navbar_style">
                     <MenuIcon onClick={showSidebar} sx={{ color: "#ffffff" }} />
                 </nav>
@@ -183,7 +183,7 @@ const Header = (menubarColour) => {
     } else {
         return (
             <>
-                {bgmOn && (
+                {/* {bgmOn && (
                     <embed
                         src={backgroundMusic}
                         loop="true"
@@ -194,7 +194,7 @@ const Header = (menubarColour) => {
                     />
                 )}
                 {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
-                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />}
+                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />} */}
                 <nav className="navbar_style">
                     <button onClick={showSidebar}>
                         <MenuIcon sx={{ color: "#44533B" }} />
