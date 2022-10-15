@@ -155,7 +155,7 @@ export default function SelectPlant() {
                                         justify-Content="center"
                                         onClick={() => {
                                             navigate(
-                                                `/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}`
+                                                `/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}&image=${v.imageSource}`
                                             );
                                         }}
                                         sx={{

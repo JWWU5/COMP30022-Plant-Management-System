@@ -28,6 +28,7 @@ export default function AddPlant() {
     const [groupOptions, setGroupOptions] = useState([]);
     const [image, setImage] = useState(defaultImage);
     const [date, setDate] = useState("");
+    const imageSource = image;
 
     useEffect(() => {
         axios
@@ -57,18 +58,22 @@ export default function AddPlant() {
 
         let sunExposure = searchParams[0].getAll("sunExposure")[0];
         let waterPeriod = searchParams[0].getAll("waterPeriod")[0];
-        if (sunExposure) {
+        let imageSource = searchParams[0].getAll("image")[0];
+        if (waterPeriod) {
             setWaterRate(waterPeriod);
         }
-        if (waterPeriod) {
+        if (sunExposure) {
             setSunshineRate(sunExposure);
+        }
+        if (imageSource){
+            setImage(imageSource);
         }
 
     }, []);
 
     const handleSubmit = () => {
         console.log(lastSunshineTime)
-        if(image !== defaultImage){
+        if(image !== imageSource && image !== defaultImage){
             if (image.slice(0,10) !== "data:image" ) {
                 if (window.timer) {
                     clearTimeout(window.timer);

@@ -16,6 +16,7 @@ const PlantSchema = mongoose.Schema({
 	nativeArea: { type: String },
 	toxicity: { type: String},
 	growthCare: { type: String },
+	imageSourse: { type: String },
 },{
 	timestamps: { createdAt: "createTime", updatedAt: "updateTime" },
   });
