@@ -14,12 +14,6 @@
     z-index: 0;
 }
 
-.aboutTitle {
-    font-size: 4vw;
-}
-
-
-
 main h1 {
     font-family: 'Peralta', cursive;
     font-weight: 300;
@@ -53,26 +47,6 @@ main p {
     margin-left: 2%;
 }
 
-.rectangle {
-    border-radius: 25px;
-    background-color: #BACB94;
-    height: 80vh;
-    width: auto;
-    margin:1.5rem ;
-    top: 0; left: 0; bottom: 0; right: 0;
-    position: relative;
-}
-
-.content {
-    position: absolute;
-    top: 5vh;
-    z-index: 100;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    font-size: 2vh;
-    padding-top: 30%;
-}
 
 .img {
     width: fit-content;
@@ -102,6 +76,10 @@ main p {
     margin-left: 8vw;
 }
 
+.spacingLine {
+    height: 5vh;
+}
+
 .aboutRecContent {
     height: 80vh;
     width: 90vw;
@@ -113,8 +91,108 @@ main p {
     padding-left: 3vw;
     padding-right: 3vw;
     overflow-y: scroll;
+    font-size: 15px;
+    line-height: 35px;
 }
 
-.spacingLine {
-    height: 5vh;
+@media screen and (max-width: 350px) {
+    .aboutTitle {
+        margin-top: 20px;
+        font-size: 11px;
+    }
+
+    .rectangle {
+        border-radius: 25px;
+        background-color: #BACB94;
+        height: 500px;
+        margin: auto 5%;
+        margin-top: 5%;
+    }
+
+    .content {
+        margin: auto 2%;
+        padding-top: 60px;
+        font-size: 12px;
+        font-family: 'Times New Roman';
+        color: #555b6e;
+    }
+
+    .contactDetail {
+        margin: auto 2%;
+        margin-top: 30px;
+        font-size: 12px;
+    }
+
+    .AboutUs {
+        margin-top: 10px;
+        display: flex;
+    }
+
+    .AboutUs h2 {
+        display: block;
+        font-family: 'Peralta', cursive;
+        text-shadow: 3px 3px #555A6E;
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 35px;
+        margin-left: 5%;
+        margin-top: 20px;
+    }
+
+    .greenZombie {
+        width:80px;
+    }
+}
+
+@media screen and (min-width: 350px) {
+    .aboutTitle {
+        margin-top: 20px;
+        font-size: 12px;
+    }
+
+    .rectangle {
+        border-radius: 25px;
+        background-color: #BACB94;
+        height: 500px;
+        margin: auto 5%;
+        margin-top: 5%;
+    }
+
+    .content {
+        margin: auto 2%;
+        padding-top: 60px;
+        font-size: 15px;
+        font-family: 'Times New Roman';
+        color: #555b6e;
+    }
+
+    .contactDetail {
+        margin: auto 2%;
+        margin-top: 30px;
+        font-size: 12px;
+    }
+
+    .AboutUs {
+        margin-top: 10px;
+        display: flex;
+    }
+
+    .AboutUs h2 {
+        display: block;
+        font-family: 'Peralta', cursive;
+        text-shadow: 3px 3px #555A6E;
+        font-weight: 300;
+        color: #ffffff;
+        font-weight:lighter;
+        font-size: 40px;
+        margin-left: 5%;
+        margin-top: 30px;
+    }
+
+    .greenZombie {
+        width:100px;
+    }
+
+    
 }

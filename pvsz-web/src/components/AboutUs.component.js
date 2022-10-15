@@ -12,37 +12,19 @@ export default class AboutUs extends Component {
                 <Header />
                 <main>
                     <div class="body">
-                        <div class="aboutTitle">
-                            <Grid container spacing={0}>
-                                <Grid item xs={7}>
-                                    <h1 className="aboutTextPosition">
-                                        About
-                                    </h1>
-                                </Grid>
-                                <Grid item xs={5}>
-                                    <Grid container spacing={0}>
-                                        <Grid item xs={6}>
-                                            <h1>Us</h1>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <img
-                                                class="titleImg"
-                                                src={greenZombie}
-                                            ></img>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
+                        <div class="AboutUs">
+                            <h2>About Us</h2>
+                            <img class="greenZombie" src={greenZombie}></img>
                         </div>
                         <div class="aboutRecContent">
                             <b>
                                 <p>
-                                    We aim to help our users track and take
-                                    better care of their plants in home.
+                                    We aim to offer our users a chance to be more easily and quickly to
+                                    track and take care of their plants at home.
                                 </p>
                                 <p className="spacingLine"></p>
                                 <p>
-                                    On this website, you can group your plants,
+                                    From this website, you can group your plants,
                                     give them nicknames and record the watering,
                                     sunshine and other features.{" "}
                                 </p>
