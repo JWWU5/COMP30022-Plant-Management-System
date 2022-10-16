@@ -77,6 +77,17 @@ export default function Register() {
             return;
         }
 
+        if (userName.length > 20) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Length of Username cannot larger than 20!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+        
         if (!userName) {
             if (window.timer) {
                 clearTimeout(window.timer);

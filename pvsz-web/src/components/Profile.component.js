@@ -79,6 +79,16 @@ export default function Profile() {
                 }, 1000);
                 return;
             }
+            if (userName.length > 20) {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Length of Username cannot larger than 20!");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
             axios
                 .post(
                     "api/v1/user/setUserInfo",
