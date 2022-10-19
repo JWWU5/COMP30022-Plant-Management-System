@@ -22,6 +22,9 @@ import FireExtinguisherOutlinedIcon from "@mui/icons-material/FireExtinguisherOu
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import backgroundMusic from "../assets/audio/bgM.mp3";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import VolumeMuteIcon from "@mui/icons-material/VolumeMute";
 
 const theme = createTheme({
     palette: {
@@ -47,6 +50,15 @@ export default function Dashboard() {
     const [isbirthday, setisBirthday] = useState(false);
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
+    const [bgmOn, setBgmOn] = useState(false);
+
+    const handleBGM = () => {
+        if (bgmOn) {
+            setBgmOn(false);
+        } else {
+            setBgmOn(true);
+        }
+    };
     const getList = () => {
         axios
             .post(
@@ -257,6 +269,18 @@ export default function Dashboard() {
             </div>
             <Header />
             <main>
+                {bgmOn && (
+                    <embed
+                        src={backgroundMusic}
+                        loop="true"
+                        autostart="true"
+                        hidden="true"
+                        width={0}
+                        height={0}
+                    />
+                )}
+                {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
+                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />}
                 <div class="welcome">
                     <h2>Welcome, {userName}</h2>
                     <h3>Today is {today}.</h3>

@@ -7,9 +7,6 @@ import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 
 import "./sidebar.scss";
-import backgroundMusic from "../assets/audio/bgM.mp3";
-import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeMuteIcon from "@mui/icons-material/VolumeMute";
 
 const sidebarNavItems = [
     {
@@ -107,18 +104,9 @@ const Header = (menubarColour) => {
     const sidebarRef = useRef();
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
-    const [bgmOn, setBgmOn] = useState(false);
 
     const toggleLeft = () => {
         setSidebar((prev) => !prev);
-    };
-
-    const handleBGM = () => {
-        if (bgmOn) {
-            setBgmOn(false);
-        } else {
-            setBgmOn(true);
-        }
     };
 
     if (
@@ -129,18 +117,6 @@ const Header = (menubarColour) => {
     ) {
         return (
             <>
-                {/* {bgmOn && (
-                    <embed
-                        src={backgroundMusic}
-                        loop="true"
-                        autostart="true"
-                        hidden="true"
-                        width={0}
-                        height={0}
-                    />
-                )}
-                {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
-                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />} */}
                 <nav className="navbar_style">
                     <MenuIcon onClick={showSidebar} sx={{ color: "#ffffff" }} />
                 </nav>
@@ -183,18 +159,6 @@ const Header = (menubarColour) => {
     } else {
         return (
             <>
-                {/* {bgmOn && (
-                    <embed
-                        src={backgroundMusic}
-                        loop="true"
-                        autostart="true"
-                        hidden="true"
-                        width={0}
-                        height={0}
-                    />
-                )}
-                {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
-                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />} */}
                 <nav className="navbar_style">
                     <button onClick={showSidebar}>
                         <MenuIcon sx={{ color: "#44533B" }} />
