@@ -89,8 +89,6 @@ export default function Login() {
                     setSuccessTxt("");
                     navigate("/dashboard");
                 }, 1000);
-
-                // navigate("/");
             })
             .catch((error) => {
                 // error = new Error();
@@ -169,7 +167,8 @@ export default function Login() {
                     ></input>
 
                     <ThemeProvider theme={theme}>
-                        <Button variant="contained"
+                        <Button 
+                        variant="contained"
                         color="green"
                         onClick={(e) => handleSubmit(e)}
                         sx={{
