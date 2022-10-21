@@ -611,25 +611,6 @@ export default function Dashboard() {
                                     );
                                 }
                             })}
-                            {/* {countplant !== 0 && (
-                                <ThemeProvider theme={theme}>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleSubmit}
-                                        sx={{
-                                            height: 50,
-                                            borderRadius: 25,
-                                            color: "#646464",
-                                            textTransform: "capitalize",
-                                            fontFamily: "Tamil HM",
-                                            fontSize: 15,
-                                        }}
-                                    >
-                                        UPDATE
-                                    </Button>
-                                </ThemeProvider>
-                            )} */}
                         </Stack>
                     </div>
                 </div>

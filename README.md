@@ -21,16 +21,20 @@ In this project, we choose to use [Monday](https://student543001.monday.com/boar
 
 Below are our overall workflow diagram and git workflow diagram respectively. 
 <p align="center">
-  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
 </p>
-
-<p align="center" style="font-style: italic">overall workflow</p>
 
 <p align="center">
-  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+    *overall workflow*
 </p>
 
-<p align="center" style="font-style: italic">git workflow</p>
+<p align="center">
+    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+</p>
+
+<p align="center">
+    *git workflow*
+</p>
 
 
 
@@ -41,10 +45,12 @@ See the full list of requirements at our [Confluence](https://jwwu5.atlassian.ne
 
 ### This is our logo: 
 <p align="center">
-  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
 </p>
 
-<p align="center" style="font-style: italic">logo of this product</p>
+<p align="center" style="font-style: italic">
+    *logo of this product*
+</p>
 
 ## Building Technologies
 
