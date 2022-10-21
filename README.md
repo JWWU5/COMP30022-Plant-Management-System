@@ -20,15 +20,17 @@ Our team members are **Jiayi Wu** & **Wuge Liu** & **Xuanhao Zhang** & **Yikun T
 In this project, we choose to use [Monday](https://student543001.monday.com/boards/3128765258) and GitHub to manage our workflow. 
 
 Below are our overall workflow diagram and git workflow diagram respectively. 
-<p align="center" style="font-style: italic">
+<p align="center">
   <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-  <p>overall workflow</p>
 </p>
 
-<p align="center" style="font-style: italic">
+<p align="center" style="font-style: italic">overall workflow</p>
+
+<p align="center">
   <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-  <p>git workflow</p>
 </p>
+
+<p align="center" style="font-style: italic">git workflow</p>
 
 
 
@@ -38,10 +40,11 @@ This web application named ‘PvsZ’ (only for phone size) used for tracking th
 See the full list of requirements at our [Confluence](https://jwwu5.atlassian.net/wiki/spaces/IP/overview?homepageId=196693). 
 
 ### This is our logo: 
-<p align="center" style="font-style: italic">
+<p align="center">
   <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-  <p>logo of this product</p>
 </p>
+
+<p align="center" style="font-style: italic">logo of this product</p>
 
 ## Building Technologies
 
