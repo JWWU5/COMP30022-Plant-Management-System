@@ -17,6 +17,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
+import { borderLeft } from "@mui/system";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -53,6 +54,16 @@ export default function Setting() {
             },
         },
     });
+
+    const logoutTheme = createTheme({
+        palette: {
+            primary: {
+                main: "#44533B",
+                width: 1,
+                height: 55,
+            },
+        },
+    })
 
     function handleOpenWindow() {
         setOpenWindow(true);
@@ -105,7 +116,7 @@ export default function Setting() {
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>
                                 <Grid item xs={6}>
-                                    <p>Darkmode</p>
+                                    <p>BGM</p>
                                 </Grid>
                                 <Grid item xs={6} alignContent="right">
                                     <div className="switchButton">
@@ -142,50 +153,51 @@ export default function Setting() {
                                 </Grid>
                             </Grid>
                         </div>
-                        <div className="cancelAccount"></div>
-                        <ThemeProvider theme={theme}>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleOpenWindow}
-                                sx={{
-                                    width: 0.9,
-                                    height: 1,
-                                    borderRadius: 25,
-                                    color: "#646464",
-                                    fontFamily: "Tamil HM",
-                                    fontSize: 20,
-                                    margin: 2.5,
-                                }}
-                            >
-                                Delete Account
-                            </Button>
-                            <Dialog
-                                open={openWindow}
-                                TransitionComponent={Transition}
-                                keepMounted
-                                onClose={closeOpenWindow}
-                            >
-                                <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
-                                    {"Delete this account?"}
-                                </DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-slide-description">
-                                        Deleting this account means that all your personal details,
-                                        plants and related information will be removed from our
-                                        database permanently.
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button color="success" onClick={closeOpenWindow}>
-                                        No
-                                    </Button>
-                                    <Button color="error" onClick={cancelAccount}>
-                                        yes!
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </ThemeProvider>
+                        <div className="cancelAccount">
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleOpenWindow}
+                                    sx={{
+                                        width: 1,
+                                        height: 1,
+                                        borderRadius: 35,
+                                        color: "#646464",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 20,
+                                        fontWeight: 'bold', 
+                                    }}
+                                >
+                                    Delete Account
+                                </Button>
+                                <Dialog
+                                    open={openWindow}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={closeOpenWindow}
+                                >
+                                    <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
+                                        {"Delete this account?"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                            Deleting this account means that all your personal details,
+                                            plants and related information will be removed from our
+                                            database permanently.
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button color="success" onClick={closeOpenWindow}>
+                                            No
+                                        </Button>
+                                        <Button color="error" onClick={cancelAccount}>
+                                            yes!
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </ThemeProvider>
+                        </div>        
                     </Grid>
                 </div>
             </div>
@@ -195,8 +207,25 @@ export default function Setting() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div className="logoutButton" onClick={handleLogout}>
-                    <p>LOG OUT</p>
+                <div className="logoutButton">
+                    <ThemeProvider theme={logoutTheme}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleLogout}
+                            sx={{
+                                width: 1,
+                                height: 1,
+                                borderRadius: 25,
+                                color: "#FFFFFF",
+                                fontFamily: "New Times Roman",
+                                fontSize: 20,
+                                fontWeight: 'bold', 
+                            }}
+                        >
+                            LOG OUT
+                        </Button>
+                    </ThemeProvider>
                 </div>
             </Grid>
         </body>

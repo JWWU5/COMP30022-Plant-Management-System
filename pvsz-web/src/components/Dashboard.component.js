@@ -611,7 +611,7 @@ export default function Dashboard() {
                                     );
                                 }
                             })}
-                            {countplant !== 0 && (
+                            {/* {countplant !== 0 && (
                                 <ThemeProvider theme={theme}>
                                     <Button
                                         variant="contained"
@@ -629,9 +629,31 @@ export default function Dashboard() {
                                         UPDATE
                                     </Button>
                                 </ThemeProvider>
-                            )}
+                            )} */}
                         </Stack>
                     </div>
+                </div>
+                <div className="buttonClass">
+                    {countplant !== 0 && (
+                        <ThemeProvider theme={theme}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSubmit}
+                                sx={{
+                                    height: 50,
+                                    width: 1.0, 
+                                    borderRadius: 25,
+                                    color: "#646464",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Tamil HM",
+                                    fontSize: 15,
+                                }}
+                            >
+                                UPDATE
+                            </Button>
+                        </ThemeProvider>
+                    )}
                 </div>
             </main>
         </body>
