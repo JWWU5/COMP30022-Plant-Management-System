@@ -25,7 +25,7 @@ Below are our overall workflow diagram and git workflow diagram respectively.
 </p>
 
 <p align="center">
-    *overall workflow*
+    overall workflow
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@ Below are our overall workflow diagram and git workflow diagram respectively.
 </p>
 
 <p align="center">
-    *git workflow*
+    git workflow
 </p>
 
 
@@ -49,7 +49,7 @@ See the full list of requirements at our [Confluence](https://jwwu5.atlassian.ne
 </p>
 
 <p align="center" style="font-style: italic">
-    *logo of this product*
+    logo of this product
 </p>
 
 ## Building Technologies
