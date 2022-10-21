@@ -20,6 +20,13 @@ Our team members are **Jiayi Wu** & **Wuge Liu** & **Xuanhao Zhang** & **Yikun T
 In this project, we choose to use [Monday](https://student543001.monday.com/boards/3128765258) and GitHub to manage our workflow. 
 
 Below are our overall workflow diagram and git workflow diagram respectively. 
+<p align="center">
+  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+  <p style="font-style: italic">overall workflow</p>
+  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
+  <p style="font-style: italic">git workflow</p>
+</p>
+
 
 
 
@@ -30,7 +37,7 @@ See the full list of requirements at our [Confluence](https://jwwu5.atlassian.ne
 ### This is our logo: 
 <p align="center">
   <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-  logo of the product
+  <p style="font-style: italic">logo of this product</p>
 </p>
 
 ## Building Technologies
