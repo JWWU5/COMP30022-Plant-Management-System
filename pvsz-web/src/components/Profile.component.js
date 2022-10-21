@@ -8,6 +8,18 @@ import axios from "axios";
 import FileBase64 from "react-file-base64";
 import Avatar from "@mui/material/Avatar";
 import background from "../assets/images/background.png";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        green: {
+            main: "#788E6C",
+            width: 1,
+            height: 60,
+        },
+    },
+});
 
 var backgroundStyle = {
     backgroundImage: `url(${background})`,
@@ -26,7 +38,7 @@ export default function Profile() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
-    const [buttonClass, setButtonClass] = useState("editButton");
+    // const [buttonClass, setButtonClass] = useState("editButton");
     const [birthdayDate, setBirthdayDate] = useState("");
     const [email, setEmail] = useState("");
     const [image, setImage] = useState("");
@@ -59,10 +71,8 @@ export default function Profile() {
     function checkNullInput(inputValue) {
         if (inputValue.trim().length - 1 === 0) {
             setnullInput(true);
-            setButtonClass("editButton");
         } else {
             setnullInput(false);
-            setButtonClass("submitButton");
         }
     }
 
@@ -73,7 +83,6 @@ export default function Profile() {
             setReadonlyValue(false);
             setbuttonText("Submit");
             setInputType("text");
-            setButtonClass("submitButton");
 
         } else {
             if (image.slice(0, 10) !== "data:image") {
@@ -123,7 +132,6 @@ export default function Profile() {
                         setReadonlyValue(true);
                         setbuttonText("Edit");
                         setInputType("blocked");
-                        setButtonClass("editButton");
                     }
                 })
                 .catch((err) => {
@@ -258,14 +266,27 @@ export default function Profile() {
                         />
                     )}
                 </div>
-                <div className="valueDiv">
-                    <button
-                        className={buttonClass}
-                        onClick={handleInput}
-                        disabled={nullInput}
-                    >
-                        {buttonText}
-                    </button>
+                <div className="profileButtonDiv">
+                    <ThemeProvider theme={theme}>
+                        <Button
+                            onClick={handleInput}
+                            disabled={nullInput}
+                            variant="contained"
+                            color="green"
+                            sx={{
+                                width: 1,
+                                height: 1,
+                                borderRadius: 30,
+                                color: "#ffffff",
+                                textTransform: "capitalize",
+                                fontFamily: "Times New Roman",
+                                fontSize: 25,
+                                fontWeight: "900",
+                            }}
+                        >
+                            {buttonText}
+                        </Button>
+                    </ThemeProvider>
                 </div>
             </Grid>
         </body>
