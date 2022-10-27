@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
 
@@ -22,12 +22,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 const cookies = new Cookies();
 
-export default function Setting() {
+const Setting = React.memo((props) => {
     const [successTxt, setSuccessTxt] = useState("");
     const [openWindow, setOpenWindow] = React.useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+    const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
     let navigate = useNavigate();
 
@@ -67,8 +68,7 @@ export default function Setting() {
         axios
             .post(
                 "api/v1/user/dels",
-                {
-                },
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -109,7 +109,15 @@ export default function Setting() {
                                 </Grid>
                                 <Grid item xs={6} alignContent="right">
                                     <div className="switchButton">
-                                        <Switch defaultChecked size="small" />
+                                        <Switch
+                                            onClick={() =>
+                                                props.updateMusic(isEnabled)
+                                            }
+                                            defaultChecked
+                                            size="small"
+                                            onValueChange={toggleSwitch}
+                                            value={isEnabled}
+                                        />
                                     </div>
                                 </Grid>
                             </Grid>
@@ -166,21 +174,30 @@ export default function Setting() {
                                 keepMounted
                                 onClose={closeOpenWindow}
                             >
-                                <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
+                                <DialogTitle
+                                    sx={{ fontWeight: "bold", fontSize: 20 }}
+                                >
                                     {"Delete this account?"}
                                 </DialogTitle>
                                 <DialogContent>
                                     <DialogContentText id="alert-dialog-slide-description">
-                                        Deleting this account means that all your personal details,
-                                        plants and related information will be removed from our
-                                        database permanently.
+                                        Deleting this account means that all
+                                        your personal details, plants and
+                                        related information will be removed from
+                                        our database permanently.
                                     </DialogContentText>
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button color="success" onClick={closeOpenWindow}>
+                                    <Button
+                                        color="success"
+                                        onClick={closeOpenWindow}
+                                    >
                                         No
                                     </Button>
-                                    <Button color="error" onClick={cancelAccount}>
+                                    <Button
+                                        color="error"
+                                        onClick={cancelAccount}
+                                    >
                                         yes!
                                     </Button>
                                 </DialogActions>
@@ -201,4 +218,5 @@ export default function Setting() {
             </Grid>
         </body>
     );
-}
+});
+export default Setting;
