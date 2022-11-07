@@ -110,15 +110,7 @@ function App() {
                     />
                     <Route
                         path="/setting"
-                        element={
-                            <Protected
-                                Component={
-                                    <Setting
-                                        updateMusic={updateMusicCallback}
-                                    />
-                                }
-                            />
-                        }
+                        element={<Protected Component={Setting} />}
                     />
                     <Route
                         path="/change-password"

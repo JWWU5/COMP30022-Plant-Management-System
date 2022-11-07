@@ -17,6 +17,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
+import { borderLeft } from "@mui/system";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -24,11 +25,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const cookies = new Cookies();
 
-const Setting = React.memo((props) => {
+export default function Setting() {
     const [successTxt, setSuccessTxt] = useState("");
     const [openWindow, setOpenWindow] = React.useState(false);
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
     let navigate = useNavigate();
 
@@ -49,6 +48,16 @@ const Setting = React.memo((props) => {
         palette: {
             primary: {
                 main: "#FFFFFF",
+                width: 1,
+                height: 55,
+            },
+        },
+    });
+
+    const logoutTheme = createTheme({
+        palette: {
+            primary: {
+                main: "#44533B",
                 width: 1,
                 height: 55,
             },
@@ -105,19 +114,11 @@ const Setting = React.memo((props) => {
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>
                                 <Grid item xs={6}>
-                                    <p>Darkmode</p>
+                                    <p>BGM</p>
                                 </Grid>
                                 <Grid item xs={6} alignContent="right">
                                     <div className="switchButton">
-                                        <Switch
-                                            onClick={() =>
-                                                props.updateMusic(isEnabled)
-                                            }
-                                            defaultChecked
-                                            size="small"
-                                            onValueChange={toggleSwitch}
-                                            value={isEnabled}
-                                        />
+                                        <Switch defaultChecked size="small" />
                                     </div>
                                 </Grid>
                             </Grid>
@@ -150,59 +151,63 @@ const Setting = React.memo((props) => {
                                 </Grid>
                             </Grid>
                         </div>
-                        <div className="cancelAccount"></div>
-                        <ThemeProvider theme={theme}>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleOpenWindow}
-                                sx={{
-                                    width: 0.9,
-                                    height: 1,
-                                    borderRadius: 25,
-                                    color: "#646464",
-                                    fontFamily: "Tamil HM",
-                                    fontSize: 20,
-                                    margin: 2.5,
-                                }}
-                            >
-                                Delete Account
-                            </Button>
-                            <Dialog
-                                open={openWindow}
-                                TransitionComponent={Transition}
-                                keepMounted
-                                onClose={closeOpenWindow}
-                            >
-                                <DialogTitle
-                                    sx={{ fontWeight: "bold", fontSize: 20 }}
+                        <div className="cancelAccount">
+                            <ThemeProvider theme={theme}>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={handleOpenWindow}
+                                    sx={{
+                                        width: 1,
+                                        height: 1,
+                                        borderRadius: 35,
+                                        color: "#646464",
+                                        fontFamily: "Tamil HM",
+                                        fontSize: 20,
+                                        fontWeight: "bold",
+                                    }}
                                 >
-                                    {"Delete this account?"}
-                                </DialogTitle>
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-slide-description">
-                                        Deleting this account means that all
-                                        your personal details, plants and
-                                        related information will be removed from
-                                        our database permanently.
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button
-                                        color="success"
-                                        onClick={closeOpenWindow}
+                                    Delete Account
+                                </Button>
+                                <Dialog
+                                    open={openWindow}
+                                    TransitionComponent={Transition}
+                                    keepMounted
+                                    onClose={closeOpenWindow}
+                                >
+                                    <DialogTitle
+                                        sx={{
+                                            fontWeight: "bold",
+                                            fontSize: 20,
+                                        }}
                                     >
-                                        No
-                                    </Button>
-                                    <Button
-                                        color="error"
-                                        onClick={cancelAccount}
-                                    >
-                                        yes!
-                                    </Button>
-                                </DialogActions>
-                            </Dialog>
-                        </ThemeProvider>
+                                        {"Delete this account?"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText id="alert-dialog-slide-description">
+                                            Deleting this account means that all
+                                            your personal details, plants and
+                                            related information will be removed
+                                            from our database permanently.
+                                        </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button
+                                            color="success"
+                                            onClick={closeOpenWindow}
+                                        >
+                                            No
+                                        </Button>
+                                        <Button
+                                            color="error"
+                                            onClick={cancelAccount}
+                                        >
+                                            yes!
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </ThemeProvider>
+                        </div>
                     </Grid>
                 </div>
             </div>
@@ -212,11 +217,27 @@ const Setting = React.memo((props) => {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div className="logoutButton" onClick={handleLogout}>
-                    <p>LOG OUT</p>
+                <div className="logoutButton">
+                    <ThemeProvider theme={logoutTheme}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleLogout}
+                            sx={{
+                                width: 1,
+                                height: 1,
+                                borderRadius: 25,
+                                color: "#FFFFFF",
+                                fontFamily: "New Times Roman",
+                                fontSize: 20,
+                                fontWeight: "bold",
+                            }}
+                        >
+                            LOG OUT
+                        </Button>
+                    </ThemeProvider>
                 </div>
             </Grid>
         </body>
     );
-});
-export default Setting;
+}

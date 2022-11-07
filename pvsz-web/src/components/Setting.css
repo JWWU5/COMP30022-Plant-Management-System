@@ -17,7 +17,10 @@
 }
 
 .cancelAccount {
-    height: 2.5vh;
+    height: 7vh;
+    width: 80vw;
+    margin-top: 5vh;
+    margin-left: 5vw;
 }
 
 .switchButton {
@@ -31,14 +34,7 @@
 .logoutButton {
     height: 8vh;
     width: 90vw;
-    background-color: #44533B;
-    color: #FFFFFF;
-    font-size: 3vh;
-    font-weight: 800;
-    font-family: "Times New Roman";
-    text-align: center;
-    border-radius: 30px;
-    padding-top: 2.5vh;
+    padding-top: 0.5vh;
 }
 
 .rankingContentDiv {
