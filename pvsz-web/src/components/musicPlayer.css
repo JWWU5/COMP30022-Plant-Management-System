@@ -1,5 +1,7 @@
 .volume {
-    padding-left: 90%;
-    padding-top: 5%;
-   
+    height: 3vh;
+    width: 8vw;
+    margin-left: 90%;
+    margin-top: 5%;
+    position: absolute;
 }

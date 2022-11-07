@@ -113,18 +113,6 @@ export default function Setting() {
                     <Grid container direction="column">
                         <div className="settingButtonDiv">
                             <Grid container spacing={0}>
-                                <Grid item xs={6}>
-                                    <p>BGM</p>
-                                </Grid>
-                                <Grid item xs={6} alignContent="right">
-                                    <div className="switchButton">
-                                        <Switch defaultChecked size="small" />
-                                    </div>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        <div className="settingButtonDiv">
-                            <Grid container spacing={0}>
                                 <Grid item xs={8}>
                                     <p>Change Password</p>
                                 </Grid>
