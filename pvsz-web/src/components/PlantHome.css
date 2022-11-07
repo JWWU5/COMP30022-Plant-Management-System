@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Peralta&display=swap');
+
 @media screen and (max-width: 350px) {
     .bg {
         background-color: #BACB94;
@@ -5,6 +7,9 @@
         margin: 6% 5%;
         padding-top: 8%;
         padding-bottom: 100%;
+        height: 80vh;
+        width: 90vw;
+        overflow-y: scroll;
     }
 
     .topic {
@@ -15,7 +20,7 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: 'BM HANNA 11yrs old', cursive;
+        font-family: 'Peralta', cursive;
         font-weight: 300;
         color: #ffffff;
         font-weight:bold;
@@ -83,6 +88,9 @@
         margin: 6% 5%;
         padding-top: 8%;
         padding-bottom: 100%;
+        height: 80vh;
+        width: 90vw;
+        overflow-y: scroll;
     }
 
     .topic {
@@ -93,11 +101,11 @@
     .topic h1 {
         flex: 0.9;
         display: block;
-        font-family: 'BM HANNA 11yrs old', cursive;
+        font-family: 'Peralta', cursive;
         font-weight: 300;
         color: #ffffff;
         font-weight:bold;
-        font-size: 50px;
+        font-size: 48px;
         margin-left: 5%;
         margin-top: 0px;
     }

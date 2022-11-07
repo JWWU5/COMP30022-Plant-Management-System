@@ -1,6 +1,10 @@
 import "./Header.css";
-import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+import MenuIcon from "@mui/icons-material/Menu";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import Drawer from "react-modern-drawer";
@@ -32,12 +36,6 @@ const sidebarNavItems = [
         icon: <i className="bx bx-group"></i>,
         to: "/groups",
         section: "groups",
-    },
-    {
-        display: "RANKING",
-        icon: <i className="bx bx-line-chart"></i>,
-        to: "/ranking",
-        section: "ranking",
     },
     {
         display: "PROFILE",
@@ -104,13 +102,10 @@ const sidebarNavItems2 = [
 ];
 
 const Header = (menubarColour) => {
-    const [enableOverlay, setEnableOverlay] = useState(true);
+    const [enableOverlay] = useState(true);
 
-    const [activeIndex, setActiveIndex] = useState(0);
-    const [stepHeight, setStepHeight] = useState(0);
+    const [activeIndex] = useState(0);
     const sidebarRef = useRef();
-    const indicatorRef = useRef();
-    const location = useLocation();
     const [sidebar, setSidebar] = useState(false);
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -127,9 +122,7 @@ const Header = (menubarColour) => {
         return (
             <>
                 <nav className="navbar_style">
-                    <button onClick={showSidebar}>
-                        <MenuIcon sx={{ color: "#ffffff", width: 1 }} />
-                    </button>
+                    <MenuIcon onClick={showSidebar} sx={{ color: "#ffffff" }} />
                 </nav>
                 <Drawer
                     open={sidebar}
@@ -172,7 +165,7 @@ const Header = (menubarColour) => {
             <>
                 <nav className="navbar_style">
                     <button onClick={showSidebar}>
-                        <MenuIcon sx={{ color: "#44533B", width: 1 }} />
+                        <MenuIcon sx={{ color: "#44533B" }} />
                     </button>
                 </nav>
                 <Drawer

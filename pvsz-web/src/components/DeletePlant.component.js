@@ -51,7 +51,7 @@ export default function DeletePlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -60,7 +60,6 @@ export default function DeletePlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data.plantList);
                 setCachePlantList(res.data.data.plantList);
             })
@@ -98,10 +97,12 @@ export default function DeletePlant() {
         let checkedPlantArr = plantList.filter((v) => {
             return v.checked;
         });
-
+        console.log(checkedPlantArr.map((v) => {
+            return v._id;
+        }))
         axios
             .post(
-                "/api/v1/customPlant/dels",
+                "api/v1/customPlant/dels",
                 checkedPlantArr.map((v) => {
                     return v._id;
                 }),
@@ -112,7 +113,6 @@ export default function DeletePlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data);
                 if (window.timer) {
                     clearTimeout(window.timer);
                 }
@@ -165,11 +165,10 @@ export default function DeletePlant() {
                                         placeholder="Search your plant"
                                         inputProps={{ "aria-label": "search your plant" }}
                                         onChange={(e) => {
-                                            // console.log(e.target.value)
-                                            let val = e.target.value;
+                                            let val = e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.name.indexOf(val) !== -1;
+                                                return v.name.toUpperCase().indexOf(val) !== -1;
                                             });
                                             setPlantList(deepList);
                                         }}
@@ -242,13 +241,12 @@ export default function DeletePlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src="avatar1.jpg" sx={{ ml: 2.5 }} />
+                                        <Avatar src={v.image} sx={{ ml: 2.5 }} />
                                         <a>{v.name}</a>
                                         <Grid container justifyContent="flex-end">
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    // console.log("e = ", e.target.checked)
                                                     let deepList = [...plantList];
                                                     deepList[i].checked = e.target.checked;
                                                     setCachePlantList(deepList);

@@ -23,7 +23,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import axios from "axios";
-
+import { useSearchParams } from "react-router-dom";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const theme = createTheme({
@@ -41,19 +41,28 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function DeleteGroup() {
+    let searchParams = useSearchParams();
     const [open, setOpen] = React.useState(false);
     const [successTxt, setSuccessTxt] = useState("");
     const [errorTxt, setErrorTxt] = useState("");
 
-    const [groups, setGroups] = useState([]);
-    const [cacheGroupName, setCacheGroupName] = useState([]);
+    const [plants, setPlants] = useState([]);
+    const [groupId, setgroupId] = useState("");
+    const [count, setCount] = useState(0);
 
     // get my userinfo by token
     useEffect(() => {
+        setgroupId(searchParams[0].getAll("groupId")[0]);
+        setCount(count + 1);
+    }, []);
+
+    useEffect(() => {
         axios
             .post(
-                "api/v1/user/getUserInfo",
-                {},
+                "api/v1/plantGroup/getPlantGroupList",
+                {
+                    groupId: groupId,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -61,18 +70,17 @@ export default function DeleteGroup() {
                 }
             )
             .then((res) => {
-                setGroups(res.data.data.groups);
-                setCacheGroupName(res.data.data.groups);
+                setPlants(res.data.data.plants);
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
-    }, []);
-
+    }, [count]);
     const deleteDoubleCheck = () => {
-        let checkedGroupArr = groups.filter((v) => {
+        let checkedGroupArr = plants.filter((v) => {
             return v.checked;
         });
+
         if (!checkedGroupArr.length) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -93,16 +101,18 @@ export default function DeleteGroup() {
     let navigate = useNavigate();
 
     function Agree() {
-        let checkedGroupArr = groups.filter((v) => {
+        let checkedGroupArr = plants.filter((v) => {
             return v.checked;
         });
-
         axios
             .post(
-                "api/v1/plantGroup/dels",
-                checkedGroupArr.map((v) => {
-                    return v._id;
-                }),
+                "api/v1/plantGroup/delPlantInGroup",
+                {
+                    idsArr: checkedGroupArr.map((v) => {
+                        return v._id;
+                    }),
+                    groupId: groupId,
+                },
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -140,52 +150,6 @@ export default function DeleteGroup() {
                     </div>
                     <div class="plant">
                         <Stack spacing={3} justify-Content="center">
-                            <div class="search">
-                                <Paper
-                                    component="form"
-                                    sx={{
-                                        p: "2px 4px",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        width: 1,
-                                        height: 55,
-                                        borderRadius: 25,
-                                    }}
-                                >
-                                    <b>Name</b>
-                                    <Divider
-                                        sx={{ height: 28, m: 0.5 }}
-                                        orientation="vertical"
-                                    />
-                                    <InputBase
-                                        sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search your group"
-                                        inputProps={{
-                                            "aria-label": "search your group",
-                                        }}
-                                        onChange={(e) => {
-                                            let val =
-                                                e.target.value.toUpperCase();
-                                            let deepList = [...cacheGroupName];
-                                            deepList = deepList.filter((v) => {
-                                                return (
-                                                    v.groupname
-                                                        .toUpperCase()
-                                                        .indexOf(val) !== -1
-                                                );
-                                            });
-                                            setGroups(deepList);
-                                        }}
-                                    />
-                                    <IconButton
-                                        type="button"
-                                        sx={{ p: "10px" }}
-                                        aria-label="search"
-                                    >
-                                        <SearchIcon />
-                                    </IconButton>
-                                </Paper>
-                            </div>
                             <ThemeProvider theme={theme}>
                                 <Button
                                     variant="contained"
@@ -228,7 +192,7 @@ export default function DeleteGroup() {
                                 </Dialog>
                             </ThemeProvider>
                             <Divider />
-                            {groups && groups.length == 0 && (
+                            {plants && plants.length == 0 && (
                                 <div
                                     style={{
                                         color: "#666",
@@ -239,7 +203,7 @@ export default function DeleteGroup() {
                                     no plant
                                 </div>
                             )}
-                            {groups.map((v, i) => {
+                            {plants.map((v, i) => {
                                 return (
                                     <Box
                                         key={v._id}
@@ -254,10 +218,10 @@ export default function DeleteGroup() {
                                         }}
                                     >
                                         <Avatar
-                                            src="avatar1.jpg"
+                                            src={v.image}
                                             sx={{ ml: 2.5 }}
                                         />
-                                        <a>{v.groupname}</a>
+                                        <a>{v.name}</a>
                                         <Grid
                                             container
                                             justifyContent="flex-end"
@@ -265,11 +229,12 @@ export default function DeleteGroup() {
                                             <Checkbox
                                                 {...label}
                                                 onChange={(e) => {
-                                                    let deepList = [...groups];
+                                                    let deepList = [...plants];
+
                                                     deepList[i].checked =
                                                         e.target.checked;
-                                                    setCacheGroupName(deepList);
-                                                    setGroups(deepList);
+
+                                                    setPlants(deepList);
                                                 }}
                                                 sx={{
                                                     color: "#44533B",

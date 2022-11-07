@@ -1,72 +1,212 @@
 import React from "react";
 import "./PlantDetail.css";
-import Header from './Header';
-import Grid from '@mui/material/Grid';
-import Cactus from "../assets/images/Cactus.jpg";
+import Header from "./Header";
+import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
-import likeIconImage from "../assets/images/like_on_icon.png";
-import unlikeIconImage from "../assets/images/like_off_icon.png";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import FileBase64 from "react-file-base64";
+import { Alert, inputAdornmentClasses } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
 export default function PlantDetail() {
+    let searchParams = useSearchParams();
 
-    // Below consts can be replaced with the content stored in database.  
-    const plantName = "Cactus";
-    const plantImage = Cactus;
-    const plantGroupName = "Bedroom";
-    const plantOtherDetail = "This pot of Cactus is a gift from my gf. "
+    const [plantId, setPlantId] = useState("");
+    const [plant, setPlant] = useState([]);
+    const [plantName, setPlantName] = useState("");
+    const [plantGroupName, setPlantGroupName] = useState("");
+    const [lastSunDate, setLastSunDate] = useState("");
+    const [lastWaterDate, setLastWaterDate] = useState("");
+    const [otherDetails, setOtherDetails] = useState("");
+    const [plantImage, setPlantImage] = useState("");
+    const [waterPeriod, setWaterPeriod] = useState("");
+    const [sunshinePeriod, setSunshinePeriod] = useState("");
 
-    // The default usestate of plant liking could be gotten from our database. 
-    const [likePlant, setLikePlant] = useState(false);
-    const [likeIcon, setLikeIcon] = useState(unlikeIconImage);
+    // Variables for frontend.
+    const [isEditable, setIsEditable] = useState(false);
+    const [buttonClass, setButtonClass] = useState("editButtonPlantDetail");
+    const [buttonText, setbuttonText] = useState("Edit");
+    const [detailBackgroundColor, setDetailBackgroundColor] =
+        useState("#44533B");
+    const [detailTextColor, setDetailTextColor] = useState("#555A6E");
+    const [errorTxt, setErrorTxt] = useState("");
+    const [successTxt, setSuccessTxt] = useState("");
+    const [liked, setLiked] = useState(false);
+    const [validNameLength, setValidNameLength] = useState(true);
 
-    // Get last three sunlight times from backend. 
-    const lastThreeSunlights = [
-        {time: "2022 AUG 2"}, 
-        {time: "2022 Jun 20"},
-        {time: "2022 Jun 10"},  
-    ];
+    useEffect(() => {
+        setPlantId(searchParams[0].getAll("plantId")[0]);
+    });
 
-    // Get last three watering times from backend. 
-    const lastThreeWaterings = [
-        {time: "2022 Jun 10"}, 
-        {time: "2022 Jun 9"}, 
-        {time: "2022 Jun 8"}, 
-    ];
+    useEffect(() => {
+        axios
+            .post(
+                "api/v1/customPlant/getPlant",
+                {
+                    plantId: plantId,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${window.localStorage.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                setPlant(res.data.data);
+                setPlantGroupName(res.data.group.join(", "));
+                setLastSunDate(plant.lastSunDate);
+                setLastWaterDate(plant.lastWaterDate);
+                setWaterPeriod(plant.waterPeriod);
+                setSunshinePeriod(plant.sunPeriod);
+                if (!isEditable) {
+                    setOtherDetails(plant.otherDetails);
+                    setPlantImage(plant.image);
+                    setPlantName(plant.name);
+                    setLiked(res.data.data.like);
+                }
+            })
+            .catch((err) => {
+                console.log("err = ", err.response.data);
+            });
+        });
 
-    // Loop the lastThreeSunlights list. 
-    const getSunlightTime = lastThreeSunlights.map((lastThreeSunlight) =>
-        <p className="detailContentText">{lastThreeSunlight.time}</p>
-    );
 
-    // Loop the lastThreeWaterings list. 
-    const getWateringTime = lastThreeWaterings.map((lastThreeWatering) =>
-        <p className="detailContentText">{lastThreeWatering.time}</p>
-    );
+    function handleInput(e) {
+        if (isEditable === false) {
+            setIsEditable(true);
+            setDetailBackgroundColor("#44533B");
+            setDetailTextColor("#FFFFFF");
+            setbuttonText("Submit");
+            setButtonClass("submitButtonPlantDetail");
+        } else {
+            if (plantImage !== plant.image) {
+                if (plantImage.slice(0, 10) !== "data:image") {
+                    if (window.timer) {
+                        clearTimeout(window.timer);
+                    }
+                    setErrorTxt("Only accept uploading image!");
+                    window.timer = window.setTimeout(() => {
+                        setErrorTxt("");
+                    }, 1000);
+                    return;
+                }
+            }
+            if (!plantName) {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Plant name can't be empty!");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
 
-    // This function is used to check if this plant is being select as like or unlike. 
-    function changeLikeStatus() {
-        if (likePlant) {
-            setLikePlant(false);
-            setLikeIcon(unlikeIconImage);
+            axios
+                .post(
+                    "api/v1/customPlant/setCustomPlant",
+                    {
+                        plantId: plantId,
+                        otherDetails: otherDetails,
+                        plantImage: plantImage,
+                        plantName: plantName,
+                    },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.token}`,
+                        },
+                    }
+                )
+                .then((res) => {
+                    if (isEditable === true) {
+                        if (window.timer) {
+                            clearTimeout(window.timer);
+                        }
+                        setSuccessTxt("Update is successful!");
+                        window.timer = window.setTimeout(() => {
+                            setSuccessTxt("");
+                        }, 1000);
+                        setIsEditable(false);
+                        setDetailBackgroundColor("#788E6C");
+                        setDetailTextColor("#555A6E");
+                        setbuttonText("Edit");
+                        setButtonClass("editButtonPlantDetail");
+                    }
+                })
+                .catch((err) => {
+                    console.log("err = ", err);
+                });
         }
-        else {
-            setLikePlant(true);
-            setLikeIcon(likeIconImage);
+    }
+
+    const inputOtherDetails = (e) => {
+        setOtherDetails(e.target.value);
+    };
+
+    const inputPlantName = (e) => {
+        setPlantName(e.target.value);
+        checkNameLength(e.target.value);
+    };
+
+    function changeLiked() {
+        axios.post(
+            "api/v1/customPlant/changeLiked",
+
+            {
+                plantId: plantId,
+                like: !liked,
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${window.localStorage.token}`,
+                },
+            }
+        );
+        setLiked(!liked);
+    }
+
+    function checkNameLength(inputValue) {
+        if (inputValue.length > 12) {
+            setValidNameLength(false);
+            setButtonClass("editButtonPlantDetail");
+        } else {
+            setValidNameLength(true);
+            setButtonClass("submitButtonPlantDetail");
         }
-        // console.log(likePlant);
     }
 
     return (
         <body>
+            <div className="tipsBox">
+                {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
+            </div>
             <div className="detailContainer">
-                <div className="imageDiv" style={{ backgroundImage: `url(${plantImage})` }}>
+                <div
+                    className="imageDiv"
+                    style={{ backgroundImage: `url(${plantImage})` }}
+                >
                     <Header />
                     <Grid container spacing={0}>
-                        <Grid item xs={6}>
-                            <h3 className="plantNameTitle"><span>{plantName}</span></h3>
+                        <Grid item xs={9}>
+                            <h3 className="plantNameTitle">
+                                <span>{plantName}</span>
+                            </h3>
                         </Grid>
-                        <Grid item xs={6}>
-                            <img src={likeIcon} className="likeIcon" onClick={changeLikeStatus}></img>
+                        <Grid item xs={3}>
+                            <div className="likeIconDiv">
+                                <Checkbox
+                                    label="Like"
+                                    color="error"
+                                    icon={<FavoriteBorder />}
+                                    checkedIcon={<Favorite />}
+                                    checked={liked}
+                                    onChange={changeLiked}
+                                />
+                            </div>
                         </Grid>
                     </Grid>
                 </div>
@@ -78,26 +218,104 @@ export default function PlantDetail() {
                                 <p className="detailContentType">Group</p>
                             </Grid>
                             <Grid item xs={6}>
-                                <p className="detailContentText">{plantGroupName}</p>
+                                <p className="detailContentText">
+                                    {plantGroupName}
+                                </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <p className="detailContentType">Last Three Sunlight</p>
+                                <p className="detailContentType">
+                                    Last Sunlight
+                                </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <p className="detailContentText">{getSunlightTime}</p>
+                                <p className="detailContentText">
+                                    {lastSunDate}
+                                </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <p className="detailContentType">Last Three Watering</p>
+                                <p className="detailContentType">
+                                    Last Watering
+                                </p>
                             </Grid>
                             <Grid item xs={6}>
-                                <p className="detailContentText">{getWateringTime}</p>
+                                <p className="detailContentText">
+                                    {lastWaterDate}
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">
+                                    Watering Period
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">
+                                    {waterPeriod} Days
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentType">
+                                    Sunshine Period
+                                </p>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p className="detailContentText">
+                                    {sunshinePeriod} Days
+                                </p>
                             </Grid>
                         </Grid>
                         <p className="otherDetailTitle">Other details</p>
-                        <p className="otherDetailContent">{plantOtherDetail}</p>
+                        <textarea
+                            className="otherDetailContent"
+                            style={{
+                                background: { detailBackgroundColor },
+                                color: { detailTextColor },
+                            }}
+                            disabled={!isEditable}
+                            type="text"
+                            value={otherDetails}
+                            onChange={(e) => inputOtherDetails(e)}
+                        ></textarea>
+                        {isEditable && (
+                            <p className="otherDetailTitle">
+                                Update the plant name
+                            </p>
+                        )}
+                        {isEditable && (
+                            <textarea
+                                className="plantNameTextarea"
+                                onChange={(e) => inputPlantName(e)}
+                            >
+                                {plantName}
+                            </textarea>
+                        )}
+                        {isEditable && !validNameLength && (
+                            <p className="unValidLengthMSG">
+                                Maximum length of plant name is 12 characters
+                            </p>
+                        )}
+                        {isEditable && (
+                            <p className="otherDetailTitle">
+                                Update the plant image
+                            </p>
+                        )}
+                        {isEditable && (
+                            <FileBase64
+                                id="fileInput"
+                                name="plantImage"
+                                multiple={false}
+                                onDone={({ base64 }) => setPlantImage(base64)}
+                            />
+                        )}
+                        <button
+                            className={buttonClass}
+                            onClick={handleInput}
+                            disabled={!validNameLength}
+                        >
+                            {buttonText}
+                        </button>
                     </div>
                 </div>
             </div>
         </body>
-    )
+    );
 }

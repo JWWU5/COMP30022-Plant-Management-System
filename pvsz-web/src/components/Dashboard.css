@@ -1,6 +1,6 @@
 @media screen and (max-width: 350px) {
     .welcome h2 {
-        font-family: "Tamil MN";
+        font-family: "Times New Roman";
         color: #44533B;
         font-weight:lighter;
         font-size: 30px;
@@ -10,7 +10,7 @@
     }
     
     .welcome h3 {
-        font-family: "Tamil MN";
+        font-family: "Times New Roman";
         color: #7B915D;
         font-size: 13px;
         margin-left: 8%;
@@ -20,30 +20,20 @@
 
     .topic {
         height: 30px;
-        margin-top: 10%;
+        margin-top: 2%;
         margin-bottom: 2%;
         margin-left: 3%;
     }
 
-    .watercan {
-        width: 25px;
-        float: left;
-        margin-left: 6%;
-        margin-top: 2%;
+    .switchIcons {
+        margin: auto 10%;
+        margin-top: 10px;
+        display: flex;
     }
 
-    .sun {
-        width: 20px;
-
-        float: left;
-        margin-left: 4%;
-        margin-top: 3%;
-    }
-
-    .group {
-        width: 40px;
-        float: left;
-        margin-left: 1%;
+    .leftIcons {
+        flex: 0.9;
+        display: block;
     }
 
     .add {
@@ -59,6 +49,10 @@
         margin: auto 5%;
         padding-top: 10%;
         padding-bottom: 100%;
+        margin-top: 1%;
+        overflow-y: scroll;
+        height: 60vh;
+        width: 90vw;
     }
 
     .list {
@@ -72,12 +66,20 @@
         margin-left: 10%;
         font-size: 18px;
     }
+
+    #group-header {
+        height: 55px;
+    }
+
+    #group-header a {
+        margin: auto 11%;
+    }
 }
 
 
 @media screen and (min-width: 350px) {
     .welcome h2 {
-        font-family: "Tamil MN";
+        font-family: "Times New Roman";
         color: #44533B;
         font-weight:lighter;
         font-size: 40px;
@@ -87,7 +89,7 @@
     }
     
     .welcome h3 {
-        font-family: "Tamil MN";
+        font-family: "Times New Roman";
         color: #7B915D;
         font-size: 18px;
         margin-left: 6%;
@@ -97,29 +99,20 @@
 
     .topic {
         height: 30px;
-        margin-top: 10%;
+        margin-top: 2%;
         margin-bottom: 2%;
         margin-left: 3%;
     }
 
-    .watercan {
-        width: 25px;
-        float: left;
-        margin-left: 6%;
-        margin-top: 2%;
+    .switchIcons {
+        margin: auto 10%;
+        margin-top: 10px;
+        display: flex;
     }
 
-    .sun {
-        width: 20px;
-        float: left;
-        margin-left: 4%;
-        margin-top: 3%;
-    }
-
-    .group {
-        width: 40px;
-        float: left;
-        margin-left: 1%;
+    .leftIcons {
+        flex: 0.9;
+        display: block;
     }
 
     .add {
@@ -135,6 +128,10 @@
         margin: auto 5%;
         padding-top: 10%;
         padding-bottom: 100%;
+        margin-top: 1%;
+        overflow-y: scroll;
+        height: 60vh;
+        width: 90vw;
     }
 
     .list {
@@ -148,4 +145,28 @@
         margin-left: 10%;
         font-size: 18px;
     }
+
+    #group-header {
+        height: 55px;
+    }
+
+    #group-header a {
+        margin: auto 11%;
+    }
+}
+
+.tipsBox {
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    z-index: 1000;
+}
+
+.buttonClass {
+    height: 15vh;
+    width: 90vw;
+    margin: auto 5%;
+    margin-top: 5%;
 }

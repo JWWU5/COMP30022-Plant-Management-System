@@ -19,8 +19,6 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
 const theme = createTheme({
     palette: {
         primary: {
@@ -38,7 +36,7 @@ export default function SelectPlant() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/plant/list",
+                "api/v1/plant/list",
                 {},
                 {
                     headers: {
@@ -47,7 +45,6 @@ export default function SelectPlant() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setPlantList(res.data.data);
                 setCachePlantList(res.data.data);
             })
@@ -88,17 +85,26 @@ export default function SelectPlant() {
                                     }}
                                 >
                                     <b>Name</b>
-                                    <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
+                                    <Divider
+                                        sx={{ height: 28, m: 0.5 }}
+                                        orientation="vertical"
+                                    />
                                     <InputBase
                                         sx={{ ml: 1, flex: 1 }}
-                                        placeholder="Search the plant"
-                                        inputProps={{ "aria-label": "search your plant" }}
+                                        placeholder="Search your plant"
+                                        inputProps={{
+                                            "aria-label": "search your plant",
+                                        }}
                                         onChange={(e) => {
-                                            console.log(e.target.value)
-                                            let val = e.target.value.toUpperCase();
+                                            let val =
+                                                e.target.value.toUpperCase();
                                             let deepList = [...cachePlantList];
                                             deepList = deepList.filter((v) => {
-                                                return v.commonName.toUpperCase().indexOf(val) !== -1;
+                                                return (
+                                                    v.commonName
+                                                        .toUpperCase()
+                                                        .indexOf(val) !== -1
+                                                );
                                             });
 
                                             setPlantList(deepList);
@@ -148,7 +154,9 @@ export default function SelectPlant() {
                                         display="flex"
                                         justify-Content="center"
                                         onClick={() => {
-                                            navigate(`/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}`);
+                                            navigate(
+                                                `/add-plant?sunExposure=${v.sunExposure}&waterPeriod=${v.waterPeriod}&image=${v.imageSource}`
+                                            );
                                         }}
                                         sx={{
                                             width: 1,
@@ -158,13 +166,23 @@ export default function SelectPlant() {
                                             borderRadius: 25,
                                         }}
                                     >
-                                        <Avatar src={v.imageSource} sx={{ ml: 2.5 }} />
-                                        <a className="wordHidden" style={{
-                                            flex: 1,
-                                            fontSize: 14
-                                        }}>{v.commonName}</a>
+                                        <Avatar
+                                            src={v.imageSource}
+                                            sx={{ ml: 2.5 }}
+                                        />
+                                        <a
+                                            className="wordHidden"
+                                            style={{
+                                                flex: 1,
+                                                fontSize: 14,
+                                            }}
+                                        >
+                                            {v.commonName}
+                                        </a>
                                         <Grid justifyContent="flex-end">
-                                            <ArrowForwardIosOutlinedIcon sx={{ mr: 2.5 }} />
+                                            <ArrowForwardIosOutlinedIcon
+                                                sx={{ mr: 2.5 }}
+                                            />
                                         </Grid>
                                     </Box>
                                 );

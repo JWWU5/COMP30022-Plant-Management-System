@@ -4,12 +4,24 @@ import { useNavigate } from "react-router-dom";
 import "./SignInUp.css";
 import avatar from "../assets/images/avatar.png";
 import logo from "../assets/images/logo.jpg";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Grid } from "@mui/material";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { Alert } from "@mui/material";
-import "./dynamicButton.scss";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        green: {
+            main: "#768457",
+            width: 1,
+            height: 60,
+        },
+    },
+});
 
 const cookies = new Cookies();
 export default function Login() {
@@ -50,7 +62,7 @@ export default function Login() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/login",
+            url: "api/v1/user/login",
             data: {
                 email,
                 password,
@@ -77,8 +89,6 @@ export default function Login() {
                     setSuccessTxt("");
                     navigate("/dashboard");
                 }, 1000);
-
-                // navigate("/");
             })
             .catch((error) => {
                 // error = new Error();
@@ -117,22 +127,17 @@ export default function Login() {
         navigate("/contact-us");
     }
 
-    function componentDidMount() {
-        const container = document.querySelector(".buttonContainer");
-        container.addEventListener("animationend", () => {
-            container.classList.remove("active");
-        });
-    }
-
     return (
         <body className="signIn">
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
                 {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
-            <Header />
+            <header> 
+                <Header />
+            </header>
             <header>
-                <h1>SIGN IN</h1>
+                <h1>Sigh In</h1>
             </header>
             <Grid
                 container
@@ -141,34 +146,43 @@ export default function Login() {
                 alignItems="center"
             >
                 <img src={avatar} className="avatarIcon"></img>
-                <input
-                    type="email"
-                    placeholder="Email"
-                    className="signInInputBlock"
-                    value={email}
-                    onChange={(e) => checkEmail(e.target.value)}
-                ></input>
-                {!isCorrect && (
-                    <span className="errorMessage">{information}</span>
-                )}
-                <input
-                    type="password"
-                    placeholder="Password"
-                    className="signInInputBlock"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                ></input>
-                <div className="buttonContainer">
-                    <span className="mas"></span>
-                    <button
-                        id="work"
-                        type="button"
-                        name="Hover"
+                
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        className="signInInputBlock"
+                        value={email}
+                        onChange={(e) => checkEmail(e.target.value)}
+                    ></input>
+                    {!isCorrect && (
+                        <span className="errorMessage">{information}</span>
+                    )}
+                <Stack spacing={3} justify-Content="center">
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        className="signInInputBlock"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    ></input>
+
+                    <ThemeProvider theme={theme}>
+                        <Button 
+                        variant="contained"
+                        color="green"
                         onClick={(e) => handleSubmit(e)}
-                    >
-                        SIGN IN
-                    </button>
-                </div>
+                        sx={{
+                            height: 55,
+                            borderRadius: 25,
+                            color: "#ffffff",
+                            textTransform: "capitalize",
+                            fontFamily: "Times New Roman",
+                            fontSize: 15,
+                            fontWeight: "bold",
+                        }}>SIGN IN</Button>
+                    </ThemeProvider>
+                </Stack>
+
                 <img
                     src={logo}
                     className="logoImage"
@@ -179,6 +193,7 @@ export default function Login() {
                     TEAM
                 </b>
             </Grid>
+            
         </body>
     );
 }

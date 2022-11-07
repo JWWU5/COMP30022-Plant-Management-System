@@ -10,8 +10,10 @@ const UserSchema = mongoose.Schema(
         userName: { type: String },
         dateOfBirth: { type: String },
         email: { type: String },
-        plantList:[{type: mongoose.Schema.Types.ObjectId, ref: 'CustomPlant'}],
-        groups:[{type: mongoose.Schema.Types.ObjectId, ref: 'PlantGroup'}],
+        plantList: [
+            { type: mongoose.Schema.Types.ObjectId, ref: "CustomPlant" },
+        ],
+        groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "PlantGroup" }],
     },
     {
         timestamps: { createdAt: "createTime", updatedAt: "updateTime" },

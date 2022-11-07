@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import "./SignInUp.css";
@@ -7,9 +7,22 @@ import avatar from "../assets/images/avatar.png";
 import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 import FileBase64 from "react-file-base64";
-
-import { useEffect, useState } from "react";
+import Avatar from "@mui/material/Avatar";
+import moment from "moment";
+import { useState } from "react";
 import axios from "axios";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+    palette: {
+        green: {
+            main: "#768457",
+            width: 1,
+            height: 60,
+        },
+    },
+});
 
 export default function Register() {
     const navigate = useNavigate();
@@ -17,8 +30,6 @@ export default function Register() {
     const [errorTxt, setErrorTxt] = useState("");
     const [isCorrect, setIsCorrect] = useState("");
     const [information, setInformation] = useState("");
-    // const [buttonContent, setButtonContent] = useState("");
-    // const [selectedImage, setSelectedImage] = useState(avatar);
 
     const [image, setImage] = useState(avatar);
     const [firstName, setFirstName] = useState("");
@@ -28,12 +39,22 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [agreePolicy, setPagreePolicy] = useState("");
-    const [register, setRegister] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // if (image.slice(0,10) !== "data:image" || image !== avatar) {
+        if (image.slice(0,10) !== "data:image") {
 
-        console.log("agreePolicy = ", agreePolicy);
+            console.log(image.slice(0,10));
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Only accept uploading image");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
         if (!firstName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -56,6 +77,17 @@ export default function Register() {
             return;
         }
 
+        if (userName.length > 20) {
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setErrorTxt("Length of Username cannot larger than 20!");
+            window.timer = window.setTimeout(() => {
+                setErrorTxt("");
+            }, 1000);
+            return;
+        }
+        
         if (!userName) {
             if (window.timer) {
                 clearTimeout(window.timer);
@@ -115,7 +147,7 @@ export default function Register() {
         // set configurations
         const configuration = {
             method: "post",
-            url: "/api/v1/user/register",
+            url: "api/v1/user/register",
             data: {
                 image,
                 firstName,
@@ -152,9 +184,22 @@ export default function Register() {
         console.log(configuration);
     };
 
-    const submit = (e) => {
-        e.preventDefault();
-        alert(`The name you entered was: ${userName}`);
+
+    const checkEmail = (value) => {
+        //reg express
+        setEmail(value);
+        function isValidEmail(email) {
+            return /\S+@\S+\.\S+/.test(email);
+        }
+        //if ture
+        if (isValidEmail(value)) {
+            setIsCorrect(true);
+        }
+        //if false
+        else {
+            setInformation("Oh-oh, this email address looks wrong. ");
+            setIsCorrect(false);
+        }
     };
 
     function componentDidMount() {
@@ -194,7 +239,7 @@ export default function Register() {
             </div>
             <Header />
             <header>
-                <h1>SIGN UP</h1>
+                <h1>Sigh Up</h1>
             </header>
             <Grid
                 container
@@ -202,16 +247,10 @@ export default function Register() {
                 justifyContent="center"
                 alignItems="center"
             >
-                <div class="imageUpload">
-                    <label for="fileInput">
-                        <FileBase64
-                            id="fileInput"
-                            name="avatar"
-                            multiple={false}
-                            onDone={({ base64 }) => setImage(base64)}
-                        />
-                    </label>
-                </div>
+                <Avatar
+                    src={image}
+                    sx={{ width:80, height:80, mt: 2}}
+                />
             </Grid>
             <form>
                 <Grid
@@ -220,6 +259,16 @@ export default function Register() {
                     justifyContent="center"
                     alignItems="center"
                 >
+                    <div class="image">
+                        <label for="fileInput">
+                            <FileBase64
+                                id="fileInput"
+                                name="avatar"
+                                multiple={false}
+                                onDone={({ base64 }) => setImage(base64)}
+                            />
+                        </label>
+                    </div>
                     <input
                         type="text"
                         placeholder="First Name"
@@ -245,6 +294,7 @@ export default function Register() {
                         type="date"
                         placeholder="DOB"
                         className="signUpInputBlock"
+                        max={moment().format("YYYY-MM-DD")}
                         value={birthdayDate}
                         onChange={(e) => setBirthdayDate(e.target.value)}
                     ></input>
@@ -265,26 +315,41 @@ export default function Register() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     ></input>
-                    <div className="buttonContainer1">
+                    <div className="signUpInputBlock">
                         {agreePolicy && <span className="mas1"></span>}
                         {agreePolicy && (
-                            <button
-                                id="work"
-                                type="button"
-                                name="Hover"
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained"
+                                color="green"
                                 onClick={(e) => handleSubmit(e)}
-                                disabled={!agreePolicy}
-                            >
-                                SIGN UP
-                            </button>
+                                sx={{
+                                    height: 55,
+                                    width: 1,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}>SIGN UP</Button>
+                            </ThemeProvider>
                         )}
                         {!agreePolicy && (
-                            <button
-                                className="disabledSignUpButton"
+                            <ThemeProvider theme={theme}>
+                                <Button variant="contained"
                                 disabled={!agreePolicy}
-                            >
-                                Please agree the privacy policy
-                            </button>
+                                color="green"
+                                sx={{
+                                    height: 55,
+                                    width: 1,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}>Please agree the privacy policy</Button>
+                            </ThemeProvider>
                         )}
                     </div>
                 </Grid>

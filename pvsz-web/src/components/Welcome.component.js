@@ -4,18 +4,31 @@ import './dynamicButton.scss';
 import logo from "../assets/images/logo.jpg";
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Stack from "@mui/material/Stack";
+import background from "../assets/images/background.png";
+import { convertLength } from '@mui/material/styles/cssUtils';
+
+var backgroundStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: "150%",
+    backgroundRepeat: "no-repeat",
+};
+
+const theme = createTheme({
+    palette: {
+        green: {
+            main: "#768457",
+            width: 1,
+            height: 55,
+        },
+    },
+});
 
 export default function Welcome() {
 
     let navigate = useNavigate();
-    
-    function componentDidMount()
-    {
-        const container = document.querySelector('.buttonContainer1')
-        container.addEventListener('animationend', () => {
-            container.classList.remove('active');
-        });
-    }
 
     function handleSignIN() {
         navigate("/sign-in");
@@ -30,7 +43,7 @@ export default function Welcome() {
     }
 
     return (
-        <main className='welcome'>
+        <main className='welcome' style={backgroundStyle}>
             <p className='welcomeText'>Welcome to</p> 
             <Grid
             container
@@ -41,22 +54,48 @@ export default function Welcome() {
                 <div>
                     <img src={logo} className='logoStyle'></img>
                 </div>
-            
-                <div>
-                        <div className="buttonContainer1">
-                            <span className="mas1"></span>
-                            <button id='work' type="button" name="Hover" onClick={handleSignUP}>SIGN UP</button>
-                        </div>
-                    <div className="buttonContainer1">
-                        <span className="mas1"></span>
-                        <button id='work' type="button" name="Hover" onClick={handleSignIN}>SIGN IN</button>
-                    </div>
-                    
+
+                <div class="signInButtons">
+                    <ThemeProvider theme={theme}>
+                        <Stack spacing={3} justify-Content="center">
+                            <Button
+                                variant="contained"
+                                color="green"
+                                onClick={handleSignIN}
+                                sx={{
+                                    height: 50,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                SIGN IN
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="green"
+                                onClick={handleSignUP}
+                                sx={{
+                                    height: 50,
+                                    borderRadius: 25,
+                                    color: "#ffffff",
+                                    textTransform: "capitalize",
+                                    fontFamily: "Times New Roman",
+                                    fontSize: 15,
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                SIGN UP
+                            </Button>
+                        </Stack>
+                    </ThemeProvider>
                 </div>
                 <div>
                     <ul>
-                        <li className='aboutText' onClick={handleAboutUS}>If you wanna know more about this app, feel free 
-                        to look into this page</li> 
+                        <li className='aboutText' onClick={handleAboutUS}>Click here to learn more about our website.</li> 
                     </ul>
                 </div>
             </Grid>

@@ -1,17 +1,26 @@
 import { Grid } from "@mui/material";
 import Header from "./Header";
-import avatar from "../assets/images/avatar.png";
 import "./Profile.css";
 import "./dynamicButton.scss";
 import { Alert } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import FileBase64 from "react-file-base64";
+import Avatar from "@mui/material/Avatar";
+import background from "../assets/images/background.png";
+
+var backgroundStyle = {
+    backgroundImage: `url(${background})`,
+    backgroundSize: "150%",
+    backgroundRepeat: "no-repeat",
+};
 
 export default function Profile() {
     const [buttonText, setbuttonText] = useState("Edit");
     const [readonlyValue, setReadonlyValue] = useState(true);
     const [inputType, setInputType] = useState("blocked");
     const [nullInput, setnullInput] = useState(false);
+    const [errorTxt, setErrorTxt] = useState("");
     const [successTxt, setSuccessTxt] = useState("");
     // Below consts could be replaced by data stored in our database
     const [firstName, setFirstName] = useState("");
@@ -26,7 +35,7 @@ export default function Profile() {
     useEffect(() => {
         axios
             .post(
-                "/api/v1/user/getUserInfo",
+                "api/v1/user/getUserInfo",
                 {},
                 {
                     headers: {
@@ -35,24 +44,17 @@ export default function Profile() {
                 }
             )
             .then((res) => {
-                console.log("res = ", res.data.data);
                 setFirstName(res.data.data.firstName);
                 setLastName(res.data.data.lastName);
                 setUserName(res.data.data.userName);
                 setBirthdayDate(res.data.data.dateOfBirth)
                 setEmail(res.data.data.email)
                 setImage(res.data.data.image)
-                console.log("image: ", image)
             })
             .catch((err) => {
                 console.log("err = ", err);
             });
     }, []);
-
-    // These two consts can not be changed
-    // So no need to write the set function
-    // const birthdayDate = "01/01/2000";
-    // const email = "Crazy_Dave@gmail.com";
 
     function checkNullInput(inputValue) {
         if (inputValue.trim().length - 1 === 0) {
@@ -71,41 +73,62 @@ export default function Profile() {
             setbuttonText("Submit");
             setInputType("text");
             setButtonClass("submitButton");
+
         } else {
-            setReadonlyValue(true);
-            setbuttonText("Edit");
-            setInputType("blocked");
-            setButtonClass("editButton");
-        }
-        axios
-            .post(
-                "/api/v1/user/setUserInfo",
-                {
-                    firstName: firstName,
-                    lastName: lastName,
-                    userName: userName,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${window.localStorage.token}`,
+            if (image.slice(0, 10) !== "data:image") {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Only accept uploading image");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
+            if (userName.length > 20) {
+                if (window.timer) {
+                    clearTimeout(window.timer);
+                }
+                setErrorTxt("Length of Username cannot larger than 20!");
+                window.timer = window.setTimeout(() => {
+                    setErrorTxt("");
+                }, 1000);
+                return;
+            }
+            axios
+                .post(
+                    "api/v1/user/setUserInfo",
+                    {
+                        firstName: firstName,
+                        lastName: lastName,
+                        userName: userName,
+                        image: image,
                     },
-                }
-            )
-            .then((res) => {
-                console.log("res = ", res.data);
-                if (readonlyValue === false) {
-                    if (window.timer) {
-                        clearTimeout(window.timer);
+                    {
+                        headers: {
+                            Authorization: `Bearer ${window.localStorage.token}`,
+                        },
                     }
-                    setSuccessTxt("Update is successful!");
-                    window.timer = window.setTimeout(() => {
-                        setSuccessTxt("");
-                    }, 1000);
-                }
-            })
-            .catch((err) => {
-                console.log("err = ", err);
-            });
+                )
+                .then((res) => {
+                    if (readonlyValue === false) {
+                        if (window.timer) {
+                            clearTimeout(window.timer);
+                        }
+                        setSuccessTxt("Update is successful!");
+                        window.timer = window.setTimeout(() => {
+                            setSuccessTxt("");
+                        }, 1000);
+                        setReadonlyValue(true);
+                        setbuttonText("Edit");
+                        setInputType("blocked");
+                        setButtonClass("editButton");
+                    }
+                })
+                .catch((err) => {
+                    console.log("err = ", err);
+                });
+        }
     }
 
     const inputFirstName = (e) => {
@@ -123,22 +146,56 @@ export default function Profile() {
         checkNullInput(userName);
     };
 
+    function uploadingImage(base64) {
+        var count = 0;
+        if (base64.slice(0, 10) === "data:image") {
+
+            setImage(base64);
+            if (count === 0) {
+                count++;
+            }
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setSuccessTxt("The selected file is a image!");
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        } else {
+            if (count === 0) {
+                count++;
+            }
+            if (window.timer) {
+                clearTimeout(window.timer);
+            }
+            setSuccessTxt("Only accept uploading image");
+            window.timer = window.setTimeout(() => {
+                setSuccessTxt("");
+            }, 1000);
+        }
+    }
+
     return (
         <body>
             <div className="tipsBox">
                 {successTxt && <Alert severity="success">{successTxt}</Alert>}
+                {errorTxt && <Alert severity="error">{errorTxt}</Alert>}
             </div>
             <Header />
             <header>
-                <h1 className="profileTitle">PROFILE</h1>
+                <h1 className="profileTitle">Profile</h1>
             </header>
             <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
+                style={backgroundStyle}
             >
-                <img src={image} className="avatarIcon"></img>
+                <Avatar
+                    src={image}
+                    sx={{ width: 80, height: 80 }}
+                />
                 <div className="valueDiv">
                     <h3 className="valueTitle">First Name</h3>
                     <input
@@ -187,13 +244,28 @@ export default function Profile() {
                         value={email}
                     ></input>
                 </div>
-                <button
-                    className={buttonClass}
-                    onClick={handleInput}
-                    disabled={nullInput}
-                >
-                    {buttonText}
-                </button>
+                <div className="valueDiv">
+                    {!readonlyValue && (
+                        <h3 className="valueTitle">Upload new Avatar</h3>
+                    )}
+                    {!readonlyValue && (
+                        <FileBase64
+                            id="fileInput"
+                            name="avatar"
+                            multiple={false}
+                            onDone={({ base64 }) => setImage(base64)}
+                        />
+                    )}
+                </div>
+                <div className="valueDiv">
+                    <button
+                        className={buttonClass}
+                        onClick={handleInput}
+                        disabled={nullInput}
+                    >
+                        {buttonText}
+                    </button>
+                </div>
             </Grid>
         </body>
     );
