@@ -178,7 +178,7 @@ export default function Dashboard() {
             .then((res) => {
                 setBirthday(res.data.birthday);
                 const today1 = moment().format("MM-DD");
-                console.log(today1)
+                console.log(today1);
                 if (moment(birthday).format("MM-DD") === today1) {
                     setisBirthday(true);
                 }
@@ -269,18 +269,6 @@ export default function Dashboard() {
             </div>
             <Header />
             <main>
-                {bgmOn && (
-                    <embed
-                        src={backgroundMusic}
-                        loop="true"
-                        autostart="true"
-                        hidden="true"
-                        width={0}
-                        height={0}
-                    />
-                )}
-                {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
-                {!bgmOn && <VolumeMuteIcon onClick={handleBGM} />}
                 <div class="welcome">
                     <h2>Welcome, {userName}</h2>
                     <h3>Today is {today}.</h3>

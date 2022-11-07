@@ -1,6 +1,6 @@
 body {
     background: #E2ECC6;
-    height: 100vh;
+    height: device-height;
     width: 100vw;
     overflow-y: scroll;
 }

@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
 import { borderLeft } from "@mui/system";
@@ -22,7 +22,6 @@ import { borderLeft } from "@mui/system";
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-
 
 const cookies = new Cookies();
 
@@ -63,7 +62,7 @@ export default function Setting() {
                 height: 55,
             },
         },
-    })
+    });
 
     function handleOpenWindow() {
         setOpenWindow(true);
@@ -78,8 +77,7 @@ export default function Setting() {
         axios
             .post(
                 "api/v1/user/dels",
-                {
-                },
+                {},
                 {
                     headers: {
                         Authorization: `Bearer ${window.localStorage.token}`,
@@ -166,7 +164,7 @@ export default function Setting() {
                                         color: "#646464",
                                         fontFamily: "Tamil HM",
                                         fontSize: 20,
-                                        fontWeight: 'bold', 
+                                        fontWeight: "bold",
                                     }}
                                 >
                                     Delete Account
@@ -177,27 +175,39 @@ export default function Setting() {
                                     keepMounted
                                     onClose={closeOpenWindow}
                                 >
-                                    <DialogTitle sx={{ fontWeight: "bold", fontSize: 20 }}>
+                                    <DialogTitle
+                                        sx={{
+                                            fontWeight: "bold",
+                                            fontSize: 20,
+                                        }}
+                                    >
                                         {"Delete this account?"}
                                     </DialogTitle>
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-slide-description">
-                                            Deleting this account means that all your personal details,
-                                            plants and related information will be removed from our
-                                            database permanently.
+                                            Deleting this account means that all
+                                            your personal details, plants and
+                                            related information will be removed
+                                            from our database permanently.
                                         </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
-                                        <Button color="success" onClick={closeOpenWindow}>
+                                        <Button
+                                            color="success"
+                                            onClick={closeOpenWindow}
+                                        >
                                             No
                                         </Button>
-                                        <Button color="error" onClick={cancelAccount}>
+                                        <Button
+                                            color="error"
+                                            onClick={cancelAccount}
+                                        >
                                             yes!
                                         </Button>
                                     </DialogActions>
                                 </Dialog>
                             </ThemeProvider>
-                        </div>        
+                        </div>
                     </Grid>
                 </div>
             </div>
@@ -220,7 +230,7 @@ export default function Setting() {
                                 color: "#FFFFFF",
                                 fontFamily: "New Times Roman",
                                 fontSize: 20,
-                                fontWeight: 'bold', 
+                                fontWeight: "bold",
                             }}
                         >
                             LOG OUT
