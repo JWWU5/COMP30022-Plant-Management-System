@@ -308,10 +308,6 @@ export default function AddPlant() {
                         Submit
                     </Button>
                 </ThemeProvider>
-                
-                {/* <button onClick={handleSubmit} className="submitButton">
-                    Submit
-                </button> */}
             </Grid>
         </body>
     );
