@@ -1,60 +1,47 @@
-# COMP30022 Team Project
 
-## About our team
+**The University of Melbourne**
 
-This is Team **Now You See Me** from Tutorial Mon 17:15-19:15.
+# COMP30022 - IT Project - PVS.Z
 
-Our team members are **Jiayi Wu** & **Wuge Liu** & **Xuanhao Zhang** & **Yikun Tu** & **Zhenchen Wan**.
+## Table of contents
 
-### Role Assignment.
-| Name | Role |
-| ---------- |:------------------------------------------------------------------------------------------:|
-| `Jiayi Wu` | UI Design & Frotend Developer & Frontend Lead |
-| `Wuge Liu` | Frontend Developer & Product Owner |
-| `Xuanhao Zhang` | Backend Developer & Frontend Developer & Backend Leader |
-| `Yikun Tu` | Backend Developer & Quality Assurance / Testing Lead |
-| `Zhenchen Wan` | Backend Developer & Frontend Developer & Scrum Master |
+- [Team Members and Contributions](#team-members-and-contributions)
+- [About the product](#about-the-product)
+- [Coding Standard](https://jwwu5.atlassian.net/wiki/spaces/IP/pages/7143452/Coding+Standards)
+- [Workflow Guideline](https://jwwu5.atlassian.net/wiki/spaces/IP/pages/7241759/Git+Repository+Workflow+Guidelines)
+- [CI/CD Pipelines](https://jwwu5.atlassian.net/wiki/spaces/IP/pages/7241766/CI+CD+Pipelines)
+- [Building Technologies](#building-technologies)
+- [Workflow Control](#workflow-control)
+- [How to run](#how-to-run)
 
-### Workflow Control
+## Team Members and Contributions
 
-In this project, we choose to use [Monday](https://student543001.monday.com/boards/3128765258) and GitHub to manage our workflow. 
+| Name           |      |Contributions                                        |
+| :------------- | :----|:--------------------------------------------------- |
+| Zhenchen Wan | [@ZhenchenWan](https://github.com/ZhenchenWan) | Scrum Master, Backend & Frontend Developer           |
+| Yikun Tu | [@Tykkk1026](https://github.com/Tykkk1026)    | Backend Leader, Testing Leader, Backend Developer    |
+| Xuanhao Zhang | [@XUANHZHANG](https://github.com/XUANHZHANG)| Quality Assurance, Backend Developer                 |
+| Jiayi Wu | [@JWWU5](https://github.com/JWWU5)     | Frontend Leader, UI Designer, Frontend Developer     |
+| Wuge Liu | [@jzh398](https://github.com/jzh398)     | Product Owner, Frontend Developer                    |
 
-Below are our overall workflow diagram and git workflow diagram respectively. 
+## About the product
+This web application named ‘PvsZ’ (fits for all phone sizes) used for tracking the plants' condition and help our users take better care of their plants. In this app, the user can add, remove, search plants, record the details of their plants, group their plants and get the alert message if the plant needs to be watered, sunshined or other actions should be taken. this project will span about 12 weeks and will be done so in Agile Methodology, we choose to divide the work in 3 sprints. Furthermore, except the general functions, this app also follows the client requirements. 
+See the full list of requirements at our [Confluence](https://jwwu5.atlassian.net/wiki/spaces/IP/overview?homepageId=196693) site. 
+
+**Product Logo**
 <p align="center">
-    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-</p>
-
-<p align="center">
-    overall workflow
-</p>
-
-<p align="center">
-    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-</p>
-
-<p align="center">
-    git workflow
-</p>
-
-
-
-
-## About our project
-This web application named ‘PvsZ’ (only for phone size) used for tracking the plants' condition and help our users take better care of their plants. The tools we used are React, MongoDB and Node.js. In this app, the user can add plants, remove plants, search plants, record the details of their plants, group their plants and get the alert message if the plant needs to be watered, sunshined or other actions should be taken. this project will span about 12 weeks and will be done so in Agile Methodology, we choose to divide the work in 3 sprints. Furthermore, except the general functions, this app also follows the client requirements. 
-See the full list of requirements at our [Confluence](https://jwwu5.atlassian.net/wiki/spaces/IP/overview?homepageId=196693). 
-
-### This is our logo: 
-<p align="center">
-    <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
-</p>
-
-<p align="center" style="font-style: italic">
-    logo of this product
+  <img src="./pvsz-web/src/assets/images/logo.jpg" width=300 height=180>
 </p>
 
 ## Building Technologies
+- Design: Adobe XD, Adoube Photoshops, Iconscout, Draw.io
+- Frontend: React, Material UI
+- Backend: node.js, Express, MongoDB
+- Deploy Server: Heroku
 
-## Install
+## How to run
+
+**1. Install**
 
 This project uses [node](http://nodejs.org) and [npm](https://npmjs.com). Go check them out if you don't have them locally installed.
 
@@ -73,7 +60,7 @@ $ cd pvsz-web
 $ npm install
 ```
 
-## Run
+**2. Run**
 
 Backend
 
@@ -88,10 +75,3 @@ Frontend
 $ cd pvsz-web
 $ npm run start
 ```
-
-### Contributors
-- Zhenchen Wan [@ZhenchenWan](https://github.com/ZhenchenWan)
-- Wuge Liu [@jzh398](https://github.com/jzh398)
-- Jiayi Wu [@JWWU5](https://github.com/JWWU5)
-- Xuanhao Zhang [@XUANHZHANG](https://github.com/XUANHZHANG)
-- Yikun Tu [@Tykkk1026](https://github.com/Tykkk1026)

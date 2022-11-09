@@ -11,6 +11,7 @@ exports.add = async (req, res, next) => {
         });
         return;
     }
+    //1123
     token = token.split("Bearer ")[1];
     jwt.verify(token, jwtKey, (err, decode) => {
         if (err) {

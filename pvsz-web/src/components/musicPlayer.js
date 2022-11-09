@@ -23,6 +23,8 @@ const MusicPlayer = (currentPlaying) => {
                         loop="true"
                         autostart="true"
                         hidden="true"
+                        width={0}
+                        height={0}
                     />
                 )}
                 {bgmOn && <VolumeUpIcon onClick={handleBGM} />}
