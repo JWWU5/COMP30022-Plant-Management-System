@@ -11,6 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import moment from "moment";
 import Select from "react-select";
 import { useEffect } from "react";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export default function AddPlant() {
     const defaultImage = "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/v112-pla-118-shopicons_2.jpg?bg=transparent&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-3.1.0&q=80&usm=15&vib=3&w=1300&s=ccfe8a4597928fe048abb6fd06f6a82e"
@@ -70,6 +72,16 @@ export default function AddPlant() {
         }
 
     }, []);
+
+    const theme = createTheme({
+        palette: {
+            green: {
+                main: "#788E6C",
+                width: 1,
+                height: 60,
+            },
+        },
+    });
 
     const handleSubmit = () => {
         console.log(lastSunshineTime)
@@ -276,9 +288,26 @@ export default function AddPlant() {
                         onChange={(e) => setOtherDetail(e.target.value)}
                     ></input>
                 </div>
-                <button onClick={handleSubmit} className="submitButton">
-                    Submit
-                </button>
+                <ThemeProvider theme={theme}>
+                    <Button
+                        onClick={handleSubmit}
+                        variant="contained"
+                        color="green"
+                        sx={{
+                            width: 0.8,
+                            height: 1, 
+                            margin: 2, 
+                            borderRadius: 30,
+                            color: "#ffffff",
+                            textTransform: "capitalize",
+                            fontFamily: "Times New Roman",
+                            fontSize: 25,
+                            fontWeight: "900",
+                        }}
+                    >
+                        Submit
+                    </Button>
+                </ThemeProvider>
             </Grid>
         </body>
     );
